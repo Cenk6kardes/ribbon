@@ -1,0 +1,15 @@
+<div class="wrapper rbn-container">
+    <div class="header">
+     <rbn-page-top [pageTop]="pageTop"></rbn-page-top>
+    </div>
+    <div class="container container-wrapper content-container">
+      <rbn-sidebar [menuItems]="menuItemsSidebar" [allowSearchTopLevel]="true" [useFavorites]="sidebarConfig.useFavorites"
+        [useSearch]="sidebarConfig.useSearch" (menuItemClicked)="menuItemClicked($event)"
+        [usePathForActiveItem]="sidebarConfig.usePathForActiveItem" >
+      </rbn-sidebar>
+      <div class="layout-content right-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

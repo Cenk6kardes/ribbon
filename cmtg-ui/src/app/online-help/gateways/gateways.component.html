@@ -1,0 +1,299 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-4">
+        <p>The Gateways panel provides access to configuration data for media gateways associated with the selected
+            gateway controller.</p>
+        <p>A common <a [routerLink]="['/help/search']">search</a> interface is located at the top, while the lower
+            section contains a table to display the retrieved records and functions specific to Gateways.</p>
+        <p-image src="assets/images/help/gateways/gateway_panel.jpg" alt="gateway_panel_img" width="600"
+            [preview]="true"></p-image>
+    </div>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Gateway Related Functions'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Associate a Media Gateway'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <div class="p-mb-3">
+                            <p>
+                                Displays the Associate Media Gateway dialog to associate a Media Gateway to the selected
+                                Gateway Controller. Refer to Associate a Media Gateway procedure for more information.
+                            </p>
+                        </div>
+                        <div class="p-mb-3">
+                            Use this procedure to associate a Media Gateway to a Gateway Controller from the "C20
+                            Management
+                            Tools" GUI. For those customers who are using an Operations Support System (OSS) interface
+                            to
+                            associate gateways via XML, please refer to the "OSSGate User Guide".
+                        </div>
+                        <ol>
+                            <li>There are two methods available to associate a Media Gateway.
+                                <ol>
+                                    <li class="lower_alphabet_list">Select the <b>Associate Media Gateway</b> menu item
+                                        from the <b>Gateway Controllers</b> page. <b>The Associate Media Gateway</b>
+                                        dialog appears upon selection.</li>
+                                    <li class="lower_alphabet_list p-mb-2">An alternate method to associate a Media
+                                        Gateway to
+                                        a specific gateway controller is to: display the <a
+                                            [routerLink]="['/help/provisioning']">Provisioning</a> panel for a
+                                        specific gateway controller, select the <b>Gateways</b> panel, and then click
+                                        the
+                                        <b>Associate...</b> button. <b>The Associate Media Gateway</b>dialog appears,
+                                        with the Gateway controller name preconfigured.
+                                    </li>
+                                    <div class="p-my-2">
+                                        <p-image src="assets/images/help/gateways/associate_gateway_dialog.jpg"
+                                            alt="associate_gateway_dialog_img" width="600" [preview]="true"></p-image>
+                                    </div>
+                                </ol>
+                            </li>
+                            <li class="p-mt-2">Enter the media gateway name in the <b>Gateway name</b> field, and IP
+                                address in the <b>Gateway IP address</b> field.</li>
+                            <rbn-panel-messages
+                                [content]="'If a specific gateway controller is not specified, one is automatically discovered to associate the media gateway with. The gateway controller is selected based on the service type of the media gateway (i.e. line, trunk, or audio) and the “Maximum Terminations” (i.e. potential capacity of the media gateway). Only media gateways and their associated gateway controllers with a service type of line or trunk have managed capacities.'"
+                                [typeOfMessage]="'info'"></rbn-panel-messages>
+                            <li>If the gateway controller with which the media gateway is to be associated is known,
+                                select the appropriate gateway controller in the <b>Gateway controller name</b> field;
+                                otherwise if the selected profile is a small line this will be set as &lt;auto
+                                select&gt;. (This field is preconfigured and cannot be changed when associating the
+                                media gateway via the Gateways panel.)</li>
+                            <rbn-panel-messages
+                                [content]="'If a specific gateway controller is not specified, one is automatically discovered to associate the media gateway with. The gateway controller is selected based on the service type of the media gateway (i.e. line, trunk, or audio) and the “Maximum Terminations” (i.e. potential capacity of the media gateway). Only media gateways and their associated gateway controllers with a service type of line or trunk have managed capacities.'"
+                                [typeOfMessage]="'info'"></rbn-panel-messages>
+                            <li>Select a profile for the media gateway from the Gateway profile name pull down menu.
+                                <rbn-panel-messages
+                                    [content]="'If an attempt is made to associate a media gateway to a gateway controller with a different service type (ex. a line media gateway to a trunk gateway controller), the provisioning request will be rejected. If an attempt is made to associate a media gateway to a gateway controller that does not have adequate available capacity (e.g. the “Maximum Terminations” of the media gateway is 1000 and the specified gateway controller only has 950 available endpoints/TIDs), the request is rejected.'"
+                                    [typeOfMessage]="'info'"></rbn-panel-messages>
+                                <ol>
+                                    <li class="lower_alphabet_list p-mb-2">If the Gateway profile selected in <b>Gateway
+                                            profile name</b> supports DQoS, the Gateway <b>PEP Server</b> radio option
+                                        and <b>ALG</b> radio option will appear. Select the appropriate radio button and
+                                        enter either the PEP server name or ALG name in the appropriate field.
+                                        <div class="p-my-2">
+                                            <p-image src="assets/images/help/gateways/associate_mg_with_pep_alg1.jpg"
+                                                alt="associate_mg_with_pep_alg1_img" width="600"
+                                                [preview]="true"></p-image>
+                                        </div>
+                                        <div class="p-my-2">
+                                            <p-image src="assets/images/help/gateways/associate_mg_with_pep_alg.jpg"
+                                                alt="associate_mg_with_pep_alg_img" width="600"
+                                                [preview]="true"></p-image>
+                                        </div>
+                                    </li>
+                                    <li class="lower_alphabet_list p-mt-2">If the Gateway profile selected in <b>Gateway
+                                            profile name </b>supports displaying physical location of the gateway, the
+                                        <b>LGRP Location</b> display will appear. Enter the physical location data for
+                                        this gateway in these fields. Note that the provisioning of the Frame and Unit
+                                        fields in this display is restricted to certian type of gateways only, for
+                                        example, to gateways whose endpoint type in the profile definition is set to
+                                        <em>"thirdPartyLens"</em>
+                                    </li>
+                                    <li class="lower_alphabet_list">Select the site from the <b>Gateway site name</b>
+                                        pull down menu. This field is available only if the selected profile includes
+                                        the <b>LINE</b> service type.</li>
+                                    <li class="lower_alphabet_list p-mb-2">Select a protocol type from the <b>Protocol
+                                            type</b>
+                                        pull down menu. Enter the protocol port in the <b>Protocol port</b> field and
+                                        the protocol version in the <b>Protocol version</b> field. <br>The following
+                                        table depicts the category, protocol type, service type, maximum capacity, and
+                                        supported platform for the available Gateway profiles.
+                                    </li>
+                                    <div class="p-my-2">
+                                        <p-image src="assets/images/help/gateways/gateway_profile_names.jpg"
+                                            alt="gateway_profile_names_img" width="100%" [preview]="true"></p-image>
+                                    </div>
+                                    <p>The protocol version(s) and default port for each protocol is listed in the
+                                        following table.</p>
+                                    <div class="p-my-2"> <p-image
+                                            src="assets/images/help/gateways/protocol_versions.jpg"
+                                            alt="protocol_versions_img" width="600px" [preview]="true"></p-image></div>
+                                    <li class="lower_alphabet_list p-mt-2">Click the <b>Save</b> button. Once the
+                                        <b>Save</b> button is clicked, a response dialog box appears. The response
+                                        dialog box indicates whether the media gateway association was successful or
+                                        not. If the association failed, clicking the <b>Show Details</b> button in the
+                                        response dialog box displays the failure reason.
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Disassociate a Media Gateway'" [cache]="false">
+                    <p>Removes the selected Gateway from the selected Gateway Controller. Refer to Disassociate a Media
+                        Gateway procedure for more information.</p>
+                    <p>The following procedure is used to remove a Media Gateway from a selected Gateway Controller when
+                        using the "C20 Management Tools" GUI. For those customers who are using an Operations Support
+                        System (OSS) interface to disassociate gateways via XML, please refer to the "OSSGate User
+                        Guide".</p>
+                    <p>Before disassociating a media gateway, all corresponding endpoints must be deleted. If an attempt
+                        is made to disassociate a media gateway with endpoints still provisioned against it, the
+                        disassociation will fail and a dialog box will be displayed with the failure reason.
+                    </p>
+                    <ol>
+                        <li>There are two methods available to disassociate a media gateway.</li>
+                        <ol>
+                            <li class="lower_alphabet_list">Select the <b>Disassociate Media Gateway</b> menu item from
+                                the <b>Configuration</b> menu. The <b>Disassociate Media Gateway</b> dialog appears upon
+                                selection. Enter the media gateway name in the <b>Gateway Name</b> field.</li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/gateways/disassoc_gateway.jpg"
+                                    alt="disassoc_gateway_img" width="600" [preview]="true"></p-image>
+                            </div>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/gateways/disassociate_gateway_dialog.jpg"
+                                    alt="disassociate_gateway_dialog_img" width="600" [preview]="true"></p-image>
+                            </div>
+                            <li class="lower_alphabet_list">An alternate method to disassociate a media gateway is as
+                                follows. Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel for
+                                a specific gateway controller, then select the <b>Gateways</b>Gateways panel. Next,
+                                display the desired gateway via the search interface provided in the <b>Gateways</b>
+                                panel. Select the gateway from the <b>Gateway List</b> and click the <b>Delete</b>
+                                button. The <b>Disassociate Media Gateway</b> dialog appears with the <b>Gateway
+                                    name</b> field set to the selected gateway.</li>
+                        </ol>
+                        <li>A <b>Confirm Gateway Deletion</b> dialog will appear. Click <b>Save</b> to confirm the
+                            deletion or <b>Cancel</b> to cancel the deletion. Once the <b>Save</b> button is clicked a
+                            <b>Please wait while processing…</b> dialog will appear until a response dialog box appears.
+                            The response dialog box indicates whether the gateway deletion was successful or not. If the
+                            deletion failed, clicking the <b>Show Details</b> button in the response dialog box displays
+                            the failure reason.
+                        </li>
+                    </ol>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Change Gateway Configuration'" [cache]="false">
+                    <p>Displays the <b>Change Gateway</b> dialog to modify Gateway configuration. Refer to Change
+                        Gateway Configuration procedure for more information.</p>
+                    <p>Use this procedure to change the configuration of one or more Gateways.</p>
+                    <ol>
+                        <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                        <li>Select the <b>Gateways</b> panel.</li>
+                        <li>Display the gateway(s) to be modified in the <b>Gateway List</b> by either specifying the
+                            name, or other criteria, in the <b>Retrieval criteria</b> field then clicking the
+                            <b>Retrieve</b> button, or by clicking the Retrieve All button.
+                        </li>
+                        <li class="p-mb-2">In order to change ALGs, PEP server, gateway capacity, profile, gateway
+                            protocol and IPAddress/port select the gateway(s) to be changed from the <b>Gateway List</b>
+                            and click the <b>Change...</b> button. This displays the <b>Change Gateway</b> dialog where
+                            the appropriate operation can be selected.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/change_gateway_dialog.jpg"
+                                alt="change_gateway_dialog_img" width="600" [preview]="true"></p-image>
+                        </div>
+                        <li>
+                            Select a change operation from the drop down list.</li>
+                        <ol>
+                            <li class="lower_alphabet_list">
+                                <h4>Change ALG</h4>
+                                <p>This function changes the ALG association for the selected gateways. The ALG is
+                                    selected from the drop down list.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_gw_alg.jpg" alt="cha_gw_alg_img"
+                                        width="600" [preview]="true"></p-image>
+                                </div>
+                            </li>
+                            <li class="lower_alphabet_list p-mt-2">
+                                <h4>Change PEP server</h4>
+                                <p>This function changes the PEP server association for the selected gateways. The PEP
+                                    server is selected from the drop down list.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_gw_pep_server.jpg"
+                                        alt="cha_gw_pep_server_img" width="600" [preview]="true"></p-image>
+                                </div>
+                            </li>
+                            <li class="lower_alphabet_list p-mt-2">
+                                <h4>Change gateway capacity</h4>
+                                <p>This function changes the reserved capacity for the selected gateways.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_gw_capacity.jpg"
+                                        alt="cha_gw_capacity_img" width="600" [preview]="true"></p-image>
+                                </div>
+                            </li>
+                            <li class="lower_alphabet_list p-mt-2">
+                                <h4>Change profile</h4>
+                                <p>This function changes the profile for the selected gateways.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_profile.jpg" alt="cha_profile_img"
+                                        width="600" [preview]="true"></p-image>
+                                </div>
+                                <p>Profile changing operation can also be done from the <b>Bulk Action</b> menu for more
+                                    than one gateway.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_profile_bulk.jpg"
+                                        alt="cha_profile_bulk_img" width="600" [preview]="true"></p-image>
+                                </div>
+                                <rbn-panel-messages
+                                    [content]="'Gateways in bulk transactions must have the same profile.'"
+                                    [typeOfMessage]="'info'"></rbn-panel-messages>
+                            </li>
+                            <li class="lower_alphabet_list p-mt-2">
+                                <h4>Change gateway IP Address (H.323 or SIPVOICE only)</h4>
+                                <p>This function changes the IP Address and/or port of the selected gateway. Currently,
+                                    this functionality is only supported for H.323 GWs that are associated with NATs or
+                                    SIPVOICE GWs.</p>
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/gateways/cha_gw_ip_address.jpg"
+                                        alt="cha_gw_ip_address_img" width="600" [preview]="true"></p-image>
+                                </div>
+                            </li>
+                        </ol>
+                        <li>Click the <b>Save</b> button to confirm the request or the <b>Cancel</b> button to abort the
+                            request. Following a confirmation, a dialog appears to display the results of the requested
+                            operation(s).</li>
+                        <rbn-panel-messages
+                            [content]="'Some features are not supported by H.323 gateways. These are changing the protocol to or from H.323 and changing the protocol version (always &quot;4.0 &quot;) and setting the IP to discovery.'"
+                            [typeOfMessage]="'info'"></rbn-panel-messages>
+                    </ol>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Gateway Details'" [cache]="false">
+                    <p>Displays the Gateway Details dialog to show which Root Middleboxes are on the selected Gateway.
+                        Refer to Gateway Details procedure for more information.</p>
+                    <p>Use this procedure to display the GR-834 Gateways and Signaling Gateway Information on a selected
+                        Gateway.</p>
+                    <ol>
+                        <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                        <li>Select the <b>Gateways</b> panel.</li>
+                        <li>Select the <b>Details</b> button.</li>
+                        <li class="p-mb-2">The following dialog will be displayed showing the GR-834 Gateway Name if the
+                            selected
+                            gateway supports GR-834 Gateways.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/gateway_details.jpg" alt="gateway_details_img"
+                                width="600" [preview]="true"></p-image>
+                        </div>
+                        <p>Select <b>Close</b> to exit.</p>
+                        <li class="p-mt-2">The following dialog will be displayed showing the Signaling Gateway
+                            Information if the
+                            selected gateway supports the Signaling Gateway Information.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/gateway_details_sg_info.jpg"
+                                alt="gateway_details_sg_info_img" width="600" [preview]="true"></p-image>
+                        </div>
+                        <p>Select <b>Close</b> to exit.</p>
+                        <li class="p-mt-2 p-mb-2">If there are no GR-834 Gateway associated with this Gateway the
+                            following error will be
+                            shown.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/gateway_details_noerror.jpg"
+                                alt="gateway_details_noerror_img" width="600" [preview]="true"></p-image>
+                        </div>
+                        <li class="p-mt-2 p-mb-2">If the Gateway does not support Signaling Gateway Information the
+                            following error will be
+                            shown.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/gateway_details_noerror.jpg"
+                                alt="gateway_details_noerror_img" width="600" [preview]="true"></p-image>
+                        </div>
+                        <li class="p-mt-2 p-mb-2">If the Gateway does not have any associated GR-834 Gateway or
+                            Signaling Gateway Information
+                            the following error will be shown.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/gateways/gateway_details_noerror.jpg"
+                                alt="gateway_details_noerror_img" width="600" [preview]="true"></p-image>
+                        </div>
+                    </ol>
+                </p-tabPanel>
+            </p-tabView>
+        </p-accordionTab>
+    </p-accordion>
+</p-panel>

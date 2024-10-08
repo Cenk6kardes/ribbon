@@ -1,0 +1,72 @@
+@import "ribbontheme/variables";
+
+#form::ng-deep {
+
+  label {
+    padding-right: 10px;
+  }
+
+  .p-accordion {
+    margin-bottom: 15px;
+    .p-accordion-content{
+      padding: 0 1rem;
+    }
+  }
+
+  .p-component:disabled,
+  .p-disabled {
+    opacity: 1;
+
+    .p-accordion-toggle-icon {
+      display: none;
+    }
+  }
+
+  .p-accordion .p-accordion-header {
+    .p-accordion-header-link {
+      border: 1px solid $borderLighterGrey;
+      border-bottom: none;
+      background-color: white;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-weight: bold;
+
+      &[aria-expanded='false'] {
+        border: 1px solid $borderLighterGrey;
+      }
+    }
+
+    .p-accordion-toggle-icon {
+      position: absolute;
+      right: 0.5em;
+      color: $ribbon-blue;
+    }
+  }
+
+  .p-field {
+    min-width: auto;
+
+    input {
+      height: 30px;
+      min-width:200px ;
+    }
+
+    .p-dropdown {
+      min-width: auto;
+    }
+
+    @media (min-width: 768px) {
+      .p-dropdown {
+        min-width: 200px;
+        height: 35px;
+      }
+    }
+
+  }
+
+  .fas{
+    font-size: 1rem;
+  }
+
+
+}

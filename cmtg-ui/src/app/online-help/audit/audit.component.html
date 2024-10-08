@@ -1,0 +1,554 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-3">
+        <p>The audit panel allows for the configuration of audits, viewing of reports, and execution of audit runs. <br>
+            <rbn-panel-messages
+            [content]="
+            'Audit Panel Name Changes </br>
+            <b>Scheduled Audit Panel</b>: If an audit is scheduled, the panel name appears as Scheduled Audit. Users have the option to modify this configuration or run the audit immediately by selecting the Now option within the Schedule panel.
+        </br>
+            <b>New Audit Panel</b>: If no audit is scheduled, the panel name appears as New Audit. Users can either schedule an audit or run it immediately by selecting the Now option within the Schedule panel.
+            '"
+            [typeOfMessage]="'info'"></rbn-panel-messages>
+            
+            
+            
+        </p>
+    </div>
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'C20 Data Integrity Audit'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Perform a C20 Data Integrity Audit'" [cache]="false">
+                    <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > C20 Data Integrity</b></li>
+                            <li>Select the C20 component that you wish to audit. <br>
+                                Select the C20 Call Server Data Integrity Audit check box — if you wish to verify that the data held by the GWC Manager database and the call server match. <br>
+                                Select both C20 Call Server Data Integrity Audit and AS data integtrity audit boxes — if you wish to audit both components.
+                            </li>
+                            <li>In the Schedule pane, select <b>Now</b> to run the audit immediately or select the <b>day</b> and <b>time</b> to schedule the audit. </li>
+                            <li>Click <b>Run</b> to start the audit or <b>Save</b> for the scheduled audit. <br>
+                                If you wish to cancel the process, click the <b>Close</b> button<br>
+                                During a C20 audit, the system displays a progress window with a progress bar.
+                            </li>
+                            
+                            <p><b>Run Now:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/run-now.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+                            <p><b>Schedule For Later:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/s-f-l.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+
+                            <li>The audit may take a few minutes to complete. When the audit ends successfully, click <b>View Report</b> to view the audit results.</li>
+                            <li>Click the <b>Close</b> button to close the Audit Status window.</li>
+                            <li>To view the audit report, follow procedure <b>View C20 Data Integrity Audit Reports.</b></li>
+                            
+                        </ol>
+                    </ng-template>
+
+                    </p-tabPanel>
+                        
+                    <p-tabPanel [header]="'View C20 Data Integrity Audit Report'" [cache]="false">
+                        <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > C20 Data Integrity</b></li>
+                            <li>Click <b>Report</b> and from the drop-down menu, select the report that you want to view. <br>
+                                The file name has the following format: Report-date
+                            </li>
+                            <li>Click the <b>View Report</b> button. <br>
+                                The system displays the selected report. If no problems were discovered, the report is empty.
+                            </li>
+                            <p><b>Example of a C20 audit report</b></p>
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/c20-audit-report.png"
+                                    alt="report" width="600" [preview]="true"></p-image>
+                            </div>
+
+                            <li>Review the results of the audit and select the problem to resolve. <br>
+                                If necessary, re-size the entire window to view the complete Problem Description field.
+                            </li>
+                            <li>Expand the problem index.</li>
+                            <li>Click the <b>Possible Actions</b> field and from the drop-down menu, select the appropriate action.</li>
+                            <li>Read the description of the action and ensure that you observe any recommended steps or cautions.</li>
+                            <li>Click the <b>Take Action</b> button. <br>
+                            </li>
+                        </ol>
+                    </ng-template>
+                   </p-tabPanel>
+                
+                </p-tabView>
+
+        </p-accordionTab>
+
+    </p-accordion>
+
+    <br>
+
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Line Data Integrity Audit'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Perform a Line Data Integrity Audit'" [cache]="false">
+                    <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Line Data Integrity</b></li>
+                            <li>Read the following guidelines, then select the elements that you wish to audit. <br>
+                            
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/guide-line.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+
+                            If you select the Integrity Audit option (to select all GWCs and associated gateways or all logical groups), the system confirms whether to audit the Call Agent DN during the Line Integrity Audit. <br>
+                            Click Yes if you wish to continue. Otherwise, click No.
+                            </li>
+
+                            <li>In the New Audit pane, select the configuration for the audit. <br>
+                                The Granular Line Audit list on the left displays all the small and large line GWCs and the associated gateways, as well as the logical line groups (LGRP). You can display or hide any of the sub-lists by expanding or collapsing the lists.<br>
+                                If you wish to select more than one item at the same time, click each item that you want to select.<br>
+                                Do not select GWCs and LGRPs for the same audit. If you attempt to select both, the system displays an error message. 
+                            </li>
+                            <li>Click Add to add the configuration selections from the Granular Line Audit to the Selected list.</li>
+                            <li>If necessary, repeat the selection process until all the items that you want to audit appear in the Selected window. <br>
+                                If you need to remove an item from the Selected table, click the item to highlight it, then click &lt; to remove the selection.</li>
+
+                            <li>Click <b>Run</b> to start the audit or <b>Save</b> for the scheduled audit. <br>
+                                During a line audit, the system displays a progress window, which includes the progress bar and the current operation.
+                            </li>
+                            
+                            <p><b>Run Now:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/run-line-data.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+                            <p><b>Schedule For Later:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/s-f-l-line.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+
+                            <li>When prompted, click <b>Yes</b> to proceed with the audit. <br>
+                                The audit may take a few minutes to complete. When the audit completes successfully, the system prompts to view the report.
+                            </li>
+                            <li>Click the <b>Close</b> button to close the Audit Status window.</li>
+                            <li>To view the audit report, follow procedure <b>View Line Data Integrity Audit Reports.</b></li>
+                            
+                        </ol>
+                    </ng-template>
+
+                    </p-tabPanel>
+                        
+                    <p-tabPanel [header]="'View Line Data Integrity Audit Report'" [cache]="false">
+                        <ng-template pTemplate="content">
+
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Line  Data Integrity</b></li>
+                            <li>Click <b>Report</b> and from the drop-down menu,  select the ValidLineData or the ProblemLineData report that you want to view. <br>
+                                If there is more than one report, verify the date and time information in the report names and decide which report you want to view.
+                            </li>
+                            <li>Click the <b>View Report button.</b> <br>
+                                The system displays the selected report. <br>
+                                If the audit found no problems, the "Problem" report contains a message stating that no problems were found.
+                            </li>
+                            <p><b>Example of a Valid Line audit report</b></p>
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/valid-line.png"
+                                    alt="report" width="600" [preview]="true"></p-image>
+                            </div>
+
+                            <p><b>Example of a Problem Line audit report</b></p>
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/problem-line.png"
+                                    alt="report" width="600" [preview]="true"></p-image>
+                            </div>
+                            
+                            
+                            <li>If you want to retain one of these reports for a longer time, or if you want to print a report, click <b>Export</b> to export the report as a text or csv file.</li>
+                            <li>To print the saved report, open the file using a text editor and print the file.</li>
+                            <li>For a description of each problem, see the printed copy of the ProblemLineData report. To correct the problems, you need to delete and re-provision the listed lines.</li>
+                            
+                        </ol>
+                    </ng-template>
+                   </p-tabPanel>
+                
+                </p-tabView>
+
+        </p-accordionTab>
+
+    </p-accordion>
+
+    <br>
+
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Small Line Data Integrity Audit'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Perform a Small Line Data Integrity Audit'" [cache]="false">
+                    <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Small Line Data Integrity</b></li>
+                             <br>
+                            
+                            <li>In the Schedule pane, select <b>Now</b> to run the audit immediately or select the <b>day</b> and <b>time</b> to schedule the audit. <br>
+                                Click <b>Run</b> to start the audit or <b>Save</b> for the scheduled audit.  <br>
+                                If you wish to cancel the process, click the <b>Close</b> button <br>
+                                During a Small Line audit, the system displays a progress window with a progress bar.  
+                            </li>
+                                               
+                            <p><b>Run Now:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/run-small-data.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+                            <p><b>Schedule For Later:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/s-f-l-small.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+                            <li>When prompted, click Yes to proceed with the audit. <br>
+                                The audit may take a few minutes to complete. When the audit completes successfully, the system prompts to view the report.
+                            </li>
+                            <li>Click the <b>Close</b> button to close the Audit Status window.</li>
+                            <li>To view the audit report, follow procedure <b>View Small Line Data Integrity Audit Reports.</b></li>
+                            
+                        </ol>
+                    </ng-template>
+
+                    </p-tabPanel>
+                        
+                    <p-tabPanel [header]="'View Small Line Data Integrity Audit Report'" [cache]="false">
+                        <ng-template pTemplate="content">
+
+                            <p><b>Start</b></p>
+                            <ol>
+                                <li>At the C20 Management Tools GUI, click <b>Audit > Small Line Data Integrity</b></li>
+                                <li>Click Report and from the drop-down menu, select the report that you want to view. <br>
+                                    The file name has the following format: Report-date
+                                </li>
+                                <li>Click the <b>View Report button.</b> <br>
+                                    The system displays the selected report. If no problems were discovered, the report is empty.
+                                </li>
+                                <p><b>Example of a Small Line audit report</b></p>
+    
+                                <div class="p-my-2">
+                                    <p-image src="assets/images/help/audit/small-audit-report.png"
+                                        alt="report" width="600" [preview]="true"></p-image>
+                                </div>
+    
+                                <li>Review the results of the audit and select the problem to resolve. <br>
+                                    If necessary, re-size the entire window to view the complete Problem Description field.
+                                </li>
+                                <li>Expand the problem index.</li>
+                                <li>Click the <b>Possible Actions</b> field and from the drop-down menu, select the appropriate action.</li>
+                                <li>Read the description of the action and ensure that you observe any recommended steps or cautions.</li>
+                                <li>Click the <b>Take Action</b> button. <br>
+                                </li>
+                            </ol>
+                    </ng-template>
+                   </p-tabPanel>
+                
+                </p-tabView>
+
+        </p-accordionTab>
+
+    </p-accordion>
+
+    <br>
+
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Trunk  Data Integrity Audit'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Perform a Trunk Data Integrity Audit'" [cache]="false">
+                    <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Trunk Data Integrity</b></li>
+
+                            <li>In the Schedule pane, select <b>Now</b> to run the audit immediately, and click <b>Run</b> or select a <b>day</b> and <b>time</b> to schedule the audit and click <b>Save</b>. <br>
+                                During the audit, the system displays a progress window, which includes the progress bar and the current operation.<br>
+                                The audit may take a few minutes to complete. When the audit ends successfully, click <b>View Report</b> to view the audit results. <br>
+                                If the audit fails, the system displays the Trunk Data Integrity Audit Failed to Complete message with an error message indicating the reason.
+
+                            </li>
+                            
+                            
+                            <p><b>Run Now:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/run-trunk-data.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+                            <p><b>Schedule For Later:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/s-f-l-trunk.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+                            <li>To view trunk audit reports, follow procedure <b>View Trunk Data Integrity Audit Reports</b>.</li>
+                            
+                        </ol>
+                    </ng-template>
+
+                    </p-tabPanel>
+                        
+                    <p-tabPanel [header]="'View Trunk Data Integrity Audit Report'" [cache]="false">
+                        <ng-template pTemplate="content">
+
+                            <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Trunk Data Integrity.</b></li>
+                            <li>Click <b>Reports</b> and from the drop-down menu, select the ValidTrunkData or the ProblemTrunkData report that you want to view. <br>
+                                If there is more than one report, verify the date and time information in the report names and decide which report you want to view.
+                            </li>
+                            <li>Click the <b>View Report</b> button. <br>
+                                The system displays the selected report. 
+                            
+                            <p><b>Example of a Valid Trunk Data report</b></p>
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/valid-trunk.png"
+                                    alt="report" width="600" [preview]="true"></p-image>
+                            </div>
+
+                            <p><b>Example of a Problem Trunk Data report</b></p>
+
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/problem-trunk.png"
+                                    alt="report" width="600" [preview]="true"></p-image>
+                            </div>
+                            If the audit found no problems, the report contains a message stating that no problems were found.
+                        </li>
+                            <li>If you want to retain one of these reports for a longer time, or if you want to print a report, click <b>Export</b> to export the report as a text or csv file.</li>
+                            <li>To print the saved report, open the file using a text editor and print the file.</li>
+                            <li>See the printed copy of the Problem Trunk Data report for a description of each problem. To correct the problems, delete and re-provision the listed trunks.</li>
+                           
+                            
+                        </ol>
+                    </ng-template>
+                   </p-tabPanel>
+                
+                </p-tabView>
+
+        </p-accordionTab>
+
+    </p-accordion>
+
+    <br>
+
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5.2 Data Integrity Audit'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Perform a V5.2 Data Integrity Audit'" [cache]="false">
+                    <ng-template pTemplate="content">
+
+                        <p>
+                            This procedure describes how to perform an on-demand data integrity audit of V5.2 interfaces for a C20 in the international market. <br>
+                            Use this procedure to check for defective data after you have done V5.2 interface provisioning, or if you suspect there is a problem with V5.2 provisioning. <br>
+                            When the audit is running, suitable locks are in place that disable provisioning operations.
+                        </p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > V5.2 Data Integrity</b></li>
+                            <li>In the Schedule pane, select <b>Now</b> to run the audit immediately or set the <b>day</b> and <b>time</b> for a scheduled audit.</li>
+                            <li>Click <b>Run</b> to start the audit or click <b>Save</b> to schedule the audit. <br>
+                                During the audit, the system displays the Audit Status message box.</li>
+                            <li> The audit may take a few minutes to complete. When the audit completes successfully, the system displays one of two types of messages: <br>
+                                V5.2 Data Integrity Audit Completed. No Problems Found. <br>
+                                V5.2 Data Integrity Audit Completed. 2 Problems Found.<br>
+                                If the audit fails, the system displays the V5.2 Data Integrity Audit Failed to Complete message with an error message indicating the reason. 
+                            </li>
+                            
+                            <p><b>Run Now:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/run-v52.png"
+                                    alt="run-now" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+                            <p><b>Schedule For Later:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/s-f-l-v52.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+                            <li>Click the <b>Close</b> button to close the Audit Status window.</li>
+                            <li>To view the V5.2 audit report, follow procedure <b>View V5.2 Data Integrity Audit Reports.</b></li>
+                            
+                        </ol>
+                    </ng-template>
+
+                    </p-tabPanel>
+                        
+                    <p-tabPanel [header]="'View V5.2 Data Integrity Audit Report'" [cache]="false">
+                        <ng-template pTemplate="content">
+
+                        
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > V5.2 Data Integrity.</b></li>
+                            <li>Click <b>Report</b> and from the drop-down menu, select the report that you want to view. <br>
+                                The file name has the following format: Report-date
+                            </li>
+                            <li>Click the <b>View Report</b> button. <br>
+                                The system displays the selected report. If no problems were discovered, the report is empty.
+                            </li>
+
+                            <li>Review the results of the audit and select the problem to resolve. <br>
+                                Click the <b>Possible Actions</b> drop-down menu to assess any possible actions.
+                            </li>
+                            <li>If appropriate, select an action. Read the description of the action and ensure that you observe any recommended steps or cautions.</li>
+                            <li>Click the <b>Take Action</b> button. 
+                            </li>
+                        </ol>
+                    </ng-template>
+                   </p-tabPanel>
+                
+                </p-tabView>
+
+        </p-accordionTab>
+
+    </p-accordion>
+
+    <br>
+    
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Schedule of C20 System Audits'">
+           
+                
+                    <ng-template pTemplate="content">
+
+                        
+                        <p>Use this procedure to configure the schedule for any of the following types audit types:</p>
+                        <ol>
+                            <li>C20 Data Integrity Audit</li>
+                            <li>Line Data Integrity Audit</li>
+                            <li>Small Data Integrity Audit</li>
+                            <li>Trunk Data Integrity Audit</li>
+                            <li>V5.2 Data Integrity Audit</li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>From the C20 Management Tools GUI, select Audit > Audit Type. <br>
+                                Scheduled Audit / New Audit <br>
+                                Select the Audit component <br>
+                                Specify the configuration for a new audit <br>
+                                Schedule:  Select a day and time when the audit should run.
+                            </li>
+                            <li>Click <b>Save</b>
+                            </li>
+
+                        </ol>
+                    </ng-template>
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Current Audits'">
+           
+                
+                    <ng-template pTemplate="content">
+
+                        
+                        <p>Use this procedure to view and, if required, abort currently running audits. You can view and, if necessary, abort any of audit.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Current Audit</b>. 
+                            </li>
+                            <li>If you wish to abort one of the running audits, click the appropriate row to select the audit. Your selection is highlighted. <br>
+                                Click the <b>Abort</b> button. <br>
+                                At the confirmation window, click <b>OK</b> to continue. <br>
+                                The audit originator receives an error message indicating that the audit was aborted and identifying the user that aborted the audit.
+                            </li> 
+                            
+                        </ol>
+                    </ng-template>
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Scheduled Audits'">
+           
+                
+                    <ng-template pTemplate="content">
+
+                        
+                        <p>Use this procedure to view and scheduled  audits. You can view and, if necessary, delete or edit schedule configuration of the audit.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>Audit > Scheduled Audit</b>. 
+                            </li>
+                            <li>If you wish to delete one of the schedule configuration, click delete icon in the table <br>
+                                At the confirmation window, click <b>Yes</b> to continue. <br>
+                                The originator receives an message indicating that the audit configuration deleted.
+                            </li> 
+
+                            <br>
+                            <p><b>Delete Configuration:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/delete-audit.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                            <br>
+
+                            <li>If you wish to edit one of the schedule configuration, click edit icon in the table <br>
+                                At the edit schedule window, click <b>Save</b> to continue. <br>
+                                The originator receives an message indicating that the audit configuration changed.
+                            </li> 
+
+                            <p><b>Edit Configuration:</b></p>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/change-1.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+
+                            <b><p>Edit Schedule:</p></b>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/audit/change-2.png"
+                                    alt="later" width="600" [preview]="true"></p-image>
+                            </div>
+                        </ol>
+                    </ng-template>
+        </p-accordionTab>
+    </p-accordion>
+
+</p-panel>

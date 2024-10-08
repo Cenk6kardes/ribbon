@@ -1,0 +1,30 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<rbn-page-header [data]="headerData"></rbn-page-header>
+
+<p-tabView class="rbn-tabs">
+  <p-tabPanel header="{{ 'NETWORK.TABS.QOS_COLLECTORS' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-qos-collectors></app-qos-collectors>
+    </ng-template>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'NETWORK.TABS.ALGS' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-algs></app-algs>
+    </ng-template>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'NETWORK.TABS.GR_834_GWS' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-gr-gateways></app-gr-gateways>
+    </ng-template>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'NETWORK.TABS.PEP_SERVERS' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-pep-servers></app-pep-servers>
+    </ng-template>
+  </p-tabPanel>
+</p-tabView>
+
+
+<div *ngIf="showSettingsTab">
+  <app-general-network-settings [showGeneralNetworkSettings]="showSettingsTab" (closeDialog)="closeGeneralNetworkSettings()" ></app-general-network-settings>
+</div>

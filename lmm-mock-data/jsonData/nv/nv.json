@@ -1,0 +1,50 @@
+{
+  "gwcDataByGWCID": {
+    "identifier": "GWC-1",
+    "cs": "CS-1",
+    "emID": "EM-id",
+    "types": [
+      "nilType"
+    ],
+    "capacities": [
+      123
+    ],
+    "nodeName": null,
+    "nodeNumber": null,
+    "activeIP": null,
+    "profile": "SIPT"
+  },
+  "gatewayDataByGW": {
+    "identifier": "mediatrix",
+    "profile": "TOUCHTONE",
+    "hardwareType": {
+      "__value": 0
+    },
+    "serviceTypes": [
+      {
+        "__value": 0
+      },
+      {
+        "__value": 5
+      }
+    ],
+    "gwc": "GWC-1",
+    "category": {
+      "__value": 2
+    },
+    "emdata": {
+      "emID": null,
+      "neID": null,
+      "subnetManagerID": null,
+      "physicalMG": null
+    },
+    "nodeName": null,
+    "nodeNumber": 46,
+    "toneinfo": {
+      "location": null,
+      "owner": null
+    },
+    "maxRsvdEndpoints": 2,
+    "other_info": null
+  }
+}

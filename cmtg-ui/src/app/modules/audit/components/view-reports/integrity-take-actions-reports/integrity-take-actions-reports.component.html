@@ -1,0 +1,36 @@
+<rbn-table [cols]="cols" [data]="dataReports" [showFilterRow]="false" [tableConfig]="tableConfig" [showFilterRow]="false"
+  [allowSetDataToStorage]="false" [rowExpansionTpl]="rowExpansionTpl" (refreshData)="doRefreshDataTable()"></rbn-table>
+<ng-template #possibleActionsTemplate let-possibleData="params">
+  <div class="possible-actions-reports">
+    <div class="p-field p-col-12 p-grid">
+      <label class="p-col-fixed">{{'AUDIT.FIELD_LABEL.POSSIBLE_ACTIONS' | translate}}:</label>
+      <div class="p-col">
+        <p-dropdown #fieldPossibleActions appendTo="body" [options]="possibleData?.rowdata?.possibleActions"
+          optionLabel="correctiveTitle" class="report-options"
+          [placeholder]="'AUDIT.FIELD_LABEL.SELECT' | translate"></p-dropdown>
+      </div>
+    </div>
+    <div class="p-field p-col-12 p-grid">
+      <label class="p-col-fixed">{{'AUDIT.FIELD_LABEL.AUDIT_DESCRIPTION' | translate}}:</label>
+      <div class="p-col">
+        <textarea #fieldDescription pInputTextarea [autoResize]="true"
+          readonly>{{fieldPossibleActions?.selectedOption?.correctiveDescription}}</textarea>
+      </div>
+    </div>
+    <div class="p-field p-col-12 p-grid">
+      <div class="p-col">
+        <div class="footer-possible-actions">
+          <p-button [disabled]="!fieldPossibleActions.selectedOption" type="button"
+            styleClass="rbn-button rbn-button-primary"
+            (onClick)="doTakeAction(fieldPossibleActions, possibleData?.rowdata)"
+            [label]="'AUDIT.BUTTON_LABEL.TAKE_ACTION' | translate"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #headerTemplate>
+  <span *ngIf="lastAuditDateValue">{{'AUDIT.FIELD_LABEL.LAST_AUDIT_DATE' | translate}}:
+    <span class="last-audit-date-value">{{lastAuditDateValue}}</span>
+  </span>
+</ng-template>

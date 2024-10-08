@@ -1,0 +1,85 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <form [formGroup]="form">
+        <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TITLE' | translate}}</h4>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2"><label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.NAME' |
+                        translate}}:</label><span class="color_red">*</span></div>
+                <div class="p-col-4 "><input id="name"
+                        [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TOOLTIP.GATEWAY_NAME' | translate"
+                        tooltipPosition="top" formControlName="name" type="text" pInputText /></div>
+                <div class="p-col-2"><label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.IP_ADDRESS' |
+                        translate}}:</label></div>
+                <div class="p-col-4 "><input [class.invalid-input]="getIpAddres?.invalid && getIpAddres?.touched"
+                        type="text" onwheel="this.blur()" formControlName="ipAddress" id="ipAddress"
+                        [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TOOLTIP.IP_ADDRESS' | translate"
+                        tooltipPosition="bottom" pInputText>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.CONTROLLER_NAME' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><p-dropdown (onChange)="handleControllerNameChange($event.value)"
+                        [placeholder]="controllerNamePlaceHolder | translate"
+                        [options]="gatewayOptions.gatewayControllerName" appendTo="body"
+                        formControlName="controllerName" [styleClass]="'full-width'"></p-dropdown></div>
+                <div class="p-col-2"><label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.PROFILE_NAME'
+                        |
+                        translate}}:</label><span class="color_red">*</span></div>
+                <div class="p-col-4 "><p-dropdown [placeholder]="'COMMON.SELECT' | translate"
+                        (onChange)="handleProfileChange($event.value)" appendTo="body"
+                        [options]="gatewayOptions.gatewayProfileName" formControlName="profileName"
+                        [styleClass]="'full-width'"></p-dropdown></div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.RESERVED_TERMINATIONS' |
+                        translate}}:</label>
+                    <span *ngIf="getReservedTerminations?.hasValidator(requiredValidator)" class="color_red">*</span>
+                </div>
+                <div class="p-col-4 ">
+                    <input [class.invalid-input]="getReservedTerminations?.invalid && getReservedTerminations?.touched"
+                        (keydown)="keyPreventFn($event)" type="number" onwheel="this.blur()"
+                        formControlName="reservedTerminations"
+                        [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TOOLTIP.RESERVED_TERMINATION' | translate"
+                        tooltipPosition="bottom" pInputText>
+                </div>
+                <div *ngIf="showSiteName" class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.SITE_NAME'|translate}}:</label>
+                </div>
+                <div *ngIf="showSiteName" class="p-col-4 "><p-dropdown appendTo="body" formControlName="siteName"
+                        [options]="gatewayOptions.siteName" [styleClass]="'full-width'"></p-dropdown></div>
+            </div>
+        </div>
+        <div *ngIf="showlgrpType" class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div *ngIf="showlgrpType" class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.LGRP_TYPE'|translate}}:</label>
+                </div>
+                <div *ngIf="showlgrpType" class="p-col-4 "><p-dropdown appendTo="body" formControlName="lgrpType"
+                        [options]="lgrpTypeOptions" [styleClass]="'full-width'"
+                        (onChange)="handleLgrpTypeChange($event.value)"></p-dropdown></div>
+                <div *ngIf="showIsNodeSharing" class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.NODE_SHARING'|translate}}:</label>
+                </div>
+                <div *ngIf="showIsNodeSharing" class="p-col-4 "> <p-checkbox class="rbn-checkbox " [binary]="true"
+                        formControlName="isNodeSharing" checkboxIcon="fa fa-check"></p-checkbox></div>
+            </div>
+        </div>
+        <div *ngIf="pepOrAlgLabel" class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{pepOrAlgLabel}}</label>
+                </div>
+                <div class="p-col-4 "><input id="name" formControlName="pep_alg" type="text" pInputText /></div>
+            </div>
+        </div>
+    </form>
+</p-panel>

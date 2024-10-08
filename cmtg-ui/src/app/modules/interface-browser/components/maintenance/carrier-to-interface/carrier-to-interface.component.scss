@@ -1,0 +1,41 @@
+@import "ribbontheme/variables";
+
+.container::ng-deep {
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    input {
+        height: 30px;
+        min-width: 350px;
+        border: 1px solid $ribbon-grey;
+        border-radius: 3px;
+    }
+
+    label {
+        margin-right: 20px;
+    }
+
+    .p-inputswitch {
+        height: 1.2rem;
+        width: 2.4rem;
+
+        &.p-inputswitch-checked {
+            .p-inputswitch-slider::before {
+                transform: translateX(1.3rem);
+            }
+        }
+
+        .p-inputswitch-slider::before {
+            width: 0.9rem;
+            height: 0.9rem;
+            margin-top: -0.45rem;
+        }
+    }
+
+    .justfiy-content-end {
+        justify-content: end;
+    }
+
+}

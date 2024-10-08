@@ -1,0 +1,188 @@
+openapi: 3.0.1
+
+
+info:
+  title: Data Engine Controller  Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+
+tags:
+  - name: "dataengine"
+    description: "Operations related to Data Engine Controller" 
+
+paths:
+
+          
+  /DataEngineApi/dataengine/v1.0/device-descriptions:   
+                
+    get:
+      tags:
+        - dataengine
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/devEntries'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /DataEngineApi/dataengine/v1.0/topology-entries/{deviceType}/{matchLimit}:   
+  
+    get:
+      tags:
+        - dataengine
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: deviceType
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: matchLimit
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/entries'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+
+  /DataEngineApi/dataengine/v1.0/server-status:
+  
+    get:
+      tags:
+        - dataengine
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  
+      
+
+components:
+
+  schemas:
+        
+          
+    TopologyEntry:
+      type: object
+      properties:
+        devEquipmentName:
+          type: string
+        devType:
+          type: string
+        contextName:
+          type: string
+        contextID:
+          type: string
+        community:
+          type: string    
+        timeout:
+          type: string
+        retryCount:
+          type: string
+        mpModel:
+          type: string
+        securityModel:
+          type: string    
+        securityLevel:
+          type: string
+        ipAddress:
+          type: string
+        devicePort:
+          type: string
+          
+    DeviceDescriptionEntry:
+      type: object
+      properties:
+        devDescriptionName:
+          type: string
+        devDescriptionType:
+          type: string
+            
+    entries:
+      type: array
+      items:
+        $ref: '#/components/schemas/TopologyEntry'
+        
+    devEntries:
+      type: array
+      items:
+        $ref: '#/components/schemas/DeviceDescriptionEntry'
+   
+          
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+          
+    
+
+

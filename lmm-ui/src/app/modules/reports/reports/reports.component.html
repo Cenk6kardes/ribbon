@@ -1,0 +1,14 @@
+<div id="reports-container">
+  <rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+  <rbn-page-header [data]="headerData" [dropdownValue]="topDropdownData"
+    (selectedDropItem)="selectedDropItem($event)"></rbn-page-header>
+  <rbn-table #rbnTable [cols]="cols" [data]="data" [showFilterRow]="false" [tableConfig]="tableConfig" (linkClick)="onLinkClick($event)"
+    (refreshData)="refreshTable()">
+  </rbn-table>
+</div>
+
+<ng-template #progressBarTemp>
+  <div class="progress-bar">
+    <p-progressBar [value]="progressValue"></p-progressBar>
+  </div>
+</ng-template>

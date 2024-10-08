@@ -1,0 +1,17 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="d-channel-maint-container" [formGroup]="formGroup">
+  <div class="p-grid p-pl-2">
+    <div class="rbn-group p-mb-5 p-col-6 p-field rbn-field">
+      <label for="name">{{ "TRUNK_CLLI.MAINTANENCE_ACTION" | translate }}</label>
+      <p-dropdown formControlName="maintenanceAction" appendTo="body" [options]="dropDownDataMaintenanceActionItems"
+        [placeholder]="'COMMON.SELECT' | translate">
+      </p-dropdown>
+    </div>
+  </div>
+  <app-form-footer (eventSubmit)="onFormSubmit($event)">
+    <div class="checkShowDetail">
+      <label>{{'COMMON.SHOW_DETAILS' | translate}}</label>
+      <p-checkbox class="rbn-checkbox" formControlName="showDetails" checkboxIcon="fa fa-check" [binary]="true">
+      </p-checkbox>
+    </div>
+  </app-form-footer>

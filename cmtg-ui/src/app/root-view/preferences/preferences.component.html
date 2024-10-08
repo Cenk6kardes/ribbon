@@ -1,0 +1,37 @@
+<p-dialog [header]="'PREFERENCES.TITLE' | translate" [(visible)]="isShowPreferences" (onHide)="onHide()" (onShow)="onShow()" [modal]="true" class="rbn-dialog" [style]="{width: '600px'}">
+    <form class="p-grid">
+        <div class="flex-row-gap p-col-12 p-mb-2">
+            <label class="bold">{{'PREFERENCES.AUTO_REFRESH' | translate}}:</label>
+            <p-inputSwitch name="autoRefresh" [(ngModel)]="preferences.refresh.checked" (onChange)="checkTerminationValue()"></p-inputSwitch>
+        </div>
+        <div class="flex-row-gap p-col-12 p-mb-3">
+            <label>{{'PREFERENCES.EVERY' | translate}}:</label>
+            <p-dropdown [appendTo]="'body'" [options]="seconds" name="seconds" [(ngModel)]="preferences.refresh.second"></p-dropdown>
+            <label>Seconds</label>
+        </div>
+        <div class="flex-row-gap p-col-12">
+            <label class="bold">{{'PREFERENCES.AUTO_TERMINATION' | translate}}:</label>
+            <p-inputSwitch name="autoTermination" [(ngModel)]="preferences.termination.checked" [disabled]="isDisabledTermination"></p-inputSwitch>
+        </div>
+        <div class="flex-row-gap p-col-12 p-mb-2">
+           <div class="flex-row-gap p-col-6">
+            <label class="bold">{{'PREFERENCES.IN' | translate}}:</label>
+            <p-dropdown [appendTo]="'body'" [disabled]="isDisabledTermination" [options]="hours" name="hours" [(ngModel)]="preferences.termination.hour" (onChange)="handleHourChange()"></p-dropdown>
+            <label>{{'PREFERENCES.HOUR' | translate}}</label>
+           </div>
+           <div class="flex-row-gap p-col-6">
+            <label class="bold">{{'PREFERENCES.AND' | translate}}:</label>
+            <p-dropdown [appendTo]="'body'" [disabled]="isDisabledTermination" [options]="minutes" name="minutes" [(ngModel)]="preferences.termination.minute"></p-dropdown>
+            <label>{{'PREFERENCES.MINUTE' | translate}}</label>
+           </div>
+        </div>
+        <div class="flex-row-gap p-col-12">
+            <label class="bold">{{'PREFERENCES.CANCEL_PENDING_CPD' | translate}}</label>
+            <p-checkbox name="cpd" [(ngModel)]="preferences.cpdRequest" [binary]="true" (onChange)="checkTerminationValue()"></p-checkbox>
+        </div>
+    </form>
+    <p-footer>
+        <p-button styleClass="rbn-button rbn-button-tertiary" label="{{'COMMON.CANCEL'| translate}}" (click)="onHide()"></p-button>
+        <p-button styleClass="rbn-button rbn-button-primary" label="{{'COMMON.SAVE'| translate}}" (click)="onSave()"></p-button>
+    </p-footer>
+</p-dialog>

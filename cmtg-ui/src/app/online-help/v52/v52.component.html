@@ -1,0 +1,480 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-3">
+        <p>The V5.2 panel provides access to configuration of V5.2 trunk services on a Gateway Controller (GWC) node 
+            <br>
+           Procedures in this section apply to international markets only.        
+        </p>
+
+        
+    </div>
+    <br>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5.2 Interface Browser'">
+
+            <div class="p-my-2">
+                <p> <b> V5.2 Interface Browser Attributes </b></p>
+                <p-image src="assets/images/help/v52/interface-browser-attributes.png" alt="interface-browser-attributes" width="600"
+                    [preview]="true"></p-image>
+            </div>
+
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Add a V5.2 Interface'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure when you are adding V5.2 interfaces and associating physical E1 links to a specific interface.</p>
+                        <p>Use this procedure to perform the following tasks:</p>
+                        
+                        <ol>
+                            <li>Add and datafill a V5.2 Interface.</li>
+                            <li>Map a bundle of up to 16 E1 carriers to the Interface.</li>
+                            <li>Assign a ring plan, provisioning profile and signaling profile</li>
+
+                        </ol>
+                        <p>When adding an interface, the following guidelines apply:</p>
+                        <ol>
+                            
+                            <li>One interface cannot be spread over more than one GWC.</li>
+                            <li>One interface can be spread over one or more gateways.</li>
+                            <li>Links of several interfaces can be defined on one gateway</li>             
+                        </ol>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            
+                            <li>At the C20 Management Tools GUI, click <b>V5.2</b>.</li>
+                            <li>Click the <b>New Interface</b> button.</li>
+                            <li>Type the interface attributes for each of the fields as needed. Refer to V5.2 Interface Attributes.</li>
+                            <li>Click <b>Add</b> button.</li>             
+                        </ol>
+
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/add-v52-interface.png" alt="add-v52-interface" width="600"
+                                [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Delete a V5.2 Interface'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Delete lines associated with the interface.</li>
+                            <li>De-provision all lines referenced on the interface.</li>
+                            <li>Deactivate the interface in the Call Agent using the maintenance level of the MAP.
+                            </li>
+                        </ol>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2</b>.</li>
+                            <li>From the <b>Select a V5.2 Interface</b> drop-down list, select the interface that you want to delete.</li>
+                            <li>Click the <b>Delete Interface</b> button.</li>
+                            <li>At the confirmation dialogue box, click <b>OK</b></li>
+                        </ol>
+
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/delete-v52-interface.png" alt="delete-v52-interface" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Modify a V5.2 Interface'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to modify the attributes of an existing V5.2 interface.</p>
+                        <p>You cannot modify the following interface options:</p>
+                        <ol>
+                            <li>Maxlines (you cannot change the Access Node size of an existing interface).</li>
+                            <li>GWC-ID.</li>                           
+                        </ol>
+                        <p>To make those changes, you must provision a new interface.</p>
+                        <p><b>Prerequisites</b></p>
+                        <p>You must deactivate the interface on the Call Agent using the maintenance level of the MAP before making the following modifications</p>
+                        <ol>
+                            <li>Delete lines associated with the interface.</li>
+                            <li>De-provision all lines referenced on the interface.</li>
+                            <li>Deactivate the interface in the Call Agent using the maintenance level of the MAP. </li>
+                        </ol>
+
+                        <rbn-panel-messages
+                        [content]="'Caution \nLoss of service\n When the interface is deactivated, it brings down all V5.2 line services on this interface.'"
+                        [typeOfMessage]="'info'">
+                        </rbn-panel-messages>
+                        <p>Before changing or deleting a link's mapping, you must busy the link on the Call Agent using the maintenance level of the MAP.</p>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2</b>.</li>
+                            <li>From the <b>Select a V5.2 Interface</b> drop-down list, select the interface that you want to modify.</li>
+                            <li>Modify the field values for the selected interface. Use V5.2 Interface Attributes to assist you when changing attribute values.</li>
+                            <li>Click the <b>Save</b> button when you are finished.</li>
+                            <li>At the confirmation dialogue box, click <b>OK</b></li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'View a V5.2 Interface Browser'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure  to view provisioning details about the V5.2 interface.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2</b>.</li>
+                            <li>From the <b>Select a V5.2 Interface</b> drop-down list, select the interface you wish to review.</li>
+                            <li>Review the field values for the V5.2 interface. For a description of the various fields, see V5.2 Interface Attributes.</li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5PROV'">
+
+            <div class="p-my-2">
+                <p> <b> V5PROV Attributes </b></p>
+                <p-image src="assets/images/help/v52/prov-attributes.png" alt="prov-attributes" width="600"
+                    [preview]="true"></p-image>
+            </div>
+
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Add a V5Prov Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure when creating a new V5.2 provisioning template.</p>
+                        <p>Use this procedure to create and datafill V5PROV table information relating to:</p>
+                        
+                        <ol>
+                            <li>Which channels and on which links are the signaling channels.</li>
+                            <li>What type of signaling is sent over which link.</li>
+                            <li>Which channels are used for backup signaling</li>
+
+                        </ol>
+                        <p>Table V5PROV is referenced by the main CM table GPPTRNSL.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            
+                            <li>You must know the V5 variant ID that is provisioned on the access node. This needs to match the V5PROV template as datafilled for the Interface (in table GPPTRNSL). Consult your site system administrator for details on how to acquire this information.</li>
+                            <li>The c-channel information in this profile must match the provisioning profile in the access node.</li>
+                            <li>Tables V5RING and V5SIG must also be datafilled before the interface is fully provisioned.</li>             
+                        </ol>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5PROV</b>.</li>
+                            <li>From the <b>Identifier </b> drop-down menu, select a provisioning template to modify by selecting its Identifier.</li>
+                            <li>Use V5PROV Attributes to add values to the field entries.</li>
+                            <li>Click <b>Add</b> button.</li>             
+                        </ol>
+
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/add-v52-prov.png" alt="add-v52-prov" width="600"
+                                [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Delete a V5Prov Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to remove a configured V5 provisioning template, when the template is no longer needed, or if it is being replaced by another template.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Check all existing V5.2 interfaces and modify them to ensure they are not referencing the template being removed. See <b> V5.2 Interface Browser > View V5.2 Interface Browser</b> </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5PROV</b>.</li>
+                            <li>Click the <b>Delete</b> button.</li>
+                            <li>From the <b>Delete Identifier</b> drop-down list, select the template that you want to delete.</li>
+                            <li>Click <b>Delete</b>.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/delete-v52-prov.png" alt="delete-v52-prov" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Modify a V5Prov Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to make changes to the V5 interface provisioning template configuration.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>You cannot modify a provisioning template that is currently being used by a V5.2 interface. If necessary, check all existing V5.2 interfaces and modify them to ensure they are not referencing the template being modified. See procedure View <b>V5.2 Interface Browser > View V5.2 Interface Browser</b> to perform this task. </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5PROV</b>.</li>
+                            <li>Click the <b>Identifier</b> drop-down menu and select a provisioning template to modify by choosing an identifier.</li>
+                            <li>Use <b>V5PROV Attributes</b> to review and modify the field entries</li>
+                            <li>Click <b>Save</b>.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/save-v52-prov.png" alt="save-v52-prov" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'View a V5Prov Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to view the details about a configured V5 interface provisioning template.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5PROV</b>.</li>
+                            <li>Select a provisioning template to review by selecting its Identifier.</li>
+                            <li>See <b>V5PROV Attributes</b> to determine the meaning and value of the field entries.</li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5RING'">
+
+            <div class="p-my-2">
+                <p> <b> V5RING Attributes </b></p>
+                <p-image src="assets/images/help/v52/v5ring-attributes.png" alt="ring-attributes" width="600"
+                    [preview]="true"></p-image>
+            </div>
+
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Add a V5Ring Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to create V5 ring templates for the V5RING table which contain information relating to mappings between ringing cadences and ringing types. Table V5RING is referenced by the main CM table GPPTRNSL.</p>
+                        <p>Use this procedure when a new V5.2 interface is being provisioned.</p>
+                        <p>A default profile, identified as DEFAULT, is always provided in the template.</p>
+                        
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Tables V5PROV and V5SIG must also be datafilled before the interface is fully provisioned.</li>
+                        </ol>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5RING</b>.</li>
+                            <li>Set up a new template by adding an Identifier. Click the <b>New V5Ring </b>button and fill in the appropriate fields.</li>
+                            <li>Use <b>V5RING Attributes</b> to enter all of the ring attributes for a V5.2 ring template.</li>
+                            <li>Click <b>Add</b> button.</li>             
+                        </ol>
+
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/add-v52-ring.png" alt="add-v52-ring" width="600"
+                                [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Delete a V5Ring Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to delete an existing V5 ring template.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Ensure that the ring template to be removed is not currently used by a V5.2 interface. </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5Ring</b>.</li>
+                            <li>Click the <b>Delete</b> button.</li>
+                            <li>From the drop-down list, select the ring mapping identifier for the template that you want to delete. <b>You cannot delete the default identifier.</b></li>
+                            <li>Click <b>Delete</b>.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/delete-v52-ring.png" alt="delete-v52-ring" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Modify a V5Ring Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to modify V5 ring templates for the V5RING table which contains information relating to mappings between ringing cadences and ringing types. Table V5RING is referenced by the main Call Agent table GPPTRNSL.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>No V5.2 interface can be referencing this template while you are making changes. Check all existing interfaces and make the necessary changes to ensure they are not referencing the template you intend to modify. See <b>V5.2 Interface Browser > View V5.2 Interface Browser.</b> </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5RING</b>.</li>
+                            <li>Modify the required ring attributes for the selected V5.2 ring template. Use <b>V5PROV Attributes</b>.</li>
+                            <li>Click <b>Save</b> when you are finished modifying the ring template.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/save-v52-ring.png" alt="save-v52-ring" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'View a V5Ring Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to view details about an existing V5 ring template.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5RING</b>.</li>
+                            <li>Click the <b>Identifier</b> drop-down list and select a ring template identifier to review.</li>
+                            <li>Use <b>V5PROV Attributes</b> to review the fields, terms and the descriptions.</li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5SIG'">
+
+            <div class="p-my-2">
+                <p> <b> V5SIG Attributes </b></p>
+                <p-image src="assets/images/help/v52/v5sig-atr.png" alt="v5sig-atr" width="600"
+                    [preview]="true"></p-image>
+            </div>
+
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Add a V5Sig Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to create and datafill V5SIG table information relating to signaling characteristics. Table V5SIG allows a set of signaling characteristics to be defined as a signaling profile. There is a default profile provisioned on any switch. These characteristics include (but are not limited to) line attenuation, End-Of-Call signaling support and suppression indication. Table V5SIG is referenced by main CM table GPPTRNSL.</p>
+                        <p>Use this procedure when provisioning a new V5.2 interface.</p>
+                        
+                        <rbn-panel-messages
+                        [content]="'Attention \nThe DEFAULT template for the V5SIG table is not a valid option to select. If used, the Call Agent returns an error message.'"
+                        [typeOfMessage]="'info'">
+                        </rbn-panel-messages>
+
+                        <p>For V5.2, a line attenuation value of V5_DIGITAL is not currently supported.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Tables V5PROV and V5RING must also be datafilled before the interface is fully provisioned.</li>
+                            <li>This procedure assumes that you are already logged into the C20 Management Tools GUI and that you know the V5 Interface ID and the GWC node ID. Consult your site system administrator to acquire this information.</li>
+                        </ol>
+                        <br>
+                        <p><b>Start</b></p>
+                        <ol>
+                            
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5SIG</b>.</li>
+                            <li>Configure all of the signaling attributes for the desired V5.2 interface.</li>
+                            <li>See <b>V5SIG Attributes</b> for the attributes</li>
+                            <li>To add a new Identifier click the <b>New V5SIG</b> button and configure the appropriate fields.</li>
+                            <li>Click <b>Add</b> button.</li>             
+                        </ol>
+
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/add-v52-sig.png" alt="add-v52-sig" width="600"
+                                [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Delete a V5Sig Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to delete a configured interface signaling template.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Ensure that the signaling template to be removed is not currently being used by a V5.2 interface. <b>V5.2 Interface Browser > View V5.2 Interface Browser</b> </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5SIG</b>.</li>
+                            <li>Click the <b>Delete</b> button.</li>
+                            <li>In the <b>Delete Identifier</b> dialogue box, click the drop-down list and select the identifier for the template that you want to delete.</li>
+                            <li>Click <b>Delete</b>.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/delete-v52-sig.png" alt="delete-v52-sig" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'Modify a V5Sig Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to modify an existing interface signaling template.</p>
+                        <p><b>Prerequisites</b></p>
+                        <ol>
+                            <li>Ensure that the signaling template to be removed is not in use by a V5.2 interface. See <b>V5.2 Interface Browser > View V5.2 Interface Browser.</b> </li>
+                        </ol>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5SIG</b>.</li>
+                            <li>Click the <b>Identifier</b> list and select the identifier for the template that you want to modify.</li>
+                            <li>Change the required attributes using <b>V5SIG Attributes</b>.</li>
+                            <li>Click <b>Save</b> when you are finished modifying the sig template.</li>
+                        </ol>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/v52/save-v52-sig.png" alt="save-v52-sig" width="600"
+                            [preview]="true"></p-image>
+                        </div>
+                    </ng-template>
+                </p-tabPanel>
+
+                <p-tabPanel [header]="'View a V5Sig Template'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Use this procedure to view the V5SIG table signaling attributes.</p>
+                        <p><b>Start</b></p>
+                        <ol>
+                            <li>At the C20 Management Tools GUI, click <b>V5.2 > V5SIG</b>.</li>
+                            <li>Select the signaling template attributes to review using the <b>Identifier</b> list.</li>
+                            <li>For the field definitions, see <b>V5SIG Attributes</b>.</li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'V5.2 Maintenance'">
+
+            <p>Use this procedure to view carrier-to-interface endpoint mapping information associated with a selected carrier or V5.2 interface.</p>
+            <p>Use this procedure when you need to determine the following information:</p>
+            <ol>
+                <li>The carriers associated with a specific V5.2 interface.</li>
+                <li>The link IDs used to associate a carrier to an interface.</li>
+                <li>The V5.2 interface terminating on a particular gateway.</li>
+            </ol>
+           
+            <p><b>Start</b></p>
+            <ol>
+                <li>At the C20 Management Tools GUI, click <b>V5.2 Maintenance</b>.</li>
+                <li>In the Interface to Carrier tab, click the <b>V5.2 Interface</b> drop-down menu and select an interface</li>
+                <li>Click <b>Retrieve</b>.</li>
+
+                <div class="p-my-2">
+                   
+                    <p-image src="assets/images/help/v52/interface-to-carrier.png" alt="interface-to-carrier" width="600"
+                        [preview]="true"></p-image>
+                </div>
+
+                <li>Click the <b>Carrier to Interface Mapping</b> tab to view the V5.2 Interface ID-to-Carrier Name mapping.</li>
+                <li>In the <b>Gateway Name</b> field, type the name of a gateway.</li>
+                <li>Select the <b>Wildcard</b> check box. The wildcard option allows the system to examine all endpoints on a given gateway. With this option selected, the system displays any endpoints associated with a V5 interface.</li>
+                <li>Click <b>Get Mapping</b></li>
+
+                <div class="p-my-2">
+                   
+                    <p-image src="assets/images/help/v52/carrier-to-interface.png" alt="carrier-to-interface" width="600"
+                        [preview]="true"></p-image>
+                </div>
+
+            </ol>
+
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+</p-panel>

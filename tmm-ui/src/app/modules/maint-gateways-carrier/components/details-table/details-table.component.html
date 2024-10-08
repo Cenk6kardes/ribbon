@@ -1,0 +1,15 @@
+<rbn-panel-messages *ngIf="detailsMsgData.showPanelMessages" [content]="detailsMsgData.content" [isClosable]="true" (closePanelMessages)="handleClosePanelMessages()"></rbn-panel-messages>
+<rbn-table #detailTableTemplate [cols]="cols" [data]="data" [showFilterRow]="false" [tableConfig]="tableConfig" [selectedRows]="selectedRows"
+  (rowSelect)="onCheckboxChange($event)" (rowUnselect)="onCheckboxChange($event)" (refreshData)="handleRefreshData()">
+</rbn-table>
+<ng-template #bulkAction>
+  <div class="bulk-actions" id="detail-bulk-action">
+    <p-dropdown [options]="bulkActions" [(ngModel)]="selectedAction" (onChange)="callAction()"
+      [placeholder]="'COMMON.BULK_ACTIONS' | translate" optionLabel="label" [autoDisplayFirst]="false"
+      [disabled]="selectedRows.length === 0">
+    </p-dropdown>
+  </div>
+</ng-template>
+
+<rbn-confirm-dialog #confirmGatewaysCarrier [isShowConfirmDialog]="showConfirmActions" [title]="dataConfirm.title"
+  [content]="dataConfirm.content"></rbn-confirm-dialog>

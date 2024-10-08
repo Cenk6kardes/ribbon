@@ -1,0 +1,731 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+
+<div class="button-top">
+  <p-button
+    (onClick)="showAssociateDialog = true"
+    label="Associate"
+    styleClass="rbn-button rbn-button-secondary"
+    icon="fas fa-plus"
+  >
+  </p-button>
+</div>
+
+<p-accordion expandIcon="pi pi-fw pi-chevron-up">
+  <p-accordionTab [selected]="true" #tabEl class="flex">
+    <ng-template pTemplate="header">
+      <div>
+        <span
+          class="pi pi-fw custom-icon"
+          [ngClass]="{
+            'pi-chevron-up': !tabEl.selected,
+            'pi-chevron-down': tabEl.selected
+          }"
+        ></span>
+        <span class="font-bold">{{
+          "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.GATEWAY_LIST"
+            | translate
+        }}</span>
+      </div>
+      <div>
+        <span>{{
+          "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA"
+            | translate
+        }}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <form [formGroup]="retrieveForm">
+        <div class="flex-row">
+          <div class="p-grid p-field p-col-12 p-fluid">
+            <div class="p-col-2">
+              <label class="bold"
+                >{{
+                  "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA"
+                    | translate
+                }}:</label
+              >
+            </div>
+            <div class="p-col-4">
+              <p-dropdown
+                [required]="true"
+                [options]="searchHistory"
+                formControlName="retrivalCriteria"
+                appendTo="body"
+                [styleClass]="'full-width'"
+                [editable]="true"
+              ></p-dropdown>
+            </div>
+            <div class="p-col-2">
+              <label class="bold"
+                >{{
+                  "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.LIMIT_RESULT"
+                    | translate
+                }}:</label
+              >
+            </div>
+            <div class="p-col-4">
+              <p-dropdown
+                [placeholder]="'COMMON.SELECT' | translate"
+                [required]="true"
+                [options]="limitResultOptions"
+                appendTo="body"
+                formControlName="limitResult"
+                [styleClass]="'full-width'"
+                [editable]="true"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="field-checkbox field w-full p-grid p-col-12">
+            <div class="p-col-2">
+              <p-radioButton
+                name="radioButton"
+                value="replaceList"
+                formControlName="radioButton"
+              ></p-radioButton>
+              <label class="bold">{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.REPLACE_LIST"
+                  | translate
+              }}</label>
+            </div>
+            <div class="p-col-2">
+              <p-radioButton
+                name="radioButton"
+                value="appendToList"
+                formControlName="radioButton"
+              ></p-radioButton>
+              <label class="bold">{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.APPEND_TO_LIST"
+                  | translate
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <app-form-footer
+          [secondaryLabel]="'COMMON.RESET' | translate"
+          [primaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE' | translate"
+          (eventSubmit)="onRetrieveHandle($event)">
+          <div class="btn">
+            <p-button
+              type="button"
+              styleClass="rbn-button rbn-button-secondary"
+              (onClick)="onRetriveAllHandle()"
+              [label]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE_ALL' | translate"
+            ></p-button>
+          </div>
+        </app-form-footer>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<rbn-table
+  [showFilterRow]="false"
+  [allowSetDataToStorage]="false" 
+  [cols]="gatewaysTableCols"
+  [data]="gatewaysTableData"
+  [tableConfig]="gatewaysTableConfig"
+  (refreshData)="refreshGatewaysTable()"
+  (rowSelect)="onCheckboxChange($event)"
+  (rowUnselect)="onCheckboxChange($event)"
+  [selectedRows]="selectedRows"
+>
+</rbn-table>
+<ng-template #bulkAction>
+  <div class="bulk-actions">
+    <p-dropdown
+      [options]="bulkActions"
+      [(ngModel)]="selectedAction"
+      (onChange)="callAction()"
+      [placeholder]="'COMMON.BULK_ACTIONS' | translate"
+      optionLabel="label"
+      [autoDisplayFirst]="false"
+      [disabled]="selectedRows.length === 0"
+    >
+    </p-dropdown>
+  </div>
+</ng-template>
+
+<app-associate-dialog
+  [header]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.LABEL.ASSOCIATE'"
+  (closeDetailDialog)="closeAssociateDialog()"
+  [showDialog]="showAssociateDialog"
+  [gwcname]="currentGwcName"
+>
+</app-associate-dialog>
+
+<app-detail-dialog
+  [showDialog]="showDetailDialog"
+  [dynamicContent]="dynamicDialogContent"
+  (closeDetailDialog)="closeDetailDialog()"
+>
+</app-detail-dialog>
+
+<p-dialog class="rbn-dialog"
+  [draggable]="false"
+  [resizable]="false"
+  [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.DETAILS'| translate"
+  [(visible)]="showNoResDialog"
+  [modal]="true"
+  (onHide)="closeNoResDialog()"
+  id="dialog"
+>
+  <div class="p-grid">
+    <div [innerHTML]="showNoResDialogContent" class="p-col-12 panel-content">
+      <p>{{ showNoResDialogContent }}</p>
+    </div>
+  </div>
+  <app-form-footer
+    [primaryLabel]="'COMMON.OK' | translate"
+    (eventSubmit)="closeNoResDialog()"
+    [showSecondaryBtn]="false"
+  ></app-form-footer>
+</p-dialog>
+
+<p-dialog
+  [draggable]="false"
+  [resizable]="false"
+  [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT'| translate"
+  [(visible)]="showEditDialog"
+  [modal]="true"
+  (onHide)="closeEditDialog()"
+  id="dialog"
+>
+  <form [formGroup]="editOperationForm">
+    <!-- Select Operation -->
+    <div class="edit-dialog flex-row">
+      <div class="p-grid p-field p-col-12 p-fluid">
+        <label class="p-col-6"
+          >{{
+            "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.OPERATIONS.SELECT_OPERATION"
+              | translate
+          }}:</label
+        >
+        <div class="p-col-6">
+          <p-dropdown
+            formControlName="operationName"
+            [options]="isBulkAction ? bulkActionOptions : operationNameOptions"
+            [placeholder]="'COMMON.SELECT' | translate"
+            appendTo="body"
+            [styleClass]="'full-width'"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <!-- Change ALG -->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="editOperationForm.get('operationName')?.value === 'Change ALG'"
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.ALG"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="alg"
+              [options]="algOptions"
+              [placeholder]="'COMMON.SELECT' | translate"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!-- Change Pep Server-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value === 'Change Pep Server'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.PEP_SERVER"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="pepServer"
+              [options]="pepServerOptions"
+              [placeholder]="'COMMON.SELECT' | translate"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!-- Change gateway capacity-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value ===
+        'Change Gateway Capacity'
+      "
+    >
+      <div class="flex-row" *ngIf="multiSiteNamesSupported !== 'true'">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.GATEWAY_CAPACITY"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input formControlName="gwCapacity" type="text" pInputText />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="multiSiteNamesSupported === 'true'">
+        <h3>
+          {{
+            "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.MULTI_SITE"
+              | translate
+          }}
+        </h3>
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12">
+            <p-pickList
+              class="search-icon filter-container-detail"
+              [source]="availableCapacityList"
+              [target]="provisionedLgrps"
+              [sourceHeader]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.AVAILABLE_SITE' | translate"
+              [targetHeader]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.PROV_LGRP' | translate"
+              [dragdrop]="false"
+              [responsive]="true"
+              filterBy="name"
+              [sourceStyle]="{ height: '30vh' }"
+              [targetStyle]="{ height: '30vh' }"
+              (onMoveToTarget)="onMoveToTarget($event)"
+              (onMoveToSource)="onMoveToSource($event)"
+              (onMoveAllToTarget)="onMoveToTarget($event)"
+              (onMoveAllToSource)="onMoveToSource($event)"
+              sourceFilterPlaceholder="Search"
+              targetFilterPlaceholder="Search"
+            >
+              <ng-template let-gwCapacity pTemplate="item">
+                <span>{{ gwCapacity.name }}</span>
+              </ng-template>
+            </p-pickList>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!-- Change Profile-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value === 'Change Profile' ||
+        isBulkAction
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.PROFILE"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="profile"
+              [options]="profileOptions"
+              [placeholder]="'COMMON.SELECT' | translate"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!-- Change Gateway LGRP Type-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value ===
+        'Change Gateway LGRP Type'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.LGRP_TYPE"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="lgrpType"
+              [options]="lgrpTypeOptions"
+              [placeholder]="'COMMON.SELECT' | translate"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="rbn-group field-checkbox p-col-6" *ngIf="isNodeCheck">
+          <p-checkbox
+            class="rbn-checkbox"
+            [binary]="true"
+            formControlName="nodeSharing"
+            checkboxIcon="fa fa-check"
+          ></p-checkbox>
+          <label>{{
+            "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.LGRP_NODE"
+              | translate
+          }}</label>
+        </div>
+      </div>
+    </p-panel>
+    <!--  Change GR-834 Gateway-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value ===
+        'Change GR-834 Gateway'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.GR_834"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="grGw"
+              [options]="grGwOptions"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!--  Change gateway IP address-->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value ===
+        'Change Gateway IP Address'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.SPECIFY_IP"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input
+              formControlName="ip"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.SPECIFY_IP'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.SPECIFY_PORT"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input
+              formControlName="port"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.SPECIFY_PORT'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!--  Change Signaling Gateway -->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value ===
+        'Change Signaling Gateway'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.SG_IP"
+                | translate
+            }}: <span class="validators-required"></span
+          ></label>
+          <div class="p-col-6">
+            <input
+              formControlName="sgIp"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.SG_IP'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.SG_PORT1"
+                | translate
+            }}: <span class="validators-required"></span
+          ></label>
+          <div class="p-col-6">
+            <input
+              formControlName="sgPort1"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.SG_PORT1'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.SG_PORT2"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input
+              formControlName="sgPort2"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.SG_PORT2'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!--  Change LBL Info -->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value === 'Change LBL Info'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.MGC_SECIP"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input
+              formControlName="mgcsecipAddress"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.MGC_SECIP'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.GW_SECIP"
+                | translate
+            }}: <span class="validators-required"></span
+          ></label>
+          <div class="p-col-6">
+            <input
+              formControlName="secipAddress"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.GW_SECIP'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-6"
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.CAC"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-6">
+            <input
+              formControlName="cac"
+              type="text"
+              [pTooltip]="
+                'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TOOLTIP.CAC'
+                  | translate
+              "
+              tooltipPosition="bottom"
+              pInputText
+            />
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <!--  Remove LBL Info -->
+    <p-panel
+      [showHeader]="false"
+      class="rbn-panel"
+      *ngIf="
+        editOperationForm.get('operationName')?.value === 'Remove LBL Info'
+      "
+    >
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <span>{{
+            "GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.REMOVE_LBL"
+              | translate
+          }}</span>
+        </div>
+      </div>
+    </p-panel>
+  </form>
+  <app-form-footer
+    [secondaryLabel]="'COMMON.CANCEL' | translate"
+    [disablePrimaryBtn]="checkDisableSaveBtnOnEditPopup() || editOperationForm.invalid || !this.editOperationForm.dirty"
+    [primaryLabel]="'COMMON.SAVE' | translate"
+    (eventSubmit)="onEditOperationFormSubmit($event)"
+  ></app-form-footer>
+</p-dialog>
+
+<p-dialog class="rbn-dialog"
+  [draggable]="false"
+  [resizable]="false"
+  [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_RESULT_DIALOG' | translate"
+  [(visible)]="showEditResultDialog"
+  [modal]="true"
+  (onHide)="closeEditResultDialog()"
+>
+  <div class="p-grid">
+    <div [innerHTML]="editResultDialogContent" class="p-col-12  p-mb-3">
+      <p>{{ editResultDialogContent }}</p>
+    </div>
+  </div>
+  <app-form-footer
+    [primaryLabel]="'COMMON.OK' | translate"
+    (eventSubmit)="closeEditResultDialog()"
+    [showSecondaryBtn]="false"
+  ></app-form-footer>
+</p-dialog>
+
+<!-- Info Popup -->
+<p-dialog class="rbn-dialog" [header]="infoPopupTitle"
+  [(visible)]="showInfoPopup" [modal]="true" (onHide)="closeInfoPopup()">
+  <div class="p-col-12 p-mb-3">
+    <label>{{infoPopupMessage}}</label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeInfoPopup()" ></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="titleText" [(visible)]="showRetrieveHandleErrorDialog"
+  [modal]="true" (onHide)="closeRetrieveHandleErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeRetrieveHandleErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<!-- Warning Popup FOR Changing LGRP TYPE -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.CHANGE_GW_CAPACITY_WARNING.TITLE' | translate"
+  [(visible)]="showWarningPopupChangeLGRP" [modal]="true" (onHide)="closeLGRPWarningPopup()">
+  <div class="p-col-12 p-mb-3">
+    <div [innerHTML]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.CHANGE_GW_CAPACITY_WARNING.MESSAGE' | translate | safe: 'html'" ></div>
+  </div>
+  <app-form-footer
+  [primaryLabel]="'COMMON.OK' | translate" [secondaryLabel]="'COMMON.CANCEL' | translate"
+  (eventSubmit)="onWarningChangeLGRPFormSubmit($event)"
+></app-form-footer>
+</p-dialog>
+
+<!-- Warning Popup FOR Changing GW CAPACITY -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.CHANGE_GW_CAPACITY_WARNING.TITLE' | translate"
+  [(visible)]="showWarningPopupChangeGWCapacity" [modal]="true" (onHide)="closeWarningPopup()">
+  <div class="p-col-12 p-mb-3">
+    <div [innerHTML]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.CHANGE_GW_CAPACITY_WARNING.MESSAGE' | translate | safe: 'html'" ></div>
+  </div>
+  <app-form-footer
+  [primaryLabel]="'COMMON.OK' | translate" [secondaryLabel]="'COMMON.CANCEL' | translate"
+  (eventSubmit)="onWarningChangeGWCapacityFormSubmit($event)"
+></app-form-footer>
+</p-dialog>
+
+  <!-- Change Signaling GW Confirm -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.CHANGE_SIGNALING_GW_IP.CONFIRM.TITLE' | translate"
+[(visible)]="showChangeSignalingGWConfirmDialog" [modal]="true" (onHide)="closeChangeSignalingGWConfirmDialog()" id="confirmationDialog">
+<div class="p-col-12 p-mb-3"
+  [innerHTML]="changeSignalingGWMessage | translate | safe: 'html'">
+</div>
+<app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+  (eventSubmit)="changeSignalingGWDialogFooterHandler($event)">
+</app-form-footer>
+</p-dialog>

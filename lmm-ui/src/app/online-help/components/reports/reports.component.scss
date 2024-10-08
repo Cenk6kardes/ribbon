@@ -1,0 +1,8 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .p-accordion {
+    margin-bottom: 10px;
+  }
+
+}

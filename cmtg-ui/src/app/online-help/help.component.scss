@@ -1,0 +1,70 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+
+    .color-blue{
+        color:$ribbon-blue;
+    }
+
+    .padding-x-none {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .lower_alphabet_list {
+        list-style-type: lower-alpha;
+    }
+
+    .color-red {
+        color: $ribbon-red;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .p-accordion .p-accordion-header {
+        .p-accordion-header-link {
+            background-color: $ribbon-white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-weight: bold;
+
+            &[aria-expanded='true'] {
+                border-bottom: none;
+                background-color: $ribbon-white;
+            }
+        }
+
+        .p-accordion-toggle-icon {
+            position: absolute;
+            right: 0.5em;
+            color: $ribbon-blue;
+        }
+    }
+
+    .p-accordion .p-accordion-content {
+        padding-top: 1px;
+    }
+
+    .rbn-tabs .p-tabview-panel {
+        max-height: unset;
+    }
+
+    .p-image {
+        margin-left: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7)
+    }
+
+    .p-image-action {
+        color: $ribbon-white;
+
+        i {
+            font-size: 30px;
+        }
+    }
+
+    .p-image-preview {
+        max-width: 70vw;
+    }
+}

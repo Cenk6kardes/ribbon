@@ -1,0 +1,44 @@
+@import "ribbontheme/variables";
+
+.container-statusLogs::ng-deep {
+  margin: -0.5rem -1rem;
+  position: fixed;
+  width: calc(100% - 290px);
+  bottom: 0px;
+
+  .statusLog {
+    .container-accordion {
+      max-height: 150px;
+      overflow: auto;
+
+      .log-time {
+        font-weight: 600;
+      }
+    }
+
+    .hr-footer {
+      border-top: 1px solid $ribbon-lighter-grey;
+    }
+
+    .p-accordion-header .p-accordion-header-link {
+      box-shadow: 0px -3px 5px 0px $ribbon-light-grey;
+      background-color: $ribbon-lighter-grey;
+      border-radius: 0px;
+      padding: 1.25em;
+
+      .p-accordion-header-text {
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: $ribbon-white;
+      }
+    }
+  }
+
+}
+
+#overlap-fix {
+  display: block;
+  height: 300px;
+}

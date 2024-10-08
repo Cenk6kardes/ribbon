@@ -1,0 +1,131 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .p-accordion {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .status-color-green {
+    color: $ribbon-dark-green;
+  }
+
+  .status-color-red {
+    color: $ribbon-dark-red;
+  }
+  
+  .status-color-orange {
+    color: #CC3C08; // $ribbon-orange;
+  }
+  
+  .status-color-black {
+    color: $ribbon-black;
+  }
+
+  .p-divider-solid.p-divider-horizontal:before {
+    border: 1px solid;
+    color: $ribbon-lighter-grey;
+  }
+
+  .p-accordion-toggle-icon {
+    display: none;
+  }
+
+  #p-accordiontab-0>div:nth-child(4)>span:nth-child(2) {
+    color: $ribbon-dark-grey;
+  }
+
+  .p-accordion-header-link {
+    justify-content: space-between;
+  }
+
+  .blue {
+    color: $ribbon-dark-blue;
+  }
+
+  .custom-icon {
+    margin-right: 8px;
+  }
+
+  .panel-content {
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .light-grey {
+    color: $ribbon-grey;
+  }
+
+  .title-container {
+    display: flex;
+  }
+
+  .red {
+    color: $ribbon-dark-red;
+  }
+
+  #p-accordiontab-0-content>div>div {
+    justify-content: center;
+    display: flex;
+  }
+
+  .p-accordion-header-text {
+    display: none;
+  }
+
+  #p-panel-3-content>div>div.p-grid.ng-tns-c80-25>div {
+    height: 136px;
+  }
+
+  #p-panel-4-content>div>div.p-grid.ng-tns-c80-26>div {
+    height: 136px;
+  }
+
+  div.p-col-3 label:nth-child(2) {
+    margin-left: 10%;
+  }
+
+  .p-panel-content {
+    min-height: 200px;
+  }
+
+  .item {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .item > div {
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  .alarm .light-grey {
+    white-space: pre-wrap;
+  }
+
+  @media screen and (max-width: 768px) {
+    .item {
+      flex: 0 0 100%;
+    }
+  }
+
+  .single-row-grid {
+    display: flex;
+  }
+
+  .single-row-grid .p-field {
+    flex: 1;
+    padding: 5px;
+    box-sizing: border-box;
+    .light-grey {
+      color: $ribbon-grey;
+    }
+  }
+
+  .single-row-grid .p-field > label {
+    white-space: nowrap;
+  }
+}

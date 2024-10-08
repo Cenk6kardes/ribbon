@@ -1,0 +1,139 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .rbn-tabs .p-tabview-panel {
+    max-height: unset;
+  }
+
+  .light-grey {
+    color: $ribbon-grey;
+  }
+
+  .fw-normal {
+    font-weight: normal;
+  }
+
+  .blue {
+    color: $ribbon-dark-blue;
+  }
+
+  #p-panel-3-content > div > div > div > div:nth-child(6) > p-inputnumber {
+    margin-left: 10px;
+  }
+
+  .rbn-field {
+    align-items: center;
+  }
+
+  .p-col-4 {
+    align-items: center;
+    display: flex;
+  }
+
+  div.p-col-4 label:nth-child(2) {
+    margin-left: 10px;
+  }
+
+  .button-top {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #p-panel-4-content > div > div.p-col-12.ng-tns-c80-26 > div.p-grid.p-field.p-col-6.p-fluid {
+    justify-content: flex-end;
+  }
+
+  .position {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #p-panel-4-content > div > div.p-col-12.ng-tns-c80-26 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: unset;
+  }
+
+  .pi-check {
+    color:
+    $ribbon-dark-pink;
+  }
+
+  .custom-icons{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #errorDialog .p-dialog-content {
+    overflow-y: unset;
+  }
+
+  .error-dialog-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .iconStyle {
+      color: $ribbon-dark-red;
+      margin-top: 4px;
+    }
+  }
+
+  .error-dialog-buttons {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 2px;
+      margin-right: 8px;
+    }
+  }
+
+  .message-text-container {
+    font-weight: unset;
+    color: $ribbon-dark-grey;
+    margin-left: 10px;
+  }
+
+  .details-text-area-container {
+    height: 135px;
+    width: auto;
+    resize: both;
+    max-width: inherit;
+    overflow: scroll;
+    color: $ribbon-dark-grey;
+    white-space: nowrap;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+    outline: 1px solid $ribbon-light-grey;
+    border-radius: 2px;
+  }
+
+  .showDetailsBtn {
+    margin-left: 5px;
+  }
+
+  .p-col-12 .p-grid .p-field .p-col-4 {
+    flex: 0 0 calc(33.33% - 16px);
+    max-width: calc(33.33% - 16px);
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .p-col-12 .p-grid .p-field .p-col-4 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+}
+

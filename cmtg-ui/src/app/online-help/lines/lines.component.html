@@ -1,0 +1,14 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-4">
+        <p>The Lines panel provides access to configuration data for lines associated with the selected gateway controller.
+        </p>
+        <p>A common <a [routerLink]="['/help/search']">search</a> interface is located at the top, while the lower section contains a table to display the retrieved records. The addition and deletion of Lines are not supported via the GUI. Lines provisioning is performed via the OSSGate interface.
+        </p>
+        <div class="p-my-2">
+            <p-image src="assets/images/help/lines/line_panel.jpg" alt="line_panel_img" width="600"
+            [preview]="true"></p-image>
+        </div>
+    </div>
+</p-panel>

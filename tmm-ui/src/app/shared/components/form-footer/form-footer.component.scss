@@ -1,0 +1,34 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .form-footer {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+  
+    .checkShowDetail {
+      height: 33px;
+      margin-right: 10px;
+      border-right: 1px solid $ribbon-grey;
+      display: flex;
+      align-items: center;
+  
+      .rbn-checkbox {
+        margin-right: 1rem;
+        margin-left: 0.5rem;
+      }
+    }
+  
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 10px;
+      width: 100px;
+    }
+
+    #form-footer-content {
+      label {
+        font-weight: unset;
+      }
+    }
+  }
+}

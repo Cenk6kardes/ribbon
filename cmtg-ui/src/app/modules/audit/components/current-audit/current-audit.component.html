@@ -1,0 +1,13 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<rbn-table [cols]="cols" [data]="dataCurrentAudit" [showFilterRow]="false" [tableConfig]="tableConfig" [allowSetDataToStorage]="false"
+  (refreshData)="doRefreshDataTable()"></rbn-table>
+<ng-template #headerTemplate>
+  <span *ngIf="lastRefeshValue">{{'AUDIT.FIELD_LABEL.LAST_REFRESH' | translate}}:
+    <span class="last-refesh-time">{{lastRefeshValue}}</span>
+  </span>
+</ng-template>
+<rbn-confirm-dialog *ngIf="confirmAbortAudit.isShowConfirmDialog" [title]="confirmAbortAudit.title"
+  [content]="confirmAbortAudit.content" [isShowConfirmDialog]="confirmAbortAudit.isShowConfirmDialog"
+  (emitConfirm)="doAbort($event, confirmAbortAudit.data)" [titleAccept]="confirmAbortAudit.titleAccept"
+  [titleReject]="confirmAbortAudit.titleReject"></rbn-confirm-dialog>

@@ -1,0 +1,5418 @@
+openapi: 3.0.1
+
+info:
+  title: Gateway Controller Element Manager Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+
+tags:
+  - name: "Gwcem"
+    description: "Operations related to Gateway Controller Element Manager"
+
+paths:
+
+  /GwcemApi/gwcem/v1.0/carriers-by-filter/{gwc-id}: 
+    post:
+      tags:
+        - Gwcem
+      description: Returns a list of GWC devices based upon the provided input   
+      operationId: carriers-by-filter
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwc-id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "GWC-1"  
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/CarrierInfo'
+              example:
+                  gwcid: GWC-1
+                  gatewayName: CO39G9PRI
+                  gwHostname: ""
+                  gwDefaultDomain: ""
+                  carrierName: TDMs16c1f1/1/1/1
+                  nodeNo:  -99
+                  firstTn: -99
+                  noOfPorts: -99
+                  v52InterfaceId: -99
+                  v52LinkId: -99
+                  v5UALinkId: -99
+                  priInterfaceId: -99
+                  priIUAInterfaceId: -99
+                  
+           
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDataSearchResult'
+             
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /GwcemApi/gwcem/v1.0/carriers-info/{gatewayName}: 
+    post:
+      tags:
+        - Gwcem
+      description: Returns a list of GWC devices based upon the provided input   
+      operationId: carriers-info
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: false  
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/CarrierList'
+              example:
+                  - "TDMs16c1f1/1/1/1"
+                  - "TDMs16c1f1/1/1/2"
+                 
+           
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierInfoList'
+             
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /GwcemApi/gwcem/v1.0/software-info: 
+    get:
+      tags:
+        - Gwcem
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+          
+  /GwcemApi/gwcem/v1.0/compatible-profile-list/{gatewayName}:
+    get:
+      tags:
+        - Gwcem
+    
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/stringArray'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+
+
+  /GwcemApi/gwcem/v1.0/properties/{fromFile}: 
+    get:
+      tags:
+        - Gwcem
+      description: Method to retrieve the values in the GWCEM.properties file.  
+      operationId: properties
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: fromFile
+          in: path
+          required: true
+          schema:
+            type: boolean
+            example: true   
+ 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyList'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+
+  /GwcemApi/gwcem/v1.0/gwc-status-list: 
+    get:
+      tags:
+        - Gwcem
+      description: Returns a list of GWCNodes of GWC that can be communicated to.  
+      operationId: gwc-status-list
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+     
+           
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCNodes'
+             
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+ 
+  
+
+  /GwcemApi/gwcem/v1.0/endpoint-by-filter/{epData}/{isMG9K}: 
+    get:
+      tags:
+        - Gwcem
+      description: Search for endpoints ordered by extTerminalNumber by using the different fields in the endpoints structre as filters   
+      operationId: endpoint-by-filter
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: epData
+          in: path
+          required: true
+          schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/EndpointData'
+        - name: isMG9K
+          in: path
+          required: true
+          schema:
+            type: boolean
+            example: false  
+
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointSearchResult'
+             
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request  
+
+  /GwcemApi/gwcem/v1.0/lmm-gateways: 
+    get:
+      tags:
+        - Gwcem
+      description: get all LMM Line Gateway Names      
+      operationId: lmm-gateway
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericArray'
+              example:
+                - mediatrix
+                - co24linegw
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request          
+          
+           
+  /GwcemApi/gwcem/v1.0/lmm-gateways/{gwName}: 
+    get:
+      tags:
+        - Gwcem
+      description: get LMM Line Gateway Name      
+      operationId: lmm-gateways
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: mediatrix  
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericArray'
+              example:
+                 co24linegw
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /GwcemApi/gwcem/v1.0/ntwk-codec-profile:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkCodecProfileQueryResult_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/NetworkCodecProfileData_v1'
+        
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/NetworkCodecProfileData_v1'
+
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/qos-collector-association/{gwcId}:
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/QoSCollectorData'
+        
+        
+      responses:
+        '200':
+          description: OK
+         
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/ntwk-codec-profile/{profileName}:
+    delete:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-profiles:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCProfileSearchResult_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/dqos-system-policy:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DQOSSystemPolicyData'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/DQOSSystemPolicyData'
+    
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/pep-server:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PEPServerSearchResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+ 
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/PEPServerData'
+ 
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/pep-server/{pepName}:
+    delete:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: pepName
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: pepName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/PEPServerChangeData'
+      
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/qos-collector:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QoSCollectorSearchResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/QoSCollectorData'
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/qos-collector-del/{force}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: force
+          in: path
+          required: true
+          schema:
+            type : boolean
+    
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/QoSCollectorData'
+     
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+  /GwcemApi/gwcem/v1.0/alg:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ALGSearchResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/ALGData'
+  
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  
+ 
+
+  /GwcemApi/gwcem/v1.0/alg/{algName}:
+    delete:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: algName
+          in: path
+          required: true
+          schema:
+            type : string
+
+
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: algName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/ALGChangeData'
+      
+
+
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/g6mlt-info:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/G6MltSearchResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/G6MltData'
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+                
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/G6MltData'
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/g6mlt-info-del/{force}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: force
+          in: path
+          required: true
+          schema:
+            type : boolean
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/G6MltData'
+
+
+
+      responses:
+        '200':
+          description: OK
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  
+    
+
+  /GwcemApi/gwcem/v1.0/is-gr834-gw-used/{name}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: name
+          in: path
+          required: true
+          schema:
+            type : string
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+
+  /GwcemApi/gwcem/v1.0/gr834-gw-types:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+     
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                example: [ "G6" ,"G2" ]
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'                
+
+  /GwcemApi/gwcem/v1.0/gwc-domain-name:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+
+
+      responses:
+        '200':
+          description: OK
+         
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+                
+  /GwcemApi/gwcem/v1.0/gwc-auto-swact-alarm-flag/{gwcId}:
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  
+
+  /GwcemApi/gwcem/v1.0/call-agent-id:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/status-data/{unitID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: unitID
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusData'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+  /GwcemApi/gwcem/v1.0/gwcs-configured-on-shelf/{allOnShelf}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: allOnShelf
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCConfigurationDataList'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-version-supported-info/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/strArray'
+              
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-hw-version/{gwcIP}/{fromDevice}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcIP
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fromDevice
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/lab-mode:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+             
+             
+  /GwcemApi/gwcem/v1.0/all-gateway-data/{gwcID}/{maxReturnRows}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type: integer
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GatewaySearchResult_v1'  
+                
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'   
+                
+  
+
+  /GwcemApi/gwcem/v1.0/gwc-load-name/{gwcIP}/{fromDevice}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcIP
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fromDevice
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gwc-node-by-name/{gwcIP}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcIP
+          in: path
+          required: true
+          schema:
+            type: string
+      
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCNodeSearchResult_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'                
+
+  /GwcemApi/gwcem/v1.0/gwc-mtc-control-data/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref : '#/components/schemas/GWCMtcControlData'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/ip-address-protocol-port/{profileName}/{IPAddress}/{portNumber}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IPAddress
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portNumber
+          in: path
+          required: true
+          schema:
+            type: string
+        
+
+      responses:
+        '200':
+          description: OK
+          content:
+           application/json:
+              schema:
+                type: boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwcData/{gwcName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcName
+          in: path
+          required: true
+          schema:
+            type: string
+ 
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCids'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-active-ip/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : string
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0//gwc-inactive-ip/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/is-location-id-reporting-enabled/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-node/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCNodeSearchResult_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gwc-node/{gwcname}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcname
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCNode_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'  
+                
+    
+
+  /GwcemApi/gwcem/v1.0/compatible-profiles/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComGwcProfileDataList'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/is-flowthrough-gwc/{profileName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gwc-service-configuration/{gwcId}/{codecProfile}/{force}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: codecProfile
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: OK
+         
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'                
+
+  /GwcemApi/gwcem/v1.0/enabling-location-id-reporting/{gwcId}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/disabling-location-id-reporting/{gwcId}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-statistics/{gwcName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcName
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCStatisticsResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-mtc-control-data:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/GWCMtcControlData'
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway-data-search/{gwcID}/{searchString}/{maxReturnRows}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: searchString
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewaySearchResult_v1'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway-data-by-gwc/{gwcID}/{maxReturnRows}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewaySearchResult_v1'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/profile-data:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GwcProfileDataList'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'                 
+                
+
+
+  /GwcemApi/gwcem/v1.0/is-lbl-supported:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : boolean
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/all-gwc-nodes:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCNodeSearchResult_v1'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/is-support-mlt/{gwProfile}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwProfile
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway/{force}:
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/Gateway_v1'
+
+
+      responses:
+        '200':
+          description: OK
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway/{gateway}/{force}:
+    delete:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gateway
+          in: path
+          required: true
+          schema:
+            $ref : '#/components/schemas/Gateway_v1'
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: OK
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+  /GwcemApi/gwcem/v1.0/endpoint-reservation/{gwcID}/{gatewayMax}/{addGwc}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type : string
+        
+        - name: gatewayMax
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: addGwc
+          in: path
+          required: true
+          schema:
+            type: boolean
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/EndpointInfo'
+
+
+
+
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/ip-address-porotocol-port/{profileName}/{IPAddress}/{portNumber}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IPAddress
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: portNumber
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : boolean
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/endpoint:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/EndpointData'
+       
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointSearchResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/deleteEndpoint_flex/{gwcID}/{gwcName}/{epName}/{force}/{bFlex}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: gwcName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: epName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+        - name: bFlex
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: OK
+
+
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gateway-profile-by-name/{profileName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+         
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayProfile_v1'
+          
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/preparation-for-delete-gateway/{gwcID}/{gwName}/{force}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gw-addrs/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+                
+  /GwcemApi/gwcem/v1.0/endpoint-data/{gwcID}/{maxReturnRows}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+        
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointSearchResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/all-carrier-data/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDataSearchResult_v1'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/all-endpoint-data/{gwcID}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointSearchResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException' 
+          
+  /GwcemApi/gwcem/v1.0/carrier/{gwcId}/{srvcType}:
+    put:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: srvcType
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref:  '#/components/schemas/CarrierData'
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCarrierReturn'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException' 
+                
+  /GwcemApi/gwcem/v1.0/carrier/{gwcId}/{gatewayName}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+
+
+      responses:
+        '200':
+          description: OK
+         
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException' 
+
+  /GwcemApi/gwcem/v1.0/gatewayData/{gwcID}/{gwName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayData'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+  /GwcemApi/gwcem/v1.0/gateway-profile-names:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileNames'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gateway-profiles:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/list-of-csips:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway/{gwcId}/{gatewayName}/{force}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/GatewayConfiguration_v1'
+        
+
+
+      responses:
+        '200':
+          description: OK
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+    delete:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: path
+          required: true
+          schema:
+            type: boolean
+     
+      responses:
+        '200':
+          description: OK
+          
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+ 
+                
+  /GwcemApi/gwcem/v1.0/gr834-gw-names-by-type/{type}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: type
+          in: path
+          required: true
+          schema:
+            type : string
+       
+     
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GR834GWList'
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/gr834-gw-type-by-profile/{gwProfile}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwProfile
+          in: path
+          required: true
+          schema:
+            type : string
+       
+     
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/endpoint-group-data/{gwcId}/{searchString}/{maxReturnRows}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+        - name: searchString
+          in: path
+          required: true
+          schema:
+            type : string
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type : integer
+       
+     
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointGroupDataSearchResult'
+  
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateways-by-filter/{gwcId}/{gatewayName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewaySearchResult_v2'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+  /GwcemApi/gwcem/v1.0/granular-line-tree:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GranularLineTree'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'     
+                
+  /GwcemApi/gwcem/v1.0/vmg-to-gr834-gw/{vmgName}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: vmgName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+        
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/signaling-gw-info/{gwcId}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/SignalingGWInfo'
+
+
+      responses:
+        '200':
+          description: OK
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gateway-application-data/{gatewayName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCApplicationData'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/signaling-gw-info/{gwName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gr834-gw-name/{vmgname}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: vmgname
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/is-v52-supported:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+       
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/carrier-data/{gwcId}/{maxReturnRows}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+       
+        - name: maxReturnRows
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDataSearchResult_v1'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/carrier-expansion/{gwcId}/{gatewayName}/{gwcId}/{gatewayName}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: gatewayName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointSearchResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/not-associated/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QoSCollectorSearchResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+  /GwcemApi/gwcem/v1.0/qos-collection-status/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QoSRepParams'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/QoSRepParams'
+
+
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/qos-collector-dissacociation/{gwcId}:
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type : string
+            
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/QoSCollectorData'
+
+
+      responses:
+        '200':
+          description: OK
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/is-qos-collection-supported/{gwcProfileName}/{type}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcProfileName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ReportingTypes'
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/trunk-gateway-names/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+                
+  /GwcemApi/gwcem/v1.0/qos-collector-filter/{gwcId}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QoSCollectorSearchResult'
+            
+                
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+    post:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+           schema: 
+              $ref: '#/components/schemas/QoSCollectorData'
+            
+            
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QoSCollectorSearchResult'
+            
+                
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+    
+
+    
+
+  /GwcemApi/gwcem/v1.0/session-server-connected:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type : boolean
+
+        '500':
+          description: Server Error
+
+  /GwcemApi/gwcem/v1.0/large-line-gw/{gwcname}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcname
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayInfoList'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/node-name-number:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodenameNumberResult'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+  /GwcemApi/gwcem/v1.0/gwc-info/{gwcName}:
+    get:
+      tags:
+        - Gwcem
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+        - name: gwcName
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCids'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GWCErrorException'
+
+
+
+components:
+
+  schemas:
+
+    GWCErrorException:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+
+
+    ValidBearerType:
+      type: string
+      enum: [ null_bearer, IP, AAL1, AAL2 ]
+
+    ValidCodecType:
+      type: string
+      enum: [ null_codec, pcmu, pcma, g726, g729, amr, g723, evrc, evrc0, aal2g72632, bv16, g72624 ]
+
+    PacketizationRateType:
+      type: string
+      enum: [ null_rate, p10ms, p20ms, p30ms, p40ms ]
+
+    ValidT38Mode:
+      type: string
+      enum: [ null_t38, strict, loose ]
+
+    ValidFlagType:
+      type: string
+      enum: [ ValidFlag_False, ValidFlag_True, ValidFlag_NotSet ]
+
+    NetworkCodecProfileData_v1:
+      type: object
+      properties:
+        name:
+          type: string
+        bearerPath:
+          $ref: '#/components/schemas/ValidBearerType'
+        defaultCodec:
+          $ref: '#/components/schemas/ValidCodecType'
+        preferredCodec:
+          $ref: '#/components/schemas/ValidCodecType'
+        alternativeCodec:
+          $ref: '#/components/schemas/ValidCodecType'
+        packetizationRate:
+          $ref: '#/components/schemas/PacketizationRateType'
+        t38:
+          $ref: '#/components/schemas/ValidT38Mode'
+        rfc2833:
+          $ref: '#/components/schemas/ValidFlagType'
+        comfortNoise:
+          $ref: '#/components/schemas/ValidFlagType'
+        bearerTypeDefault:
+          $ref: '#/components/schemas/ValidFlagType'
+        networkDefault:
+          $ref: '#/components/schemas/ValidFlagType'
+    NetworkCodecProfileQueryResult_v1:
+      type: object
+      properties:
+        count:
+          type: integer
+        ncpList:
+          $ref: '#/components/schemas/NetworkCodecProfileData_v1'
+
+    DQOSSystemPolicyData:
+      type: object
+      properties:
+        dsField:
+          type: integer
+        t1Value:
+          type: integer
+        t2Value:
+          type: integer
+        keepAliveTimer:
+          type: integer
+        t7Value:
+          type: integer
+        t8Value:
+          type: integer
+
+    PEPServerSearchResult:
+      type: object
+      properties:
+        count:
+          type: integer
+        list:
+          $ref: '#/components/schemas/PEPServerDataList'
+    PEPServerDataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PEPServerData'
+    PEPServerData:
+      type: object
+      properties:
+        name:
+          type: string
+        ipAddress:
+          type: string
+        boxType:
+          type: integer
+        maxConnections:
+          type: integer
+        protocol:
+          type: integer
+        protVersion:
+          type: string
+    PEPServerChangeData:
+      type: object
+      properties:
+        ipAddress:
+          type: string
+        protVersion:
+          type: string
+        maxConnections:
+          type: integer
+
+    QoSCollectorSearchResult:
+      type: object
+      properties:
+        count:
+          type: integer
+        list:
+          $ref: '#/components/schemas/QoSCollectorList'
+    QoSCollectorList:
+      type: array
+      items:
+        $ref: '#/components/schemas/QoSCollectorData'
+    QoSCollectorData:
+      type: object
+      properties:
+        qosName:
+          type: string
+        ipAddress:
+          type: string
+        port:
+          type: string
+
+    LocationRecipientData_v1:
+      type : object
+      properties :
+        dns:
+          type : string
+        ipAddress:
+          type : string
+        port:
+          type : string
+
+    ALGSearchResult:
+      type : object
+      properties :
+        count:
+          type : integer
+        list:
+          $ref : '#/components/schemas/ALGDataList'
+
+    ALGDataList:
+      type : array
+      items :
+        $ref : '#/components/schemas/ALGData'
+
+    ALGData:
+      type : object
+      properties :
+        name:
+          type : string
+        ipAddress:
+          type : string
+        port:
+          type : integer
+        protocol:
+          type : integer
+
+    ALGChangeData:
+      type : object
+      properties :
+        ipAddress:
+          type : string
+        port:
+          type : integer
+        protocol:
+          type : integer
+
+    G6MltSearchResult:
+      type : object
+      properties :
+        count:
+          type : integer
+        list :
+          $ref : '#/components/schemas/G6MltList'
+
+    G6MltList:
+      type : array
+      items :
+        $ref : '#/components/schemas/G6MltData'
+
+    G6MltData:
+      type : object
+      properties :
+        g6Name:
+          type : string
+        type:
+          type : string
+        ipAddress:
+          type : string
+        port:
+          type : integer
+        userName:
+          type : string
+        passWd :
+          type : string
+
+    StatusData:
+      type: object
+      properties:
+        adminState:
+          type: string
+        usageState:
+          type: string
+        operState:
+          type: string
+        standbyState:
+          type: string
+        activityState:
+          type: string
+        swactState:
+          type: string
+        isolationState:
+          type: string
+        alarmState:
+          type: string
+        availState:
+          type: string
+        faultState:
+          type: string
+        readyState:
+          type: string
+        haState:
+          type: string
+
+    GWCConfigurationDataList:
+      type : array
+      items :
+        $ref : '#/components/schemas/GWCConfigurationData'
+
+    GWCConfigurationData:
+      type : object
+      properties :
+        gwcName:
+          type : string
+        activeGwc:
+          $ref : '#/components/schemas/LogicalDevice'
+        inactiveGwc:
+          $ref : '#/components/schemas/LogicalDevice'
+        unit0:
+          $ref : '#/components/schemas/PhysicalDevice'
+        unit1:
+          $ref : '#/components/schemas/PhysicalDevice'
+        provisionedInEM:
+          type : boolean
+
+    PhysicalDevice:
+      type : object
+      properties :
+        name:
+          type : string
+        ipAddress:
+          type : string
+        loadLocation:
+          type : string
+
+    GWCNodes_ext:
+      type: array
+      items:
+        $ref: '#/components/schemas/GWCNode_ext'          
+          
+    GWCNode_ext:
+      type: object
+      properties:
+        gwcNodeInfo:
+          $ref: '#/components/schemas/GWCNode'
+        gwcNodeNumber:
+          type: integer
+          example: null          
+
+    GwcCapabilityDataList:
+      type: object
+      properties:
+         capacity:
+           type: integer
+         capability:
+           $ref: '#/components/schemas/GwcCapability' 
+           
+    GwcCapability:
+      type: string
+      enum:
+        - nilType
+        - lines
+        - trunks
+        - audio
+        - apg
+        - dpt
+        - dqos
+        - smallGWs
+        - largeGWs
+        - audioGWs
+        - apgGWs
+        - sipt
+        - vrdn
+        - ra
+        - bct
+        - ipsec
+        - kerberos
+        - v53
+        - conferences
+        - announcements
+        - rmgcGWs
+        - h323
+        - dpl
+        - voip_vpn           
+
+    GWCData:
+      type: object
+      properties:
+        capabilities:
+          $ref: '#/components/schemas/GwcCapabilityDataList'
+        gwcAlias:
+          type: string
+          example: null        
+        ipAddress:
+          type: string
+          example: null
+        snmpPort:
+          type: string
+          example: null
+
+    GWCNodes:
+      type: array
+      items:
+         $ref: '#/components/schemas/GWCNode'
+          
+    GWCNode:
+      type: object
+      properties:
+        GWCInfo:
+          $ref: '#/components/schemas/GWCData'
+        ctxId:
+          type: string
+          example: null        
+        ctxName:
+          type: string
+          example: null
+        LoadName:
+          type: string
+          example: null
+          
+
+    LogicalDevice:
+      type: object
+      properties:
+        name:
+          type: string
+        ipAddress:
+          type: string
+
+    strArray:
+      type : array
+      items :
+        type : string
+
+    GWCMtcControlData:
+      type : object
+      properties :
+        gwcID:
+          type : string
+        autoSwactTimer:
+          type : integer
+
+    GWCids:
+      type : object
+      properties :
+        unit0ID:
+          type : string
+        unit0IPAddr:
+          type : string
+        unit0Port:
+          type : integer
+        unit1ID:
+          type : string
+        unit1IPAddr:
+          type : string
+        unit1Port:
+          type : integer
+
+    ComGwcProfileDataList:
+      type : array
+      items :
+        type : string
+
+    GWCStatistics:
+      type : object
+      properties :
+        gwcStatName:
+          type : string
+        gwcStatValue:
+          type : string
+
+    PropertyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Property'
+        
+        
+    Property:
+      type: object
+      properties:
+        key:
+          type: string
+          example: null  
+        value:
+          type: string
+          example: null
+
+    GWCStatisticsList:
+      type : array
+      items :
+        $ref : '#/components/schemas/GWCStatistics'
+
+    GWCStatisticsResult:
+      type : object
+      properties :
+        count:
+          type : integer
+        gwcStatisticsList:
+          $ref : '#/components/schemas/GWCStatisticsList'
+
+    GatewaySearchResult_v1:
+      type: object
+      properties:
+        count:
+          type: integer
+        gwData:
+          $ref: '#/components/schemas/GatewayDataList_v1'
+
+    GWCStatusNodeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GWCStatusNode'
+        
+        
+    GWCStatusNode:
+      type: object
+      properties:
+        gwcAlias:
+          type: string
+          example: null  
+        gwcStatus:
+          type: boolean
+          example: null
+
+    GatewayDataList_v1:
+      type: array
+      items:
+        $ref: '#/components/schemas/GatewayData_v1'
+
+    GatewayData_v1:
+      type: object
+      properties:
+        gwcID:
+          type: string
+        name:
+          type: string
+        ipAddress:
+          type: string
+        mgcsecipAddress:
+          type: string
+        secipAddress:
+          type: string
+        profileName:
+          type: string
+        maxTerms:
+          type: integer
+        resTerms:
+          type: integer
+        protocol:
+          type: string
+        protVers:
+          type: string
+        protPort:
+          type: integer
+        pepServerName:
+          type: string
+        middleBoxName:
+          type: string
+        algName:
+          type: string
+        nodeName:
+          type: string
+        nodeNumber:
+          type: integer
+        frame:
+          type: string
+        shelf:
+          type: string
+        slot:
+          type: string
+        locality:
+          type: string
+        cac:
+          type: integer
+        defaultDomainName:
+          type: string
+        lgrptype:
+          type: string
+        isShared:
+          type: string
+        extStTerm:
+          type: integer
+
+    ITransMBNameSearchResult:
+      type : array
+      items :
+        type : string
+
+    ITransMBType:
+      type : string
+      enum : [ITRANS_Middlebox, NAT_Middlebox, VCAC_Middlebox, NATLBL_Middlebox]
+
+    Gateway_v1:
+      type : object
+      properties :
+        gwcId:
+          type : string
+        gatewayName:
+          type : string
+        configuration:
+          $ref : '#/components/schemas/GatewayConfiguration_v1'
+
+    CarrierInfo:
+      type: object
+      properties:
+        gwcid:
+          type: string
+        gatewayName:
+          type: string
+        epidgrpName:
+          type: string
+        epidGenerationDesc:
+          type: string
+        nodeNo:
+          type: integer    
+        firstTn:
+          type: integer 
+        noofPorts:
+          type: integer           
+        v52InterFaceId:
+          type: integer    
+        v52LinkId:
+          type: integer           
+        v5uaLinkId:
+          type: integer  
+        priInterFaceId:
+          type: integer  
+        epidGrpType:
+          type: string 
+        node_name:
+          type: string 
+          
+    CarrierInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CarrierInfo' 
+        
+    Carrier:
+      type: object
+      properties:
+        carrname:
+          type: string
+          example: null
+          
+          
+    CarrierList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Carrier'     
+                  
+    CarrierDataSearchResult:
+      type: array
+      items:
+        properties:
+          count:
+            type: integer
+          crData:
+            $ref: '#/components/schemas/CarrierInfoList'         
+
+    GatewayConfiguration_v1:
+      type : object
+      properties :
+        ipAddress:
+          type : string
+        mgcsecipAddress:
+          type : string
+        secipAddress:
+          type : string
+        nodeName:
+          type : string
+        nodeNumber:
+          type : integer
+        protocol:
+          $ref : '#/components/schemas/GatewayProtocolData'
+        profileName:
+          type : string
+        pepServerName:
+          type : string
+        middleBoxName:
+          type : string
+        itransRootMiddleboxNames:
+          $ref : '#/components/schemas/itransRootMiddleboxNameSeq'
+        algName:
+          type : string
+        reservedEndpoints:
+          type : integer
+        physicalMG:
+          type : string
+        neId:
+          type : integer
+        subnetManagerId:
+          type : string
+        otherInfo:
+          type : string
+        frame:
+          type : string
+        shelf:
+          type : string
+        slot:
+          type : string
+        locality:
+          type : string
+        cac:
+          type : integer
+        defaultDomainName:
+          type : string
+        applicationData:
+          $ref : '#/components/schemas/KeyValuePairList'
+        lgrpType:
+          type : string
+        isShared:
+          type : string
+        extStTerm:
+          type : integer
+
+    GatewayProtocolData:
+      type : object
+      properties :
+        protocol:
+          $ref : '#/components/schemas/ValidGatewayProtocol'
+        port:
+          type : integer
+        version:
+          type : string
+
+    ValidGatewayProtocol:
+      type : string
+      enum : [NILPROTOCOL,NCS,ASPEN,DSMCC,MEGACO,MGCP,H323,TGCP,GCP]
+
+    itransRootMiddleboxName:
+      type : string
+
+    itransRootMiddleboxNameSeq:
+      type : object
+      properties :
+        itransRootMiddleboxName:
+          $ref : '#/components/schemas/itransRootMiddleboxName'
+
+    KeyValuePair:
+      type : object
+      properties :
+        name:
+          type : string
+        value:
+          type : string
+
+    KeyValuePairList:
+      type : array
+      items :
+        $ref : '#/components/schemas/KeyValuePair'
+
+    EndpointInfo:
+      type : object
+      properties :
+        epType:
+          $ref : '#/components/schemas/EndpointType'
+        gatewayName:
+          type : string
+        epName:
+          type : string
+        extNodeNumber:
+          type : integer
+        iid:
+          type : integer
+        tid:
+          type : integer
+        endpointTNType:
+          type : integer
+
+    EndpointType:
+      type : string
+      enum : [LINE, TRUNK, PRI]
+
+    EndpointData:
+      type: object
+      properties:
+        gwcID:
+          type: string
+        gatewayName:
+          type: string
+        gwHostname:
+          type: string
+        gwDefaultDomain:
+          type: string
+        endpointName:
+          type: string
+        extNodeNumber:
+          type: integer
+        extTerminalNumber:
+          type: integer
+        endpointStatus:
+          type: string
+        iid:
+          type: integer
+        endpointTNType:
+          type: string
+
+    EndpointDataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/EndpointData'
+
+    EndpointSearchResult:
+      type: object
+      properties:
+        count:
+          type: integer
+        epData:
+          $ref: '#/components/schemas/EndpointDataList'
+
+    GatewayData:
+      type: object
+      properties:
+        name:
+          type: string
+        ipAddress:
+          type: string
+        type:
+          type: string
+        extNodeNumber:
+          type: integer
+        protocol:
+          type: string
+        protVers:
+          type: string
+        protPort:
+          type: integer
+        heartbeat:
+          type: integer
+        connSel:
+          type: string
+        profile:
+          type: integer
+        pepServerName:
+          type: string
+        middleBoxName:
+          type: string
+        itransRootMiddleboxNames:
+          $ref: '#/components/schemas/itransRootMiddleboxNameSeq'
+        algName:
+          type: string
+        defaultDomainName:
+          type: string
+        applicationData:
+          $ref: '#/components/schemas/KeyValuePairList'
+
+    ProfileNames:
+      type : array
+      items :
+        type : string
+
+    GatewaySearchResult_v2:
+      type : object
+      properties :
+        count :
+          type : integer
+        gatewayList:
+          $ref : '#/components/schemas/GatewayList_v1'
+
+    GatewayList_v1:
+      type : array
+      items :
+        $ref : '#/components/schemas/Gateway_v1'
+
+    SignalingGWInfo:
+      type : object
+      properties :
+        gwName:
+          type : string
+        sgIPAddr1:
+          type : string
+        sgIPAddr2:
+          type : string
+        sgPort1:
+          type : integer
+        sgPort2:
+          type : integer
+
+    GWCApplicationData:
+      type : object
+      properties :
+        globalId:
+          type : integer
+        keyValuePairs:
+          $ref : '#/components/schemas/KeyValuePairList'
+
+    stringArray:
+      type : array
+      items :
+        type : string
+
+    CarrierData:
+      type : object
+      properties :
+        gatewayName:
+          type : string
+        gwHostname:
+          type : string
+        gwDefaultDomain:
+          type : string
+        carrierName:
+          type : string
+        nodeNo:
+          type : integer
+        firstTn:
+          type : integer
+        noOfPorts:
+          type : integer
+        v52InterfaceId:
+          type : integer
+        v52LinkId:
+          type : integer
+        v5UALinkId:
+          type : integer
+        priInterfaceId:
+          type : integer
+        priIUAInterfaceId:
+          type : integer
+
+    GwcProfileData:
+          type: object
+          properties:
+            profileName:
+              type: string
+            capabilities:
+              type: array
+              items:
+                type: object
+                properties:
+                  capability:
+                    type: object
+                    properties:
+                      __value:
+                        type: integer
+                  capacity:
+                    type: integer
+            changeProfiles:
+              type: array
+              items:
+                type: string
+    
+    GwcProfileDataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/GwcProfileData'
+
+    CarrierDataList:
+      type : array
+      items :
+        $ref : '#/components/schemas/CarrierData'
+
+    CarrierDataSearchResult_v1:
+      type : object
+      properties :
+        count:
+          type : integer
+        crData:
+          $ref : '#/components/schemas/CarrierDataList'
+          
+    GranularLineTree:
+          type: array
+          items:
+            $ref: '#/components/schemas/GranularLineTreeInfo'
+            
+    GranularLineTreeInfo:
+      type : object
+      properties :
+        type:
+          type : integer
+        gwcId:
+          type : string
+        gwName:
+          type : string
+        
+
+    QoSRepParams:
+      type : object
+      properties :
+        qosReporting:
+          type : integer
+        currentBaseMetrics:
+          type : integer
+        rtpBaseRemoteMetrics:
+          type : integer
+        extraBaseMetrics:
+          type : integer
+        codecMetrics:
+          type : integer
+        rtcpxrReporting:
+          type : integer
+        rtcpxrBlocks:
+          $ref : '#/components/schemas/strArray'
+
+    ReportingTypes:
+      type : string
+      enum : [NONRTCPXRREPORTING, RTCPXRREPORTING]
+
+    GatewayInfo:
+      type : object
+      properties :
+        gwName:
+          type : string
+        profileName:
+          type : string
+        epType:
+          type : integer
+
+    GatewayInfoList:
+      type  : array
+      items :
+        $ref : '#/components/schemas/GatewayInfo'
+        
+    GWCNode_v1:
+      type : object
+      properties :
+        gwcID:
+          type : string
+        callServer:
+          $ref : '#/components/schemas/CallServer_v1'
+        elementManager:
+          $ref : '#/components/schemas/GWCElementManager_v1'
+        serviceConfiguration:
+          $ref : '#/components/schemas/GWCServiceConfiguration_v1'
+        deviceList:
+          $ref : '#/components/schemas/GWCDeviceList_v1'
+          
+    CallServer_v1:
+      type : object
+      properties :
+        name:
+          type : string
+        cmMsgIpAddress:
+          type : string
+    
+         
+    GWCElementManager_v1:
+      type : object
+      properties :
+        ipAddress:
+          type : string
+        trapPort:
+          type : integer
+    
+    GWCServiceConfiguration_v1:
+      type : object
+      properties :
+        gwcNodeNumber:
+          type : integer
+        activeIpAddress:
+          type : string
+        inactiveIpAddress:
+          type : string
+        unit0IpAddress:
+          type : string
+        unit1IpAddress:
+          type : string
+        gwcProfileName:
+          type : string
+        capabilities:
+          $ref : '#/components/schemas/GwcCapabilityDataList'
+        bearerNetworkInstance:
+          type : string
+        bearerFabricType:
+          type : string
+        codecProfileName:
+          type : string
+        execDataList:
+          $ref : '#/components/schemas/ExecDataList'
+        defaultGwDomainName:
+          type : string
+       
+    ExecDataList:
+      type : array
+      items :
+          $ref : '#/components/schemas/ExecData'
+          
+    ExecData:
+      type : object
+      properties :
+        name:
+          type : string
+        termtype:
+          type : string
+       
+    GWCDeviceList_v1:
+      type : array
+      items :
+          $ref : '#/components/schemas/GWCDevice_v1'
+    
+    GWCDevice_v1:
+      type : object
+      properties :
+        gwcId:
+          type : string
+        deviceId:
+          type : string
+        deviceType:
+          $ref : '#/components/schemas/GWCDeviceType'
+        ipAddress:
+          type : string
+        snmpConfiguration:
+          $ref : '#/components/schemas/GWCSnmpConfiguration_v1'
+        loadName:
+          type : string
+          
+          
+    GWCSnmpConfiguration_v1:
+      type : object
+      properties :
+        ctxId:
+          type : string
+        ctxName:
+          type : string
+  
+      
+    GWCDeviceType:
+      type: string
+      enum: [ LOGICAL_ACTIVE, LOGICAL_INACTIVE, UNIT0, UNIT1 ]
+  
+    
+    NodenameNumber:
+      type : object
+      properties :
+        gwcID:
+          type : string
+        nodeName:
+          type : string
+        nodeNN:
+          type : integer
+        nodeType:
+          type : string
+
+
+    AddCarrierReturn:
+      type : object
+      properties :
+        firstTn:
+          type : integer
+        noOfPorts:
+          type : integer
+
+    
+      
+    EndpointGroupDataSearchResult:
+      type : object
+      properties :
+        count:
+          type : integer
+        epgData:
+          $ref : '#/components/schemas/EndpointGroupDataList'
+          
+    GWCProfileSearchResult_v1:
+      type : object
+      properties :
+        count:
+          type : integer
+        gwcProfileList:
+          $ref : '#/components/schemas/GWCProfileList_v1'
+          
+    GWCProfileList_v1:
+      type : array
+      items :
+        $ref : '#/components/schemas/GWCProfile_v1'
+        
+    GatewayProtocolList:
+      type : array
+      items :
+        $ref : '#/components/schemas/GatewayProtocolData'
+      
+    MGEndpointType:
+      type: string
+      enum: [ niltype, managedLens, ue9000Lens, cicmLens, carrierTrksGwcNN, carrierTrksSubNN, nocarrierTrkGwcNN, asynchronousBridgingInterface, thirdPartyLens, sipLens ]
+      
+    MGCategory:
+      type: string
+      enum: [ niltype, large, small, audio, APG ]
+    
+        
+    GatewayProfile_v1:
+      type : object
+      properties :
+        name :
+          type: string
+        owner:
+          type : string
+        maxEndpoints:
+          type : integer
+        typeList:
+          $ref : '#/components/schemas/stringArray'
+        category:
+          $ref : '#/components/schemas/MGCategory'
+        gwcProfileNumber:
+          type : integer
+        compatibleGWProfiles:
+          $ref : '#/components/schemas/stringArray'
+        supportedProtocols:
+          $ref : '#/components/schemas/GatewayProtocolList'
+        endpointType:
+          $ref : '#/components/schemas/MGEndpointType'
+        inventoryType:
+          type : string
+        inventoryRole:
+          type : string
+        bearerFabricRestList:
+          $ref : '#/components/schemas/stringArray'
+        generateLGRP:
+          type : string
+        resvTermMandatory:
+          type : string
+        changeIPAvailable:
+          type : string
+        dispPhyLocation:
+          type : string
+        multiSiteNamesSupported:
+          type : string
+        fqdnSupported:
+          type : string
+        gwAppDataDefinitionList:
+          $ref : '#/components/schemas/stringArray'
+        lgrpType:
+          type : string
+        lgrpSize:
+          type : integer
+        solutionRestList:
+          $ref : '#/components/schemas/stringArray'
+        
+          
+    
+    GWCProfile_v1:
+      type : object
+      properties :
+        name :
+          type: string
+        owner:
+          type : string
+        toneinfo:
+          type : string
+        execinfo:
+          $ref : '#/components/schemas/ExecDataList'
+        capabilities:
+          $ref : '#/components/schemas/GwcCapabilityDataList'
+        compatibleGWCProfiles:
+          $ref : '#/components/schemas/stringArray'
+        bearer_instance_required:
+          type: string
+        upgradeorder:
+          type : integer
+        solutionrestrictions:
+          $ref : '#/components/schemas/stringArray'
+        
+    EndpointGroupDataList:
+      type : array
+      items :
+        $ref : '#/components/schemas/EndpointGroupData'
+    
+    EndpointGroupData:
+      type : object
+      properties :
+        gatewayName:
+          type : string
+        gwHostname:
+          type : string
+        gwDefaultDomain:
+          type : string
+        endpointGroupName:
+          type : string
+        nodeNo:
+          type : integer
+        firstTn:
+          type : integer
+        noOfPorts:
+          type : integer
+        priInterfaceId:
+          type : integer
+        
+    GR834GWList:
+      type : array
+      items :
+        type: string
+        
+    NodenameNumberList:
+      type : array
+      items :
+        $ref : '#/components/schemas/NodenameNumber'
+
+    NodenameNumberResult:
+      type : object
+      properties :
+        count:
+          type : integer
+        list:
+          $ref : '#/components/schemas/NodenameNumberList'
+
+    GenericArray:
+      type: array
+      items:
+        type: string
+
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+
+    GWCNodeSearchResult_v1:
+      type: object
+      properties:
+        count:
+          type: integer
+        nodeList:
+          type: array
+          items:
+            type: object
+            properties:
+              gwcId:
+                type: string
+              callServer:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  cmMsgIpAddress:
+                    type: string
+              elementManager:
+                type: object
+                properties:
+                  ipAddress:
+                    type: string
+                  trapPort:
+                    type: integer
+              serviceConfiguration:
+                type: object
+                properties:
+                  gwcNodeNumber:
+                    type: integer
+                  activeIpAddress:
+                    type: string
+                  inactiveIpAddress:
+                    type: string
+                  unit0IpAddress:
+                    type: string
+                  unit1IpAddress:
+                    type: string
+                  gwcProfileName:
+                    type: string
+                  capabilities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        capability:
+                          type: object
+                          properties:
+                            __value:
+                              type: integer
+                        capacity:
+                          type: integer
+                  bearerNetworkInstance:
+                    type: string
+                  bearerFabricType:
+                    type: string
+                  codecProfileName:
+                    type: string
+                  execDataList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        termtype:
+                          type: string
+                  defaultGwDomainName:
+                    type: string
+              deviceList:
+                type: array
+                items: 
+                   type: object
+      required:
+        - count
+        - nodeList

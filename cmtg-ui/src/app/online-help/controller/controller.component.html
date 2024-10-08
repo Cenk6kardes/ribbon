@@ -1,0 +1,115 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-4">
+        <p>The Controller panel provides data specific to the selected Gateway Controller. The configuration data
+            displayed may not be changed, with the exception of the profile. A description of the fields are provided
+            below.
+        </p>
+        <p-image src="assets/images/help/controller/controller_panel.jpg" alt="controller_panel_img" width="600"
+            [preview]="true"></p-image>
+    </div>
+    <p>
+        The <b>General</b> section displays the other miscellaneous information. Please refer to table below for a
+        detailed description.
+    </p>
+    <div class="p-mb-4"> <p-image src="assets/images/help/controller/controller_description_2.jpg"
+            alt="controller_description_2_img" width="600" [preview]="true"></p-image></div>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Change Gateway Controller Profile'">
+            <p>The <strong>Profile</strong> section displays the currently assigned profile and the list of
+                capabilities associated with that profile. The profile may be changed by selecting the
+                <strong>Change...</strong> button to the right of the current profile. Refer to the Change Gateway
+                Controller Profile procedure for more information.
+            </p>
+            <div class="p-mb-3">
+                <h3>Change Gateway Controller Profile</h3>
+                <rbn-panel-messages
+                    [content]="'A limited number of profiles support changing to other compatible profiles.'"
+                    [typeOfMessage]="'info'"></rbn-panel-messages>
+                <p>Use this procedure to change the profile for a Gateway Controller.</p>
+                <ol>
+                    <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                    <li>Select the <b>Controller</b> panel.</li>
+                    <li>Go to the profile page of the controller Click the <b>Select Profile</b> dropdown
+                        menu.<b>The GWC Profiles</b> are displayed, or a message dialog indicating the current
+                        profile does not support changing. Select the new profile from the drop down list.</li>
+                    <div class="p-my-2">
+                        <p-image src="assets/images/help/controller/profile_change2.jpg" alt="profile_change2_img"
+                            width="600" [preview]="true"></p-image>
+                    </div>
+                    <h3>Notice:</h3>
+                    <p>Since CVM11, GWC whose profile is LINE_TRUNK_AUD_NA or LINE_TRUNK_AUD_INTL, can support flow
+                        through function.
+                        This means the GWC data of these two profile will be auto-added on Session Server, if flow
+                        through checkBox is selected when adding GWC or changing GWC profile to LINE_TRUNK_AUD_NA or
+                        LINE_TRUNK_AUD_INTL.</p>
+                    <p>Example of changing GWC profile and choosing flow through GWC data to Session Server:</p>
+                    <p-image class="p-mb-4" src="assets/images/help/controller/profile_change1.jpg"
+                        alt="profile_change1_img" width="600" [preview]="true"></p-image>
+                    <p>If flow throuth checkBox is selected while the GWC data had already been added on Session
+                        Server before, the operation of changing GWC profile will be failed for duplicate GWC data
+                        is requested to be added on Session Server.
+                        Once meeting this error scenario, un-selected the flow through checkBox when requesting to
+                        change GWC profile.</p>
+                    <li>Click the <b>OK</b> button to confirm the request, or the <b>Cancel</b> button to abort the
+                        request.</li>
+                    <li>Following a successful change, both units of the Gateway Controller must be reloaded to
+                        enable the change. An alarm is raised for each unit to indicate a data mismatch exists
+                        between the SESM server and the Gateway Controller. The alarm condition on the NDM Alarm
+                        Interface. In order to change the GWC Profile, the following operations must be executed on
+                        NDM:
+                        <ol class="lower_alphabet_list">
+                            <li><b>Lock</b> and <b>Unlock</b> the inactive GWC unit.</li>
+                            <li><b>Warm swact</b> the GWC.</li>
+                            <li><b>Lock</b> and <b>Unlock</b> the new inactive GWC unit.</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+
+    <br>
+
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Change Gateway Controller Network Codec Profile'">
+            <p>The <b>Bearer Network and Codec Profile</b> section displays the currently associated bearer network and
+                codec profile. Please refer to table below for a detailed description of the fields. The codec profile
+                may be changed by clicking the <b>Change...</b> button at the right of the current codec profile. Refer
+                to the Change Gateway Controller Network Codec Profile procedure for more information.
+            </p>
+            <p-image src="assets/images/help/controller/bearer_network_codec_profile_description.jpg"
+                alt="bearer_network_codec_profile_description_img" width="600" [preview]="true"></p-image>
+
+            <p>Use this procedure to change the network codec profile for a Gateway Controller.</p>
+            <ol>
+                <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                <li>Select the <b>Controller</b> panel.</li>
+                <li>Click on the <b>Change</b> icon at the right of the current codec profile. The
+                    <b>Change
+                        GWC Codec Profile</b> dialog is displayed. Select the new codec profile from the drop down list.
+                    Then click the <b>✓</b> button to apply this change, or <b>✖</b> to abort this operation.
+                </li>
+                <div class="p-my-2">
+                    <p-image src="assets/images/help/controller/profile_change2.jpg" alt="profile_change2_img"
+                        width="600" [preview]="true"></p-image>
+                </div>
+                <li>You will see the confirmation window.</li>
+                <div class="p-my-2">
+                    <p-image src="assets/images/help/controller/profile_change2.jpg" alt="profile_change2_img"
+                        width="600" [preview]="true"></p-image>
+                </div>
+                <li>Following a successful change, settings of the new codec profile will be
+                    re-synchronized to both units of the Gateway Controller automatically. But if the synchronization
+                    fails, a warning message will be displayed. Perform a BSY/RTS of the unit to force
+                    re-synchronization of the codec information.</li>
+                <div class="p-my-2">
+                    <p-image src="assets/images/help/controller/change_gwc_codec_profile_dialog4.jpg"
+                        alt="change_gwc_codec_profile_dialog4_img" width="600" [preview]="true"></p-image>
+                </div>
+
+            </ol>
+        </p-accordionTab>
+    </p-accordion>
+</p-panel>

@@ -1,0 +1,26 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <div class="gr-container">
+        <form [formGroup]="form">
+            <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GR.TITLE' | translate}}</h4>
+            <div class="flex-row">
+                <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                    <div class="p-col-2">
+                        <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GR.GATEWAY_NAME' |
+                            translate}}:</label>
+                    </div>
+                    <div class="p-col-4 "><p-dropdown formControlName="gatewayName" [showClear]="true"
+                            (onChange)="handleGatewayNameChange($event.value)" [filter]="true" [options]="options"
+                            [placeholder]="'COMMON.SELECT' | translate" appendTo="body" [styleClass]="'full-width'">
+                            <ng-template let-item pTemplate="item">
+                                <li *ngIf="!isButton(item)">{{item}}</li>
+                                <button pButton *ngIf="isButton(item)">+ Add New</button>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-panel>
+
+<app-add-gr-gateway-info (closeDialogEmitter)="closeDialog()" [showAddDialog]="showDialog"></app-add-gr-gateway-info>

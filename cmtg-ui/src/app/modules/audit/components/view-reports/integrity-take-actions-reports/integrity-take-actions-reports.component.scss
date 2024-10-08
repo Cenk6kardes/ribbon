@@ -1,0 +1,28 @@
+:host ::ng-deep {
+  .possible-actions-reports {
+    label {
+      width: 150px;
+    }
+    textarea {
+      width: 100%;
+    }
+    app-form-footer {
+      width: 100%;
+      .form-footer {
+        padding: 0rem;
+      }
+    }
+    .report-options {
+      .p-dropdown {
+        max-width: 50%;
+      }
+    }
+    .footer-possible-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .last-audit-date-value {
+    font-weight: normal;
+  }
+}

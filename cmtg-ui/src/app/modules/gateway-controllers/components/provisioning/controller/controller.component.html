@@ -1,0 +1,278 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+
+<!-- Profile Change Detailed Error Dialog -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="titleText" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | translate | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<form [formGroup]="controllerForm">
+  <div class="p-col-12">
+    <p-panel [showHeader]="false" class="rbn-panel">
+      <h3>
+        {{
+          "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.TITLE"
+            | translate
+        }}
+      </h3>
+      <div class="p-grid">
+        <div class="p-field rbn-field field p-col-12 panel-content">
+          <div class="p-col-4">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.GWC"
+                  | translate
+              }}: </label
+            ><label class="light-grey">{{ gwcStatData }}</label>
+          </div>
+          <div class="p-col-4">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.GWC_DEFAULT"
+                  | translate
+              }}: </label
+            ><label class="light-grey">{{ defaultGwDomainName }}</label>
+          </div>
+          <div class="p-col-4">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.CODEC_PROFILE"
+                  | translate
+              }}: </label
+            ><label class="light-grey">{{ codecProfileName }}</label
+            ><i
+              class="blue fa fa-pencil-square-o p-pl-2"
+              (click)="op.toggle($event)"
+            ></i>
+          </div>
+          <div class="p-col-4">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.NODE_NUMBER"
+                  | translate
+              }}: </label
+            ><label class="light-grey">{{ nodeNumber }}</label>
+          </div>
+          <div class="p-col-4 pInputSwitch">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.GWC_AUTO"
+                  | translate
+              }}: </label
+            ><p-inputSwitch
+              formControlName="gwcAuto"
+              class="rbn-switch p-pl-2"
+            ></p-inputSwitch
+            ><label class="light-grey p-pl-2">{{ toggleStatus }}</label>
+          </div>
+          <div class="p-col-4">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.PRE_SWACT"
+                  | translate
+              }}: </label
+            ><p-inputNumber
+              formControlName="preSwact"
+              mode="decimal"
+              [showButtons]="true"
+              [step]="10"
+              [min]="-1"
+              [max]="300"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.PRE_SWACT_TOOLTIP' | translate"
+              tooltipPosition="bottom"
+            ></p-inputNumber
+            ><label class="light-grey p-pl-2"> Seconds</label>
+          </div>
+        </div>
+      </div>
+      <app-form-footer
+        [secondaryLabel]="
+          'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.RESET'
+            | translate
+        "
+        [primaryLabel]="
+          'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.SAVE'
+            | translate
+        "
+        (eventSubmit)="onControllerFormSubmit($event)"
+        [disablePrimaryBtn]="isGeneralButtonDisabled"
+      ></app-form-footer>
+    </p-panel>
+  </div>
+</form>
+
+<form [formGroup]="profileForm">
+  <div class="p-col-12">
+    <p-panel [showHeader]="false" class="rbn-panel">
+      <h3>
+        {{
+          "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.PROFILE.TITLE"
+            | translate
+        }}
+      </h3>
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label
+            >{{
+              "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.PROFILE.SELECT_PROFILE"
+                | translate
+            }}:</label
+          >
+          <div class="p-col-5 p-pl-5">
+            <p-dropdown
+              [options]="profilesOptions"
+              formControlName="profiles"
+              appendTo="body"
+              [styleClass]="'full-width'"
+              (onChange)="handleProfileChange($event.value)"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+      <rbn-table #rbnTable [cols]="profileTableCols" [allowSetDataToStorage]="false" [showFilterRow]="false" [data]="profileTableData" [tableConfig]="profileTableConfig"
+        (refreshData)="refreshProfileTable()">
+      </rbn-table>
+
+      <!-- THIS PART IS REMOVED DUE TO CLIENT REQUEST - FOR SENSITIVE CASE COMMENTED  -->
+
+      <!-- <div class="p-col-12 p-grid">
+        <div class="rbn-group field-checkbox p-col-6">
+          <p-checkbox
+            class="rbn-checkbox"
+            [binary]="true"
+            formControlName="flow"
+            checkboxIcon="fa fa-check"
+          ></p-checkbox>
+          <label>{{
+            "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.PROFILE.FLOW_CHECKBOX"
+              | translate
+          }}</label>
+        </div>
+        <div class="p-grid p-field p-col-6 p-fluid position">
+          <div class="p-col-3">
+            <label
+              >{{
+                "GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.PROFILE.GWC_ADDRESS_NAME"
+                  | translate
+              }}:</label
+            >
+          </div>
+          <div class="p-col-6 p-fluid">
+            <input formControlName="gwcAddresName" pInputText />
+          </div>
+        </div>
+      </div> -->
+
+      <h3>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.CALL_AGENT.TITLE' | translate}}</h3>
+      <rbn-table #rbnTable [cols]="agentTableCols" [showFilterRow]="false" [allowSetDataToStorage]="false" [data]="agentTableData" [tableConfig]="agentTableConfig" (refreshData)="refreshCallAgentTable()"></rbn-table>
+      <app-form-footer
+        [secondaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.RESET' | translate"
+        [primaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.GENERAL.SAVE' | translate"
+        (eventSubmit)="onProfileFormSubmit($event)"
+        [disablePrimaryBtn]="!isButtonDisabled"
+      ></app-form-footer>
+    </p-panel>
+  </div>
+</form>
+
+<p-overlayPanel #op [dismissable]="true">
+  <ng-template pTemplate>
+    <!-- Because of custom creation and component itself not allowed to override styles, style attribute used in this section -->
+    <div class="p-field rbn-field field" style="justify-content: end">
+      <i
+        class="flex pi pi-times"
+        style="font-size: 0.7rem"
+        (click)="closeOverlayPanel($event, op)"
+      ></i>
+      <i
+        class="pi pi-check p-pl-1"
+        style="font-size: 0.7rem; color: #a50351"
+        (click)="applyCodecProfileChanges($event, op)"
+      ></i>
+    </div>
+    <form [formGroup]="overlayPanelForm">
+      <div class="p-grid">
+        <div class="p-field rbn-field field">
+          <label class="p-col p-p-0 p-mb-1">Select Codec Profile:</label>
+          <div class="rbn-group">
+            <p-dropdown
+              [options]="codecProfileOptions"
+              formControlName="codecProfiles"
+              [autoDisplayFirst]="false"
+              appendTo="body"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</p-overlayPanel>
+
+<!-- CodecProfile Confirm -->
+<rbn-confirm-dialog
+  *ngIf="confirmCodecProfile.isShowConfirmDialog"
+  [title]="confirmCodecProfile.title"
+  [content]="confirmCodecProfile.content"
+  [isShowConfirmDialog]="confirmCodecProfile.isShowConfirmDialog"
+  (emitConfirm)="confirmCodecProfile.handleAccept.bind(this)($event)"
+  [titleAccept]="confirmCodecProfile.titleAccept"
+  [titleReject]="confirmCodecProfile.titleReject"
+></rbn-confirm-dialog>
+
+<p-dialog
+  class="rbn-dialog"
+  [draggable]="false"
+  [header]="'COMMON.EDIT' | translate"
+  [(visible)]="showActionDialog"
+  [modal]="true"
+  (onHide)="closeDialog()"
+  id="dialog"
+>
+<div class="p-grid">
+  <div class="p-field p-grid p-col-12 rbn-panel">
+    <div class="p-col-4"><label>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.CALL_AGENT.TERM_TYPE' | translate}}:</label></div>
+    <div class="p-col-4"><label class="fw-normal">{{ this.selectedTermType }}</label></div>
+  </div>
+</div>
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <form [formGroup]="actionForm">
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-4">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CONTROLLER.SUB_TITLES.CALL_AGENT.EXEC_LINE' | translate}}</label>
+          <div class="p-col-6">
+            <p-dropdown
+              formControlName="execLine"
+              [options]="execLineOptions"
+              [placeholder]="'COMMON.SELECT' | translate"
+              appendTo="body"
+              [styleClass]="'full-width'"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </form>
+  </p-panel>
+  <app-form-footer
+    [secondaryLabel]="'COMMON.CANCEL' | translate"
+    [disablePrimaryBtn]="!actionForm.get('execLine')?.value"
+    [primaryLabel]="'COMMON.SAVE' | translate"
+    (eventSubmit)="onTableActionSubmit($event)"
+  ></app-form-footer>
+</p-dialog>

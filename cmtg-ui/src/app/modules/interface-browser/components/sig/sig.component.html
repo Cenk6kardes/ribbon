@@ -1,0 +1,31 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="sig-container">
+    <rbn-page-header [data]="headerData"></rbn-page-header>
+    <app-sig-options (closeDialogEmitter)="closeDialog($event)" [identifiers]="identifiers"
+        [isAddSig]="false"></app-sig-options>
+
+    <div *ngIf="isShowAddSig" class="addDialog">
+        <p-dialog [header]="'INTERFACE_BROWSER.V5_SIG.HEADER.ADD_NEW_SIG'|translate" class="rbn-dialog"
+            [(visible)]="isShowAddSig" [modal]="true" [draggable]="false" id="dialog">
+            <app-sig-options (closeDialogEmitter)="closeDialog($event)" [identifiers]="identifiers"
+                [isAddSig]="true"></app-sig-options>
+        </p-dialog>
+    </div>
+
+    <p-dialog (onHide)="closeDialog(false)"
+        [header]="'INTERFACE_BROWSER.V5_RING_VIEW.HEADER.DELETE_IDENTIFIER'|translate" class="rbn-dialog"
+        [(visible)]="isShowDeleteSig" [modal]="true" [draggable]="false">
+        <div class="p-grid delete">
+            <label class="p-col-12 ">{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.Select_DELETE_IDENTIFIER' |
+                translate}}:</label>
+            <p-dropdown [placeholder]="'COMMON.SELECT' | translate" class="p-col-12" [appendTo]="'body'"
+                [options]="identifiers" name="identifiers" [(ngModel)]="selectedIdentifierToDelete"
+                ></p-dropdown>
+        </div>
+        <app-form-footer [disablePrimaryBtn]="selectedIdentifierToDelete ? false:true" [secondaryLabel]="'COMMON.CANCEL' | translate"
+            [primaryLabel]="'COMMON.DELETE' | translate"
+            (eventSubmit)="deleteSelectedIdentifier($event)"></app-form-footer>
+    </p-dialog>
+
+
+</div>

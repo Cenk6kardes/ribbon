@@ -1,0 +1,12 @@
+:host ::ng-deep {
+
+  .interface-field {
+    @media (min-width: 768px) {
+      .p-dropdown {
+        min-width: 400px;
+        height: 35px;
+      }
+    }
+  }
+
+}

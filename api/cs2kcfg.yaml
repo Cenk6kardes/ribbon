@@ -1,0 +1,1182 @@
+openapi: 3.0.1
+
+
+info:
+  title: cs2kcfgmgr Controller  Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+
+tags:
+  - name: "cs2kcfg"
+    description: "Operations related to cs2kcfgmgr Controller" 
+
+paths:
+
+          
+  /cs2kcfgApi/cs2kcfg/v1.0/mg/{mgUIName}/{timeout}:   
+                
+    delete:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: mgUIName
+          in: path
+          required: true
+          schema:
+            type: string
+			
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/tgrp-cache/{gwcId}:   
+                
+    get:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcId
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TGRPList'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/mg/{timeout}:   
+                
+    post:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/tagValSequence'
+			
+        
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+
+  /cs2kcfgApi/cs2kcfg/v1.0/bearnest-info/{csUIName}/{timeout}:  
+                
+    get:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: csUIName
+          in: path
+          required: true
+          schema:
+            type: string
+			
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/gw-association/{timeout}:  
+                
+    put:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/tagValuePair'
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-profile-changement/{gwcUnitNumber}/{timeout}:  
+                
+    post:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcUnitNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/GWCAttributes'
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-to-cs/{gwcUnitNumber}/{profileName}/{gwcActvIp}/{externalIP}/{externalPort}/{bearerNetworkInstance}/{bearerFabricType}/{codecProfileName}/{timeout}:  
+                
+    put:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcUnitNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: gwcActvIp
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: externalIP
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: externalPort
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+        - name: bearerNetworkInstance
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: bearerFabricType
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: codecProfileName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                $ref: '#/components/schemas/GWAddKeys'
+                
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-to-cs-v2/{gwcUnitNumber}/{profileName}/{gwcActvIp}/{externalIP}/{externalPort}/{bearerNetworkInstance}/{bearerFabricType}/{codecProfileName}/{timeout}:  
+                
+    put:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcUnitNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+        - name: profileName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: gwcActvIp
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: externalIP
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: externalPort
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+        - name: bearerNetworkInstance
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: bearerFabricType
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: codecProfileName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+            
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: array
+                items:
+                   $ref: '#/components/schemas/GWAddKeys'
+                
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        
+        
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-to-cs-v2/{gwcUIName}/{flowthrogh}/{timeout}:   
+                
+    post:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcUIName
+          in: path
+          required: true
+          schema:
+            type: string
+			
+        - name: flowthrogh
+          in: path
+          required: true
+          schema:
+            type: boolean
+        
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+                 
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-to-cs/{gwcUIName}/{timeout}:   
+                
+    post:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwcUIName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/gwc-to-cs/{csName}/{gwcUnitNumber}/{timeout}:   
+                
+    post:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: csName
+          in: path
+          required: true
+          schema:
+            type: string
+			
+        - name: gwcUnitNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+        
+        - name: timeout
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+          content:
+             application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayControllerAttributes'
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+  /cs2kcfgApi/cs2kcfg/v1.0/table-cache:   
+                
+    get:
+      tags:
+        - cs2kcfg
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+
+  schemas:
+  
+    typeSeq:
+      type: array
+      items:
+        type: integer
+        
+        
+    gwcUISeq:
+      type : array
+      items :
+        type : string
+        maxLength : 30
+        
+    gwcProfileSeq:
+      type : array
+      items :
+        type : string
+        maxLength : 30
+        
+    mgUISeq:
+      type : array
+      items :
+        type : string
+        maxLength : 50
+        
+    mgIpAddrSeq:
+      type : array
+      items :
+        type : string
+        maxLength : 50
+    
+    mgSvcTypeSeq:
+      type: array
+      items:
+        type: integer
+        
+    TGRPList:
+      type: array
+      items:
+        type: string
+        
+        
+    GWCOpResp:
+      type: object
+      properties:
+        gwcUIList:
+          $ref: '#/components/schemas/gwcUISeq'
+        gwcIpList:
+          $ref: '#/components/schemas/gwcUISeq'				
+        callServerId:
+          type: string
+        nodeName:
+          $ref: '#/components/schemas/typeSeq'	
+        typeList:
+          type: string
+        xacNodeNumber:
+          type: integer
+        actvIpAddress:
+          type: string
+        snmpPort:
+          type: integer
+        mktTones:
+          type: string
+        termTypes:
+          type: string
+        pmExecs:
+          type: string
+        capacity:
+          type: integer
+        externalIP:
+          type: string
+        externalPort:
+          type: integer
+        bearerNetworkName:
+          type: string
+        bearerFabricType:
+          type: string
+        codecProfileName:
+          type: string
+        gwDefaultDomainName:
+          type: string
+          
+    LineEPResp:
+      type: object
+      properties:
+        endpointName:
+          type: string
+        circuitNumber:
+          type: string
+        cardCode:
+          type: string
+        padGroup:
+          type: string
+        ground:
+          type: string		
+        status:
+          type: string
+        terminalNumber:
+          type: string
+        LEN:
+          type: string
+        	
+          
+    LineEPRespSequence:
+      type: array
+      items:
+        $ref: '#/components/schemas/LineEPResp'
+    
+          
+    Line_EP_ListResp:
+      type: object
+      properties:
+        mgUIName:
+          type: string
+        lineEPList:
+          $ref: '#/components/schemas/LineEPRespSequence'
+       
+    tagValuePair:
+      type: object
+      properties:
+        tag:
+          type: string
+        value:
+          type: string
+          
+    tagValSequence:
+      type: array
+      items:
+        $ref: '#/components/schemas/tagValuePair'
+        
+    MGListOpResp:
+      type: object
+      properties:
+        mgUIList:
+          $ref: '#/components/schemas/mgUISeq'
+        mgIpList:
+          $ref: '#/components/schemas/mgIpAddrSeq'				
+        mgIpAddrSeq:
+          type: string
+          
+    siteNameSequence:
+      type: array
+      items:
+        type: string
+       
+    SiteNameResp:
+      type: object
+      properties:
+        siteNameList:
+          $ref: '#/components/schemas/siteNameSequence'
+          
+    AssocGWResp:
+      type: object
+      properties:
+        tagValSeq:
+          $ref: '#/components/schemas/tagValSequence'
+          
+          
+    cs2kcfgReturnCodes:
+          type: string
+          enum:
+            - CS2KCFGMGR_SUCCESSFUL
+            - CS2KCFGMGR_MORE_DATA
+            - CS2KCFGMGR_SYSTEM_BUSY
+            - CS2KCFGMGR_COMMANDED_ABORT
+            - CS2KCFGMGR_GWC_INVALID_INPUT
+            - CS2KCFGMGR_ADD_GWC_FAILED_XAC_REGISTRATION
+            - CS2KCFGMGR_ADD_GWC_FAILED_GWCEM_REGISTRATION
+            - CS2KCFGMGR_ADD_GWC_FAILED_SB_UPDATE
+            - CS2KCFGMGR_ADD_GWC_ROLLBACK_FAILURE
+            - CS2KCFGMGR_QUERY_GWC_FAILED_TO_GET_GWCEM_DATA
+            - CS2KCFGMGR_QUERY_GWC_FAILED_TO_READ_NV_GWC_LIST
+            - CS2KCFGMGR_QUERY_GWC_FAILED_TO_GET_XAC_DATA
+            - CS2KCFGMGR_DELETE_GWC_READ_GWC_DATA_FAILED
+            - CS2KCFGMGR_DELETE_GWC_ABORTED_GWCEM_FAILED
+            - CS2KCFGMGR_DELETE_GWC_FAILED_GWCEM_REJECT
+            - CS2KCFGMGR_DELETE_GWC_TRANSACTION_ERROR
+            - CS2KCFGMGR_ASSOC_MG_INVALID_INPUT
+            - CS2KCFGMGR_ASSOC_MG_DB_ACCESS_FAILED
+            - CS2KCFGMGR_ASSOC_MG_GWC_COULD_NOT_BE_ASSIGNED
+            - CS2KCFGMGR_ASSOC_MG_FAILED_GWC_DATA_READ
+            - CS2KCFGMGR_ASSOC_MG_FAILED_NODE_NAME_ASGN
+            - CS2KCFGMGR_ASSOC_MG_FAILED_GWC_ADD
+            - CS2KCFGMGR_ASSOC_MG_FAILED_SB_UPDATE
+            - CS2KCFGMGR_ASSOC_MG_ROLLBACK_FAILURE
+            - CS2KCFGMGR_QUERY_MG_INVALID_INPUT
+            - CS2KCFGMGR_QUERY_MG_FAILED_TO_GET_GWCEM_DATA
+            - CS2KCFGMGR_DISASSOCIATE_MG_INVALID_INPUT
+            - CS2KCFGMGR_DISASSOC_MG_FAILED_MG_DATA_READ
+            - CS2KCFGMGR_DISASSOC_MG_FAILED_GWC_DATA_READ
+            - CS2KCFGMGR_DISASSOC_MG_ABORTED_GWCEM_FAILED
+            - CS2KCFGMGR_DISASSOC_MG_FAILED_GWCEM_REJECT
+            - CS2KCFGMGR_DISASSOC_MG_DEASSIGN_NODE_NAME_FAILURE
+            - CS2KCFGMGR_DISASSOC_MG_TRANSACTION_ERROR
+            - CS2KCFGMGR_AUDIT_XAC_FAILED
+            - CS2KCFGMGR_QUERY_GWCIP_FAILED
+            - CS2KCFGMGR_QUERY_GWCIP_NOT_FOUND
+            - CS2KCFGMGR_QUERY_XACGWC_NOT_FOUND
+            - CS2KCFGMGR_QUERY_XACGWC_FAILED
+            - CS2KCFGMGR_ASSOC_MG_MG_ALREADY_PROVISIONED
+            - CS2KCFGMGR_ASSOC_MG_MISSING_PARM
+            - CS2KCFGMGR_ASSOC_MG_BAD_PARM
+            - CS2KCFGMGR_QUERY_SITE_FAILED
+            - CS2KCFGMGR_QUERY_SITE_EMPTY
+            - CS2KCFGMGR_CHANGE_MG_INVALID_MG_NAME
+            - CS2KCFGMGR_CHANGE_MG_BAD_PARM
+            - CS2KCFGMGR_CHANGE_MG_MISSING_PARM
+            - CS2KCFGMGR_CHANGE_INVALID_INPUT
+            - CS2KCFGMGR_CHANGE_MG_MG_DATA_ACCESS_FAILED
+            - CS2KCFGMGR_CHANGE_MG_GWC_DATA_ACCESS_FAILED
+            - CS2KCFGMGR_CHANGE_MG_PROFILE_DATA_ACCESS_FAILED
+            - CS2KCFGMGR_CHANGE_MG_RSVD_TERM_EXCEEDS_MAX
+            - CS2KCFGMGR_CHANGE_MG_RSVD_TERM_LESS_THAN_1
+            - CS2KCFGMGR_CHANGE_MG_RSVD_TERM_LESS_THAN_PROVISIONED_TERM
+            - CS2KCFGMGR_CHANGE_MG_NOT_ENOUGH_GWC_CAPACITY
+            - CS2KCFGMGR_CHANGE_MG_FAILED_SB_UPDATE
+            - CS2KCFGMGR_CHANGE_MG_ROLLBACK_FAILURE
+            - CS2KCFGMGR_CHANGE_GWC_FAILED_XAC_REGISTRATION
+            - CS2KCFGMGR_CHANGE_GWC_FAILED_GWCEM_REGISTRATION
+            - CS2KCFGMGR_CHANGE_GWC_FAILED_SB_UPDATE
+            - CS2KCFGMGR_CHANGE_GWC_ROLLBACK_FAILURE
+            - CS2KCFGMGR_ASSOC_MG_PREPROV_FAILED
+            - CS2KCFGMGR_ASSOC_MG_PREPROV_PROGRESS
+            - CS2KCFGMGR_UPGRADE_MG_FAILED
+            - CS2KCFGMGR_UPGRADE_MG_PREPROV_PROGRESS
+            - CS2KCFGMGR_CHANGE_MG_PREPROV_FAILED
+            - CS2KCFGMGR_DELETE_GWC_NOTDELETABLE_FROM_GWCEM
+            - CS2KCFGMGR_DISASSOC_MG_NOTDELETABLE_FROM_GWCEM
+            - CS2KCFGMGR_ASSOC_MG_RMGC_LIMIT_MET
+            - CS2KCFGMGR_ASSOC_MG_FAILED_AND_ROLLEDBACK
+            - CS2KCFGMGR_ASSOC_MG_LENPROV_INCOMPLETE
+            - CS2KCFGMGR_QUERY_BEARNETS_FAILED
+            - CS2KCFGMGR_QUERY_BEARNETS_EMPTY
+            - CS2KCFGMGR_FAILED_UPDATE_BACKUP_PATH_DATA
+            - CS2KCFGMGR_ADD_LINE_EP_INVALID_INPUT
+            - CS2KCFGMGR_ADD_LINE_EP_UNSUPPORTED_EP
+            - CS2KCFGMGR_ADD_LINE_EP_MISSING_PARM
+            - CS2KCFGMGR_ADD_LINE_EP_BAD_PARM
+            - CS2KCFGMGR_ADD_LINE_EP_FAILED_MG_DATA_READ
+            - CS2KCFGMGR_ADD_LINE_EP_FAILED_GWC_ADD
+            - CS2KCFGMGR_ADD_LINE_EP_EP_ALREADY_EXISTS
+            - CS2KCFGMGR_ADD_LINE_EP_LINE_CAPACITY_REACHED
+            - CS2KCFGMGR_ADD_LINE_EP_LENPROV_INCOMPLETE
+            - CS2KCFGMGR_ADD_LINE_EP_FAILED_GWCEM_REJECT
+            - CS2KCFGMGR_ADD_LINE_EP_TRANSACTION_ERROR
+            - CS2KCFGMGR_DEL_LINE_EP_INVALID_INPUT
+            - CS2KCFGMGR_DEL_LINE_EP_MISSING_PARM
+            - CS2KCFGMGR_DEL_LINE_EP_BAD_PARM
+            - CS2KCFGMGR_DEL_LINE_EP_FAILED_MG_DATA_READ
+            - CS2KCFGMGR_DEL_LINE_EP_UNSUPPORTED_EP
+            - CS2KCFGMGR_DEL_LINE_EP_GWC_EPDELETE_FAILED
+            - CS2KCFGMGR_DEL_LINE_EP_CORE_DELETE_FAILED
+            - CS2KCFGMGR_DEL_LINE_EP_ENDPOINT_DATA_NOT_FOUND
+            - CS2KCFGMGR_DEL_LINE_EP_EPDATA_QUERY_FAILED
+            - CS2KCFGMGR_DEL_LINE_EP_CIRCUITNUMBER_RANGE_INVALID
+            - CS2KCFGMGR_DEL_LINE_EP_CORE_LENDEPROV_PARTIAL_SUCCESS
+            - CS2KCFGMGR_DEL_LINE_EP_GWC_DEPROV_PARTIAL_SUCCESS
+            - CS2KCFGMGR_DEL_LINE_EP_COREANDGWC_DEPROV_PARTIAL_SUCCESS
+            - PROV_MG_READ_CORE_CCM_LAYER_FAILED
+            - PROV_MG_READ_CORE_CCM_LAYER_TIMEOUT
+            - PROV_MG_UPGRADE_ON_GOING
+            - PROV_MG_UPGRADE_FAILURE
+            - CS2KCFGMGR_QUERY_LINE_EP_INVALID_INPUT
+            - CS2KCFGMGR_QUERY_LINE_EP_ENDPOINT_DATA_NOT_FOUND
+            - CS2KCFGMGR_QUERY_LINE_EP_GETLEN_FAILED
+            - CS2KCFGMGR_QUERY_LINE_EP_FAILED_TO_GET_GWCEM_DATA
+            - CS2KCFGMGR_INVALID_STATE_EVENT
+            - CS2KCFGMGR_DDMS_TIMEOUT
+            - CS2KCFGMGR_ADD_GW_FAILED_MCSEM_REGISTRATION
+            - CS2KCFGMGR_ADD_GWC_FAILED_MCSEM_REGISTRATION
+            - CS2KCFGMGR_DEL_GW_FAILED_MCSEM_REGISTRATION
+            - CS2KCFGMGR_DEL_GWC_FAILED_MCSEM_REGISTRATION
+            - CS2KCFGMGR_MG_DEPROV_FAILED
+            - CS2KCFGMGR_ASSOC_MG_LENPROV_WORKING_LEN_DONE
+            - CS2KCFGMGR_GWC_FAILED_KEYCODE_REGISTRATION
+            - CS2KCFGMGR_GWC_FAILED_KEYCODE_DEREGISTRATION
+            - CS2KCFGMGR_GWC_FAILED_KEYCODE_CHANGE
+            - CS2KCFGMGR_EXCEED_V3GWC_CAPACITY
+            - CS2KCFGMGR_CHANGE_3RDPTY_MG_RSVD_TERM_EXCEEDS_MAX
+            - CS2KCFGMGR_CHANGE_3RDPTY_MG_RSVD_TERM_LESS_THAN_MIN
+            - CS2KCFGMGR_CHANGE_3RDPTY_MG_RSVD_TERM_EXCEEDS_LGRPSIZE
+            - CS2KCFGMGR_CHANGE_3RDPTY_FLEXGW_SUCCESSFUL
+            - CS2KCFGMGR_QUERY_SITE_MISSING
+            - CS2KCFGMGR_V3GWC_NOTINSERVICE
+    
+    ChangeMGResp:
+      type: object
+      properties:
+        mgUIName:
+          type: string
+        rc:
+          $ref: '#/components/schemas/cs2kcfgReturnCodes'
+          
+    BearnetsTuple:
+      type: object
+      properties:
+        NETIDX:
+          type: string
+        BNETNAME:
+          type: string
+        FABRIC:
+          type: string
+          
+    GWCAttributes:
+      type: object
+      properties:
+        field_name:
+          type: string
+        value:
+          type: string
+          
+    bearnetsTupleSequence:
+      type: array
+      items:
+        $ref: '#/components/schemas/BearnetsTuple'
+        		
+    BEARNETSNameResp:
+      type: object
+      properties:
+        bearnetsNameList:
+          $ref: '#/components/schemas/bearnetsTupleSequence'
+    
+          
+    ChgMGRespList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChangeMGResp'
+        
+          
+    AssocMGResp:
+      type: object
+      properties:
+        mgs_gwcUIName:
+          type: string
+        mgs_gwcIpAddr:
+          type: string			
+        
+    GatewayControllerAttributes:
+      type: array
+      items:
+        $ref: '#/components/schemas/GWCAttributes'
+    
+    GWAppData:
+      type: object
+      properties:
+        appTag:
+          type: string
+        appData:
+          type: string
+          
+    GWAddKeys:
+      type: object
+      properties:
+        gwDefaultDomainName:
+          type: string
+        addressNaturalKey:
+          type: string
+        termTypes:
+          $ref : '#/components/schemas/TermTypes'
+        execs:
+          $ref : '#/components/schemas/Execs'
+          
+    TermTypes:
+      type : array
+      items :
+        type: string
+    
+    Execs:
+      type : array
+      items :
+        type: string
+    
+    GWAppDataSeq:
+      type : array
+      items :
+        $ref : '#/components/schemas/GWAppData'
+    
+    GWCListOpResp:
+      type: object
+      properties:
+        gwcUIList:
+          $ref: '#/components/schemas/gwcUISeq'
+        gwcIpList:
+          $ref: '#/components/schemas/gwcUISeq'				
+
+    GWCPListOpResp:
+      type: object
+      properties:
+        gwcUIList:
+          $ref: '#/components/schemas/gwcUISeq'
+        gwcIpList:
+          $ref: '#/components/schemas/gwcUISeq'	
+        gwcProfileList:
+          $ref: '#/components/schemas/gwcProfileSeq'	
+          
+          
+    MGOpResp:
+      type: object
+      properties:
+        mgUIList:
+          $ref: '#/components/schemas/mgUISeq'
+        mgIpList:
+          $ref: '#/components/schemas/mgIpAddrSeq'				
+        callServerId:
+          type: string
+        gwcUIName:
+          type: string
+        svcTypeList:
+          $ref: '#/components/schemas/mgSvcTypeSeq'	
+        nodeName:
+          type: string
+        pepServerName:
+          type: string
+        itransMiddleboxName:
+          type: string
+        algName:
+          type: string
+        engrEndPoints:
+          type: integer
+        protType:
+          type: string
+        protVersion:
+          type: string
+        protPort:
+          type: integer
+        profileName:
+          type: string
+        maxEngrEndPoints:
+          type: integer
+        rootMiddleboxName1:
+          type: string
+        rootMiddleboxName2:
+          type: string
+        rootMiddleboxName3:
+          type: string
+        rootMiddleboxName4:
+          type: string
+        rootMiddleboxName5:
+          type: string
+        frameNumber:
+          type: string
+        unitNumber:
+          type: string
+        slotNumber:
+          type: string
+        frameType:
+          type: string
+        floorPos:
+          type: string
+        rowPos:
+          type: string
+        framePos:
+          type: string
+        unitPos:
+          type: string
+        lgrpType:
+          type: string
+        mgSecIP:
+          type: string
+        mgcSecIP:
+          type: string
+        mgCAC:
+          type: integer
+        isShared:
+          type: string
+        extStTerm:
+          type: integer
+        mgSGIP:
+          type: string
+        mgSGPort1:
+          type: string
+        mgSGPort2:
+          type: string
+        GR834Name:
+          type: string
+        gwAppDataSeq:
+          $ref: '#/components/schemas/GWAppDataSeq'
+		  
+    CfgMgrResp:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/GWCOpResp'
+        - $ref: '#/components/schemas/GWCListOpResp'
+        - $ref: '#/components/schemas/GWCPListOpResp'
+        - $ref: '#/components/schemas/MGOpResp'
+        - $ref: '#/components/schemas/MGListOpResp'
+        - $ref: '#/components/schemas/AssocMGResp'
+        - $ref: '#/components/schemas/SiteNameResp'
+        - $ref: '#/components/schemas/AssocGWResp'
+        - $ref: '#/components/schemas/ChgMGRespList'
+        - $ref: '#/components/schemas/BEARNETSNameResp'
+        - $ref: '#/components/schemas/Line_EP_ListResp'
+        - type: object
+          properties:
+            no_data:
+              type: string
+			  
+
+    CfgMgrRespEvent:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum:
+            - ADD_GWC
+            - DEL_GWC
+            - QUERY_GWC
+            - ASSOC_MG
+            - DISASSOC_MG
+            - QUERY_MG
+            - AUDIT_XAC
+            - OBSOL1
+            - OBSOL2
+            - QUERY_SITE
+            - ASSOC_GW
+            - CHANGE_MG
+            - CHANGE_GWC
+            - QUERY_BEARNETS
+            - ADD_LINE_EP
+            - DEL_LINE_EP
+            - QUERY_LINE_EP
+        rc:
+          $ref: '#/components/schemas/cs2kcfgReturnCodes'
+        responseMsg:
+          type: string
+        responseData:
+          $ref: '#/components/schemas/CfgMgrResp'
+          
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+          
+    CS2KTimeoutException:
+      type: object
+      properties:
+        locator:
+          type: string
+
+

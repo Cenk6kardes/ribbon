@@ -1,0 +1,11 @@
+@import "ribbontheme/variables";
+.refresh-time {
+    position: fixed;
+    bottom: 0px;
+    width: calc(100% - 322px);
+    background-color: $ribbon-lighter-grey;
+    box-shadow: 0px -3px 5px 0px $ribbon-light-grey;
+    text-align: center;
+    border-top: 1px solid $ribbon-light-grey;
+    padding: 5px 0;
+  }

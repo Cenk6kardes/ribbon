@@ -1,0 +1,387 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<div class="button-top">
+  <p-button [label]="'NETWORK.QOS_COLLECTORS.NEW_QOS_COLLECTOR' | translate"
+    styleClass="rbn-button rbn-button-secondary" icon="fas fa-plus" (onClick)="addNewQoSCollectorBtn()"></p-button>
+  <p-button [label]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.ASSOCIATE' | translate"
+    styleClass="rbn-button rbn-button-secondary p-ml-2" icon="fas fa-plus" (onClick)="associateBtn()" [disabled]="!isAssociateBtnEnable"></p-button>
+</div>
+
+<!-- Collectors Panel -->
+<p-accordion expandIcon='pi pi-fw pi-chevron-up'>
+  <p-accordionTab [selected]="true" #tabEl class="flex">
+    <ng-template pTemplate="header">
+      <div>
+        <span class="pi pi-fw custom-icon"
+          [ngClass]="{'pi-chevron-up': !tabEl.selected, 'pi-chevron-down': tabEl.selected}"></span>
+      </div>
+      <div>
+        <span>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.COLLECTORS' | translate}}</span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <rbn-table [cols]="qosCollectorsTableCols" [data]="qosCollectorsTableData" [showFilterRow]="false" [tableConfig]="qosCollectorsTableConfig" (refreshData)="refreshQosCollectorsTable()">
+      </rbn-table>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<!-- Configuration Panel -->
+<p-accordion expandIcon='pi pi-fw pi-chevron-up'>
+  <p-accordionTab [selected]="true" #tabEl2 class="flex">
+    <ng-template pTemplate="header">
+      <div>
+        <span class="pi pi-fw custom-icon"
+          [ngClass]="{'pi-chevron-up': !tabEl2.selected, 'pi-chevron-down': tabEl2.selected}"></span>
+      </div>
+      <div>
+        <span>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TITLE' | translate}}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <form [formGroup]="configurationFormGroup">
+        <div class="qosCollectionMargin">
+          <div class="flex-row">
+            <div class="p-grid p-fluid">
+                <div class="p-col">
+                  <p-checkbox #qosReportingCheckboxEL class="rbn-checkbox p-mr-2" [binary]="true" formControlName="qosReporting" checkboxIcon="fa fa-check"
+                    (click)="updateQosReportingClick(qosReportingCheckboxEL.model)"></p-checkbox>
+                  <label class="label-text" [class.name-disabled]="configurationFormGroup.get('qosReporting')?.disabled">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.QOS_COLLECTION' | translate}}</label>
+                </div>
+                <div class="p-col qosPendingStyle" >
+                  <label class="label-text" [style.display]="isQoSColPendingDisplay ? 'block' : 'none'">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.QOS_COLLECTION_PENDING' | translate}}</label>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row p-ml-5 p-mb-3">
+          <div class="p-grid p-fluid">
+            <div class="p-col">
+              <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="currentBaseMetrics" checkboxIcon="fa fa-check"
+                ></p-checkbox>
+              <label class="label-text" [class.name-disabled]="configurationFormGroup.get('currentBaseMetrics')?.disabled"
+                [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.CURRENT_BASE_METRICS' | translate" [escape]="false" tooltipPosition="bottom">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.CURRENT_BASE_METRICS' | translate}}</label>
+            </div>
+            <div class="p-col">
+              <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="rtpBaseRemoteMetrics" checkboxIcon="fa fa-check"
+                ></p-checkbox>
+              <label class="label-text" [class.name-disabled]="this.configurationFormGroup.get('rtpBaseRemoteMetrics')?.disabled"
+                [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.RTP_BASE_REMOTE_METRICS' | translate" [escape]="false" tooltipPosition="bottom">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.RTP_BASE_REMOTE_METRICS' | translate}}</label>
+            </div>
+            <div class="p-col">
+              <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="extraBaseMetrics" checkboxIcon="fa fa-check"
+                ></p-checkbox>
+              <label class="label-text" [class.name-disabled]="this.configurationFormGroup.get('extraBaseMetrics')?.disabled"
+                [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.EXTRA_BASE_METRICS' | translate" [escape]="false" tooltipPosition="bottom">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.EXTRA_BASE_METRICS' | translate}}</label>
+            </div>
+            <div class="p-col">
+              <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="codecMetrics" checkboxIcon="fa fa-check"
+                ></p-checkbox>
+              <label class="label-text" [class.name-disabled]="this.configurationFormGroup.get('codecMetrics')?.disabled"
+                [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.CODEC_METRICS' | translate" [escape]="false" tooltipPosition="bottom">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.CODEC_METRICS' | translate}}</label>
+            </div>
+            <div class="p-col">
+              <p-checkbox #rtcpxrReportingCheckboxEL class="rbn-checkbox p-mr-2" [binary]="true" formControlName="rtcpxrReporting" checkboxIcon="fa fa-check"
+                (click)="updateRtcpxrReportingClick(rtcpxrReportingCheckboxEL.model)"></p-checkbox>
+              <label class="label-text" [class.name-disabled]="configurationFormGroup.get('rtcpxrReporting')?.disabled">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.RTCP_XR_REPORTING' | translate}}</label>
+            </div>
+            <div class="p-col" [style.display]="isDisplayDisableRtcpxrNegotiationCheckbox ? 'block' : 'none'">
+              <p-checkbox #disableRtcpxrNegotiationCheckboxEL class="rbn-checkbox p-mr-2" [binary]="true" formControlName="disableRtcpxrNegotiation" checkboxIcon="fa fa-check"
+              (click)="updateRtcpxrNegotiationClick(disableRtcpxrNegotiationCheckboxEL.model)"></p-checkbox>
+              <label class="label-text" [class.name-disabled]="configurationFormGroup.get('disableRtcpxrNegotiation')?.disabled"
+                [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.RTCP_XR_REPORTING' | translate" [escape]="false" tooltipPosition="bottom">
+                {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.DISABLE_RTCP_XR_NEGOTIATION' | translate}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div [style.display]="configurationFormGroup.get('rtcpxrReporting')?.value ? 'block' : 'none'">
+          <div class="p-ml-4 field-top">
+            <div class="p-grid p-fluid p-col-12">
+                <div class="p-col-3">
+                  <label class="label-text p-mr-4" [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.V_Q_MONITOR_METRIC' | translate" [escape]="false" tooltipPosition="bottom">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.V_Q_MONITOR_METRIC' | translate}}</label>
+                  </div>
+                <div class="p-col-1">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="localVoiceQualityMonitorMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Local'}}</label>
+                </div>
+                <div class="p-col-2 p-ml-3">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="remoteVoiceQualityMonitorMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Remote'}}</label>
+                </div>
+            </div>
+          </div>
+          <div class="p-ml-4 field-top">
+            <div class="p-grid p-fluid p-col-12">
+                <div class="p-col-3">
+                  <label class="label-text p-mr-4" [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.V_Q_DEBUG_METRIC' | translate" [escape]="false" tooltipPosition="bottom">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.V_Q_DEBUG_METRIC' | translate}}</label>
+                  </div>
+                <div class="p-col-1">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="localVoiceQualityDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Local'}}</label>
+                </div>
+                <div class="p-col-2 p-ml-3">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="remoteVoiceQualityDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Remote'}}</label>
+                </div>
+            </div>
+          </div>
+          <div class="p-ml-4 field-top">
+            <div class="p-grid p-fluid p-col-12">
+                <div class="p-col-3">
+                  <label class="label-text p-mr-4" [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.LOSS_DEBUG_METRIC' | translate" [escape]="false" tooltipPosition="bottom">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.LOSS_DEBUG_METRIC' | translate}}</label>
+                  </div>
+                <div class="p-col-1">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="localLossDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Local'}}</label>
+                </div>
+                <div class="p-col-2 p-ml-3">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="remoteLossDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Remote'}}</label>
+                </div>
+            </div>
+          </div>
+          <div class="p-ml-4 field-top">
+            <div class="p-grid p-fluid p-col-12">
+                <div class="p-col-3">
+                  <label class="label-text p-mr-4" [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.UNIT_STIM_SPECIFIC_METRIC' | translate" [escape]="false" tooltipPosition="bottom">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.UNIT_STIM_SPECIFIC_METRIC' | translate}}</label>
+                  </div>
+                <div class="p-col-1">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="localUnitStimSpecificMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Local'}}</label>
+                </div>
+                <div class="p-col-2 p-ml-3">
+                  <p-checkbox [disabled]="true" class="rbn-checkbox p-mr-2" [binary]="true" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Remote'}}</label>
+                </div>
+            </div>
+          </div>
+          <div class="p-ml-4 field-top">
+            <div class="p-grid p-fluid p-col-12">
+                <div class="p-col-3">
+                  <label class="label-text p-mr-4" [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.TOOLTIP_TEXT.JITTER_DEBUG_METRIC' | translate" [escape]="false" tooltipPosition="bottom">
+                    {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.CONFIGURATION.JITTER_DEBUG_METRIC' | translate}}</label>
+                  </div>
+                <div class="p-col-1">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="localJitterDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Local'}}</label>
+                </div>
+                <div class="p-col-2 p-ml-3">
+                  <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="remoteJitterDebugMetric" checkboxIcon="fa fa-check"></p-checkbox>
+                  <label class="label-text">{{'Remote'}}</label>
+                </div>
+            </div>
+          </div>
+        </div>
+        <app-form-footer [secondaryLabel]="'COMMON.RESET' | translate"
+          [disablePrimaryBtn]="!configurationFormGroup.dirty && !isApplyBtnEnable" [primaryLabel]="'COMMON.APPLY' | translate"
+          (eventSubmit)="onFooterHandlerConfigurationPanel($event)">
+        </app-form-footer>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<!-- Associate Confirmation Popup Enable -->
+<p-dialog class="rbn-dialog" [header]="confirmPopupTitle"
+  [(visible)]="showConfirmPopupApplyWithQoSCollEnable" [modal]="true" (onHide)="closeApplyConfirmPopup()">
+  <div class="p-col-12 p-mb-3 p-ml-5">
+    <label [innerHTML]="confirmPopupMessage"></label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="applyConfirmationPopupQoSCollEnableFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+<!-- Associate Confirmation Popup Disable -->
+<p-dialog class="rbn-dialog" [header]="confirmPopupTitle"
+  [(visible)]="showConfirmPopupApplyWithQoSCollDisable" [modal]="true" (onHide)="closeApplyConfirmPopup()">
+  <div class="p-col-12 p-mb-3 p-ml-5">
+    <label [innerHTML]="confirmPopupMessage"></label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="applyConfirmationPopupQoSCollDisableFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+
+<p-dialog class="rbn-dialog dialog-width" [header]="confirmPopupTitle"
+  [(visible)]="showConfirmPopup" [modal]="true" (onHide)="closeApplyConfirmPopup()" id="errorPopup">
+  <div class="p-col-12 p-mb-3">
+    <label>{{confirmPopupMessage}}</label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeApplyConfirmPopup()" ></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Disassociate Confirmation Popup -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.DELETE.TITLE' | translate"
+  [(visible)]="showDeleteConfirmPopup" [modal]="true" (onHide)="closeDeleteConfirmPopup()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="deleteMessage"></label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="deleteQoSCollectorFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+<!-- Delete Error Popup -->
+<p-dialog class="rbn-dialog" [header]="deleteErrorTitle"
+  [(visible)]="showDeleteErrorPopup" [modal]="true" (onHide)="closeDeleteErrorPopup()">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="deleteMessageText"></label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+  (onClick)="closeDeleteErrorPopup()"></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="titleText" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeShowHideErrorDialogWithOkBtn()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<!-- Add New QoS Collector -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.NEW_QOS_COLLECTOR.TITLE' | translate"
+  [(visible)]="showAddDialog" [modal]="true" (onHide)="closeAddAndAssociateDialogAndDeleteFormValue()">
+  <div class="qos-collectors-container" [formGroup]="addQosCollectorFormGroup">
+    <div class="p-grid p-col-12">
+      <div class="rbn-group p-col p-field rbn-field">
+        <label for="qosName">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.NEW_QOS_COLLECTOR.NAME' | translate}}:</label>
+        <input id="qosColName" formControlName="qosName" type="text" pInputText required />
+      </div>
+      <div class="rbn-group p-col p-field rbn-field">
+        <label for="ipAddress">{{ "NETWORK.QOS_COLLECTORS.IP_ADDRESS" | translate }}:</label>
+        <input formControlName="ipAddress" type="text" [pTooltip]="'NETWORK.QOS_COLLECTORS.IP_ADDRESS_INFO' | translate"
+          tooltipPosition="bottom" pInputText required />
+      </div>
+      <div class="rbn-group p-col p-field rbn-field">
+        <label for="port">{{"NETWORK.QOS_COLLECTORS.PORT" | translate }}:</label>
+        <input formControlName="port" type="text" [pTooltip]="'NETWORK.QOS_COLLECTORS.PORT_INFO' | translate"
+          tooltipPosition="bottom" pInputText required />
+      </div>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.ADD' | translate"
+      [disablePrimaryBtn]="!addQosCollectorFormGroup.valid" (eventSubmit)="addQosCollectorFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>
+
+<!-- Associate -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.ASSOCIATE' | translate"
+  [(visible)]="showAssociateDialog" [modal]="true" (onHide)="closeAddAndAssociateDialogAndDeleteFormValue()">
+  <div class="qos-collectors-container" [formGroup]="associateFormGroup">
+    <div class="flex-row">
+      <div class="p-grid p-field p-col-12 p-fluid">
+        <div class="p-col-3">
+          <label for="selectedQosCollector">
+            {{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.QOS_COLLECTOR' | translate}}:</label>
+        </div>
+        <div class="p-col-9">
+          <p-dropdown [placeholder]="'COMMON.SELECT' | translate" formControlName="selectedQosCollector" appendTo="body" [options]="dropDownDataItems"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.QOS_COLLECTORS.ADD.ASSOCIATE' | translate"
+      [disablePrimaryBtn]="!associateFormGroup.get('selectedQosCollector')?.value && isNoFreeAvailableData" (eventSubmit)="associateFormFooterHandler($event)">
+    </app-form-footer>
+  </div>
+</p-dialog>
+
+<!-- Add And Associate Error Dialog -->
+<p-dialog class="rbn-dialog" [header]="errorTitleAddAssociateAndQosStatus" [(visible)]="showAddAssociateAndQosStatus"
+  [modal]="true" (onHide)="closeAddAssociateAndQosStatusErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <div class="p-col-1">
+      <i class="pi pi-times-circle iconStyle"></i>
+    </div>
+    <div class="p-col-11 message-error-margin">
+      <div class="message-text-container" [innerHTML]="messageTextAddAssociateAndQosStatusError | safe: 'html'" ></div>
+    </div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeAddAssociateAndQosStatusErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsTextAddAssociateAndQosStatusError | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog" [header]="confirmPopupTitle"
+  [(visible)]="showAddConfirmPopup" [modal]="true" (onHide)="closeApplyConfirmPopup()">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="confirmPopupMessage"></label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="addConfirmPopupQoSCollectorFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+
+<!--  Error Popup -->
+<p-dialog class="rbn-dialog dialog-width" [header]="errorTitle"
+  [(visible)]="showErrorPopup" [modal]="true" (onHide)="closeErrorPopup()">
+  <div class="p-col-12 p-mb-3">
+    <label>{{errorText}}</label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeErrorPopup()" ></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Post Error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="titleText" [(visible)]="showPostErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeShowPostShowHideErrorDialogWithOkBtn()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>

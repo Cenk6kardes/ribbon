@@ -1,0 +1,17 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-tabView class="rbn-tabs">
+  <p-tabPanel header="{{ 'CODEC_PROFILE.TABS.NETWORK_CODEC_PROFILE' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-network-codec-profile></app-network-codec-profile>
+    </ng-template>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'CODEC_PROFILE.TABS.DQOS_CONF' | translate }}" [cache]="false">
+    <ng-template pTemplate="content">
+        <app-dqos-configuration></app-dqos-configuration>
+    </ng-template>
+  </p-tabPanel>
+</p-tabView>
+
+<div *ngIf="showSettingsTab">
+  <app-general-network-settings [showGeneralNetworkSettings]="showSettingsTab" (closeDialog)="closeGeneralNetworkSettings()" ></app-general-network-settings>
+</div>

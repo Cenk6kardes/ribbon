@@ -1,0 +1,5 @@
+<rbn-page-top [pageTop]="pageTop" [statusIndicators]="statusIndicators"></rbn-page-top>
+
+<app-preferences [isShowPreferences]="isShowPreferences" (hidePreferences)="onHidePreferences()"></app-preferences>
+
+<rbn-logout [showLogout]="showLogout" (confirmLogout)="confirmLogout($event)"></rbn-logout>

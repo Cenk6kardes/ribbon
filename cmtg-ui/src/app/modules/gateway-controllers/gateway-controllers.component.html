@@ -1,0 +1,177 @@
+<!-- Disassociate Confirm -->
+<rbn-confirm-dialog
+  *ngIf="confirmDisassociate.isShowConfirmDialog"
+  [title]="confirmDisassociate.title"
+  [content]="confirmDisassociate.content"
+  [isShowConfirmDialog]="confirmDisassociate.isShowConfirmDialog"
+  (emitConfirm)="confirmDisassociate.handleAccept.bind(this)($event)"
+  [titleAccept]="confirmDisassociate.titleAccept"
+  [titleReject]="confirmDisassociate.titleReject"
+></rbn-confirm-dialog>
+
+<!-- Delete Gwc Node Confirm -->
+<rbn-confirm-dialog
+  *ngIf="confirmDeleteGwcNode.isShowConfirmDialog"
+  [title]="confirmDeleteGwcNode.title"
+  [content]="confirmDeleteGwcNode.content"
+  [isShowConfirmDialog]="confirmDeleteGwcNode.isShowConfirmDialog"
+  (emitConfirm)="confirmDeleteGwcNode.handleAccept.bind(this)($event)"
+  [titleAccept]="confirmDeleteGwcNode.titleAccept"
+  [titleReject]="confirmDeleteGwcNode.titleReject"
+></rbn-confirm-dialog>
+
+<!-- Delete Gwc Node Error Detail -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.DELETE_GWC_NODE.TITLE' | translate" [(visible)]="showGwcErrorDialog"
+  [modal]="true" (onHide)="closeGwcErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageTextGwc" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeGwcErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideGwcButtonClick()"
+        [label]= "'COMMON.' + (showGwcDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showGwcDetailsBtn">
+    <div [innerHTML]="detailsTextGwc" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="gateway-controllers-container">
+  <rbn-page-header
+    [data]="headerData"
+    (selectedMenuItem)="handleSelectedMenuItem($event)"
+  ></rbn-page-header>
+  <div style="display: flex; flex-wrap: wrap; width: -webkit-fill-available">
+    <div style="flex: 1">
+      <span class="bold"
+        >{{ "GATEWAY_CONTROLLERS.SELECT_GW" | translate }}:
+      </span>
+      <p-dropdown
+        [options]="gwControllersOptions"
+        (onChange)="handleChangeGwcem($event.value)"
+        appendTo="body"
+      ></p-dropdown>
+    </div>
+    <div style="flex: inherit">
+      <span class="bold">{{ "GATEWAY_CONTROLLERS.UNIT_0" | translate }}: </span>
+      <span> {{ unit0 }} </span>
+      <i class="pi pi-minus rotate-90"></i>
+      <span class="bold">{{ "GATEWAY_CONTROLLERS.UNIT_1" | translate }}: </span>
+      <span> {{ unit1 }} </span>
+    </div>
+  </div>
+  <app-maintenance
+    [gwControllerName]="currentGwControllerName"
+    (gwcNotFound)="handleGwcNotFound()"
+  ></app-maintenance>
+  <app-provisioning
+    [gwControllerName]="currentGwControllerName"
+  ></app-provisioning>
+</div>
+
+<!-- Disassociate Dialog -->
+<p-dialog
+  class="rbn-dialog"
+  [draggable]="false"
+  [header]="'GATEWAY_CONTROLLERS.DISASSOCIATE.TITLE' | translate"
+  [(visible)]="showDisassociateDialog"
+  [modal]="true"
+  (onHide)="closeDialog()"
+  id="dialog"
+>
+  <form [formGroup]="disassociateForm">
+    <div class="flex-row">
+      <div class="p-grid p-field p-col-12 p-fluid">
+        <label class="p-col-4"
+          >{{ "GATEWAY_CONTROLLERS.DISASSOCIATE.GW_NAME" | translate }}:</label
+        >
+        <div class="p-col-8">
+          <input formControlName="gwName" type="text" pInputText />
+        </div>
+      </div>
+    </div>
+  </form>
+  <app-form-footer
+    [secondaryLabel]="'COMMON.CANCEL' | translate"
+    [disablePrimaryBtn]="!disassociateForm.get('gwName')?.value"
+    [primaryLabel]="'COMMON.SAVE' | translate"
+    (eventSubmit)="onDisassociateFormSubmit($event)"
+  ></app-form-footer>
+</p-dialog>
+
+<!-- Disassociate Detailed Error Dialog -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'GATEWAY_CONTROLLERS.DISASSOCIATE.DISASSOCIATE_MG' | translate" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="'GATEWAY_CONTROLLERS.DISASSOCIATE.CONFIRM_MSG.CODE_UNKNOWN' | translate | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText |translate | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<!-- Delete Gwc Node Dialog -->
+<p-dialog
+  class="rbn-dialog"
+  [draggable]="false"
+  [header]="'GATEWAY_CONTROLLERS.DELETE_GWC_NODE.TITLE' | translate"
+  [(visible)]="showDeleteNodeDialog"
+  [modal]="true"
+  (onHide)="closeDialog()"
+  id="dialog"
+>
+  <form [formGroup]="deleteGwcNodeForm">
+    <div class="flex-row">
+      <div class="p-grid p-field p-col-12 p-fluid">
+        <label class="p-col-6"
+          >{{
+            "GATEWAY_CONTROLLERS.DELETE_GWC_NODE.GW_NAME" | translate
+          }}:</label
+        >
+        <div class="p-col-6">
+          <p-dropdown
+            formControlName="gwcName"
+            [options]="gwNameOptions"
+            [placeholder]="'COMMON.SELECT' | translate"
+            appendTo="body"
+            [styleClass]="'full-width'"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </form>
+  <app-form-footer
+    [secondaryLabel]="'COMMON.CANCEL' | translate"
+    [disablePrimaryBtn]="!deleteGwcNodeForm.get('gwcName')?.value"
+    [primaryLabel]="'COMMON.SAVE' | translate"
+    (eventSubmit)="onDeleteGwcNodeFormSubmit($event)"
+  ></app-form-footer>
+</p-dialog>
+
+
+<app-add-gwc-node #addGWC  [isShowNewGWCNodeDialog]="isShowNewGWCNodeDialog" (closeDialogEmitter)="closeNewGWCNodeDialog()"></app-add-gwc-node>
+
+<app-associate-dialog
+  [header]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.LABEL.ASSOCIATE_MEDIA_GATEWAY'"
+  (closeDetailDialog)="closeAssociateDialog()"
+  [showDialog]="showAssociateDialog"
+  [gwcname]="''"
+>

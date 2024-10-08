@@ -1,0 +1,564 @@
+openapi: 3.0.1
+
+
+info:
+  title: Network View Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+  
+tags:
+ - name: "nv"
+   description: "Operations related to Network View"
+   
+paths:
+
+  /NvApi/nv/v1.0/gwcData/{gwcID}: 
+    get:
+      tags:
+        - nv
+      description: the remote interface containing access to all the GWC data, query with the name of the GWC.    
+      operationId: gwcData
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwcID
+          in: path
+          required: true
+          schema:
+            type: string
+            example: GWC-1
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayControllerData'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+  /NvApi/nv/v1.0/gateway-profile-data/{name}: 
+    get:
+      tags:
+        - nv
+        
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            example: TOUCHTONE_NN01_2
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayProfileData'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  
+  /NvApi/nv/v1.0/gatewayData/{gateway}: 
+    get:
+      tags:
+        - nv
+      description: Provides access to all information about a GW element.    
+      operationId: gatewayData
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gateway
+          in: path
+          required: true
+          schema:
+            type: string
+            example: mediatrix
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayData'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+  /NvApi/nv/v1.0/available-profiles: 
+    get:
+      tags:
+        - nv
+      
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayController'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /NvApi/nv/v1.0/cm-clli: 
+    get:
+      tags:
+        - nv
+      description: CLLI information    
+      operationId: cm-clli
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              example: CO24
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+  /NvApi/nv/v1.0/all-gwc:  
+                
+    get:
+      tags:
+        - nv
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayController'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+  /NvApi/nv/v1.0/supported-profile-list: 
+    get:
+      tags:
+        - nv
+      
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayController'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+          
+  /NvApi/nv/v1.0/profile-data/{name}: 
+    get:
+      tags:
+        - nv
+      
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            example: LINE_TRUNK_AUD_NA
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayControllerProfileData'
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+components:
+  schemas:
+  
+  
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+          
+    GatewayController:
+      type: array
+      items:
+        type: string
+          
+    GatewayControllerData:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: GWC-1       
+        cs:
+          type: string
+          example: CS-1    
+        emID:
+          type: string
+          example: EM-id    
+        types:
+          $ref: '#/components/schemas/TypeList'
+        capacities:
+          $ref: '#/components/schemas/LongList'
+        nodeName:
+          type: string
+          example: null        
+        nodeNumber:
+          type: integer
+          example: null
+        activeIP:
+          type: string
+          example: null
+        profile:
+          type: string
+          example: SIPT 
+          
+    GatewayProfileData:
+      type: object
+      properties:
+        identifier:
+          type: string
+        serviceTypes:
+          $ref: '#/components/schemas/MGTypeList'
+        category:
+          $ref: '#/components/schemas/MGCategory'
+        maxRsvdEndpoints:
+          type: integer
+        gwcProfileNumber:
+          type: integer
+      
+    
+    
+    GatewayControllerProfileData:
+      type: object
+      properties:
+        identifier:
+          type: string
+        types:
+          $ref: '#/components/schemas/TypeList'
+        capacity:
+          $ref: '#/components/schemas/LongList'
+        toneinfo:
+          type: string
+        execinfo:
+          $ref: '#/components/schemas/ExecDataList'
+        compatibleProfiles:
+          $ref: '#/components/schemas/GatewayControllerProfileList'
+         
+    GatewayControllerProfileList:
+      type: array
+      items:
+         type: string
+         
+    TypeList:
+      type: array
+      items:
+         $ref: '#/components/schemas/GwcCapability' 
+         
+    LongList:
+      type: array
+      items:
+        type: integer
+        example: 123
+        
+    ExecDataList:
+      type: array
+      items:
+         $ref: '#/components/schemas/ExecData' 
+      
+    ExecData:
+      type: object
+      properties:
+        name:
+          type: string
+        termtype:
+          type: string
+    
+    
+    
+    GwcCapability:
+      type: string
+      enum:
+        - nilType
+        - lines
+        - trunks
+        - audio
+        - apg
+        - dpt
+        - dqos
+        - smallGWs
+        - largeGWs
+        - audioGWs
+        - apgGWs
+        - sipt
+        - vrdn
+        - ra
+        - bct
+        - ipsec
+        - kerberos
+        - v53
+        - conferences
+        - announcements
+        - rmgcGWs
+        - h323
+        - dpl
+        - voip_vpn     
+        
+    GatewayData:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: mediatrix     
+        profile:
+          type: string
+          example: TOUCHTONE   
+        hardwareType:
+          $ref: '#/components/schemas/GatewayType'
+        serviceTypes:
+          $ref: '#/components/schemas/MGTypeList' 
+        gwc:
+          type: string
+          example: GWC-1
+        category:
+          $ref: '#/components/schemas/MGCategory'       
+        emdata:
+          $ref: '#/components/schemas/GatewayElementManagerData'
+        nodeName:
+          type: string
+          example: null
+        nodeNumber:
+          type: integer
+          example: SIPT        
+        toneinfo:
+          $ref: '#/components/schemas/GWToneData'      
+        maxRsvdEndpoints:
+          type: integer
+          example: null 
+        other_info:
+          type: string
+          example: null
+          
+    GatewayType:
+      type: object
+      properties:
+        __value:
+          type: integer
+          example: 0
+      
+    #Service Type List
+    #( 0 = line ), ( 1 = trunk ), ( 2 = audio ), ( 3 = APG ), ( 4 = DQOS ), ( 5 = ITRANS ), ( 6 = H323 ), ( 7 = ITRANS_ROAM ), ( 8 = ALG ), ( 9 = VOIP_VPN )
+    MGTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/MGType'
+      example:
+         - "__value": 0
+         - "__value": 1
+
+    MGType:
+      type: object
+      properties:
+        __value:
+          type: integer
+          example: 0
+          
+    # MGCategory List
+    # ( 0 = niltype ), ( 1 = large ), ( 2 = small ), ( 3 = audio ), ( 4 = APG )
+    MGCategory:
+      type: object
+      properties:
+        __value:
+          type: integer
+          example: 2
+        
+    GWToneData:
+      type: object
+      properties:
+        location:
+          type: string
+          example: null
+        owner:
+          type: string
+          example: null
+          
+    GatewayElementManagerData:
+      type: object
+      properties:
+        emID:
+          type: string
+          example: null     
+        neID:
+          type: integer
+          example: null 
+        subnetManagerID:
+          type: string
+          example: null
+        physicalMG:
+          type: string
+          example: null
+        

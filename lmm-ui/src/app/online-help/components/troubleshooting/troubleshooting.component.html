@@ -1,0 +1,556 @@
+<div id="security-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-tabView class="rbn-tabs">
+    <p-tabPanel header="GUI Status Display">
+      <table>
+        <thead>
+          <tr>
+            <th>Symptom(s)</th>
+            <th>Cause</th>
+            <th>Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <b>LMM Server: </b> <span class="fault">Fault</span><br />
+              <b>OSS Comms: </b> Unknown<br />
+              <b>DMA: </b> Unknown<br />
+              <b>BMU: </b> Unknown<br />
+              <br />
+              <b>Status Area Displays:</b><br />
+              <br />
+              Please verify that the C20 Management Tool Server is running<br />
+              Disabling the Auto Refresh function. Cannot communicate with LMM
+              Server. Invalid object reference. OR Communication failure.
+            </td>
+            <td>
+              1. Communication link lost or down between the LMM client and LMM
+              Server.<br />
+              2. The C20 Management Tool Server or LMM application is down.
+            </td>
+            <td>
+              1. Refresh the page.<br />
+              2. Resolve the C20 Management Tool Server problem, and then
+              refresh the page.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>LMM Server: </b> <span class="ok">OK</span><br />
+              <b>OSS Comms: </b> <span class="ok">OK</span><br />
+              <b>DMA: </b> <span class="fault">Fault</span><br />
+              <b>BMU: </b> Unknown<br />
+              <br />
+              <b>CS Line State Displays:</b><br />Not available or not
+              refreshed.<br />
+              <br />
+              <b>Status Area Displays:</b><br />
+              CRT: DMA fault (DMS Mtc Application on CBMg)
+            </td>
+            <td>1. DMA application on the CBMg is in trouble.</td>
+            <td>
+              1. Logon to the CBMg, and go to the CBMMTC APPL level. BSY and RTS
+              the DMA (DMS Maintenance Application)<br />
+              The faults should clear and the line states should be updated
+              appropriately.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>LMM Server: </b> <span class="ok">OK</span><br />
+              <b>OSS Comms: </b> <span class="ok">OK</span><br />
+              <b>DMA: </b> <span class="fault">Fault</span><br />
+              <b>BMU: </b> Unknown<br />
+              <br />
+              <b>CS Line State Displays:</b><br />Not available or not
+              refreshed.<br />
+              <br />
+              <b>Status Area Displays:</b><br />
+              CRT: DMA fault (DMS Mtc Application on CBMg)
+            </td>
+            <td>
+              1. BMU application on the CBMg may be in trouble. This also caused
+              the DMA application to go down, as shown by the subsequent DMA
+              error.
+            </td>
+            <td>
+              1. Logon to the CBMg, and go to the CBMMTC APPL level. BSY and RTS
+              the BMU (Base Maintenance Interface) and the DMA (DMS Maintenance
+              Application)<br />
+              The faults should clear and the line states should be updated
+              appropriately.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>LMM Server: </b> <span class="ok">OK</span><br />
+              <b>OSS Comms: </b> <span class="ok">OK</span><br />
+              <b>DMA: </b> <span class="ok">OK</span><br />
+              <b>BMU: </b> <span class="fault">Fault</span><br />
+              <br />
+              <b>CS Line State Displays:</b><br />Not available or not
+              refreshed.<br />
+              <br />
+              <b>Status Area Displays:</b><br />
+              VRB: DMA may be impacted due to the BMU fault.<br />
+              CRT: BMU fault (Base Maintenance Interface on CBMg)<br />
+              CRT: BMU fault: CBMg Maintenance API not available.
+            </td>
+            <td>
+              1. BMU application on the CBMg is in trouble. This could result in
+              the DMA application not performing normally.
+            </td>
+            <td>
+              1. Logon to the CBMg, and go to the CBMMTC APPL level. BSY and RTS
+              the BMU (Base Maintenance Interface).<br />
+              The faults should clear and the line states should be updated
+              appropriately.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>LMM Server: </b> <span class="ok">OK</span><br />
+              <b>OSS Comms: </b> <span class="ok">OK</span><br />
+              <b>DMA: </b> <span class="ok">OK</span><br />
+              <b>BMU: </b> Unknown<br />
+              <br />
+              <b>CS Line State Displays:</b><br />Not available or not
+              refreshed.<br />
+            </td>
+            <td>
+              1. Call Server may be in a maintenance mode ( reload, restart )
+              and is not responding.
+            </td>
+            <td>
+              1. Wait for the restart to Complete and all applications on CBMg
+              to come into service.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              When launching the GUI, communication to the Call Server fails.
+            </td>
+            <td>
+              1. DMA is down.<br />
+              2. DMA and BMU are down.<br />
+              3. Core is in a restart and is not responding.
+            </td>
+            <td>
+              1. RTS the DMA (please refer to solution for symptom 2).<br />
+              2. RTS the DMA and BMU (please refer to solution for symptom
+              3).<br />
+              3. Wait for the restart to finish.<br />
+              4. Re-try the Call Server communication using the 'Set CM CLLI...'
+              command.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              When launching the GUI, the default CM CLLI returned by the LMM
+              Server is invalid or not set.<br />
+              <br />
+              If the default CM CLLI returned by the LMM Server is not set,
+              the<br />
+              <br />
+              <b>Status area displays:</b><br />
+              Default CM CLLI not set at the LMM Server (properties.txt file)
+            </td>
+            <td>
+              1. CLLI provisioned in C20 Management Tool Server is invalid.
+            </td>
+            <td>
+              1. Run the C20 MANAGEMENT TOOL SERVER configure script to set the
+              CLLI.<br />
+              2. Restart the C20 Management Tool Server.
+            </td>
+          </tr>
+          <tr>
+            <td>LMM application does not launch.</td>
+            <td>Login validation fails.</td>
+            <td>
+              Contact System administrator and ensure user exists in the system
+              with valid authentication group privileges.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Post by Gateway Operation fails with the following message:<br />
+              <br />
+              Gateway not found. Could not retrieve the gateway data from the
+              network view component.
+            </td>
+            <td>
+              The specified gateway may not have been provisioned correctly in
+              the C20 MANAGEMENT TOOL SERVER database.
+            </td>
+            <td>
+              Provision the gateway on the C20 MANAGEMENT TOOL SERVER and retry
+              the Post by Gateway operation.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              After performing an operation in LMM (such as post by DN or Post
+              by Gateway), the GUI displays:<br />
+              <br />
+              Insufficient Security Privileges to perform this action.
+            </td>
+            <td>
+              User does not have enough privileges to perform the LMM operation.
+            </td>
+            <td>
+              Contact system administrator. Add proper group privilege to user
+              to perform the LMM operation.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gateway Controller current status shows as UnReachable in the
+              Available Line Gateway Controllers dialog box.
+            </td>
+            <td>
+              The GWC is not responding to C20 MANAGEMENT TOOL SERVER requests.
+            </td>
+            <td>
+              From Application Launch Point window, select C20 Management Tools.
+              Select GatewayController and from the list of Gateway Controllers,
+              select non-reachable GWC. Troubleshoot from this panel.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              No lines GWC provisioned. Query Halted message displayed in the
+              Query Status dialog box.
+            </td>
+            <td>
+              The C20 MANAGEMENT TOOL SERVER cannot find any GWC with lines
+              profile.
+            </td>
+            <td>Add a GWC that includes lines as part of its profile.</td>
+          </tr>
+          <tr>
+            <td>GW DISABLED in the Query Report dialog box.</td>
+            <td>
+              The line Gateway failed to respond to the GWC heartbeats and was
+              marked DISABLED.
+            </td>
+            <td>
+              Most commonly a connectivity problem between the GWC and line
+              gateway.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              SNMP Timeout in the Query Result field of the Query Report dialog
+              box.
+            </td>
+            <td>SNMP communications could not be established to the GWC.</td>
+            <td>
+              From Application Launch Point window, select C20 Management Tools.
+              Select GatewayController and from the list of Gateway Controllers,
+              select non-reachable GWC and verify that the GWC unit is in
+              service.
+            </td>
+          </tr>
+          <tr>
+            <td>Endpoint name is "SU".</td>
+            <td>A dummy endpoint is bound with a DN.</td>
+            <td>Out DN from OSSGATE.</td>
+          </tr>
+        </tbody>
+      </table>
+    </p-tabPanel>
+
+    <p-tabPanel header="Endpoint State/Communication Error Description">
+      <table>
+        <thead>
+          <tr>
+            <th>Endpoint State</th>
+            <th>Possible Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OK</td>
+            <td>Audit response received from endpoint</td>
+          </tr>
+          <tr>
+            <td>Wait_GW_response</td>
+            <td>GWC waiting for gateway audit response</td>
+          </tr>
+          <tr>
+            <td>Unsupported_GW</td>
+            <td>
+              LMM does not support the call processing protocol for this gateway
+            </td>
+          </tr>
+          <tr>
+            <td>GWC_Unavailable</td>
+            <td>
+              LMM cannot perform endpoint query on GWC<br />
+              • This state will show up temporarily on a GWC swact<br />
+              • If the state persists, check GWC service state
+            </td>
+          </tr>
+          <tr>
+            <td>GWC_SNMP_timeout</td>
+            <td>
+              LMM cannot communicate with GWC - check GWC and network state
+            </td>
+          </tr>
+          <tr>
+            <td>SNMP_exception</td>
+            <td>SNMP error was encountered between LMM and the GWC</td>
+          </tr>
+          <tr>
+            <td>GWC_LoadName_error</td>
+            <td>Could not retrieve GWC load name from GWC element manager</td>
+          </tr>
+          <tr>
+            <td>Unsupported_GWC_Load</td>
+            <td>GWC is running an unknown or unsupported load</td>
+          </tr>
+          <tr>
+            <td>Decode_Failure</td>
+            <td>Unable to decode IP address for GW returned from GWC</td>
+          </tr>
+          <tr>
+            <td>IP_Unavailable</td>
+            <td>Unable to retrieve IP address for gateway</td>
+          </tr>
+          <tr>
+            <td>gw_hw_failure</td>
+            <td>Internal hardware failure</td>
+          </tr>
+          <tr>
+            <td>gw_op_unsupported</td>
+            <td>
+              • The transaction could not be executed because the gateway is not
+              equipped to detect one of the requested events.<br />
+              • The transaction could not be executed because the gateway is not
+              equipped to generate one of the requested signals.<br />
+              • The transaction could not be executed because the gateway cannot
+              send the specified announcement.
+            </td>
+          </tr>
+          <tr>
+            <td>gw_bad_prcl</td>
+            <td>
+              • The transaction could not be executed because a protocol error
+              was detected.<br />
+              • The transaction could not be executed because the command
+              contained an unrecognized extension.<br />
+              • Unsupported or invalid mode or unknown package.<br />
+              • No such event or signal.<br />
+              • Unknown action or illegal combination of actions.
+            </td>
+          </tr>
+          <tr>
+            <td>gw_icmpat_prcl</td>
+            <td>Incompatible protocol version</td>
+          </tr>
+          <tr>
+            <td>endpt_unconfigured</td>
+            <td>
+              The transaction could not be executed because the endpoint is
+              unknown<br />
+              • The transaction could not be executed because the endpoint is
+              not ready.<br />
+              • The transaction could not be executed because the endpoint does
+              not have sufficient resources.<br />
+              • Endpoint does not have a digit map.<br />
+              • The transaction could not be executed because the endpoint is
+              restarting.<br />
+              • Endpoint redirected to another Call Agent.
+            </td>
+          </tr>
+          <tr>
+            <td>endpt_bad_state</td>
+            <td>
+              • The transaction could not be executed because the endpoint is
+              not ready.<br />
+              • The transaction could not be executed because the endpoint does
+              not have sufficient resources.<br />
+              • Endpoint does not have a digit map.<br />
+              • The transaction could not be executed because the endpoint is
+              restarting.<br />
+              • Endpoint redirected to another Call Agent.
+            </td>
+          </tr>
+          <tr>
+            <td>bndwth_alloc_failed</td>
+            <td>Insufficient bandwidth</td>
+          </tr>
+          <tr>
+            <td>bndwth_localspec_fault</td>
+            <td>
+              • Internal inconsistency in Local Connection Options.<br />
+              • Unknown extension in Local Connection Options.<br />
+              • Unsupported value(s) in Local Connection Options.
+            </td>
+          </tr>
+          <tr>
+            <td>bndwth_remotespec_fault</td>
+            <td>Missing Remote Connection Descriptor.</td>
+          </tr>
+          <tr>
+            <td>gw_ukn_call</td>
+            <td>
+              • The transaction refers to an incorrect connection-id (may have
+              been already deleted).<br />
+              • The transaction refers to an unknown call-id.
+            </td>
+          </tr>
+          <tr>
+            <td>call_trnsient_fault</td>
+            <td>
+              The transaction could not be executed due to a transient error.
+            </td>
+          </tr>
+          <tr>
+            <td>trns_timeout</td>
+            <td>GWC timed out waiting for response from the gateway</td>
+          </tr>
+          <tr>
+            <td>Unknown_Endpoint</td>
+            <td>There is no data in the server for the requested endpoint.</td>
+          </tr>
+          <tr>
+            <td>Legacy_Line</td>
+            <td>Time Division Multiplexed (TDM) subscriber line</td>
+          </tr>
+          <tr>
+            <td>Not_Available</td>
+            <td>
+              • The associated gateway may not be provisioned correctly.<br />
+              • LMM client timed out getting a response for the end point query.
+            </td>
+          </tr>
+          <tr>
+            <td>on-hook</td>
+            <td>
+              The terminal is “on hook” and not involved in any call processing
+              activities.
+            </td>
+          </tr>
+          <tr>
+            <td>ringing</td>
+            <td>The terminal is in an alerting or ringing state.</td>
+          </tr>
+          <tr>
+            <td>dial tone</td>
+            <td>
+              The terminal is off-hook and is currently receiving a dial tone.
+            </td>
+          </tr>
+          <tr>
+            <td>talk state</td>
+            <td>
+              The terminal is connected to at least one other terminal, the call
+              is set up and call processing.
+            </td>
+          </tr>
+          <tr>
+            <td>off-hook</td>
+            <td>
+              The terminal is off-hook and has call processing structures
+              associated. This means that either:<br />
+              • The user is programming the terminal/phone<br />
+              • Upon call completion the user has remained off hook<br />
+              • Terminal has gone off-hook and dial tone has not been
+              established
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </p-tabPanel>
+
+    <p-tabPanel header="Possible Status Values">
+      <table>
+        <thead>
+          <tr>
+            <th>LMM Server</th>
+            <th>OSS Comms</th>
+            <th>DMA</th>
+            <th>BMU</th>
+            <th>Possible Implications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td>Normal</td>
+          </tr>
+          <tr>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>
+              GUI is initializing. If it times out, the C20 Management Tool
+              Server may not be running.<br />
+              Make sure the C20 Management Tool Server is running.
+            </td>
+          </tr>
+          <tr>
+            <td class="fault">Fault</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>
+              LMM Server may not be running or the client cannot make the
+              connection with the LMM Server.<br />
+              Make sure the LMM Server is running.
+            </td>
+          </tr>
+          <tr>
+            <td class="ok">OK</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>
+              The CM CLLI may not be automatically set during the GUI
+              initialization. This may be due to a problem in not being able to
+              communicate with the Call Server.<br />
+              Refresh the page.
+            </td>
+          </tr>
+          <tr>
+            <td class="ok">OK</td>
+            <td class="fault">Fault</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>
+              OSS Comms application on CBMg may not be in an OK state.<br />
+              RTS the OSS Comms to bring it back into service.
+            </td>
+          </tr>
+          <tr>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td class="fault">Fault</td>
+            <td>Unknown</td>
+            <td>
+              DMA application on CBMg may not be in an OK state.<br />
+              RTS the DMA to bring it back into service.
+            </td>
+          </tr>
+          <tr>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td class="ok">OK</td>
+            <td class="fault">Fault</td>
+            <td>
+              BMU application on CBMg may not be in an OK state.<br />
+              RTS the BMU to bring it back into service.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </p-tabPanel>
+  </p-tabView>
+</div>

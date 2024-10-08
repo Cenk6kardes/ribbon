@@ -1,0 +1,103 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="sig-options-container">
+
+    <div *ngIf="!isAddSig" class="rbn-group p-field p-my-4 p-col-4 identifier">
+        <label class="p-pr-2">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.IDENTIFIER' | translate}}:
+        </label>
+        <p-dropdown [options]="identifiers" [(ngModel)]="sigItems.v5sigid" [styleClass]="'full-width'"
+            (onChange)="handleChangeIdentifier($event.value)"></p-dropdown>
+    </div>
+
+    <p-panel [showHeader]="false">
+        <div class="flex-row">
+
+            <div *ngIf="isAddSig" class="p-grid">
+                <div class="rbn-group p-field p-col-8">
+                    <label class="p-pr-2">{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.IDENTIFIER' | translate}}:
+                    </label>
+                    <input type="string" id="identifier" [(ngModel)]="sigItems.v5sigid" pInputText>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class=" rbn-group p-field p-col-3 ">
+                    <label class="p-col-3">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.ATTEN' | translate}}:
+                    </label>
+                    <p-dropdown class=" p-col-9" [options]="attenOptions" [(ngModel)]="sigItems.atten"></p-dropdown>
+                </div>
+
+                <div class=" rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.PLF' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="trueFalseOptions" [(ngModel)]="sigItems.plf"></p-dropdown>
+                </div>
+
+                <div class=" rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.APA' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="trueFalseOptions" [(ngModel)]="sigItems.apa"></p-dropdown>
+                </div>
+
+                <div class=" rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.DS1FLASH' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="trueFalseOptions"
+                        [(ngModel)]="sigItems.ds1flash"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="p-grid">
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-3">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.EOC' | translate}}: </label>
+                    <p-dropdown class="p-col-9" [options]="trueFalseOptions" [(ngModel)]="sigItems.eoc"></p-dropdown>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.SUPPIND' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="suppindOptions" [(ngModel)]="sigItems.suppind"></p-dropdown>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.PLSDUR' | translate}}: </label>
+                    <input class="p-col-8 p-ml-2" type="text" [(ngModel)]="sigItems.plsdur" pInputText>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.MTRPN' | translate}}: </label>
+                    <p-dropdown class=" p-col-8" [options]="trueFalseOptions" [(ngModel)]="sigItems.mtrpn"></p-dropdown>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="p-grid">
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-3">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.LROA' | translate}}: </label>
+                    <p-dropdown class="p-col-9" [options]="lroaOptions" [(ngModel)]="sigItems.lroa"></p-dropdown>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.LROSFD' | translate}}: </label>
+                    <p-dropdown class=" p-col-8" [options]="trueFalseOptions"
+                        [(ngModel)]="sigItems.lrosfd"></p-dropdown>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.RNGTYPE' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="rngtypeOptions" [(ngModel)]="sigItems.rngtype"></p-dropdown>
+                </div>
+
+                <div class="rbn-group p-field p-col-3">
+                    <label class="p-col-4">{{'INTERFACE_BROWSER.V5_SIG.FIELD_LABEL.SSONHOOK' | translate}}: </label>
+                    <p-dropdown class="p-col-8" [options]="trueFalseOptions"
+                        [(ngModel)]="sigItems.ssonhook"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+
+    <div class="p-mt-3">
+        <app-form-footer [disablePrimaryBtn]="isButtonDisabled" [primaryLabel]="primaryButton | translate"
+            (eventSubmit)="onFormSubmit($event)" [secondaryLabel]="'COMMON.CANCEL' | translate"></app-form-footer>
+    </div>
+</div>

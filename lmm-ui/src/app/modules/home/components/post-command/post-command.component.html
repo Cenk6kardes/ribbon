@@ -1,0 +1,48 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="p-grid container-postForm" [formGroup]="postForm">
+    <div class="dropdownPostValue">
+        <p-dropdown [options]="typesPost" [styleClass]="'full-width'" formControlName="type" ngDefaultControl
+            (onChange)="changeTypesPost($event.value)"></p-dropdown>
+    </div>
+    <div class="inputPostValue">
+        <input type="text" pInputText class="full-width" formControlName="postValue">
+    </div>
+    <div class="btn-postForm">
+        <!-- <button pButton type="button" label="Post" class="p-button-outlined full-width"
+            [style]="{'padding-bottom': 'inherit'}" (click)="save()" [disabled]="isInprocess"></button> -->
+        <p-button [label]="'HOME.POST_COMMAND_LABEL' | translate"
+            styleClass="rbn-button rbn-button-secondary full-width" [style]="{'padding-bottom': '10px'}"
+            (onClick)="save()" [disabled]="isInprocess || postForm.invalid"></p-button>
+    </div>
+</div>
+
+<!-- dialog info -->
+<p-dialog class="rbn-dialog" [header]="infoDialogData.title" [(visible)]="displayInfoDialog" [modal]="true">
+    <div>{{infoDialogData.content}}</div>
+    <p-footer>
+        <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+            (onClick)="displayInfoDialog = false"></p-button>
+    </p-footer>
+</p-dialog>
+
+
+<p-dialog class="rbn-dialog" [header]="'HOME.SELECT_GATEWAY_TO_POST' | translate" [(visible)]="displayGatewaysDialog"
+    [modal]="true" [style]="{height: '60%', width: '630px'}" (onHide)="hideDialogGateway()">
+    <p-orderList #orderListGateway [value]="gatewaysData" [styleClass]="'post-command-order-list'" filterBy="name"
+        [(selection)]="selectedGateway" (onSelectionChange)="selectionChange()" (onFilterEvent)="handleFilterOrderList()">
+        <ng-template let-gateway pTemplate="item">
+            <div>
+                <span>{{gateway.name}}</span>
+            </div>
+        </ng-template>
+    </p-orderList>
+    <p-footer>
+        <p-button [label]="'COMMON.CANCEL' | translate" styleClass="rbn-button rbn-button-tertiary"
+            (onClick)="displayGatewaysDialog = false"></p-button>
+        <p-button [label]="'COMMON.POST_COMMAND_LABEL' | translate" styleClass="rbn-button rbn-button-primary"
+            (onClick)="acceptGateway()" [disabled]="selectedGateway.length === 0"></p-button>
+    </p-footer>
+</p-dialog>
+
+<hr>
+<app-directory-table (refreshDN)="refreshDN($event)"></app-directory-table>

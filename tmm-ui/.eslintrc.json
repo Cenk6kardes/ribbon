@@ -1,0 +1,171 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/no-output-native": "warn",
+        "@angular-eslint/no-output-on-prefix": "warn",
+        "@angular-eslint/no-input-rename": "warn",
+        "@angular-eslint/no-output-rename": "warn",
+        "@angular-eslint/no-empty-lifecycle-method": "warn",
+        "@typescript-eslint/consistent-type-definitions": "warn",
+        "@typescript-eslint/comma-dangle": [
+          "warn",
+          {
+            "objects": "never",
+            "arrays": "never",
+            "functions": "never"
+          }
+        ],
+        "@typescript-eslint/indent": [
+          "warn",
+          2
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "warn",
+          { 
+            "allow": ["constructors"]
+          }
+        ],
+        "@typescript-eslint/no-empty-interface": "warn",
+        "@typescript-eslint/no-shadow": [
+          "warn",
+          {
+            "hoist": "all"
+          }
+        ],
+        "@typescript-eslint/no-unused-expressions": [
+          "warn",
+          {
+            "allowTernary": true
+          }
+        ],
+        "radix": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/member-ordering": [
+          "warn",
+          {
+            "default": [
+              "static-field",
+              "instance-field",
+              "static-method",
+              "instance-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-inferrable-types": [
+          "warn",
+          {
+            "ignoreParameters": true
+          }
+        ],
+        "@typescript-eslint/no-misused-new": "warn",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "@typescript-eslint/prefer-function-type": "warn",
+        "@typescript-eslint/quotes": [
+          "warn",
+          "single"
+        ],
+        "@typescript-eslint/semi": [
+          "warn",
+          "always"
+        ],
+        "@typescript-eslint/type-annotation-spacing": "warn",
+        "@typescript-eslint/unified-signatures": "warn",
+        "arrow-body-style": "warn",
+        "@typescript-eslint/brace-style": [
+          "warn",
+          "1tbs"
+        ],
+        "constructor-super": "warn",
+        "curly": "warn",
+        "eol-last": "warn",
+        "eqeqeq": [
+          "warn",
+          "smart"
+        ],
+        "max-len": [
+          "warn",
+          {
+            "code": 140
+          }
+        ],
+        "no-bitwise": "warn",
+        "no-console": [
+          "warn",
+          {
+            "allow": [
+              "log",
+              "warn",
+              "dir",
+              "timeLog",
+              "assert",
+              "clear",
+              "count",
+              "countReset",
+              "group",
+              "groupEnd",
+              "table",
+              "dirxml",
+              "error",
+              "groupCollapsed",
+              "Console",
+              "profile",
+              "profileEnd",
+              "timeStamp",
+              "context"
+            ]
+          }
+        ],
+        "no-debugger": "warn",
+        "no-eval": "warn",
+        "no-new-wrappers": "warn",
+        "@typescript-eslint/no-restricted-imports": [
+          "warn",
+          "rxjs/Rx"
+        ],
+        "no-trailing-spaces": "warn",
+        "no-unused-labels": "warn",
+        "no-var": "warn",
+        "prefer-const": "warn",
+        "spaced-comment": [
+          "warn",
+          "always",
+          {
+            "markers": [
+              "/"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/template/eqeqeq": "warn"
+      }
+    }
+  ]
+}

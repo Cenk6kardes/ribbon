@@ -1,0 +1,30 @@
+@import "ribbontheme/variables";
+
+.general-trunk-maint-container::ng-deep {
+
+  .rbn-group>label {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  .rbn-field>input {
+    height: 37px;
+  }
+
+  .note-force-release {
+    color: $ribbon-dark-red;
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  .endpoint-range {
+    position: relative;
+    margin-left: 15px;
+
+    div.p-tooltip.p-component.p-tooltip-bottom {
+      min-width: 250px;
+      line-height: 1.2;
+      padding: .25em 0.50em;
+    }
+  }
+}

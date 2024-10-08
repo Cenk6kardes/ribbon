@@ -1,0 +1,17 @@
+@import "ribbontheme/variables";
+
+body {
+  margin: 0;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  &.menu-collapsed{
+    .container-statusLogs{
+      width: calc(100% - 60px);
+    }
+  }
+}
+
+#overlap-fix {
+  display: block;
+  height: 300px;
+}

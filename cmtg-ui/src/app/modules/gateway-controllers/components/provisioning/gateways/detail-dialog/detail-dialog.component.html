@@ -1,0 +1,22 @@
+
+<p-dialog [draggable]="true" [resizable]="false" [header]="dynamicContent?.title" [(visible)]="showDialog" [modal]="true" (onHide)="closeDialog()" id="dialog">
+      <div class="p-grid">
+        <div class="p-field rbn-field field p-col-12 panel-content" *ngFor="let row of dynamicContent?.rows">
+          <div class="p-col-6"><label><strong>{{ row.label }}:</strong></label></div>
+          <div class="p-col-6"><label class="light-grey">{{ row.value }}</label></div>
+        </div>
+        <div *ngIf="dynamicContent?.subtitle">
+          <h4>{{ dynamicContent.subtitle }}</h4>
+        </div>
+        <div class="p-col-12 panel-content">
+          <ng-container *ngIf="dynamicContent?.subRows">
+            <div class="p-field rbn-field field" *ngFor="let row of dynamicContent?.subRows">
+              <div class="p-col-6"><label><strong>{{ row.label }}:</strong></label></div>
+              <div class="p-col-6"><label class="light-grey">{{ row.value }}</label></div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <app-form-footer [secondaryLabel]="'COMMON.CLOSE' | translate" (eventSubmit)="onDetailDialog($event)" [showPrimaryBtn]="false"></app-form-footer>
+</p-dialog>
+

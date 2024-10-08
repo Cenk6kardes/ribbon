@@ -1,0 +1,15 @@
+:host ::ng-deep {
+   .delete {
+      margin-top: 5px;
+      margin-bottom: 30px;
+
+      .p-dropdown {
+         width: 100%;
+      }
+   }
+
+   .p-dialog{
+      max-width: 80%;
+   }
+  
+}

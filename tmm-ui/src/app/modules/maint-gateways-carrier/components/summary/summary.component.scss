@@ -1,0 +1,62 @@
+@import "ribbontheme/variables";
+
+.container-summary {
+  margin: 15px 0px;
+  padding: 20px;
+  box-shadow: 5px 0px 3px 0px $ribbon-lighter-grey;
+  border: 1px solid $ribbon-lighter-grey;
+  background: $ribbon-white;
+
+  .summary-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .body-summary {
+    display: flex;
+    flex-flow: column;
+
+    .value-carrier {
+      color: $ribbon-blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    hr {
+      width: 100%;
+      margin: 25px 0px;
+    }
+
+    >div {
+      margin: 0px;
+    }
+
+    .content-summary {
+      padding-bottom: 25px;
+
+      span {
+        display: grid;
+        word-break: break-word;
+      }
+    }
+
+    .value-state {
+      border-top: 1px solid $ribbon-lighter-grey;
+      padding-top: 25px;
+
+      >div {
+        display: grid;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+.list-carrier {
+  list-style-type: none;
+  padding: 0px;
+
+  li {
+    padding: 5px;
+  }
+}

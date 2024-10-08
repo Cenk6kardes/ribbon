@@ -1,0 +1,8 @@
+:host ::ng-deep {
+
+  .rbn-tabs .p-tabview-panel {
+    overflow: hidden;
+    max-height: unset;
+  }
+
+}

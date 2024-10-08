@@ -1,0 +1,35 @@
+<p-dialog class="rbn-dialog" [(visible)]="showDialogRunAudit" [modal]="true" (onHide)="closeDialog()" [closable]="false"
+  [style]="{width: '550px'}">
+  <ng-template pTemplate="header">
+    <span class="p-dialog-title">{{auditName ? auditName : 'AUDIT.HEADER.SUMMARY' | translate}}</span>
+    <div class="p-dialog-header-icons-custom">
+      <button type="button" class="p-dialog-header-icon p-dialog-header-close p-link" pRipple (click)="closeDialog()">
+        <span class="p-dialog-header-close-icon pi pi-times"></span>
+      </button>
+    </div>
+  </ng-template>
+  <div class="p-grid info">
+    <ng-container *ngFor="let item of summary">
+      <ng-container *ngIf="item.value !== undefined">
+        <div class="p-col-3">
+          <label>{{ item.label }}:</label>
+        </div>
+        <div class="p-col-9">
+          <span>{{ item.value }}</span>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="p-grid progress">
+    <div class="p-col-12">
+      <label>{{ processData.auditProcessTitle }}</label>
+      <p-progressBar [value]="processData.proportionProgressBar"></p-progressBar>
+    </div>
+  </div>
+  <p-footer>
+    <p-button [label]="'AUDIT.BUTTON_LABEL.ABORT' | translate" styleClass="rbn-button rbn-button-tertiary"
+      (onClick)="closeDialog()" [disabled]="disabledBtnAbort"></p-button>
+    <p-button [label]="'AUDIT.BUTTON_LABEL.VIEW_REPORT' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="doViewReport()" [disabled]="disabledBtnViewReport"></p-button>
+  </p-footer>
+</p-dialog>

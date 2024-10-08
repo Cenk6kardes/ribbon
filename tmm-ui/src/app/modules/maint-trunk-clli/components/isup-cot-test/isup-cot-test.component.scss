@@ -1,0 +1,17 @@
+:host ::ng-deep {
+  .isup-cot-test-container {
+    .rbn-group>label {
+      display: flex;
+      margin-bottom: 15px;
+    }
+  
+    .rbn-field>input {
+      height: 37px;
+    }
+  }
+
+  .pannel-toast-message.pannel-toast-message-info{
+    margin: 1px 17px 23px 8px;
+  }
+
+}

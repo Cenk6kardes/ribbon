@@ -1,0 +1,103 @@
+@import "ribbontheme/variables";
+
+#prov-view-container::ng-deep {
+    .p-panel-title {
+        font-size: 16px;
+        line-height: 1;
+        font-weight: bolder;
+    }
+
+    label {
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    .p-panel .p-panel-header {
+        background-color: $ribbon-white;
+        border-bottom: none;
+        padding-top: 15px;
+    }
+
+
+    .p-panel .p-panel-content {
+        padding-top: 10px;
+    }
+
+
+    .red {
+        color: red;
+    }
+
+    .p-panel {
+        margin-bottom: 20px;
+    }
+
+    input {
+        border: 1px solid $ribbon-dark-grey;
+        border-radius: 3px;
+        height: 30px;
+    }
+
+    .grey-border {
+        border: 1px solid $ribbon-light-grey;
+    }
+
+
+    .line {
+        position: relative;
+    }
+
+    .line::after {
+        content: '';
+        border: 1px solid $ribbon-light-grey;
+        position: absolute;
+        top: 47%;
+        width: 38%;
+    }
+
+    .checkboxes {
+        border: 1px solid $ribbon-light-grey;
+        padding-left: 10px;
+        border-radius: 3px;
+    }
+
+    .lineback {
+        position: relative;
+    }
+
+    .linefix {
+        position: relative;
+    }
+
+    .linefix::after {
+        position: absolute;
+    }
+
+
+    .icons-font {
+        font-size: 1.2rem;
+    }
+
+    .cchnlProtIcons {
+        margin-top: 2.5rem;
+    }
+
+    .p-dropdown {
+        min-width: auto;
+    }
+
+
+    @media (min-width: 768px) {
+        .p-dropdown {
+            min-width: 200px;
+            height: 35px;
+        }
+    }
+
+}
+
+.option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

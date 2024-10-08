@@ -1,0 +1,101 @@
+@import "ribbontheme/variables";
+
+#dialog-container::ng-deep {
+
+    input:disabled {
+        color: $ribbon-black;
+        background: $ribbon-white;
+        border: 1px solid $ribbon-light-grey;
+        opacity: 1;
+    }
+
+    .p-datatable {
+        max-width: 1300px;
+    }
+
+    .p-dropdown {
+        border-color: $ribbon-black ;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+
+    .p-field {
+        min-width: auto;
+
+        input {
+            height: 37px;
+            min-width: 200px;
+        }
+    }
+
+    .line {
+        position: relative;
+    }
+
+    .line::after {
+        content: '';
+        border: 1px solid $ribbon-light-grey;
+        position: absolute;
+        top: 47%;
+        width: 100%;
+    }
+
+
+
+    .error-dialog-container {
+        display: flex;
+        flex-direction: row;
+
+        .iconStyle {
+            color: $ribbon-dark-red;
+            margin-top: 4px;
+        }
+    }
+
+    .error-dialog-buttons {
+        padding: 0.5rem;
+        justify-content: end;
+        align-items: center;
+        margin: 10px;
+
+        .btn .rbn-button.p-button {
+            border-radius: 5px;
+            margin-left: 2px;
+            margin-right: 8px;
+        }
+    }
+
+    .message-text-container {
+        font-weight: unset;
+        color: $ribbon-dark-grey;
+        margin-left: 10px;
+    }
+
+    .message-text-detail {
+        margin-left: 27px;
+        width: calc(500px - 2rem);
+    }
+
+    .details-text-area-container {
+        height: 135px;
+        width: calc(500px - 2rem);
+        resize: both;
+        max-width: inherit;
+        overflow: scroll;
+        color: $ribbon-dark-grey;
+        white-space: nowrap;
+        border-top: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 5px solid transparent;
+        outline: 1px solid $ribbon-light-grey;
+        border-radius: 2px;
+    }
+
+    .showDetailsBtn {
+        margin-left: 5px;
+    }
+}

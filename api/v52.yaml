@@ -1,0 +1,997 @@
+openapi: 3.0.1
+
+
+info:
+  title: V5.2 Controller  Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+
+tags:
+  - name: "v5cfgmgr"
+    description: "Operations related to Audit Controller" 
+
+paths:
+
+          
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-interface:   
+                
+    put:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V52InterfaceStruct'
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-interface/{v52InterfaceId}:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: v52InterfaceId
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 
+                
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: v52InterfaceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V52InterfaceStruct'
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 
+                
+    delete:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: v52InterfaceId
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-all-interface:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+                
+       
+     
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-prov-template/{v5ProvId}:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: v5ProvId
+          in: path
+          required: true
+          schema:
+            type: string    
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+                
+    delete:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: v5ProvId
+          in: path
+          required: true
+          schema:
+            type: string     
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+    
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-prov-template:            
+    put:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5ProvTemplate'
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+                
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5ProvTemplate'      
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+                
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-prov-all-template:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+                
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-ring-template-list:
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+          
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'   
+                
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-ring-template-delete:      
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+         
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+    
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-ring-template:           
+    post:
+      tags:
+        - v5cfgmgr
+        
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5RingTemplate'   
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+    put:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5RingTemplate'       
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+     
+                
+    
+
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-ring-all-template:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrTimeoutException'
+
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-sig-template-list:
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string   
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-sig-template-delete:
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string         
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-sig-template:
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5SigTemplate'       
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+    put:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V5SigTemplate'       
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+    
+
+  /v5cfgmgrApi/v5cfgmgr/v1.0/v5-sig-all-template-sync:
+    get:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+                
+  /v5cfgmgrApi/v5cfgmgr/v1.0/carrier-interface-mapping/{gwName}/{wildcard}:
+    post:
+      tags:
+        - v5cfgmgr
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+        - name: wildcard
+          in: path
+          required: true
+          schema:
+            type: boolean
+            
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V5CfgMgrRespEvent'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'                    
+      
+
+components:
+
+  schemas:
+
+    LinkMap:
+      type: object
+      properties:
+        linkId:
+          type: string
+        epGrp:
+          type: string
+    V5SigTemplate:
+      type: object
+      properties:
+        v5sigid:
+          type: string
+        atten:
+          type: string
+        apa:
+          type: boolean
+        plf:
+          type: boolean
+        ds1flash:
+          type: boolean
+        eoc:
+          type: boolean
+        suppind:
+          type: string
+        plsdur:
+          type: string
+        mtrpn:
+          type: boolean
+        lroa:
+          type: string
+        lrosfd:
+          type: boolean
+        rngtype:
+          type: string
+        ssonhook:
+          type: boolean
+
+    V5RingTemplate:
+      type: object
+      properties:
+        v5ringid:
+          type: string
+        std:
+          type: string
+        r01:
+          type: string
+        r02:
+          type: string
+        r03:
+          type: string
+        r04:
+          type: string
+        r05:
+          type: string
+        r06:
+          type: string
+        r07:
+          type: string
+        r08:
+          type: string
+        r09:
+          type: string
+        r10:
+          type: string
+        r11:
+          type: string
+        r12:
+          type: string
+        r13:
+          type: string
+        r14:
+          type: string
+        r15:
+          type: string
+
+
+    LinkMaps:
+      type: array
+      items:
+        $ref: '#/components/schemas/LinkMap'
+
+    LCChnl:
+      type: object
+      properties:
+        lnk:
+          type: string
+        chnl:
+          type: string
+
+    LCChnls:
+      type: array
+      items:
+        $ref: '#/components/schemas/LCChnl'
+
+    CPaths:
+      type: array
+      items:
+        type: string
+
+    CChnLinF:
+      type: object
+      properties:
+        chnlid:
+          type: string
+        lcc:
+          $ref: '#/components/schemas/LCChnl'
+        cpathlist:
+          $ref: '#/components/schemas/CPaths'
+
+    CChnLinFs:
+      type: array
+      items:
+        $ref: '#/components/schemas/CChnLinF'
+
+    V5ProvTemplate:
+      type: object
+      properties:
+        v5provid:
+          type: string
+        bcctimer:
+          type: string
+        cchnlinflist:
+          $ref: '#/components/schemas/CChnLinFs'
+        prot1:
+          type: string
+        prot2:
+          $ref: '#/components/schemas/LCChnls'
+        alarmthreshold:
+          type: string
+
+    CarrierInterfaceMap:
+      type: object
+      properties:
+        carrier:
+          type: string
+        interfaceID:
+          type: integer
+
+    CarrierInterfaceMaps:
+      type: array
+      items:
+        $ref: '#/components/schemas/CarrierInterfaceMap'
+
+    V5CfgMgrResp:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/V52InterfaceStruct'
+        - $ref: '#/components/schemas/V5ProvTemplate'
+        - $ref: '#/components/schemas/V5SigTemplate'
+        - $ref: '#/components/schemas/V5RingTemplate'
+        - $ref: '#/components/schemas/Keys'
+        - $ref: '#/components/schemas/CarrierInterfaceMaps'
+        - type: object
+          properties:
+            no_data:
+              type: string
+
+    V52InterfaceStruct:
+      type: object
+      properties:
+        siteGwcLoc:
+          type: string
+        gwcId:
+          type: string
+        v52InterfaceId:
+          type: string
+        linkMapTable:
+          $ref: '#/components/schemas/LinkMaps'
+        maxlinesSelector:
+          type: string
+        maxlines:
+          type: string
+        v5ProvRef:
+          type: string
+        v5SigTableRef:
+          type: string
+        v5RingTableRef:
+          type: string
+
+    Keys:
+      type: array
+      items:
+        type: string
+
+
+
+    V5CfgMgrRespEvent:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum:
+            - ADD_V5IF
+            - DEL_V5IF
+            - MODIFY_V5IF
+            - LIST_V5IF
+            - LIST_ALL_V5IF
+            - ADD_V5PROV
+            - DEL_V5PROV
+            - MODIFY_V5PROV
+            - LIST_V5PROV
+            - LIST_ALL_V5PROV
+            - ADD_V5RG
+            - DEL_V5RG
+            - MODIFY_V5RG
+            - LIST_V5RG
+            - LIST_ALL_V5RG
+            - ADD_V5SG
+            - DEL_V5SG
+            - MODIFY_V5SG
+            - LIST_V5SG
+            - LIST_ALL_V5SG
+            - LIST_CARRIER
+        rc:
+          type: string
+          enum:
+            - V5CFGMGR_SUCCESSFUL
+            - V5CFGMGR_MORE_DATA
+            - V5CFGMGR_SYSTEM_BUSY
+            - V5CFGMGR_COMMANDED_ABORT
+            - V5CFGMGR_FAILED_GET_NV_DATA
+            - V5CFGMGR_FAILED_GWCEM_REGISTER
+            - V5CFGMGR_FAILED_SB_UPDATE
+            - V5CFGMGR_FAILED_XAC_REGISTER
+            - V5CFGMGR_INVALID_INPUT
+            - V5CFGMGR_ROLLBACK_FAILURE
+            - V5CFGMGR_ROLLBACK_SUCCESS
+        responseMsg:
+          type: string
+        responseData:
+          $ref: '#/components/schemas/V5CfgMgrResp'
+          
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+          
+    V5CfgMgrTimeoutException:
+      type: object
+      properties:
+        locator:
+          type: string
+
+

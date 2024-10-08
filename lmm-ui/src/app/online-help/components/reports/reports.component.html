@@ -1,0 +1,209 @@
+<div id="reports-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab [selected]="true">
+      <ng-template pTemplate="header">
+        <span
+          >Querying line gateways in a trouble state and viewing reports</span
+        >
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          This procedure describes how to perform a query on line gateways in a
+          trouble state, and view reports.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can configure a query to run on a daily or weekly basis at a
+          specific time. Refer to procedure “Configuring a query for line
+          gateways in a trouble state” in the
+          <em><a routerLink="/help/configuration">Configuration</a>.</em>
+        </p>
+        <p>Use this procedure to troubleshoot line gateways.</p>
+        <h4>Prerequisites</h4>
+        <p>
+          All Line Maintenance Manager (LMM) status fields must be Green (OK) in
+          order to perform a query.
+        </p>
+        <p-image
+          src="assets\images\status2.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong>1 </strong>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> On the <strong>Reports</strong> menu, click
+          <strong>Report Actions.</strong>
+        </p>
+        <p-image
+          src="assets\images\trouble_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>Proceed to step 4 to perform a query or proceed to step 7 to view reports.</p>
+        <p>
+          <strong>4 </strong>Click <b>Create On Demand Report</b> to perform a query. 
+        </p>
+        <p-image
+          src="assets\images\sel_gwc.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>5 </strong> Select the reachable gateway controller(s) of your choice, press <b>Add Selected</b> icon, or click the <b>Add All</b> icon to select all reachable gateway controllers, then click <b>Run</b>.
+        </p>
+        <p-image
+          src="assets\images\query_start.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+        <p>The system starts the query.</p>
+        <p-image
+          src="assets\images\progress.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>6</strong> After the query is completed, a success message will appear.
+        </p>
+        <p-image
+          src="assets\images\query_result.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong> 7</strong> Select a report from the list and click
+          <strong>the report’s name to view the report</strong>.
+        </p>
+        <p-image
+          src="assets\images\start_progress.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong> 8</strong> Click on the gateway controller of your choice to
+          display the associated gateways and their trouble state information.
+        </p>
+        <p>
+          <strong> Note:</strong>
+          From the <strong>Reports </strong>window, you can select other
+          reports as required. You can scroll through the list of gateways using
+          the <strong>Prev</strong> (previous) and
+          <strong>Next</strong> buttons.
+        </p>
+        <p-image
+          src="assets\images\query_report.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p-image
+          src="assets\images\query_report1.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          The gateway can be in any one of the following states:<br />
+          • GW OK<br />
+          • GW introuble<br />
+          • GW inservice trouble<br />
+          • GW disabled<br />
+          The “GW disabled” state has security details appended to it to quickly
+          determine if security is causing the gateway disabled condition. The
+          security details are as follows:
+        </p>
+        <p-image
+          src="assets\images\reports_table3.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>Note:</strong>
+          The policy ID numbers are only examples.
+        </p>
+        <p>
+          If the security details indicate a SECURE or FLEX-secure policy
+          without SAs, that is “0,0”, which represents the count of incoming and
+          outgoing SAs respectively, then security is likely involved and needs
+          to be verified. If a discard policy is provisioned, this will cause
+          all messaging to or from the gateway to be discarded, and will cause
+          the disabled state. If the gateway uses Dynamic Host Configuration
+          Protocol (DHCP), and it has not yet discovered its IP address, the
+          state of the gateway will be disabled with no security details.
+        </p>
+        <p>
+          <strong>9</strong> You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Configuring a query for line gateways in a trouble state</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          This procedure describes how to configure a query for line gateways in
+          a trouble state. Use this procedure to have queries run on a regular
+          basis and generate reports of line gateways in a trouble state. To
+          manually perform a query and view reports, refer to procedure
+          “Performing a query on line gateways in trouble state and viewing
+          reports” in the <a routerLink="/help/maintenance">LMM Maintenance</a>
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong> 1 </strong>On the <strong>Reports</strong> menu, click
+          <strong> Report Scheduling Options.</strong>
+        </p>
+        <p-image
+          src="assets\images\query_dialog.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><strong>2</strong> Enable the <b>Enable / Disable Scheduled Report checkbox</b>, then select the day(s) of the week, or click <b>Select All / Daily</b> to select weekly configuration. Then set the time, and click <b>Save</b>.</p>
+        <p-image
+          src="assets\images\query_configure.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong> You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+</div>

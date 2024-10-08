@@ -1,0 +1,110 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-4">
+        <p class="p-mb-2">The Controller panel provides data specific to the selected Gateway Controller. The
+            configuration data
+            displayed may not be changed, with the exception of the profile. A description of the fields are provided
+            below.
+        </p>
+        <div class="p-my-2">
+            <p-image src="assets/images/help/search/search_panel.jpg" alt="search_panel_img" width="600"
+                [preview]="true"></p-image>
+        </div>
+    </div>
+    <h3>Retrieval Criteria</h3>
+    <div class="p-mb-4">
+        <p>Enter search criteria in this field. The last twenty search strings are stored during the session. Previous
+            search strings may be re-called by selecting from the drop-down list.
+        </p>
+        <ul class="flex-row">
+            <div class="p-grid p-fluid p-col-6">
+                <li>One or more strings may be entered in the Retrieval Criteria,
+                    separated by space(s).
+                    Each string in the criteria is compared with the value in each column. If match is found
+                    in any column, the record will be returned.</li>
+                <li>Each string in the criteria is automatically wild carded at the beginning and ending of
+                    the string (e.g. a string of "gate" will match "MYGATEWAY", "GATEWAY1", etc...).</li>
+                <li>Two special characters are supported as modifiers.The plus "+" and minus "-" signs.
+                    <br>The "+" plus character prefixed to the string (e.g. "+gate") means the value must match.
+                    <br>The "-" character prefixed to the string (e.g. "-gate") means the value must not match.
+                    <br>The "+" character is assumed, so is not typically used.
+                </li>
+                <li>The search is not case specific. A string of "gate" will return records where the following
+                    strings are found: "MYGATEWAY", "MyGateway", or "mygateway".</li>
+            </div>
+        </ul>
+    </div>
+    <h3>Limit Results</h3>
+    <div class="p-mb-4">
+        <p>Specifies the number which limits the number of matching entries returned. You may select a value from the
+            list or enter a value directly in the field. The values in the list include: 25, 50, 100, 250, 500, 1000 and
+            No Limit. (Note: No limit is still limited by the maximum number of entries supported, which is 4096.)
+        </p>
+    </div>
+    <h3>Replace List</h3>
+    <div class="p-mb-4">
+        <p>Specifies the results returned should replace the existing data in the table. If no records matching the
+            search criteria are found, the contents of the table are cleared. This is the default selection.
+        </p>
+    </div>
+    <h3>Append to List</h3>
+    <div class="p-mb-4">
+        <p>Specifies the results returned should be appended to the existing data in the table. You may create a list of
+            unlike items by performing simple multiple searches, with this option selected.
+        </p>
+    </div>
+    <h3>Retrieve</h3>
+    <div class="p-mb-4">
+        <p>Retrieves data from the server matching the “Retrieval criteria”. The number of entries returned will not
+            exceed the value specified by “Limit results”. The data is a “snapshot” based on the currently provisioned
+            data. Newly added or deleted data will not be dynamically reflected in the list.
+        </p>
+    </div>
+    <h3>Retrieve All</h3>
+    <div class="p-mb-4">
+        <p>Retrieves all the data, up to the maximum of 4096 entries. Values in the “Retrieval criteria” and “Limit
+            results” are ignored. (Note: “Replace List” is automatically selected.)
+        </p>
+    </div>
+    <h2>Data Display</h2>
+    <div class="p-my-2">
+        <p-image src="assets/images/help/search/gateway_table.jpg" alt="gateway_table_img" width="600"
+            [preview]="true"></p-image>
+    </div>
+    <h3>List table</h3>
+    <div class="p-mb-4">
+        <p>This table displays the data matching the search criteria. Clicking a column header will sort the rows, in
+            ascending order, based on the values in that column. Clicking a header a second time will sort the rows in
+            descending order.
+        </p>
+        <rbn-panel-messages
+            [content]="'The data is not preserved once another Gateway Controller is selected. However, the retrieval criteria is maintained so the same search may be re-executed.'"
+            [typeOfMessage]="'info'"></rbn-panel-messages>
+    </div>
+    <h3>Number of results</h3>
+    <div class="p-mb-4">
+        <p>Indicates the total number of entries (rows) currently in the table.
+        </p>
+    </div>
+    <h2>Search Examples</h2>
+    <div class="p-mb-4">
+        <p>The following examples are using the Gateway panel:</p>
+        <p>Retrieval Criteria: "gate" <br>Expected Results: Returns all records where the string, or sub string is
+            found, in any column. <br>A match for the example string should only be found in the Gateway name column.
+        </p>
+        <p>
+            Retrieval Criteria: "aspen"<br>Expected Results: Returns all records where the string, or sub string is
+            found, in any column. <br>A match for the example string could be found in the Protocol column.
+        </p>
+        <p>
+            Retrieval Criteria: "47.108.2 -aspen" <br>Expected Results: Returns all records where the string, or sub
+            string, "47.108.2" is found in <br>any column (which should be the IP Address column) and the string "aspen"
+            is not found <br>(which should be the protocol field). Basically, the records returned should include all
+            Gateways <br>where the subnet equals "47.108.2" and the protocol is not Aspen.
+        </p>
+        <p>Keep in mind, a search string of "1" for example will return all records where a "1" is found in ANY column.
+            Since this value may be found in numerous columns (Gateway, IP Address and Logical Group columns for Gateway
+            searches) it is likely to match a lot of records, so a more detailed string is suggested.</p>
+    </div>
+</p-panel>

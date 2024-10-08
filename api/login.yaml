@@ -1,0 +1,343 @@
+openapi: 3.0.1
+
+
+info:
+  title: Authentication REST API Definition
+  version: 1.0.0
+  
+tags:
+ - name: "Authentication"
+   description: "Operations related to Authentication"
+   
+paths:
+
+  /LoginApi/auth-service/v1.0/session:
+    post:
+      tags:
+        - Authentication
+        
+      description: Login with username and password
+   
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              name: cmtg
+              password: cmtg
+        
+      responses:
+        '200':
+          description: Success 
+          content:
+            application/json:
+              schema:
+                type: string
+                example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+                   
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+    put:
+      tags:
+        - Authentication
+      description: "Refresh user session via sessionId"
+     
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+            example:
+              sessionId: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      responses:
+        '200':
+          description: Success 
+          content:
+            application/json:
+              schema:
+                type: string
+                example: SUCCESS
+              example: SUCCESS               
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+                     
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'  
+                
+  /LoginApi/auth-service/v1.0/session/{sessionId}:
+    delete:
+      tags:
+        - Authentication
+      description: Logout and terminate session   
+      parameters:    
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: Success 
+          content:
+            application/json:
+              schema:
+                type: string
+                example: SUCCESS
+              example: SUCCESS               
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+                      
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /LoginApi/auth-service/v1.0/session/time-out:
+    get:
+      tags:
+        - Authentication
+      description: Timeout value for sessions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example: 86400;600;30
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+                 
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              
+  /LoginApi/auth-service/v1.0/session/permission/{sessionId}: 
+    get:
+      tags:
+        - Authentication
+      description: "Get permissons for the user"
+      parameters:    
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subject'
+              example:
+                principals:
+                  - name: cmtg
+                  - name: 10.2.32.1
+                  - name: faultadm
+                  - name: faultread
+                  - name: configadm
+                  - name: configread
+                  - name: acctread
+                  - name: acctadm
+                  - name: perfadm
+                  - name: swadm
+                  - name: users    
+                readOnly: false
+                publicCredentials: []
+                privateCredentials: []
+                
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 
+              
+  /LoginApi/auth-service/v1.0/session/validation/{sessionId}:
+    get:
+      tags:
+        - Authentication
+      description: "Check user session"
+      operationId: checkSession
+      parameters:    
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      responses:
+        '200':
+          description: Success 
+          content:
+            application/json:
+              schema:
+                type: string
+                example: FAILURE
+              example: SUCCESS               
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'           
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+        '404':
+          description: Invalid request
+                   
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /LoginApi/auth-service/v1.0/cm-clli: 
+    get:
+      tags:
+        - Authentication
+      description: CLLI information    
+      operationId: cm-clli
+
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              example: CO24
+             
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+              
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: null
+        password:
+          type: string
+          example: null
+      example: null
+      
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+          
+    Session:
+      required:
+       - sessionId
+      properties:
+       sessionId:
+        type: string
+        
+        
+    Subject:
+      type: object
+      properties:
+        principals:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+        readOnly:
+          type: boolean
+          example: false
+        publicCredentials:
+          type: array
+          items: {}
+          example: []
+        privateCredentials:
+          type: array
+          items: {}
+          example: []

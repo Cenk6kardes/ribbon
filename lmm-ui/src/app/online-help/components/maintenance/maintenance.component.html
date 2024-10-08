@@ -1,0 +1,811 @@
+<div id="maintenance-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab [selected]="true">
+      <ng-template pTemplate="header">
+        <span>Posting a line by directory number</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to post a line by its directory number (DN) so you
+          can perform maintenance on the line.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using the Line Maintenance
+          Manager (LMM). V5.2 line maintenance is performed using the C20 MAPCI
+          interface.
+        </p>
+        <p>
+          Since the C20 supports both legacy DMS TDM lines as well as Succession
+          lines, TDM lines can be posted on LMM and maintenance operations like
+          BSY/RTS/FRLS/INB can be performed; however, the CS Line State column
+          will not be displayed accurately. The Endpoint State column will show
+          "Legacy Line" and the GW Profile column and all properties not
+          applicable to TDM lines will display as "Not Available".
+        </p>
+        <p>
+          When using hunt groups, you can only post the primary DN using the
+          Line Maintenance Manager. You cannot perform line maintenance
+          operations on all members of a hunt group using the LMM. If you need
+          to perform line maintenance on all members of a hunt group, use the
+          C20 MAPCI interface. For details, refer to the DMS-100 Family National
+          ISDN BRI Service Implementation Guide, 297-2401-201.
+        </p>
+        <p>
+          All Line Maintenance Manager (LMM) status fields must be Green (OK) in
+          order to post lines.
+        </p>
+        <p-image
+          src="assets\images\status2.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <h4>Action</h4>
+        <p>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p><strong>1 </strong>Access the LMM GUI.</p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong>2</strong> Select <strong>Post DN</strong>, enter the
+          directory number, and click <strong>Post</strong>.
+        </p>
+        <p-image
+          src="assets\images\postbutton.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>You have completed this procedure.</p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Post by Gateway Name</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to post one or more lines by providing a
+          provisioned line gateway name. Use this procedure after adding a
+          gateway and provisioning lines. Post by gateway is supported for
+          gateways that support NCS and MGCP protocol.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager
+          (LMM). V5.2 line maintenance is performed using the C20 MAPCI
+          interface. Only line gateways can be posted.
+        </p>
+        <p>
+          Users may be able to perform this operation on gateways using H.248,
+          TGCP protocols and get correct CS state information. However the
+          endpoint state information will show 'unsupported Gateway'.
+        </p>
+        <p>
+          The following prerequisites apply to posting one or more lines by
+          gateway:
+        </p>
+        <p>
+          • The associated gateway must be provisioned with endpoints in the C20
+          GWC Manager database<br />
+          • All LMM status fields must be Green (OK) in order to post lines.
+        </p>
+        <p-image
+          src="assets\images\status2.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>Launch the Line Maintenance Manager (LMM) GUI. Refer to
+          procedure Launching C20 Management Tools client applications in this
+          document, if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong>2</strong> Select <strong>Post DN</strong>, enter the
+          directory number, and click <strong>Post</strong>.
+        </p>
+        <p-image
+          src="assets\images\postbutton2.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          • Partial query is supported here.User can only input one part of the
+          gateway name, system will retrieve all the gateways that match the
+          input and pop-up a box to let users to select.<br />
+          • If only one gateway is matched, system will use this gateway and not
+          pop-up the select box.
+        </p>
+        <p-image
+          src="assets\images\lmm_selectgw.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p-image
+          src="assets\images\lmm_selectgw1.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>You have completed this procedure.</p>
+        <h4>Additional information</h4>
+        <p>
+          When post-by-gateway is selected on the LMM GUI, the line state at the
+          CM is displayed. A on-demand audit to identify the state of the
+          endpoint on the gateway is also done through the GWC and the endpoint
+          state is displayed at the LMM GUI Endpoint State field. This audit is
+          done in a protocol independent manner by the LMM. Any errors produced
+          during the posting activity will be displayed on the status panel
+          shown below
+        </p>
+        <p-image
+          src="assets\images\statustext.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          A list of currently supported LMM GUI error codes with descriptions is
+          shown in the following table.
+        </p>
+        <p-image
+          src="assets\images\maintenance_table1.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Selecting gateway to post</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong>1 </strong>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong>2</strong> Select <strong>Select Gateway to Post</strong>
+          , following pop-up screen will appear.
+        </p>
+        <p-image
+          src="assets\images\lmm_selectgw.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p-image
+          src="assets\images\lmm_selectgw1.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong>
+          Enter the name of the gateway or select a gateway from the list. Then
+          click <strong>Post</strong>.
+        </p>
+        <p>
+          • Partial query is supported here.User can only input one part of the
+          gateway name, system will retrieve all the gateways that match the
+          input and pop-up a box to let users to select.
+        </p>
+        <p><b>4 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Busying a line</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to busy (BSY) a line and put it into a maintenance
+          busy (MB) state. Once busied, the line cannot perform call processing
+        </p>
+        <p>
+          Use this procedure during maintenance or alarm clearing activities.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be posted. Refer to procedures Posting a line by gateway
+          or Posting a line by directory number in this document, if required.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong>2</strong> Select the DN you want to busy, then from the
+          <strong>Action</strong> column, click <strong>BSY</strong>, or select
+          the row of the DN and click <strong>Bulk Action</strong> and click
+          <strong>BSY</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can make multiple selections in table and do Bulk Action.
+        </p>
+        <p-image
+          src="assets\images\busy_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>3 </b>
+          Observe that the selected DN(s) are put into a maintenance busy (MB)
+          state as shown below.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          The line state will be CPD if the original line state was CPB prior to
+          Busy.
+        </p>
+        <p-image
+          src="assets\images\status_busy.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>4 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Installation busying a line</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to set a line to the installation busy (INB) state.
+        </p>
+        <p>
+          Use this procedure during maintenance and fault clearing activities.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be posted. Refer to procedures Posting a line by gateway
+          or Posting a line by directory number in this document, if required.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to installation busy, then
+          from the <strong>Action</strong> column, click <strong>INB</strong>,
+          or select the row of the DN and click <strong>Bulk Action</strong> and
+          click <strong>INB</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can make multiple selections in table and do Bulk Action.
+        </p>
+        <p-image
+          src="assets\images\inb_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>3 </b>
+          Observe that the selected DN(s) are put into a maintenance busy (MB)
+          state as shown below.
+        </p>
+        <p-image
+          src="assets\images\status_inb.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>4 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span> Force releasing a line </span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to force release (FRLS) a line, putting it into a
+          maintenance busy (MB) state.
+        </p>
+        <p>Use this procedure if GENBAND support personnel indicate its use.</p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be posted. Refer to procedures Posting a line by gateway
+          or Posting a line by directory number in this document, if required.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong>2</strong> Select the DN you want to force a release on, then
+          from the <strong>Action</strong> column, click <strong>FRLS</strong>,
+          or right-click on the selected DN then click <strong>FRLS</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can make multiple selections in table and do Bulk Action
+        </p>
+        <p-image
+          src="assets\images\frls_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong> Click<strong> OK</strong> to confirm the force
+          release of the line(s).
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          The call will be dropped if there was a call on the selected DN.
+        </p>
+        <p-image
+          src="assets\images\frls_warning.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>4 </b>Observe that the selected DN(s) are put into an maintenance
+          busy (MB) state as indicated in the following figure.
+        </p>
+        <p-image
+          src="assets\images\status_inb.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>5 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Returning a line to service </span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to return a busied line to service (RTS). Once
+          returned to service, the line can then perform call processing.
+        </p>
+        <p>
+          Use this procedure after maintenance has been performed on a busied
+          line.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be in a maintenance busy (MB) state. Refer to procedure
+          Busying a line in this document, if required.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to return to service, then
+          from the <strong>Action</strong> column, click <strong>RTS</strong>,
+          or right-click on the selected DN then click <strong>RTS</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can make multiple selections in table and do Bulk Action.
+        </p>
+        <p-image
+          src="assets\images\rts_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong>
+          Observe that the state of the selected DN(s) is changed from
+          maintenance busy (MB) to idle (IDL) as shown below.
+        </p>
+        <p-image
+          src="assets\images\status_idl.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>4 </b>
+          You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Querying a directory number </span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to return a busied line to service (RTS). Once
+          returned to service, the line can then perform call processing.
+        </p>
+        <p>
+          Use this procedure to view directory number information about a
+          selected line.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to return to service, then
+          from the <strong>Action</strong> column, click <strong>QDN</strong>,
+          or select the row of the DN and click <strong>Bulk Action</strong> and
+          click <strong>QDN</strong>.
+        </p>
+        <p-image
+          src="assets\images\qdn_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong>
+          The Query DN window opens.
+        </p>
+        <p-image
+          src="assets\images\qdn_state.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>4 </b>
+          You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Querying a SIP line</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to view information about a selected SIP line,
+          including user data, line data, and call data.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          This procedure can be used only on SIP lines. If you try to run the
+          QSIP feature on a non-SIP line, an error message is displayed.
+        </p>
+        <p-image
+          src="assets\images\qsip_warning.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to return to service, then
+          from the <strong>Action</strong> column, click <strong>QSIP</strong>,
+          or select the row of the DN and click <strong>Bulk Action</strong> and
+          click <strong>QSIP</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can make multiple selections in table and do Bulk Action.
+        </p>
+        <p-image
+          src="assets\images\qsip_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong>
+          The Query SIP window opens.
+        </p>
+        <p-image
+          src="assets\images\qsip_result.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>4 </b>
+          You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Clearing one or more posted lines from the display</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to remove a directory number (DN) from the list of
+          posted DNs.
+        </p>
+        <p>
+          Use this procedure before performing maintenance on a posted set of
+          lines or when the posted lines no longer need to be monitored.
+        </p>
+        <h4>Restrictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be posted. Refer to procedures Posting a line by gateway
+          or Posting a line by directory number in this document, if required.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong>1 </strong>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to remove from the display
+          of posted lines, then on the <strong>Actions</strong> menu, click
+          <strong>Clear</strong>, or right-click on the selected DN then click
+          <strong>Clear</strong>.
+        </p>
+        <p>
+          <strong> Note:</strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can use the <strong>Shift</strong> key to select multiple
+          lines consecutively, or the <strong>Ctrl</strong> key to select
+          multiple lines non-consecutively.
+        </p>
+        <p>
+          <b>3 </b>Observe that the selected DN(s) are cleared from the list as
+          shown below.
+        </p>
+        <p>
+          <strong> Note:</strong>
+          To clear all posted DN, click <strong>Clear All</strong>.
+        </p>
+        <p-image
+          src="assets\images\clear_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>4 </b>You have completed this procedure.</p>
+        <p-image
+          src="assets\images\idl.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Retrieving line properties </span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to retrieve and display the line properties for a
+          selected directory number (DN) or group of DNs.
+        </p>
+        <h4>Restictions</h4>
+        <p>
+          V5.2 line maintenance is not supported using Line Maintenance Manager.
+          V5.2 line maintenance is performed using the C20 MAPCI interface
+        </p>
+        <h4>Prerequisites</h4>
+        <p>
+          The line must be posted. Refer to procedures Posting a line by gateway
+          or Posting a line by directory number in this document, if required
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>
+          Launch the Line Maintenance Manager (LMM) GUI. Refer to procedure
+          Launching C20 Management Tools client applications in this document,
+          if required.
+        </p>
+        <p>
+          <b><em>At the LMM GUI</em></b>
+        </p>
+        <p>
+          <strong> 2</strong> Select the DN you want to view the properties for,
+          then on the <strong>Actions</strong> menu, click
+          <strong>Properties</strong>, or right-click on the selected DN then
+          click <strong>Properties</strong>.
+        </p>
+        <p>
+          <strong> Note:</strong>
+          You can perform this operation on one or more posted lines at the same
+          time. You can use the <strong>Shift</strong> key to select multiple
+          lines consecutively, or the <strong>Ctrl</strong> key to select
+          multiple lines non-consecutively.
+        </p>
+        <p-image
+          src="assets\images\properties_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>3</strong> Click <strong>Close</strong> to close the
+          Properties window.
+        </p>
+        <p-image
+          src="assets\images\properties.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <b>4 </b>
+          You have completed this procedure.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+</div>

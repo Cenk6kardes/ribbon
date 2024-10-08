@@ -1,0 +1,27 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <div class="container">
+        <form [formGroup]="form">
+            <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.TGRP.TITLE' | translate}}</h4>
+            <div class="flex-row">
+                <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                    <div class="p-col-2">
+                        <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.TGRP.FIELDS.TGRP' |
+                            translate}}:</label>
+                    </div>
+                    <div class="p-col-4">
+                        <p-inputSwitch (onChange)="handleSwitch($event.checked)" formControlName="tgrp"
+                            class="rbn-switch"></p-inputSwitch><span class="font-bold p-pl-2">
+                            {{switchButton | translate}}</span>
+                    </div>
+                    <div class="p-col-2"><label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.TGRP.FIELDS.TGRP_NAME'
+                            |
+                            translate}}:</label></div>
+                    <div class="p-col-4 ">
+                        <p-dropdown [placeholder]="'COMMON.SELECT' | translate" appendTo="body"
+                            formControlName="tgrpName" [options]="tgrpOptions" [styleClass]="'full-width'"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-panel>

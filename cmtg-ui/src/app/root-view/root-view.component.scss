@@ -1,0 +1,6 @@
+::ng-deep {
+  // ignore id=AuditTab
+  .container-aside--menu-container > div:not(#AuditTab) ul.group rbn-sidebar-items:first-child {
+    display: none; // We hide the first child of the sidebar to succeed the same ui on wiki
+  }
+}

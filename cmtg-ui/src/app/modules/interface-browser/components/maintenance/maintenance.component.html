@@ -1,0 +1,9 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-tabView class="rbn-tabs">
+    <p-tabPanel header="{{ 'INTERFACE_BROWSER.MAINTENANCE.TABS.INTERFACE_TO_CARRIER' | translate }}">
+        <app-interface-to-carrier></app-interface-to-carrier>
+    </p-tabPanel>
+    <p-tabPanel header="{{ 'INTERFACE_BROWSER.MAINTENANCE.TABS.CARRIER_TO_INTERFACE' | translate }}">
+        <app-carrier-to-interface></app-carrier-to-interface>
+    </p-tabPanel>
+</p-tabView>

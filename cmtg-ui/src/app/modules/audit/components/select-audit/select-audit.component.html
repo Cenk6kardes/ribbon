@@ -1,0 +1,62 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<form [formGroup]="auditForm">
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <div class="container-description">
+      <p-accordion expandIcon='pi pi-fw pi-chevron-up' class="statusLog">
+        <p-accordionTab [header]="'AUDIT.FIELD_LABEL.AUDIT_DESCRIPTION' | translate" [selected]="true">
+          <div class="container-accordion">
+            <pre>{{getFormFieldAuditDescription?.value}}</pre>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </p-panel>
+  <p-panel [showHeader]="false" class="rbn-panel" *ngIf="!auditForm.get('auditV52')">
+    <h2
+      [innerHTML]="scheduleDefaultValue ? ('AUDIT.HEADER.SCHEDULED_AUDIT' | translate) : 'AUDIT.HEADER.NEW_AUDIT' | translate">
+    </h2>
+    <div class="p-mb-3"
+      [innerHTML]="scheduleDefaultValue ? ('AUDIT.MESSAGE.SCHEDULED_AUDIT_INFO' | translate) : 'AUDIT.MESSAGE.SCHEDULE_NEW_AUDIT_INFO' | translate">
+    </div>
+    <app-c20-data-integrity-audit *ngIf="auditForm.get('auditComponent')"
+      nameControl="auditComponent"
+      [isSessionServerConnected]="isSessionServerConnected" 
+      (statusConfigurationToSave)="handleStatusConfigurationToSave($event)"
+      (statusConfigurationToRun)="handleStatusConfigurationToRun($event)">
+    </app-c20-data-integrity-audit>
+    <app-line-data-integrity-audit *ngIf="auditForm.get('auditConfiguration')" nameControl="auditConfiguration"
+      [integrityAuditDefault]="lineDataIntegrityConfig.integrityAuditDefault"
+      (statusConfigurationToSave)="handleStatusConfigurationToSave($event)"
+      (statusConfigurationToRun)="handleStatusConfigurationToRun($event)">
+    </app-line-data-integrity-audit>
+    <app-trunk-data-integrity-audit *ngIf="auditForm.get('auditTrunk')"></app-trunk-data-integrity-audit>
+    <app-small-line-data-integrity-audit *ngIf="auditForm.get('auditSmallLine')"></app-small-line-data-integrity-audit>
+  </p-panel>
+  <app-schedule-for-later #templateScheduleForLater (statusScheduleToSave)="handleStatusScheduleToSave($event)"
+    (evOnChangesScheduleType)="handleEvOnChangesScheduleType($event)"></app-schedule-for-later>
+  <div>
+    <div class="form-footer p-grid p-col-12">
+      <div class="btn">
+        <p-button type="button" styleClass="rbn-button rbn-button-tertiary" [label]="'COMMON.CANCEL' | translate"
+          (onClick)="doGetAuditConfiguration()"></p-button>
+      </div>
+      <div class="btn">
+        <p-button *ngIf="showBtnRun" type="button" styleClass="rbn-button rbn-button-primary" [label]="'COMMON.RUN' | translate"
+          (onClick)="showConfirmRunAuditNow(true)" [disabled]="invalidScheduleToRun || invalidConfigurationToRun"></p-button>
+      </div>
+      <div class="btn">
+        <p-button *ngIf="showBtnSave" type="button" styleClass="rbn-button rbn-button-primary" [label]="'COMMON.SAVE' | translate"
+          (onClick)="doSaveDataAudit()" [disabled]="invalidScheduleToSave || invalidConfigurationToSave"></p-button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-summary-audit *ngIf="auditSummary.showAuditSummary" [processData]="auditSummary.progressBarData"
+  [summary]="auditSummary.summary" (eventAbort)="showConfirmAbort($event)"
+  [auditName]="auditSummary.auditName"></app-summary-audit>
+<rbn-confirm-dialog *ngIf="confirmRunAudit.isShowConfirmDialog" [title]="confirmRunAudit.title"
+  [content]="confirmRunAudit.content" [isShowConfirmDialog]="confirmRunAudit.isShowConfirmDialog"
+  (emitConfirm)="confirmRunAudit.handleAccept.bind(this)($event)" [titleAccept]="confirmRunAudit.titleAccept"
+  [titleReject]="confirmRunAudit.titleReject" [hideReject]="confirmRunAudit.hideReject || false"></rbn-confirm-dialog>

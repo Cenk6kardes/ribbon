@@ -1,0 +1,5 @@
+#//registry.npmjs.org/:_authToken=7faffa98-77f9-45f9-a686-1b40e8933a8b
+registry=https://artifactory-tx.rbbn.com/artifactory/api/npm/ribbon_common-npm-prod-plano/
+_auth=cmVhZG9ubHk6QVBOYWt3Q2doM04xaDk1VDZaZDNpRmtjUDE=
+email=readonly@readonly.com
+always-auth=true

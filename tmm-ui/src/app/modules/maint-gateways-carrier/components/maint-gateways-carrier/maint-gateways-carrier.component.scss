@@ -1,0 +1,61 @@
+@import "ribbontheme/variables";
+
+#maintenance-container::ng-deep {
+  label {
+    font-weight: bold;
+  }
+
+  .p-accordion .p-accordion-header .p-accordion-header-link {
+    border: 1px solid $borderLighterGrey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .rbn-field {
+    min-width: auto;
+
+    >input {
+      height: 37px;
+    }
+
+    .p-dropdown {
+      min-width: auto;
+    }
+  }
+
+  rbn-pick-list {
+    .p-datatable-thead {
+      display: none;
+    }
+  }
+
+  .note-force-release {
+    color: $ribbon-dark-red;
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  .endpoint-range {
+    position: relative;
+
+    div.p-tooltip.p-component.p-tooltip-bottom {
+      min-width: 250px;
+      line-height: 1.2;
+    }
+  }
+}
+
+.container-pick-list {
+  width: 100%;
+}
+
+.refresh-time {
+  position: fixed;
+  bottom: 0px;
+  width: calc(100% - 322px);
+  background-color: $ribbon-lighter-grey;
+  box-shadow: 0px -3px 5px 0px $ribbon-light-grey;
+  text-align: center;
+  border-top: 1px solid $ribbon-light-grey;
+  padding: 5px 0;
+}

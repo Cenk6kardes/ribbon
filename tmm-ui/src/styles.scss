@@ -1,0 +1,32 @@
+@import "ribbontheme/variables";
+
+body {
+  margin: 0;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  &.menu-collapsed {
+    .container-statusLogs {
+      width: calc(100% - 60px);
+    }
+  }
+  .validators-required::after {
+    content: "*";
+    color: $ribbon-red;
+    margin-left: 1px;
+  }
+  .rbn-container {
+    .right-content {
+      min-width: 800px;
+      .rbn-field .p-disabled {
+        border-color: unset;
+      }
+    }
+  }
+  #detail-bulk-action .p-dropdown-item {
+    white-space: nowrap;
+  }
+
+  pre {
+    font-family: $fontFamily;
+  }
+}

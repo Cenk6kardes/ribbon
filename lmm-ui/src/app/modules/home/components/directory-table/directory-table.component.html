@@ -1,0 +1,35 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<rbn-table [cols]="cols" [data]="data" [showFilterRow]="false" [selectedRows]="selectedRows" [tableConfig]="tableConfig"
+  (linkClickField)="handleLinkClickDirectory($event)" (refreshData)="refreshTable()"
+  (rowSelect)="onCheckboxChange($event)" (rowUnselect)="onCheckboxChange($event)" (dataChange)="dataTableChange($event)"
+  (pageChangeClient)="handlePageChangeClient()"
+  (filter)="handleFilter()"
+  (sortClient)="handleSortClient()"
+  #rbnTableDirectory></rbn-table>
+<ng-template #bulkAction>
+  <div class="bulk-actions">
+    <p-dropdown [options]="bulkActions" (onChange)="callAction($event.value)"
+      [placeholder]="'COMMON.BULK_ACTIONS' | translate" [disabled]="selectedRows.length === 0"
+      [autoDisplayFirst]="false" [(ngModel)]="selectedAction" [optionLabel]="'label'">
+      <ng-template let-bulkActionItem pTemplate="item">
+        <div>
+          <div [pTooltip]="bulkActionItem.description" [tooltipStyleClass]="'rbn-tooltip'">{{bulkActionItem.label}}
+          </div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+</ng-template>
+
+<rbn-confirm-dialog [title]="warningDialogData.title" [content]="warningDialogData.content"
+  [isShowConfirmDialog]="displayWarningDialog" (emitConfirm)="continueProcess($event)">
+</rbn-confirm-dialog>
+
+<!-- dialog info -->
+<p-dialog class="rbn-dialog" [header]="infoDialogData.title" [(visible)]="displayInfoDialog" [modal]="true">
+  <div>{{infoDialogData.content}}</div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="displayInfoDialog = false"></p-button>
+  </p-footer>
+</p-dialog>

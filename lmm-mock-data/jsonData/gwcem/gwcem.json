@@ -1,0 +1,646 @@
+{
+  "gatewaysList": [
+    "med24softph",
+    "ncsco24.netas.com.tr",
+    "co24mediatrix1124",
+    "mstest"
+  ],
+  "gatewaysData": {
+    "name": "sipvmgssl24",
+    "ipAddress": "47.165.158.121",
+    "type": "large",
+    "extNodeNumber": -1,
+    "protocol": "mgcp",
+    "protVers": "0.0",
+    "protPort": 7060,
+    "heartbeat": 6,
+    "connSel": "0",
+    "profile": 75,
+    "pepServerName": "NOT_SET",
+    "middleBoxName": "NOT_SET",
+    "itransRootMiddleboxNames": [],
+    "algName": "TEST_SET",
+    "defaultDomainName": "NOT_SET",
+    "applicationData": []
+  },
+  "GWCDevices": [
+    { "gwcAlias": "GWC-1", "gwcStatus": true },
+    { "gwcAlias": "GWC-0", "gwcStatus": false },
+    { "gwcAlias": "GWC-3", "gwcStatus": true }
+  ],
+  "filePropertiesData" : [
+    {
+      "key": "ptm.smallline.endpointname.flexenabled",
+      "value": "TRUE"
+    },
+    {
+      "key": "TRIM_CORE_PROMPT_ON_ERROR",
+      "value": "no"
+    },
+    {
+      "key": "ossgate.ssh.port_forward",
+      "value": "no"
+    },
+    {
+      "key": "cmtg.dbhost",
+      "value": "oamdb00"
+    },
+    {
+      "key": "ptm.base.pa.eidGenerationMask",
+      "value": "99(4) 0(2) $PORT(2) $ADDR(4)"
+    },
+    {
+      "key": "xa.logging",
+      "value": "FALSE"
+    },
+    {
+      "key": "ptm.base.proxy.f.path",
+      "value": "pa_db"
+    },
+    {
+      "key": "MCSEMStubsLatest",
+      "value": "/run/opt/corp/cmtg/6.0.0/sesm/jars/MCSEMStubs.jar"
+    },
+    {
+      "key": "ptm.nodeprov.autoprov",
+      "value": "ON"
+    },
+    {
+      "key": "ptm.gwcem.dataSynchAuditDelay",
+      "value": "600"
+    },
+    {
+      "key": "CM_LOGIN_PORT",
+      "value": "23"
+    },
+    {
+      "key": "ptmdebug.logfilename",
+      "value": "ptmdebuglog"
+    },
+    {
+      "key": "CallServerName",
+      "value": "undefined"
+    },
+    {
+      "key": "ptm.base.pa.engineid",
+      "value": "PROXY_ENGINE"
+    },
+    {
+      "key": "ptm.base.proxy.dbType",
+      "value": "jdbc"
+    },
+    {
+      "key": "CM_IP",
+      "value": "10.254.146.12"
+    },
+    {
+      "key": "a2.audit.user",
+      "value": "undefined"
+    },
+    {
+      "key": "cbm.audit.user",
+      "value": "undefined"
+    },
+    {
+      "key": "cm.audit.volume",
+      "value": "undefined"
+    },
+    {
+      "key": "ptm.gwcem.keepFileAfterRecovery",
+      "value": "true"
+    },
+    {
+      "key": "ossgate.login.password_control",
+      "value": "off"
+    },
+    {
+      "key": "MULTI_PART_SIZE",
+      "value": "4096"
+    },
+    {
+      "key": "SIPLOC_CASE_SENSITIVE",
+      "value": "YES"
+    },
+    {
+      "key": "ptm.gwcem.ipsecSAPostedNumber",
+      "value": "10"
+    },
+    {
+      "key": "ptm.base.dcePassword",
+      "value": "user1"
+    },
+    {
+      "key": "BACKUP_PATH_ENABLED",
+      "value": "TRUE"
+    },
+    {
+      "key": "MCSEMStubs.14.0",
+      "value": "/run/opt/corp/cmtg/6.0.0/sesm/jars/MCSEMStubs.jar"
+    },
+    {
+      "key": "ptm.base.proxy.f.backup.directory",
+      "value": "./"
+    },
+    {
+      "key": "ptm.gwcem.gwc.profile.flowthrough",
+      "value": "LINE_TRUNK_AUD_NA,LINE_TRUNK_AUD_INTL"
+    },
+    {
+      "key": "ptmdebug.maxnumfiles",
+      "value": "50"
+    },
+    {
+      "key": "cicm.em.primary.url",
+      "value": "undefined"
+    },
+    {
+      "key": "alarm.eventbuffer",
+      "value": "250"
+    },
+    {
+      "key": "ptm.base.pa.discovery.retry",
+      "value": "1"
+    },
+    {
+      "key": "ptm.base.dceUserID",
+      "value": "user1"
+    },
+    {
+      "key": "MCSEMStubs.12.0",
+      "value": "/run/opt/corp/cmtg/6.0.0/sesm/jars/MCSEMStubs.jar"
+    },
+    {
+      "key": "ptmdebug.palv",
+      "value": "FATAL"
+    },
+    {
+      "key": "ossgate.telnet.primary_port",
+      "value": "10023"
+    },
+    {
+      "key": "sam21.em.ip",
+      "value": "127.0.0.1"
+    },
+    {
+      "key": "ptm.base.pa.version",
+      "value": "1.3"
+    },
+    {
+      "key": "CM_LOGIN_RETRY_INTERVAL",
+      "value": "30"
+    },
+    {
+      "key": "siren.sc.maxconns",
+      "value": "10"
+    },
+    {
+      "key": "ptmdebug.filerot",
+      "value": "SESMSizeLog"
+    },
+    {
+      "key": "MCSEMStubs.10.3",
+      "value": "/run/opt/corp/cmtg/6.0.0/sesm/jars/MCSEMStubs.jar"
+    },
+    {
+      "key": "A2_PROV_OVLD",
+      "value": "NO"
+    },
+    {
+      "key": "ptm.gwcem.trapPort",
+      "value": "3162"
+    },
+    {
+      "key": "OPIVersion",
+      "value": "14.0"
+    },
+    {
+      "key": "ossgate.pm.interval",
+      "value": "15"
+    },
+    {
+      "key": "mcsmtcmgr.em.backup.url",
+      "value": "https://47.168.105.75:12121/omi/services"
+    },
+    {
+      "key": "ptm.base.oracleServerIP",
+      "value": "169.254.8.17"
+    },
+    {
+      "key": "cm.market",
+      "value": "INTL"
+    },
+    {
+      "key": "cmtg.dbport",
+      "value": "5433"
+    },
+    {
+      "key": "CM_SERVORD_CMDS",
+      "value": "ABNN,ADA,ADD,ADDPH,ADO,BULK,CAPSORD,CBLKDN,CDN,CHAPH,CHDN,CHF,CHG,CHL,CICP,CISG,CKLN,CLN,CLTG,COPYSET,DBNN,DEA,DEL,DELCF,DELPH,DEO,DSP,EST,EXBADD,EXBADO,EXBCHG,EXBDELG,EXBDELM,EXBDEO,EXBEST,NEW,NEWACD,NEWDN,OUT,OUTDN,PLP,RES,RESGRP,SADO,SDEO,SDNA,SETPH,SLT,SUS,SUSGRP,SWAP,SWLT"
+    },
+    {
+      "key": "nodeprov.lgrp.percentage",
+      "value": "10"
+    },
+    {
+      "key": "ptm.base.proxy.f.backup.interval",
+      "value": "86400000"
+    },
+    {
+      "key": "CM_TELNET_ENABLED",
+      "value": "true"
+    },
+    {
+      "key": "ptm.base.proxy.j.driver",
+      "value": "org.postgresql.Driver"
+    },
+    {
+      "key": "a2.audit.dir",
+      "value": "undefined"
+    },
+    {
+      "key": "mcsprovmgr.em.primary.url",
+      "value": "https://47.168.105.72:8443/prov/services/OPI"
+    },
+    {
+      "key": "ptm.base.pa.trapPort",
+      "value": "162"
+    },
+    {
+      "key": "MCPVersion",
+      "value": "14.0"
+    },
+    {
+      "key": "mcsmtcmgr.em.omiclient",
+      "value": "undefined"
+    },
+    {
+      "key": "ptm.jdbc.url",
+      "value": "jdbc:postgresql://169.254.8.17:5433/pfs"
+    },
+    {
+      "key": "ptm.gwcem.sendPort",
+      "value": "161"
+    },
+    {
+      "key": "ptm.gwcem.ipSecEnabled",
+      "value": "true"
+    },
+    {
+      "key": "KeepAliveInterval",
+      "value": "86400000"
+    },
+    {
+      "key": "mcsprovmgr.em.opi.connection.max",
+      "value": "5"
+    },
+    {
+      "key": "ptm.base.pa.port",
+      "value": "161"
+    },
+    {
+      "key": "TOTAL_SESSION_NUM",
+      "value": "10"
+    },
+    {
+      "key": "CM_USERS",
+      "value": "DNC01@a0e5f197fbe11bda@0;DNC02@c19eff4af22dbf77@0;DNC03@b0bae79073ad7bf3@0;DNC04@cdecd6296394a718@0;DNC05@0ae911fc6d93b504@0;DNC06@9bd24ed9d9e02b2a@0;DNC07@efb146276561d2e8@0;DNC08@0632b1c8525d89f1@0;DNC09@9c09fb590769018c@0;DNC10@3bb9ee4f5965912a@0;"
+    },
+    {
+      "key": "syslog.ptmlog.maxsize",
+      "value": "6144"
+    },
+    {
+      "key": "ptm.base.proxy.f.backup.startTime",
+      "value": "24:00"
+    },
+    {
+      "key": "ptm.base.lab",
+      "value": "0"
+    },
+    {
+      "key": "agcf_check",
+      "value": "false"
+    },
+    {
+      "key": "G6_ESA_CM_DIR",
+      "value": "/SFDEV"
+    },
+    {
+      "key": "ptm.prov.type",
+      "value": "line"
+    },
+    {
+      "key": "a2.audit.host",
+      "value": "undefined"
+    },
+    {
+      "key": "ptm.gwcem.enable128BytesFqdn",
+      "value": "true"
+    },
+    {
+      "key": "ptm.gwcem.jarFilePath",
+      "value": "/run/opt/corp/cmtg/6.0.0/sesm/jars"
+    },
+    {
+      "key": "siren.sc.username",
+      "value": "NotAvailable"
+    },
+    {
+      "key": "syslog.ptmlog.backup_hour",
+      "value": "3"
+    },
+    {
+      "key": "ossgate.pm.enable",
+      "value": "no"
+    },
+    {
+      "key": "alarm.server.timezone.display",
+      "value": "FALSE"
+    },
+    {
+      "key": "ptm.base.pa.maximumNumberOfSessions",
+      "value": "4"
+    },
+    {
+      "key": "ptm.base.oracleSID",
+      "value": "pfs"
+    },
+    {
+      "key": "siren.sc.port",
+      "value": "9999"
+    },
+    {
+      "key": "OSSGATE_SHOWALL",
+      "value": "FALSE"
+    },
+    {
+      "key": "ptm.jlog.maxFiles",
+      "value": "7"
+    },
+    {
+      "key": "login.servleturl",
+      "value": "https://10.254.146.36:8443/login/servlet/sspfslogin"
+    },
+    {
+      "key": "ptm.base.proxy.j.url",
+      "value": "jdbc:postgresql"
+    },
+    {
+      "key": "DNC_SESSION_NUM",
+      "value": "4"
+    },
+    {
+      "key": "cicm.em.backup.url",
+      "value": "undefined"
+    },
+    {
+      "key": "ossgate.telnet.secondary_port",
+      "value": "11023"
+    },
+    {
+      "key": "ptm.gwcem.jarFileName",
+      "value": "gwcem.jar"
+    },
+    {
+      "key": "ptm.jlog.maxFileSize",
+      "value": "20560"
+    },
+    {
+      "key": "syslog.ptmlog.backup_min",
+      "value": "0"
+    },
+    {
+      "key": "ptm.base.proxy.j.impl",
+      "value": "oracle"
+    },
+    {
+      "key": "ptm.base.pa.discovery.timeout",
+      "value": "1000"
+    },
+    {
+      "key": "ltm.uehostname",
+      "value": "UEHOST"
+    },
+    {
+      "key": "ptm.base.proxy.j.username",
+      "value": "\"PROXY\""
+    },
+    {
+      "key": "cm.clli",
+      "value": "CO24"
+    },
+    {
+      "key": "ptm.gwcem.recoveryFileDirectory",
+      "value": "/opt/data/cmtg/recovery"
+    },
+    {
+      "key": "trunkprov.maxReturnTuples",
+      "value": "100"
+    },
+    {
+      "key": "ptm.base.ptmServerIP",
+      "value": "10.254.146.44"
+    },
+    {
+      "key": "ptmdebug.maxfilesize",
+      "value": "20MB"
+    },
+    {
+      "key": "mcsmtcmgr.em.adminuser",
+      "value": "admin"
+    },
+    {
+      "key": "mcsprovmgr.em.backup.url",
+      "value": "https://47.168.105.72:8443/prov/services/OPI"
+    },
+    {
+      "key": "mcsmtcmgr.em.primary.url",
+      "value": "https://47.168.105.75:12121/omi/services"
+    },
+    {
+      "key": "ptm.base.profile",
+      "value": "CS2KA"
+    },
+    {
+      "key": "siren.sc.ip",
+      "value": "127.0.0.1"
+    },
+    {
+      "key": "ptmdebug.mi2lv",
+      "value": "MNR"
+    },
+    {
+      "key": "ptm.base.oracleServerPort",
+      "value": "5432"
+    },
+    {
+      "key": "ptm.base.npmServerIP",
+      "value": "127.0.0.1"
+    },
+    {
+      "key": "ossgate.login.banner",
+      "value": "\n\n******************************************************\n**                                                  **\n**                CMTg-OSS Gateway                  **\n**                                                  **\n**         This is a PRIVATE Database.              **\n**                                                  **\n**     All activity is subject to monitoring.       **\n**                                                  **\n**   Any UNAUTHORIZED access or use is PROHIBITED   **\n**          and may result in PROSECUTION.          **\n**                                                  **\n******************************************************\n** WARNING : Different service types require        **\n** different formats.  Consult the OSSGate User's   **\n** Guide, NE10004-512, for detailed information     **\n** regarding command formats and usage rules.       **\n** Failure to do so can cause a mismatch between    **\n** Call Agent and SESM data.                        **\n******************************************************\n\n"
+    },
+    {
+      "key": "OMIVersion",
+      "value": "14.0"
+    },
+    {
+      "key": "trunkprov.defaultReturnTuples",
+      "value": "50"
+    },
+    {
+      "key": "mcsprovmgr.em.adminuser",
+      "value": "admin"
+    },
+    {
+      "key": "mcsprovmgr.em.opiclient",
+      "value": "undefined"
+    },
+    {
+      "key": "ptm.gwcem.labMode",
+      "value": "false"
+    },
+    {
+      "key": "ptm.gwcem.gateway.profile.flowthrough",
+      "value": "VOIP_VPN,SIPVOICE"
+    }
+  ],
+  "endpointByFilter": {
+    "count": 2,
+    "epData": [
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/1",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 1,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 2,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 3,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 4,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 5,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 6,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 7,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 8,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 9,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 10,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      },
+      {
+        "gwcID": "10.254.146.140:161",
+        "gatewayName": "co24mediatrix1124",
+        "gwHostname": "co24mediatrix1124",
+        "gwDefaultDomain": "NOT_SET",
+        "endpointName": "aaln/2",
+        "extNodeNumber": 46,
+        "extTerminalNumber": 11,
+        "endpointStatus": "NOT_SET",
+        "iid": -1,
+        "endpointTNType": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <form [formGroup]="form">
+        <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.TITLE' | translate}}</h4>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.FRAME_NUMBER' |
+                        translate}}:</label><span *ngIf="isRequired" class="color_red">*</span>
+                </div>
+                <div class="p-col-4 ">
+                    <input type="number" onwheel="this.blur()"
+                        [class.invalid-input]="getFrameNumber?.invalid && getFrameNumber?.touched"
+                        formControlName="frameNumber"
+                        [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.TOOLTIP.FRAME_NUMBER' | translate"
+                        tooltipPosition="bottom" pInputText>
+                </div>
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.FLOOR_POSITION' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="floorPosition" id="floorPosition" type="text"
+                        pInputText /></div>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.UNIT_NUMBER' |
+                        translate}}:</label><span *ngIf="isRequired" class="color_red">*</span>
+                </div>
+                <div class="p-col-4 ">
+                    <input type="number" [class.invalid-input]="getUnitNumber?.invalid && getUnitNumber?.touched"
+                        onwheel="this.blur()" formControlName="unitNumber"
+                        [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.TOOLTIP.UNIT_NUMBER' | translate"
+                        tooltipPosition="bottom" pInputText>
+                </div>
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.ROW_POSITION' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="rowPosition" id="rowPosition" type="text" pInputText />
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.FRAME_TYPE' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="frameType" id="frameType" type="text" pInputText />
+                </div>
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.FRAME_POSITION' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="framePosition" id="framePosition" type="text"
+                        pInputText /></div>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.LGRP_LOCATION.FIELDS.UNIT_POSITION' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="unitPosition" id="unitPosition" type="text" pInputText />
+                </div>
+
+            </div>
+        </div>
+    </form>
+</p-panel>

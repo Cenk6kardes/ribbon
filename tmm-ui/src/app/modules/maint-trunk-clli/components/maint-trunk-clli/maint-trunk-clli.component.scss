@@ -1,0 +1,18 @@
+.maint-trunk-clli::ng-deep {
+  .rbn-group>label {
+    display: flex;
+    margin-bottom: 15px;
+  }
+}
+
+.rbn-tabs::ng-deep {
+
+  .p-tabview-panel {
+
+    overflow: hidden;
+
+    max-height: 400px;
+
+  }
+
+}

@@ -1,0 +1,14 @@
+{
+  "response401": {
+    "errorCode": "401",
+    "message": "401 Unauthorized error"
+  },
+  "response400": {
+    "errorCode": "400",
+    "message": "400 Bad request"
+  },
+  "response200": {
+    "code": "200",
+    "message": "OK"
+  }
+}

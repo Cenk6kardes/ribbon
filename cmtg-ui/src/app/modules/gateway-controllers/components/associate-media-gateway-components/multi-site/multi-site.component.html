@@ -1,0 +1,16 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+  <h4>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.MULTI_SITE' | translate}}</h4>
+  <div class="p-grid">
+    <div class="p-field rbn-field field p-col-12">
+      <p-pickList (onMoveToTarget)="calculateMaxEndpoints()" (onMoveAllToTarget)="calculateMaxEndpoints()" (onMoveToSource)="calculateMaxEndpoints()"
+        (onMoveAllToSource)="calculateMaxEndpoints()" class="search-icon filter-container-detail" [source]="allSiteNames"
+        [target]="selectedSiteNames" sourceHeader="All Site Names" targetHeader="Selected Site Names" [dragdrop]="false"
+        [responsive]="true" filterBy="name" [sourceStyle]="{'height':'30vh' }" [targetStyle]="{'height':'30vh'}"
+        sourceFilterPlaceholder="Search" targetFilterPlaceholder="Search">
+        <ng-template let-multiSiteSelection pTemplate="item">
+          <span>{{multiSiteSelection.name}}</span>
+        </ng-template>
+      </p-pickList>
+    </div>
+  </div>
+</p-panel>

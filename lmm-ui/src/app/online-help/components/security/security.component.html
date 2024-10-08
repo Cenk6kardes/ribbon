@@ -1,0 +1,88 @@
+<div id="security-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <p>Perform the following steps to complete this procedure.</p>
+    <h4>Start the LMM GUI</h4>
+    <p>
+      <b><em>At the client workstation web browser window</em></b>
+    </p>
+    <p><b>1 </b>Access the Application Launch Point GUI by typing</p>
+    <!-- https://<host> - special characters -> ' &lt; &gt; ' -> ' < > ' -->
+    <p><strong> https://&lt;host&gt; </strong></p>
+    <p>
+      where<strong> &lt;host&gt;</strong> is the hostname or IP address of the
+      host server
+    </p>
+    <p>
+      <b>2 </b>At the Application Launch Point WEB GUI, click the “Line
+      Maintenance Manager”.
+    </p>
+    <p><b>3 </b>The common login screen appears.</p>
+    <h4>Login Page</h4>
+    <p-image
+      src="assets\images\lmm_login.jpg"
+      alt="Image"
+      width="600"
+      [preview]="true"
+    ></p-image>
+    <p>
+      <b>4 </b>Enter your user name and password. Then click the Login button.
+    </p>
+    <p><b>5 </b>The LMM user interface appears.</p>
+    <p>
+      <strong><em>CS Line Maintenance Manager window</em></strong>
+    </p>
+    <p>
+      Upon successful connection to the LMM server, the Status area should
+      contain similar output to that found in the following example.
+    </p>
+    <p-image
+      src="assets\images\lmm_overview.jpg"
+      alt="Image"
+      width="600"
+      [preview]="true"
+    ></p-image>
+    <p>&nbsp;</p>
+    <p>
+      <strong>Note: </strong>The text is displayed with the most recent output
+      at the top.
+    </p>
+    <p><strong>Example</strong></p>
+    <p>
+      10:39:00: VRB: Communication to 47.142.128.131: SUCCESSFUL<br />
+      10:39:00: VRB: BMI OK<br />
+      10:39:00: VRB: DMA OK<br />
+      10:39:00: VRB: OSS Comms OK<br />
+      10:38:58: VRB: LMM Server response: default CBMg IP = 47.142.128.131<br />
+      10:38:58: VRB: Querying LMM Server for the default CBMg IP...<br />
+      10:38:57: VRB: LMM Client: connecting to NV proxy<br />
+      10:38:57: VRB: LMM Client: connecting to GWC-EM proxy<br />
+      10:38:57: VRB: LMM Server OK<br />
+      10:38:57: VRB: Connected to LMM Server instance<br />
+      10:38:57: VRB: LMM Server instance started<br />
+      10:38:55: VRB: created appInfo<br />
+      10:38:55: VRB: Connected to the MI2 Server<br />
+      10:38:55: VRB: Connected to the ORB
+    </p>
+    <p>
+      <strong>Note: </strong>The LMM client performs the following two tasks,
+      which are displayed in the previous example, when it is launched and
+      initialized:
+    </p>
+    <p>
+      • creates and connects to an LMM Server instance running on the C20
+      Management Tools machine
+    </p>
+    <p>
+      • queries the LMM Server for the CM CLLI and verifies the communication
+      path to the Call Server identified by the CLLI
+    </p>
+    <p>
+      <strong> 7</strong> At this point, all status buttons at the bottom of the
+      LMM GUI should be green. If not, click the link
+      <em><a routerLink="/help/troubleshooting">Troubleshooting</a></em> to
+      diagnose the problem.
+    </p>
+    <p><strong> 8</strong> You have completed this procedure.</p>
+  </p-panel>
+</div>

@@ -1,0 +1,13 @@
+<div class="form-footer p-grid p-col-12">
+  <div id="form-footer-content">
+    <ng-content></ng-content>
+  </div>
+  <div class="btn" *ngIf="showSecondaryBtn">
+    <p-button [disabled]="disableSecondaryBtn" type="button" styleClass="rbn-button {{secondaryStyleClass}}"
+      (onClick)="secondButtonClick()" [label]="secondaryLabel || 'COMMON.CLEAR' | translate"></p-button>
+  </div>
+  <div class="btn" *ngIf="showPrimaryBtn">
+    <p-button [disabled]="disablePrimaryBtn" type="button" styleClass="rbn-button rbn-button-primary"
+      (onClick)="primaryButtonClick()" [label]="primaryLabel || 'COMMON.RUN' | translate"></p-button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+:host ::ng-deep {
+  #integrity-audit-dialog {
+    .p-dialog {
+      width: 500px;
+    }
+  }
+  .chk-line-integrity {
+    .rbn-checkbox {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+  }
+}

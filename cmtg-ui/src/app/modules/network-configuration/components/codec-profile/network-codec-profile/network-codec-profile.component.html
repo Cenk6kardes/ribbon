@@ -1,0 +1,243 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<div class="button-top">
+  <p-button [label]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.NEW_PROFILE' | translate"
+  styleClass="rbn-button rbn-button-secondary" icon="fas fa-plus" (onClick)="addNewNwkCodecProfileBtn()"></p-button>
+</div>
+<rbn-table #rbnTable [cols]="cols" [data]="data" [showFilterRow]="false" [tableConfig]="tableConfig" [allowSetDataToStorage]="false"
+  (refreshData)="refreshTable()">
+</rbn-table>
+<!-- Add New Network Codec Profile -->
+<p-dialog class="rbn-dialog" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.TITLE' | translate" [(visible)]="showAddNwkCodecProfile"
+  [modal]="true" id="dialog" (onHide)="closeAddNwkCodecProfile()">
+  <div>
+    <div class="p-col-12" [formGroup]="networkCodecProfileFormGroup">
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-field rbn-field p-col-4">
+              <label for="name">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.NAME' | translate }}:
+                <span class="asterisk">*</span>
+              </label>
+              <input id="name" type="text" formControlName="name" pInputText [placeholder]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.PROFILE_NAME' | translate" class="italic-placeholder">
+            </div>
+            <div class="p-field rbn-field p-col-4">
+              <label for="packetizationRate">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.PACKETIZATION_RATE' | translate }}:</label>
+              <p-dropdown id="packetizationRate" formControlName="packetizationRate" appendTo="body" [options]="packetizationRateDataItems" class="italic-placeholder" [placeholder]="'COMMON.SELECT' | translate"></p-dropdown>
+            </div>
+            <div class="p-field rbn-field p-col-4">
+              <label for="t38">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.T_38' | translate }}:</label>
+              <p-dropdown id="t38" formControlName="t38" appendTo="body" [options]="t38DataItems" class="italic-placeholder" [placeholder]="'COMMON.SELECT' | translate"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-field rbn-field p-col-12">
+              <div class="rbn-group">
+                <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="rfc2833"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.RFC2833' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="comfortNoise"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.COMFORT_NOISE' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="networkDefault"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.SET_DEFAULT' | translate }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-panel>
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12">
+            <p-pickList class="search-icon filter-container-detail" [source]="availableCodecs" [target]="codecSelectionOrder" sourceHeader="Available Codecs" targetHeader="Codec Selection Order" [dragdrop]="false"
+              [responsive]="true" filterBy="name" [sourceStyle]="{'height':'30vh' }" [targetStyle]="{'height':'30vh'}"
+              breakpoint="1216px"
+              (onMoveToTarget)="onChangeTargetData()"
+              (onMoveToSource)="onChangeTargetData()"
+              (onMoveAllToTarget)="onChangeTargetData()"
+              (onMoveAllToSource)="onChangeTargetData()"
+              (onTargetReorder)="onChangeTargetData()"
+              [sourceFilterPlaceholder]="'COMMON.SEARCH' | translate" [targetFilterPlaceholder]="'COMMON.SEARCH' | translate">
+              <ng-template let-codec pTemplate="item">
+                <span>{{codec.name}}</span>
+              </ng-template>
+            </p-pickList>
+          </div>
+        </div>
+      </p-panel>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.SAVE' | translate" [disablePrimaryBtn]="!(networkCodecProfileFormGroup.controls['name'].valid) || codecSelectionOrder.length === 0 || !networkCodecProfileFormGroup.dirty"
+      (eventSubmit)="addNetworkCodecProfileFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.CANCEL_INFO_TITLE' | translate"
+  [(visible)]="showInfoAboutCancelOptionDialog" [modal]="true" (onHide)="closeCancelOptionDialog()" id="cancelDialog">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.CANCEL_INFO_BODY' | translate"></label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="closeInfoAboutCancelOptionDialog($event)">
+  </app-form-footer> 
+</p-dialog>
+
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.INVALID_CODEC_SELECTION_TITLE' | translate"
+  [(visible)]="showInfoAboutInvalidCodec" [modal]="true" (onHide)="closeInfoAboutInvalidCodec()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.INVALID_CODEC_SELECTION_BODY' | translate"></label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="closeInfoAboutInvalidCodec()"></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Add error popup, codec name already exists -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.NAME_EXISTS_ERROR.TITLE' | translate"
+  [(visible)]="showCodecNameExistsErrorDialog" [modal]="true" (onHide)="closeCodecNameExistsErrorDialog()" id="nameAlreadyExistsDialog">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="alreadyExistsMessage"></label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="closeCodecNameExistsErrorDialog()"></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Add error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD.TITLE' | translate" [(visible)]="showAddErrorDialog"
+  [modal]="true" (onHide)="closeAddErrorDialog()" id="addErrorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeAddErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+<!-- Delete Network Codec Profile -->
+<p-dialog class="rbn-dialog" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE.TITLE' | translate"
+  [(visible)]="showDeleteConfirmPopup" [modal]="true" (onHide)="closeDeleteNtwkCodecProfile()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label>
+      {{ 'CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE.DELETE_DIALOG_MESSAGE' | translate }}
+      <span class="boldAndItalic">"{{ deleteSelectedDataWithName }}".</span>
+      <br><br>
+      {{ 'CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE.CONFIRM_TO_CONTINUE_MESSAGE' | translate }}
+    </label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="deleteNtwkCodecProfileFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+<!-- Delete error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE.TITLE' | translate" [(visible)]="showDeleteErrorDialog"
+  [modal]="true" (onHide)="closeDeleteErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeDeleteErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+<!-- Edit Network Codec Profile -->
+<p-dialog class="rbn-dialog" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.TITLE' | translate" [(visible)]="showEditNwkCodecProfile"
+  [modal]="true" id="dialog" (onHide)="closeEditNwkCodecProfile()">
+  <div>
+    <div class="p-col-12" [formGroup]="networkCodecProfileFormGroup">
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-field rbn-field p-col-4">
+              <label for="name">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.NAME' | translate }}:
+                <span class="asterisk">*</span>
+              </label>
+              <input id="name" type="text" formControlName="name" pInputText readonly [placeholder]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.PROFILE_NAME'" class="italic-placeholder">
+            </div>
+            <div class="p-field rbn-field p-col-4">
+              <label for="packetizationRate">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.PACKETIZATION_RATE' | translate }}:</label>
+              <p-dropdown id="packetizationRate" formControlName="packetizationRate" appendTo="body" [options]="packetizationRateDataItems" class="italic-placeholder" [placeholder]="'COMMON.SELECT'"></p-dropdown>
+            </div>
+            <div class="p-field rbn-field p-col-4">
+              <label for="t38">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.T_38' | translate }}:</label>
+              <p-dropdown id="t38" formControlName="t38" appendTo="body" [options]="t38DataItems" class="italic-placeholder" [placeholder]="'COMMON.SELECT'"></p-dropdown>
+            </div>
+          </div>
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-field rbn-field p-col-12">
+              <div class="rbn-group">
+                <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="rfc2833"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.RFC2833' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="comfortNoise"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.COMFORT_NOISE' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="networkDefault"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text">{{'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.SET_DEFAULT' | translate }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-panel>
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12">
+            <p-pickList class="search-icon filter-container-detail" [source]="availableCodecs" [target]="codecSelectionOrder" sourceHeader="Available Codecs" targetHeader="Codec Selection Order" [dragdrop]="false"
+              [responsive]="true" filterBy="name" [sourceStyle]="{'height':'30vh' }" [targetStyle]="{'height':'30vh'}"
+              (onMoveToTarget)="onChangeTargetData()"
+              (onMoveToSource)="onChangeTargetData()"
+              (onMoveAllToTarget)="onChangeTargetData()"
+              (onMoveAllToSource)="onChangeTargetData()"
+              (onTargetReorder)="onChangeTargetData()"
+              [sourceFilterPlaceholder]="'COMMON.SEARCH' | translate" [targetFilterPlaceholder]="'COMMON.SEARCH' | translate">
+              <ng-template let-codec pTemplate="item">
+                <span>{{codec.name}}</span>
+              </ng-template>
+            </p-pickList>
+          </div>
+        </div>
+      </p-panel>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.SAVE' | translate" [disablePrimaryBtn]="!networkCodecProfileFormGroup.dirty || codecSelectionOrder.length === 0"
+      (eventSubmit)="editNetworkCodecProfileFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>
+<!-- Edit error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="'CODEC_PROFILE.NETWORK_CODEC_PROFILE.EDIT.TITLE' | translate" [(visible)]="showEditErrorDialog"
+  [modal]="true" (onHide)="closeEditErrorDialog()" id="editErrorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeEditErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>

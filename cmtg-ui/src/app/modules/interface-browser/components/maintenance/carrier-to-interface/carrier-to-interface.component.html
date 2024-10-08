@@ -1,0 +1,36 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="container">
+    <p-panel [showHeader]="false" class="rbn-panel">
+        <div class="p-grid" [formGroup]="form">
+            <div class="p-field field p-col-12 rbn-group">
+                <label class="p-p-0 p-mb-1 font-bold">{{'INTERFACE_BROWSER.MAINTENANCE.FIELD_LABELS.WILDCARD' |
+                    translate}}:</label>
+                <p-inputSwitch formControlName="wildCard" class="rbn-switch"></p-inputSwitch><span
+                    class="font-bold p-pl-2">{{wildCard?.value?'On':'Off'}}</span>
+            </div>
+
+
+            <div class="rbn-group p-field p-col-6">
+                <label class="font-bold">{{'INTERFACE_BROWSER.MAINTENANCE.FIELD_LABELS.GATEWAY_NAME' | translate}}:
+                </label>
+                <input id="gatewayName" formControlName="gatewayName" type="text" pInputText>
+            </div>
+
+            <div class="rbn-group p-field p-col-6">
+                <label class="font-bold">{{'INTERFACE_BROWSER.MAINTENANCE.FIELD_LABELS.CARRIER_NAME' | translate}}:
+                </label>
+                <input id="carrierName" formControlName="carrierName" type="text" pInputText>
+            </div>
+        </div>
+
+        <div class="p-grid p-mt-2 p-mr-3 justfiy-content-end">
+            <p-button label="Get Mapping" styleClass="rbn-button rbn-button-primary"
+                (onClick)="handleMapping()"></p-button>
+        </div>
+
+    </p-panel>
+
+    <rbn-table #rbnTable [cols]="cols" [data]="data" [showFilterRow]="false" [allowSetDataToStorage]="false" [tableConfig]="tableConfig" (refreshData)="getTableDatas()">
+    </rbn-table>
+
+</div>

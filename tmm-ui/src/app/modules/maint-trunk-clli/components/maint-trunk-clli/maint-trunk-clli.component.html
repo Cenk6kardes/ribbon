@@ -1,0 +1,34 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="p-mb-3">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <div class="maint-trunk-clli" [formGroup]="formGroup">
+    <div class="p-grid p-pl-2">
+      <div class="rbn-group p-mb-5 p-col-6 p-field rbn-field">
+        <label for="gatewayName">{{ "TRUNK_CLLI.GATEWAY_NAME" | translate }}</label>
+        <p-dropdown formControlName="gatewayName" appendTo="body" [options]="dropDownDataGatewayNameItems"></p-dropdown>
+      </div>
+      <div class="rbn-group p-mb-5 p-col-6 p-field rbn-field">
+        <label for="trunkCLLI">{{ "TRUNK_CLLI.TRUNK_CLLI" | translate }}</label>
+        <p-dropdown [dropdownIcon]="isLoading ? 'pi pi-spinner pi-spin' : 'pi pi-chevron-down'"
+           formControlName="trunkCLLI" [options]="dropdownDataTrunkCLLIItems">
+        </p-dropdown>
+      </div>
+    </div>
+  </div>
+  <p-tabView class="rbn-tabs" (onChange)="tabChanged($event)">
+    <p-tabPanel header="{{ 'TRUNK_CLLI.GENERAL_TRUNK_MAINTANENCE' | translate }}">
+      <app-general-trunk-maint *ngIf="tabIndex === 0" [trunkClliName]="currentTrunkClliName" (showTableEvent)="showTable($event)">
+      </app-general-trunk-maint>
+    </p-tabPanel>
+    <p-tabPanel header="{{ 'TRUNK_CLLI.D_CHANNEL_MAINTANENCE' | translate }}">
+      <app-d-channel-maint *ngIf="tabIndex === 1" [trunkClliName]="currentTrunkClliName" (showTableEvent)="showTable($event)">
+      </app-d-channel-maint>
+    </p-tabPanel>
+    <p-tabPanel header="{{ 'TRUNK_CLLI.ISUP_COT_TEST' | translate }}">
+      <app-isup-cot-test *ngIf="tabIndex === 2" [trunkClliName]="currentTrunkClliName"></app-isup-cot-test>
+    </p-tabPanel>
+  </p-tabView>
+</div>
+<app-maint-trunk-summary></app-maint-trunk-summary>
+<app-maint-trunk-details *ngIf="showTableSelected" [showTableSelected]="showTableSelected" [tabIndex]="tabIndex" [trunkCLLI]="trunkCLLI.value">
+</app-maint-trunk-details>

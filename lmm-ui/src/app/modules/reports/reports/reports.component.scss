@@ -1,0 +1,29 @@
+@import "ribbontheme/variables";
+
+#reports-container::ng-deep {
+  rbn-page-header {
+    .right-header {
+      .header-dropdown {
+        .p-dropdown {
+          min-width: 185px;
+        }
+      }
+    }
+  }
+  .progress-bar {
+    width: 100%;
+    .p-progressbar {
+      background-color: $ribbon-light-grey;
+    }
+    .p-progressbar-value {
+      background-color: $ribbon-dark-green;
+    }
+    .p-progressbar-label {
+      color: $ribbon-white;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      left: 10px;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<rbn-table [cols]="cols" [data]="dataScheduledAudits" [showFilterRow]="false" [tableConfig]="tableConfig"
+  [allowSetDataToStorage]="false" (refreshData)="doRefreshDataTable()"></rbn-table>
+<p-dialog class="rbn-dialog" [header]="'AUDIT.HEADER.EDIT_SCHEDULE' | translate"
+  [(visible)]="!!rowEditSelected" [modal]="true" (onHide)="closeDialog()" [style]="{width: '825px'}">
+  <form [formGroup]="auditForm" *ngIf="!!rowEditSelected">
+    <p>{{'AUDIT.MESSAGE.SCHEDULED_AUDITS_INFO' | translate}}</p>
+    <p-panel [showHeader]="false" class="rbn-panel audit-select-panel">
+      <h3>{{'AUDIT.HEADER.AUDIT_SELECT' | translate}}</h3>
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div class="p-field">
+            <label>{{'AUDIT.FIELD_LABEL.AUDIT_TYPE' | translate}}:</label><span>{{rowEditSelected.auditType}}</span>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [showHeader]="false" class="rbn-panel audit-select-panel" *ngIf="auditForm.get('auditComponent')">
+      <app-c20-data-integrity-audit nameControl="auditComponent" [showConfirmIntegrity]="false" [isSessionServerConnected]="isSessionServerConnected" (statusConfigurationToSave)="handleStatusConfigurationToSave($event)">
+      </app-c20-data-integrity-audit>
+    </p-panel>
+    <p-panel [showHeader]="false" class="rbn-panel audit-select-panel" *ngIf="auditForm.get('auditConfiguration')">
+      <app-line-data-integrity-audit nameControl="auditConfiguration"
+        [showMessagesDescription]="false" [showConfirmIntegrity]="false" (statusConfigurationToSave)="handleStatusConfigurationToSave($event)">
+      </app-line-data-integrity-audit>
+    </p-panel>
+    <app-schedule-for-later #scheduleForLaterTemp [scheduleForLaterInfo]="false"
+      (statusScheduleToSave)="handleStatusScheduleToSave($event)" [showScheduleTypeNow]="false"></app-schedule-for-later>
+  </form>
+  <p-footer>
+    <p-button [label]="'COMMON.CANCEL' | translate" styleClass="rbn-button rbn-button-tertiary"
+      (onClick)="handleClickCancel()" [disabled]="false"></p-button>
+    <p-button [label]="'COMMON.SAVE' | translate" styleClass="rbn-button rbn-button-primary"
+      [disabled]="setStateButtonSave()" (onClick)="saveDataAudit()"></p-button>
+  </p-footer>
+</p-dialog>
+<rbn-confirm-dialog *ngIf="confirmDelete.isShowConfirmDialog" [title]="confirmDelete.title"
+  [content]="confirmDelete.content" [isShowConfirmDialog]="confirmDelete.isShowConfirmDialog"
+  (emitConfirm)="handleAcceptDelete($event)" [titleAccept]="confirmDelete.titleAccept"
+  [titleReject]="confirmDelete.titleReject"></rbn-confirm-dialog>

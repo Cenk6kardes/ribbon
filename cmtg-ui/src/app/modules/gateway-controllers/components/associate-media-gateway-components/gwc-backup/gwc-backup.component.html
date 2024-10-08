@@ -1,0 +1,31 @@
+
+<p-panel [showHeader]="false" class="rbn-panel">
+  <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.LABEL.GWC_BACKUP' | translate}}</h4>
+  <form [formGroup]="form">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <div class="rbn-group field-checkbox p-col-6">
+          <p-checkbox class="rbn-checkbox" [binary]="true" (onChange)="handleLblCheckBox($event.checked)" formControlName="lbl" checkboxIcon="fa fa-check"></p-checkbox>
+          <label>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.LBL' | translate}}</label>
+        </div>
+      </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-4">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.MGC_SECIP' | translate}}:</label>
+          <div class="p-col-8"><input formControlName="mgcsecipAddress" type="text" [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TOOLTIP.IP_ADDRESS' | translate"
+            tooltipPosition="bottom" pInputText /></div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-4">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.GW_SECIP' | translate}}: <span class="validators-required"></span></label>
+          <div class="p-col-8"><input formControlName="secipAddress" type="text" [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TOOLTIP.IP_ADDRESS' | translate"
+            tooltipPosition="bottom" pInputText /></div>
+        </div>
+        <div class="p-grid p-field p-col-12 p-fluid">
+          <label class="p-col-4">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.GATEWAYS.TABLE.EDIT_DIALOG.CAC' | translate}}:</label>
+          <div class="p-col-8">
+            <input formControlName="cac" (keydown)="keyPreventFn($event)" type="number" [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.GWC_TOOLTIP.CAC_VALID_VALUES' | translate"
+            tooltipPosition="bottom" pInputText />
+          </div>
+        </div>
+    </div>
+  </form>
+</p-panel>

@@ -1,0 +1,97 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-3">
+        <p>The QoS Collectors panel provides access to configuration data for QoS collectors associated with the
+            selected gateway controller.</p>
+
+        <div class="p-my-2">
+            <p-image src="assets/images/help/qos/qoscollectors_panel.jpg" alt="qoscollectors_panel_img" width="600"
+                [preview]="true"></p-image>
+        </div>
+    </div>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'QoS Collector related functions'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Associate a QoS Collector'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Displays the list of QoS collectors and allows the user to associate one with the Gateway
+                            Controller. Refer to the Associate a QoS Collector procedure for more information.</p>
+                        <p>Use this procedure to associate a QoS Collector to a Gateway Controller.</p>
+                        <ol>
+                            <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                            <li>Select the <b>Qos Collectors</b> panel.</li>
+                            <li>Select the <b>Associate...</b>button. A dialog will be displayed</li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/qos/associate_qc_menu.jpg" alt="associate_qc_menu_img"
+                                    width="600" [preview]="true"></p-image>
+                            </div>
+                            <li>Click on the QoS Collector you would like to associate to the Gateway controller. Click
+                                outside the popup box to cancel.</li>
+                            <li>The QoS Collector will appear in the list following successful association.</li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/qos/qoscollectors_panel.jpg"
+                                    alt="qoscollectors_panel_img" width="600" [preview]="true"></p-image>
+                            </div>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Disassociate a QoS Collector'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Disassociates the selected QoS collector from the Gateway Controller. Refer to the
+                            Disassociate a QoS Collector procedure for more information.</p>
+                        <p>The following procedure is used to disassociate a Media Proxy from a Gateway Controller.</p>
+                        <ol>
+                            <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                            <li>Select the <b>Qos Collectors</b> panel.</li>
+                            <li>Select the QoS Collector you would like to disassociate from the Gateway Controller.
+                            </li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/qos/qoscollectors_panel.jpg"
+                                    alt="associate_qc_menu_img" width="600" [preview]="true"></p-image>
+                            </div>
+                            <li>Select the <b>Disassociate</b> button.</li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/qos/disassociate_qos_collector.jpg"
+                                    alt="disassociate_qos_collector_img" width="600" [preview]="true"></p-image>
+                            </div>
+                            <li>Click the <b>Yes</b> button to confirm the request, or the <b>No</b> button to abort the
+                                request.</li>
+                            <li>The QoS Collector will be removed from the list following successful disassociation.
+                            </li>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Set QoS Collection status'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Set QoS collection on the Gateway Controller. Refer to the Set QoS Collection procedure for
+                            more information.</p>
+                        <p>Use this procedure to set QoS Collection status for a Gateway Controller.</p>
+                        <ol>
+                            <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                            <li>Select the <b>Qos Collectors</b> panel.</li>
+                            <li>Select the check boxes on <b>QoS Collectors</b> panel to configure QoS Collection, and
+                                then
+                                click <b>Apply</b> button to set QoS Collection.
+                            </li>
+                            <li>Move cursor near the check boxes and the first column in RTCP-XR blocks table to get
+                                detailed reporting metrics information.</li>
+                            <div class="p-my-2">
+                                <p-image src="assets/images/help/qos/qoscollectors_panel.jpg"
+                                    alt="qoscollectors_panel_img" width="600" [preview]="true"></p-image>
+                            </div>
+                        </ol>
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Refresh Qos Collectors'" [cache]="false">
+                    <ng-template pTemplate="content">
+                        <p>Refresh this table to get the lastest records about Qos Collectors(maybe changed by other
+                            users).</p>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+
+        </p-accordionTab>
+    </p-accordion>
+
+</p-panel>

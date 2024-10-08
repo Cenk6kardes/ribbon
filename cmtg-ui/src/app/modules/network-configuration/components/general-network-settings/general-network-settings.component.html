@@ -1,0 +1,73 @@
+
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GENERAL_NETWORK_SETTINGS.TITLE' | translate" [(visible)]="showGeneralNetworkSettings"
+  [modal]="true" id="dialog" (onHide)="closeGeneralNetworkSettings()">
+  <div class="general-network-settings">
+    <div class="p-col-12" [formGroup]="generalNetworkSettingsFormGroup">
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-col-12"><label class="content-header">
+                {{'NETWORK.GENERAL_NETWORK_SETTINGS.CALL_AGENT_IP_ADDRESS_ZERO' | translate }}</label>
+              <label class="content-detail p-pl-2">{{ipAddressZero}}</label>
+            </div>
+            <div class="p-col-12"><label class="content-header">
+                {{'NETWORK.GENERAL_NETWORK_SETTINGS.CALL_AGENT_IP_ADDRESS_ONE' | translate}}</label>
+              <label class="content-detail p-pl-2">{{ipAddressOne}}</label>
+            </div>
+          </div>
+        </div>
+      </p-panel>
+      <p-panel [showHeader]="false" class="rbn-panel p-col-12">
+        <div class="p-grid">
+          <div class="p-field rbn-field field p-col-12 panel-content">
+            <div class="p-col-12 pInputSwitch">
+              <label class="content-header">{{'NETWORK.GENERAL_NETWORK_SETTINGS.GWC_DOMAIN_NAME' | translate}}</label>
+              <p-inputSwitch formControlName="gwcDomainNameToggleBtn" class="rbn-switch p-pl-2"></p-inputSwitch>
+              <label class="content-detail p-pl-2">{{ toggleStatus }}</label>
+            </div>
+            <div class="p-col-12">
+              <label class="content-header" [class.input-name-disabled]="!generalNetworkSettingsFormGroup.get('gwcDomainNameToggleBtn')?.value">
+                {{'NETWORK.GENERAL_NETWORK_SETTINGS.INPUT_NAME' | translate}}</label>
+              <input formControlName="inputName" placeholder="name" class="input-style italic-placeholder p-ml-2" type="text" pInputText>
+            </div>
+          </div>
+        </div>
+      </p-panel>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.SAVE' | translate" [disablePrimaryBtn]="!(generalNetworkSettingsFormGroup.controls['inputName'].valid && hasInputValueChanged) && isSaveBtnEnable"
+      (eventSubmit)="generalNetworkSettingsFormFooterHandler($event)">
+    </app-form-footer>
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GENERAL_NETWORK_SETTINGS.FAIL_TITLE' | translate" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'"></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container"></div>
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GENERAL_NETWORK_SETTINGS.CONFIRM' | translate" [(visible)]="showConfirmPopup"
+  [modal]="true" (onHide)="closeConfirmPopup()" id="confirmDialog" [draggable]="false" [resizable]="false">
+  <div class="warning-dialog-container"
+    [innerHTML]="'NETWORK.GENERAL_NETWORK_SETTINGS.CONFIRM_MESSAGE_DETAIL' | translate | safe: 'html'">
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.ADD' | translate"
+    (eventSubmit)="showConfirmPopupFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>

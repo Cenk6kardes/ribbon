@@ -1,0 +1,24 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<rbn-page-header [data]="headerData" (backButtonAction)="onBack()"></rbn-page-header>
+<rbn-table #rbnTable [cols]="parentTableCols" [data]="parentTableData" [showFilterRow]="false" [tableConfig]="parentTableConfig"
+  (linkClick)="onLinkClick($event)" (refreshData)="refreshTable()" [allowSetDataToStorage]="false">
+</rbn-table>
+<p-dialog *ngIf="isChildTable" [(visible)]="isChildTable" [header]="dialogTitle" [modal]="true" class="rbn-child-table"
+  (onHide)="hideContentFileDialog()" [style]="{width: '80%'}">
+  <rbn-table [cols]="childTableCols" [tableConfig]="childTableConfig" [data]="childTableData" [showFilterRow]="false"
+    (refreshData)="refreshChildTable()" [allowSetDataToStorage]="false"></rbn-table>
+  <p-footer>
+    <p-button [label]="'COMMON.CLOSE' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="isChildTable = false"></p-button>
+  </p-footer>
+</p-dialog>
+<p-dialog [(visible)]="notFoundGateway" [header]="dialogTitle" [modal]="true" class="gateway-status"
+  (onHide)="hidePostGWDialog()">
+  <div>
+    {{'REPORTS_SCREEN.POST_GATEWAY_MESSAGE' | translate}}
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="notFoundGateway = false"></p-button>
+  </p-footer>
+</p-dialog>

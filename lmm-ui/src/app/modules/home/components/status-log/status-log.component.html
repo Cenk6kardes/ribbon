@@ -1,0 +1,22 @@
+<div class="container-statusLogs">
+  <p-accordion (onOpen)="onOpen()" (onClose)="onClose()" expandIcon='pi pi-fw pi-chevron-up' class="statusLog">
+    <p-accordionTab [header]="'HOME.STATUS_LOG' | translate" [selected]="false">
+      <ng-container *ngIf="logs.length">
+        <div class="container-accordion">
+          <div *ngFor="let log of logs">
+            <span class="log-time">{{log.time}}: </span>
+            <span class="log-message">{{log.message}}</span>
+          </div>
+        </div>
+        <hr class="hr-footer">
+        <div class="rbn-form-footer p-mt-3">
+          <p-button [label]="'HOME.COPY' | translate" styleClass="rbn-button rbn-button-tertiary p-mr-2"
+            (onClick)="handleCopy()"></p-button>
+          <p-button [label]="'HOME.CLEAR_STATUS' | translate" styleClass="rbn-button rbn-button-secondary"
+            (onClick)="clearStatusLogs()"></p-button>
+        </div>
+      </ng-container>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+<div *ngIf="accordionOpened" id="overlap-fix"></div>

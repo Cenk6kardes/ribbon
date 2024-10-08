@@ -1,0 +1,47 @@
+@import "ribbontheme/variables";
+
+.card {
+  border: 1px solid $ribbon-light-grey;
+  border-radius: 3px;
+}
+
+.card-header {
+  border-bottom: 1px solid $ribbon-light-grey;
+}
+
+.button-small::ng-deep > button {
+  padding: 0.1em 1em;
+}
+
+.flex-row-gap {
+  gap: 15px;
+}
+
+.p-grid {
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+.p-col-3 {
+  width: calc(25% - 15px);
+}
+
+.inner-text {
+  white-space: pre-wrap; 
+  line-height: 1.8; 
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.break-word {
+  word-break: break-word;
+}
+
+.div-width {
+  width: 100%;
+}

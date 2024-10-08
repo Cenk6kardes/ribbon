@@ -1,0 +1,89 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  %button {
+    font-size: $fontSize;
+    background-color: transparent;
+    color: $primaryDarkerColor;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
+  }
+
+  .p-panel {
+    .p-panel-header {
+      padding: 0.75rem;
+      margin-bottom: 5px;
+      background-color: $ribbon-white;
+      display: block;
+      text-align: center;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .p-panel-content {
+      padding: 0;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      @extend %button;
+
+      &:hover {
+        @extend %button;
+      }
+    }
+  }
+  p-tree {
+    .p-tree {
+      border: none;
+      .p-tree-container {
+        overflow: unset;
+        display: inline-block;
+        .p-checkbox {
+          display: none;
+        }
+        .p-treenode {
+          .p-treenode-content {
+            .p-tree-toggler:enabled:hover {
+              background: unset;
+            }
+            padding: unset;
+            .p-tree-toggler-icon {
+              font-size: 14px;
+            }
+            .p-treenode-icon {
+              font-size: 14px;
+            }
+            .p-treenode-label {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tree-container {
+    position: relative;
+    .block-overlay {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-radius: 5px;
+    }
+  }
+}

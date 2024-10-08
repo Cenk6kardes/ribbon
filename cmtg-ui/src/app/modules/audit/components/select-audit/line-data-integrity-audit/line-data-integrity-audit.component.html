@@ -1,0 +1,33 @@
+<div>
+  <label class="p-col p-p-0 p-mb-1">{{'AUDIT.FIELD_LABEL.CONFIGURATION' | translate}}:</label>
+  <div class="p-grid">
+    <div class="p-col-12 p-md-8 p-lg-8">
+      <app-tree-pick-list (evOnChangeData)="handleChangeTreePickList($event)" [dataSource]="dataSource"
+        [blockTree]="blockTreePickList" [dataTarget]="dataTarget"
+        (evOnNodeSelectSource)="handleNodeSelectSource($event)" [showBtnAngleDoubleRight]="false"></app-tree-pick-list>
+    </div>
+    <div class="p-col-12 p-md-4 p-lg-4">
+      <div class="p-grid">
+        <div class="p-col-12 chk-line-integrity">
+          <ng-container *ngFor="let option of optionsLineDataIntegrity; let i = index">
+            <p-checkbox class="rbn-checkbox" name="groupChkLineDataIntegrity" [value]="option.value"
+              [label]="option.name" [(ngModel)]="selectedGroupChk"
+              (ngModelChange)="handleChangeSelectedGroupChk(true, true, option.value)">
+            </p-checkbox>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<rbn-panel-messages *ngIf="panelMessagesData.content && showMessagesDescription" [content]="panelMessagesData.content"
+  [typeOfMessage]="'warn'"></rbn-panel-messages>
+<rbn-confirm-dialog *ngIf="confirmDialogData.isShowConfirmDialog" [title]="confirmDialogData.title"
+  [content]="confirmDialogData.content" [titleAccept]="confirmDialogData.titleAccept"
+  [titleReject]="confirmDialogData.titleReject" (emitConfirm)="handleConfirm($event)"></rbn-confirm-dialog>
+<rbn-confirm-dialog *ngIf="confirmIntegrityAudit.isShowConfirmDialog" id="integrity-audit-dialog"
+  [title]="confirmIntegrityAudit.title" [content]="confirmIntegrityAudit.content"
+  [isShowConfirmDialog]="confirmIntegrityAudit.isShowConfirmDialog"
+  (emitConfirm)="confirmIntegrityAudit.handleAccept.bind(this)($event)"
+  [titleAccept]="confirmIntegrityAudit.titleAccept"
+  [titleReject]="confirmIntegrityAudit.titleReject"></rbn-confirm-dialog>

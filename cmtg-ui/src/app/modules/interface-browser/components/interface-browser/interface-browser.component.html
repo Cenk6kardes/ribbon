@@ -1,0 +1,40 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="interface-browser-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <div class="p-mb-3">
+    <label>{{'INTERFACE_BROWSER.FIELD_LABEL.SELECT_INTERFACE' | translate}}:
+    </label>
+    <p-dropdown [options]="options.interfaceBrowserIds" [styleClass]="'full-width'"
+      [(ngModel)]="identifier"></p-dropdown>
+  </div>
+  <app-interface-inputs (fetchEmitter)="fetchDatas($event)" (closeDialogEmitter)="closeDialog($event)"
+    [identifier]="identifier" [options]="options" [isAddInterface]="false"></app-interface-inputs>
+
+  <p-dialog [header]="'INTERFACE_BROWSER.FIELD_LABEL.ADD_NEW_INTERFACE'|translate" class="rbn-dialog"
+    [(visible)]="isShowAddInterface" [modal]="true" [draggable]="false" id="dialog">
+    <app-interface-inputs *ngIf="isShowAddInterface" (fetchEmitter)="fetchDatas($event)" (closeDialogEmitter)="closeDialog($event)"
+      [identifier]="identifier" [options]="options" [isAddInterface]="true"></app-interface-inputs>
+  </p-dialog>
+
+  <p-dialog (onHide)="closeDialog(false)" [header]="'INTERFACE_BROWSER.FIELD_LABEL.DELETE_INTERFACE'|translate" class="rbn-dialog"
+    [(visible)]="isShowDeleteInterface" [modal]="true" [draggable]="false">
+    <div class="p-grid delete">
+      <label class="p-col-12 ">{{'INTERFACE_BROWSER.FIELD_LABEL.ENTER_ID_TO_DELETE' |
+        translate}}:</label>
+      <p-dropdown [options]="options.interfaceBrowserIds" [(ngModel)]="selectedIdentifierToDelete"
+        [placeholder]="'COMMON.SELECT' | translate" class="p-col-12" [appendTo]="'body'"
+        name="identifiers"></p-dropdown>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.DELETE' | translate"
+    [disablePrimaryBtn]="!isButtonDisabled" (eventSubmit)="openDeleteConfirmDialog($event)"></app-form-footer>
+  </p-dialog>
+
+  <p-dialog [header]="'INTERFACE_BROWSER.FIELD_LABEL.CONFIRM_DELETE'|translate" class="rbn-dialog"
+    [(visible)]="isConfirmDeleteDialog" [modal]="true" [draggable]="false">
+    <div class="p-grid delete">
+      <label class="p-col-12 ">{{confirmDialogContent}}</label>
+    </div>
+    <app-form-footer  [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.DELETE' | translate"
+      (eventSubmit)="deleteSelectedIdentifier($event)"></app-form-footer>
+  </p-dialog>
+</div>

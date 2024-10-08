@@ -1,0 +1,40 @@
+@import "ribbontheme/variables";
+.container-summary {
+  margin: 1rem 0px 1rem 0px;
+  background: $ribbon-white;
+  padding: 10px 20px;
+  position: relative;
+  border: 1px solid $borderLighterGrey;
+
+  .labelSummary {
+      color: $ribbon-black;
+      font-weight: $fontWeightSemiBold;
+  }
+
+  
+
+  .summary-col {
+    margin-bottom: 15px;
+    h4 {
+      font-weight: $fontWeightBold;
+      margin-bottom: 2px;
+      color: $ribbon-dark-grey;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: $fontWeightSemiBold;
+      color: $ribbon-dark-grey;
+    }
+  }
+}
+
+  .summary-col:nth-child(5)::after {
+      content: "";
+      position: absolute;
+      width: calc(100% - 80px);
+      height: 1px;
+      background-color: $borderLighterGrey;
+      top: 54%;
+      left: 40px;
+  }

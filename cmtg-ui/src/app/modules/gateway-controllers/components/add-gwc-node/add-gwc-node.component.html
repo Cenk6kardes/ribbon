@@ -1,0 +1,157 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<p-dialog (onHide)="closeDialog()" class="rbn-dialog" [draggable]="false" [resizable]="false"
+  [header]="'GATEWAY_CONTROLLERS.ADD_GWC_NODE.TITLE' | translate" [(visible)]="showAddDialog" [modal]="true"
+  id="dialog">
+
+
+<div id="dialog-container" [formGroup]="form">
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <h4 class="bold">{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.TITLE' | translate}} </h4>
+    <div class="flex-row ">
+      <div class="p-grid p-field  p-fluid p-col-12" p- style="align-items: center;">
+        <div class="p-col-2">
+          <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.GATEWAY_INFO.CONTROLLER_NAME' | translate}}
+            :</label>
+        </div>
+        <div class="p-col-4">
+          <p-dropdown (onChange)="handleControllerNameChange($event.value)" formControlName="controllerName"
+            [options]="options.controllerName" [placeholder]="'COMMON.SELECT' | translate" appendTo="body"></p-dropdown>
+        </div>
+        <div class="p-col-2 ">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.DEFAULT_DOMAIN_NAME' | translate}}
+            :</label>
+        </div>
+        <div class="p-col-4">
+          <input formControlName="defaultDomainName" type="text" pInputText>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <h4 class="bold">{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.HEADERS.PROFILE_INFORMATION' | translate}}</h4>
+    <div class="flex-row ">
+      <div class="p-grid p-field  p-fluid p-col-12" p- style="align-items: center;">
+
+        <div class="p-col-2">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.PROFILES' | translate}}
+            :</label>
+        </div>
+
+        <div class="p-col-4">
+          <p-dropdown (onChange)="handleChangeProfile($event.value)" formControlName="profile"
+            [options]="options.gwcProfiles" [placeholder]="'COMMON.SELECT' | translate" appendTo="body"></p-dropdown>
+        </div>
+
+        <div class="p-col-2 ">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.TONE_DATA' | translate}}
+            :</label>
+        </div>
+
+        <div class="p-col-4">
+          <input disabled [value]="toneValue" type="text" pInputText>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="p-grid" formGroupName="termTypeFormGroup">
+      <div class="p-field rbn-field field p-col-4">
+        <label *ngIf="termTypes.length > 0" class="p-col">{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.TERM_TYPE'
+          |translate}}:</label>
+        <div class="rbn-group">
+          <div *ngFor="let termType of termTypes" class="p-col-9 p-fluid line">
+            <input disabled type="text" [value]="termType" pInputText>
+          </div>
+        </div>
+      </div>
+      <div class="p-field rbn-field field p-col-5">
+        <label *ngIf="termTypes.length > 0" class="p-col ">{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.EXEC_DATA'
+          |translate}}:</label>
+        <div class="rbn-group">
+          <div *ngFor="let termType of termTypes" class="p-col-7 p-fluid">
+            <p-dropdown [formControlName]="termType" [options]="execInfoOptions[termType]"
+              appendTo="body"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+    <rbn-table #rbnTable [cols]="tableCols" [data]="tableDatas" [showFilterRow]="false" [tableConfig]="tableConfig" [allowSetDataToStorage]="false" [showFilterRow]="false"
+      (refreshData)="refreshTable()">
+    </rbn-table>
+  </p-panel>
+
+  <p-panel *ngIf="isFlowThrough" [showHeader]="false" class="rbn-panel">
+    <h4 class="bold">{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.HEADERS.FLOW_THROUGH_INFORMATION' | translate}} </h4>
+    <div class="flex-row ">
+      <div class="p-grid p-field p-fluid  p-col-12" p- style="align-items: center;">
+        <div class="p-col-6 ">
+          <p-checkbox class="rbn-checkbox " [binary]="true" formControlName="flowCheckBox" checkboxIcon="fa fa-check"
+            (onChange)="handleflowCheckBox($event.checked)"></p-checkbox>
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.FLOW_THROUG_TO_SESSION_SERVER' |
+            translate}}
+          </label>
+        </div>
+        <div class="p-col-2">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.GWC_ADDRESS_NAME' | translate}}
+            :</label>
+        </div>
+        <div class="p-col-4">
+          <input formControlName="gwcAdressName" type="text" pInputText>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <h4 class="bold">{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.HEADERS.GWC_BEARER_NETWORKS_CODEC_PROFILE_INFORMATION' |
+      translate}} </h4>
+    <div class="flex-row ">
+      <div class="p-grid p-field  p-fluid p-col-12" p- style="align-items: center;">
+        <div class="p-col-2">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.BEARER_NETWORKS' | translate}}
+            :</label>
+        </div>
+        <div class="p-col-4">
+          <input disabled [value]="'NET_IP(IP)'" type="text" pInputText>
+        </div>
+        <div class="p-col-2 ">
+          <label>{{'GATEWAY_CONTROLLERS.ADD_GWC_NODE.FIELDS.GWC_CODEC_PROFILE' | translate}}
+            :</label>
+        </div>
+        <div class="p-col-4">
+          <p-dropdown [options]="options.codecProfiles" formControlName="gwcCodecProfile"
+            [placeholder]="'COMMON.SELECT' | translate" appendTo="body"></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+
+  <app-form-footer (eventSubmit)="onFormSubmit($event)" [disablePrimaryBtn]="disableButton"
+    [secondaryLabel]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.CANCEL' | translate"
+    [primaryLabel]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SAVE' | translate"></app-form-footer>
+ 
+  <p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.ADD_GWC_NODE.HEADERS.ADD_GWC_NODE' | translate"
+    [(visible)]="showAddErrorDialog" [modal]="true" (onHide)="closeAddErrorDialog()" id="errorDialog"
+    [draggable]="false" [resizable]="false">
+    <div class="error-dialog-container p-grid p-field p-col-12">
+      <i class="pi pi-times-circle iconStyle"></i>
+      <div class="message-text-container">{{messageText}}</div>
+    </div>
+    <div class="error-dialog-buttons p-grid p-col-12">
+      <div class="btn">
+        <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeAddErrorDialog()"
+          [label]="'COMMON.OK' | translate"></p-button>
+      </div>
+      <div class="btn">
+        <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+          [label]="'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+      </div>
+    </div>
+    <div *ngIf="!showDetailsBtn">
+      <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+    </div>
+  </p-dialog>
+
+</div>
+</p-dialog>

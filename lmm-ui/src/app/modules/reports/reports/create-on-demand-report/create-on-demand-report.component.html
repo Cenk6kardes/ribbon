@@ -1,0 +1,10 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<div class="create-on-demand-report-form">
+  <rbn-page-header [data]="headerData" (backButtonAction)="onBack()"></rbn-page-header>
+  <rbn-pick-list [cols]="colsGatewayControl" [dataTarget]="dataGatewayControlTarget"
+    [dataSource]="dataGatewayControlSource" [isReorderTarget]="true"
+    (evOnChangeData)="onChangeDataResourceGroupsPickList($event)">
+  </rbn-pick-list>
+  <rbn-form-toolbar [secondaryLabel]="'COMMON.CLOSE' | translate" [primaryLabel]="'COMMON.RUN' | translate"
+    [disabledPrimary]="dataGatewayControl?.target?.length <= 0" (buttonClickedEmit)="buttonClickedEmit($event)"></rbn-form-toolbar>
+</div>

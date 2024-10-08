@@ -1,0 +1,370 @@
+{
+  "reportsList": [
+    {
+      "fileDisplay": "Report-2023-08-18-12-30-40(GMT+0300)",
+      "fileName": "Report_1",
+      "scheduled": true,
+      "fileLMTimeInMillis": 1692351040594
+    },
+    {
+      "fileDisplay": "Report-2023-08-18-12-29-56(GMT+0300)",
+      "fileName": "Report_2",
+      "scheduled": false,
+      "fileLMTimeInMillis": 1692350996017
+    },
+    {
+      "fileDisplay": "Report-2023-08-18-12-16-27(GMT+0300)",
+      "fileName": "Report_3",
+      "scheduled": false,
+      "fileLMTimeInMillis": 1692350187227
+    }
+  ],
+  "generalReports": [
+    {
+      "gwcName": "GWC-0",
+      "queryResult": "Succesful",
+      "numberOfGW": 4
+    },
+    {
+      "gwcName": "GWC-1",
+      "queryResult": "Succesful",
+      "numberOfGW": 7
+    },
+    {
+      "gwcName": "GWC-2",
+      "queryResult": "Succesful",
+      "numberOfGW": 7
+    }
+  ],
+  "reportDetail": [
+    {
+      "gwName": "med24softph",
+      "errorMessage": "GW DISABLED"
+    },
+    {
+      "gwName": "ncsco24.netas.com.tr",
+      "errorMessage": "GW DISABLED"
+    },
+    {
+      "gwName": "co24mediatrix1124",
+      "errorMessage": "GW DISABLED"
+    },
+    {
+      "gwName": "mediatrix",
+      "errorMessage": "GW DISABLED"
+    }
+  ],
+  "queryDirectoryNumber": {
+    "DN": "8831400",
+    "TYPE": "SINGLE PARTY LINE",
+    "SNPA": "103",
+    "SIG": "DT",
+    "LNATTIDX": "N/A"
+  },
+  "querySessionInitiationProtocol": {
+    "cm_dn": "1038831508",
+    "cm_len": "SS24 00 0 00 08",
+    "cm_lcc": "IBN ",
+    "cm_tid": "29.0.9",
+    "cm_gwc_name": "GWC 40",
+    "cm_gwc_address": "10.254.146.176",
+    "cm_clli": "No",
+    "gw_name": "sipvmgssl24",
+    "gw_address": "47.165.158.121",
+    "gw_type": "",
+    "endpoint_name": "SS24/000/0/0008",
+    "cm_rc": "0",
+    "gw_rc": ""
+  },
+  "lineInformationByDNAndCLLI": [
+    {
+      "cm_dn": "1038831001",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.1",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831002",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.2",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831003",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.3",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831004",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.4",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831005",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.5",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831006",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.6",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "0.0.0.0",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831007",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.7",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831008",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.8",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831009",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.9",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831010",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.10",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    },
+    {
+      "cm_dn": "1038831011",
+      "cm_len": "LG 00 0 00 05",
+      "cm_lcc": "IBN ",
+      "cm_tid": "46.0.11",
+      "cm_gwc_name": "GWC    0",
+      "cm_gwc_address": "10.254.146.140",
+      "cm_clli": "No",
+      "gw_name": "co24mediatrix1124",
+      "gw_address": "47.168.139.99",
+      "gw_type": "",
+      "endpoint_name": "aaln/6",
+      "cm_rc": "0",
+      "gw_rc": ""
+    }
+  ],
+  "lineInformation": [
+    {
+      "cm_line_state": "MB1",
+      "cm_connected_party": "",
+      "cm_dn": "1038831001",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB2",
+      "cm_connected_party": "",
+      "cm_dn": "1038831002",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB3",
+      "cm_connected_party": "",
+      "cm_dn": "1038831003",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB4",
+      "cm_connected_party": "",
+      "cm_dn": "1038831004",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB5",
+      "cm_connected_party": "",
+      "cm_dn": "1038831005",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB6",
+      "cm_connected_party": "",
+      "cm_dn": "1038831006",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB7",
+      "cm_connected_party": "",
+      "cm_dn": "1038831007",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB8",
+      "cm_connected_party": "",
+      "cm_dn": "1038831008",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB9",
+      "cm_connected_party": "",
+      "cm_dn": "1038831009",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB10",
+      "cm_connected_party": "",
+      "cm_dn": "1038831010",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    },
+    {
+      "cm_line_state": "MB11",
+      "cm_connected_party": "",
+      "cm_dn": "1038831011",
+      "endpoint_state": "",
+      "cm_rc": "0",
+      "gw_rc": "",
+      "agcf_state": ""
+    }
+  ],
+  "endpointStateInformation": {
+    "epState": "OK",
+    "epInfo": "",
+    "op_rc": "1000",
+    "epCallState": "ON-HOOK",
+    "epTerminalType": "POTS_TERM",
+    "epStateDescription": "Valid Audit response received from endpoint"
+  },
+  "queryConfiguration": {
+    "enabled": true,
+    "timeToRun": "02:00:00",
+    "daily": false,
+    "sunday": true,
+    "monday": false,
+    "tuesday": false,
+    "wednesday": true,
+    "thursday": false,
+    "friday": true,
+    "saturday": false
+  },
+  "maintenanceInformation": {
+    "mtc_rc": "0"
+  }
+}

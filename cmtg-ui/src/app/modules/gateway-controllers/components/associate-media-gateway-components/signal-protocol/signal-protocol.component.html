@@ -1,0 +1,36 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <form [formGroup]="form">
+        <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAL_PROTOCOL.TITLE' | translate}}</h4>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAL_PROTOCOL.PROTOCOL_TYPE' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><p-dropdown [options]="protocols" optionLabel="protocolType" optionValue="protocolType"
+                        formControlName="protocolType" [styleClass]="'full-width'"
+                        (onChange)="handleProtocolTypeChange($event.value)"></p-dropdown>
+                </div>
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAL_PROTOCOL.PROTOCOL_PORT' |
+                        translate}}:</label><span class="color_red">*</span>
+                </div>
+                <div class="p-col-4 ">
+                    <input [class.invalid-input]="getProtocolPort?.invalid && getProtocolPort?.touched" (keydown)="keyPreventFn($event)" type="number" onwheel="this.blur()" formControlName="protocolPort"
+                    [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAL_PROTOCOL.TOOLTIP.PROTOCOL_PORT' | translate"
+                    tooltipPosition="bottom" pInputText>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAL_PROTOCOL.PROTOCOL_VERSION' |
+                        translate}}:</label>
+                </div>
+                <div class="p-col-4 "><input formControlName="protocolVersion" id="protocolVersion" type="text"
+                        pInputText /></div>
+            </div>
+        </div>
+    </form>
+</p-panel>

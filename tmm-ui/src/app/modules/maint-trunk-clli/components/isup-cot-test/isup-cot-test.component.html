@@ -1,0 +1,12 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="isup-cot-test-container" [formGroup]="formGroup">
+  <div class="p-grid p-pl-2">
+    <div class="rbn-group p-col-6 p-field rbn-field">
+      <label for="trunkMember">{{ "TRUNK_CLLI.TRUNK_MEMBER" | translate }}</label>
+      <input formControlName="trunkMember" type="text" pInputText />
+    </div>
+  </div>
+  <rbn-panel-messages [title]="title" [content]="content" [typeOfMessage]="'info'"></rbn-panel-messages>
+  <app-form-footer [primaryLabel]="'COMMON.RUN_TEST' | translate" (eventSubmit)="onFormSubmit($event)">
+  </app-form-footer>
+</div>

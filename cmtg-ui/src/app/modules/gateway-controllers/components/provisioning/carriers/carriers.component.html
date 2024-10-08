@@ -1,0 +1,201 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+
+<div class="button-top">
+  <p-button [label]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.ADD_BTN_LABEL' | translate" styleClass="rbn-button rbn-button-secondary" icon="fas fa-plus" (onClick)="addNewCarrierBtn()">
+  </p-button>
+</div>
+
+<p-accordion expandIcon='pi pi-fw pi-chevron-up'>
+  <p-accordionTab [selected]="true" #tabEl class="flex">
+    <ng-template pTemplate="header">
+      <div>
+        <span class="pi pi-fw custom-icon"
+          [ngClass]="{'pi-chevron-up': !tabEl.selected, 'pi-chevron-down': tabEl.selected}"></span>
+        <span class="font-bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.CARRIER_LIST' | translate}}</span>
+      </div>
+      <div>
+        <span>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA' | translate}}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <form [formGroup]="retrieveForm">
+        <div class="flex-row">
+          <div class="p-grid p-field p-col-12 p-fluid">
+            <div class="p-col-2"><label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA' | translate}}:</label></div>
+            <div class="p-col-4 ">
+              <p-dropdown [required]="true" [options]="searchCarriersHistory" formControlName="retrivalCriteria" appendTo="body" [styleClass]="'full-width'" [editable]="true"></p-dropdown>
+            </div>
+            <div class="p-col-2"><label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.LIMIT_RESULT' | translate}}:</label></div>
+            <div class="p-col-4 ">
+              <p-dropdown [placeholder]="'COMMON.SELECT' | translate" [required]="true" [options]="limitResultOptions" appendTo="body" formControlName="limitResult" [styleClass]="'full-width'" [editable]="true"></p-dropdown>
+            </div>
+          </div>
+          <div class="field-checkbox field w-full p-grid p-col-12">
+            <div class="p-col-2">
+              <p-radioButton name="radioButton" value="replaceList" formControlName="radioButton"></p-radioButton>
+              <label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.REPLACE_LIST' | translate}}</label>
+            </div>
+            <div class="p-col-2">
+              <p-radioButton name="radioButton"  value="appendToList" formControlName="radioButton"></p-radioButton>
+              <label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.APPEND_TO_LIST' | translate}}</label>
+            </div>
+          </div>
+        </div>
+        <app-form-footer 
+        [secondaryLabel]="'COMMON.RESET' | translate"
+        [primaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE' | translate" (eventSubmit)="onRetrieveHandle($event)">
+          <div class="btn">
+            <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="onRetriveAllHandle()" [label]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE_ALL' | translate"></p-button>
+          </div>
+        </app-form-footer>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<rbn-table [cols]="carriersTableCols" [data]="carriersTableData" [tableConfig]="carriersTableConfig" [allowSetDataToStorage]="false" [showFilterRow]="false" (refreshData)="refreshCarriersTable()"
+(fetchChildItem)="fetchChildItem($event)">
+</rbn-table>
+
+<ng-template #displayCarrierTable>
+  <rbn-table class="p-grid p-col-4" [cols]="colsChildren" [allowSetDataToStorage]="false" [showFilterRow]="false" [data]="dataChildren" [tableConfig]="tableConfigChildren">
+  </rbn-table>
+</ng-template>
+
+<!-- Add Carrier -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.TITLE' | translate" [(visible)]="showAddCarrier"
+  [modal]="true" id="dialog" (onHide)="closeAddCarrier()">
+  <div>
+    <div class="p-col-12" [formGroup]="addCarrierFormGroup">
+        <div class="p-grid">
+          <div class="rbn-field field p-col-12 panel-content">
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="carrierName">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.CARRIER_NAME' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('carrierName')?.invalid && getFormInput('carrierName')?.touched" id="carrierName" type="text" formControlName="carrierName"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.CHAR_STRING_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="gatewayName">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.GATEWAY_NAME' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('gatewayName')?.invalid && getFormInput('gatewayName')?.touched" id="gatewayName" type="text" formControlName="gatewayName"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.CHAR_STRING_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="firstTn">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.START_TERMINAL_NUM' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('firstTn')?.invalid && getFormInput('firstTn')?.touched" id="firstTn" type="text" formControlName="firstTn"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.START_TERMINAL_NUM_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+          </div>
+          <div class="rbn-field field p-col-12 panel-content">
+            <div class="rbn-field p-col-12">
+              <div class="rbn-group">
+                <p-checkbox class="rbn-checkbox p-mr-2" [binary]="true" formControlName="voipVPN" checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text p-mb-2">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.VOIP_VPN' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="h323"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text p-mb-2">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.H_323' | translate }}</label>
+                <p-checkbox class="rbn-checkbox p-mr-2 p-ml-5" [binary]="true" formControlName="priDpnss"  checkboxIcon="fa fa-check"></p-checkbox>
+                <label class="label-text p-mb-2">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.PRI_DPNSS' | translate }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="rbn-field field p-col-12 panel-content">
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="noOfPorts">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.NUMBER_OF_PORTS' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('noOfPorts')?.invalid && getFormInput('noOfPorts')?.touched"id="noOfPorts" type="text" formControlName="noOfPorts"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.NUMBER_OF_PORTS_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="priInterfaceId">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.NFAS_DPNSS_IID' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('priInterfaceId')?.invalid && getFormInput('priInterfaceId')?.touched"id="priInterfaceId" type="text" formControlName="priInterfaceId"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.NFAS_DPNSS_IID_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+            <div class="rbn-field p-col-4">
+              <label class="p-mb-2" for="priIUAInterfaceId">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.IUA_IID' | translate }}:</label>
+              <input [class.invalid-input]="getFormInput('priIUAInterfaceId')?.invalid && getFormInput('priIUAInterfaceId')?.touched" id="priIUAInterfaceId" type="text" formControlName="priIUAInterfaceId"
+              [pTooltip]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.IUA_IID_INFO' | translate" tooltipPosition="bottom" pInputText>
+            </div>
+          </div>
+        </div>
+    </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.ADD' | translate"
+      [disablePrimaryBtn]="!(addCarrierFormGroup.controls['carrierName'].valid && addCarrierFormGroup.controls['gatewayName'].valid)
+        || !(!isnumberOfPortsEnable || addCarrierFormGroup.controls['noOfPorts'].valid)
+        || !(!isIIDsEnable || addCarrierFormGroup.controls['priInterfaceId'].valid)
+        || !(!isIIDsEnable || addCarrierFormGroup.controls['priIUAInterfaceId'].valid)
+        || !addCarrierFormGroup.valid"
+      (eventSubmit)="addCarrierFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>
+
+<!-- Error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="errorTitle" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<!--  Add Carrier Successfully -->
+<p-dialog class="rbn-dialog dialog-width" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.SUCCESS_TITLE' | translate"
+  [(visible)]="showAddSuccessDialog" [modal]="true" (onHide)="closeAddSuccessDialog()" id="addSuccessDialog">
+  <div class="p-col-12 p-mb-3">
+    <label>{{ 'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.ADD.SUCCESS_MESSAGE' | translate }}</label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeAddSuccessDialog()" ></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Delete Carrier Confirm -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.DELETE.CONFIRM_TITLE' | translate"
+  [(visible)]="showDeleteConfirmDialog" [modal]="true" (onHide)="closeDeleteConfirmDialog()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label>
+      {{ 'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.DELETE.CONFIRM_MESSAGE' | translate }}
+      <span class="boldAndItalic">"{{ deleteSelectedData.carrierName }}"</span>
+      {{"?"}}
+    </label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="deleteDialogFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+
+<!-- Delete Carrier Successfully -->
+<p-dialog class="rbn-dialog" [header]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.DELETE.SUCCESS_TITLE' | translate"
+  [(visible)]="showDeleteSuccessDialog" [modal]="true" (onHide)="closeDeleteSuccessDialog()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label>{{ 'GATEWAY_CONTROLLERS.PROVISIONING.TABS.CARRIERS.DELETE.SUCCESS_MESSAGE' | translate }}</label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeDeleteSuccessDialog()" ></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Delete Carrier Error Popup -->
+<p-dialog class="rbn-dialog" [header]="deleteErrorTitle" [(visible)]="showDeleteErrorDialog" [modal]="true"
+  (onHide)="closeDeleteErrorDialog()" id="deleteErrorDialog">
+  <div class="p-col-12 p-mb-3">
+    <label [innerHTML]="deleteMessageText"></label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+      (onClick)="closeDeleteErrorDialog()"></p-button>
+  </p-footer>
+</p-dialog>

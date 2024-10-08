@@ -1,0 +1,50 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <div class="container">
+        <form [formGroup]="form">
+            <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.TITLE' | translate}}</h4>
+            <div class="flex-row">
+                <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                    <div class="p-col-2">
+                        <label>{{'COMMON.ENABLED' |
+                            translate}}/{{'COMMON.DISABLED' |
+                            translate}}:</label>
+                    </div>
+                    <div class="p-col-4">
+                        <p-inputSwitch (onChange)="handleSwitch($event.checked)" formControlName="enable_disable"
+                            class="rbn-switch"></p-inputSwitch><span class="font-bold p-pl-2">
+                            {{switchButton | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                    <div class="p-col-2">
+                        <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.FIELDS.IP' |
+                            translate}}:</label><span *ngIf="switchButton==='COMMON.ENABLED'" class="color_red">*</span>
+                    </div>
+                    <div class="p-col-4 "><input formControlName="ip" id="ip" type="text"
+                            [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.TOOLTIP.SG_IP' | translate"
+                            tooltipPosition="bottom" pInputText /></div>
+                    <div class="p-col-2">
+                        <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.FIELDS.PORT_1' |
+                            translate}}:</label><span *ngIf="switchButton==='COMMON.ENABLED'" class="color_red">*</span>
+                    </div>
+                    <div class="p-col-4 "><input type="number" formControlName="port1" id="port1"
+                            [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.TOOLTIP.SG_PORT' | translate"
+                            tooltipPosition="bottom" pInputText /></div>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                    <div class="p-col-2">
+                        <label>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.FIELDS.PORT_2' |
+                            translate}}:</label>
+                    </div>
+                    <div class="p-col-4 "><input type="number" formControlName="port2" id="port2"
+                            [pTooltip]="'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.SIGNAILLING_GATEWAY.TOOLTIP.SG_PORT' | translate"
+                            tooltipPosition="bottom" pInputText /></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-panel>

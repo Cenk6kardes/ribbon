@@ -1,0 +1,22 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="container">
+    <p-panel [showHeader]="false" class="rbn-panel">
+        <div class="p-field field p-col-12 rbn-group">
+            <label class="p-p-0 p-mb-1 p-mr-3">{{'INTERFACE_BROWSER.MAINTENANCE.FIELD_LABELS.INTERFACE' |
+                translate}}:</label>
+            <form [formGroup]="form">
+                <p-dropdown class="interface-field" formControlName="interfaceId" [options]="(interfaceIds$ |async)" [styleClass]="'full-width'"
+                    appendTo="body"></p-dropdown>
+            </form>
+        </div>
+        <app-form-footer
+            [secondaryLabel]="'COMMON.RESET' | translate"
+            [primaryLabel]="'INTERFACE_BROWSER.MAINTENANCE.FIELD_LABELS.RETRIEVE'|translate"
+            (eventSubmit)="handleEvent($event)"
+            [disablePrimaryBtn]="(interfaceIds$ | async)?.length === 0"
+          ></app-form-footer>
+    </p-panel>
+
+    <rbn-table #rbnTable [cols]="cols" [data]="data" [showFilterRow]="false" [allowSetDataToStorage]="false" [tableConfig]="tableConfig" (refreshData)="getTableData()">
+    </rbn-table>
+</div>

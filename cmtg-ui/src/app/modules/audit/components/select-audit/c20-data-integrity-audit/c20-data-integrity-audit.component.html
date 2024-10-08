@@ -1,0 +1,22 @@
+<div class="p-grid" id="c20-data-integrity-audit">
+  <div class="p-field rbn-field field p-col-12 p-md-12 p-lg-12">
+    <label class="p-col p-p-0 p-mb-1">{{'AUDIT.FIELD_LABEL.SELECT_AUDIT_COMPONENT' | translate}}:</label>
+    <div class="rbn-group">
+      <div class="rbn-group">
+        <p-checkbox *ngFor="let option of integrityOptions; let i = index" class="rbn-checkbox p-mb-2" name="option"
+          [value]="option.value" checkboxIcon="fa fa-check" [label]="option.label || ''"
+          [(ngModel)]="selectedIntegrity"
+          (ngModelChange)="ngModelIntegrityChange($event)"
+          (onChange)="handleChangeIntegrity($event.checked, option.value)" [disabled]="option.disabled">
+        </p-checkbox>
+      </div>
+    </div>
+  </div>
+</div>
+
+<rbn-confirm-dialog *ngIf="confirmIntegrityAudit.isShowConfirmDialog" id="c20-integrity-audit-dialog"
+  [title]="confirmIntegrityAudit.title" [content]="confirmIntegrityAudit.content"
+  [isShowConfirmDialog]="confirmIntegrityAudit.isShowConfirmDialog"
+  (emitConfirm)="confirmIntegrityAudit.handleAccept.bind(this)($event)"
+  [titleAccept]="confirmIntegrityAudit.titleAccept"
+  [titleReject]="confirmIntegrityAudit.titleReject"></rbn-confirm-dialog>

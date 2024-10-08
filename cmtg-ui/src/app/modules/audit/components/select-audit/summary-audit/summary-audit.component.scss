@@ -1,0 +1,36 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .info {
+    label {
+      font-weight: bold;
+    }
+  }
+  .progress {
+    margin-top: 10px;
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: $ribbon-blue;
+    }
+    .p-progressbar {
+      background-color: $ribbon-white;
+      border: 1px solid $ribbon-dark-blue;
+      margin: 0 2px 0 0;
+    }
+    .p-progressbar-value {
+      background-color: $ribbon-dark-blue;
+    }
+    .p-progressbar-label {
+      color: $ribbon-white;
+    }
+  }
+
+  p-dialog {
+    .p-dialog {
+      .p-dialog-header-icons {
+        display: none;
+      }
+    }
+  }
+}

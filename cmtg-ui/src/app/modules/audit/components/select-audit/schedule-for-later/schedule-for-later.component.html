@@ -1,0 +1,68 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+  <h3>{{'AUDIT.HEADER.SCHEDULE' | translate}}</h3>
+  <div class="p-mb-5" *ngIf="scheduleForLaterInfo">{{'AUDIT.MESSAGE.SCHEDULE_FOR_LATER_INFO' | translate}}</div>
+  <div class="p-grid" [formGroup]="scheduleForm">
+    <div class="p-col-12 schedule-area">
+      <div class="field-radiobutton" *ngIf="showScheduleTypeNow">
+        <p-radioButton (onClick)="changesScheduleType($event.value)" [value]="scheduleType.options[4]"
+          formControlName="ScheduleType"></p-radioButton>
+        <label class="p-radiobutton-label">{{'AUDIT.FIELD_LABEL.Now' | translate}}</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton (onClick)="changesScheduleType($event.value)" [value]="scheduleType.options[0]"
+          formControlName="ScheduleType"></p-radioButton>
+        <label class="p-radiobutton-label">{{'AUDIT.FIELD_LABEL.ONCE_TIME_ONLY' | translate}}</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton (onClick)="changesScheduleType($event.value)" [value]="scheduleType.options[1]"
+          formControlName="ScheduleType"></p-radioButton>
+        <label class="p-radiobutton-label">{{'AUDIT.FIELD_LABEL.DAILY' | translate}}</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton (onClick)="changesScheduleType($event.value)" [value]="scheduleType.options[2]"
+          formControlName="ScheduleType"></p-radioButton>
+        <label class="p-radiobutton-label">{{'AUDIT.FIELD_LABEL.WEEKLY' | translate}}</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton (onClick)="changesScheduleType($event.value)" [value]="scheduleType.options[3]"
+          formControlName="ScheduleType"></p-radioButton>
+        <label class="p-radiobutton-label">{{'AUDIT.FIELD_LABEL.MONTHLY' | translate}}</label>
+      </div>
+    </div>
+
+    <div class="p-col-6 first-grid-schedule" *ngIf="getFormFieldScheduleType?.value === eScheduleType.Monthly"
+      formGroupName="Monthly">
+      <label>{{'AUDIT.FIELD_LABEL.DAY_OF_MONTH' | translate}}: <span class="validators-required"></span></label>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <p-dropdown [options]="daysOptions" placeholder="{{'AUDIT.FIELD_LABEL.SELECT_DAY' | translate}}"
+            appendTo="body" [filter]="true" formControlName="dayOfMonth"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-6 first-grid-schedule" *ngIf="getFormFieldScheduleType?.value === eScheduleType.Weekly"
+      formGroupName="Weekly">
+      <label>{{'AUDIT.FIELD_LABEL.EVERY' | translate}}: <span class="validators-required"></span></label>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <p-multiSelect [options]="daysOfTheWeekOptions" placeholder="{{'AUDIT.FIELD_LABEL.SELECT_DAYS' | translate}}"
+            appendTo="body" formControlName="Every"></p-multiSelect>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-6 first-grid-schedule">
+      <label [ngClass]="{'p-disabled': disabledTimePicker}">{{singleCalendarOptions.label}}: <span
+          class="validators-required"></span></label>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <rbn-single-time-picker #singleDatePicker (dateChanged)="onDateChanged($event)" [isCustomTimePicker]="true"
+            [removeMaxDate]="true" [showTime]="true" [timeOnly]="singleCalendarOptions.timeOnly"
+            [singleCalendarConfig]="singleCalendarConfig" [placeholder]="singleCalendarOptions.placeholder"
+            [headerTimePicker]="singleCalendarOptions.headerTimePicker" [hiddenQuickSelect]="true" [showSeconds]="false"
+            [stepMinute]="30" [defaultDateSingleCalendar]="defaultDate"
+            [disabledTimePicker]="disabledTimePicker" [contentStyleClassDialog]="'single-time-picker-hide-panel'"></rbn-single-time-picker>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>

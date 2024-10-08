@@ -1,0 +1,93 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .button-top {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .invalid-input{
+    border-color: $ribbon-dark-red;
+  }
+
+  .pepServers-container {
+    .rbn-group>label {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .rbn-field>input {
+      height: 37px;
+    }
+  }
+
+  .form-footer {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  .boldAndItalic {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .error-dialog-container {
+    display: flex;
+    flex-direction: row;
+
+    .iconStyle {
+      color: $ribbon-dark-red;
+      margin-top: 4px;
+    }
+  }
+
+  .error-dialog-buttons {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 2px;
+      margin-right: 8px;
+    }
+  }
+
+  .message-text-container {
+    font-weight: unset;
+    color: $ribbon-dark-grey;
+    margin-left: 10px;
+  }
+
+  .message-text-detail {
+    margin-left: 27px;
+    width: calc(500px - 2rem);
+  }
+
+  .details-text-area-container {
+    height: 135px;
+    width: calc(500px - 2rem);
+    resize: both;
+    max-width: inherit;
+    overflow: scroll;
+    color: $ribbon-dark-grey;
+    white-space: nowrap;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+    outline: 1px solid $ribbon-light-grey;
+    border-radius: 2px;
+  }
+
+  .showDetailsBtn {
+    margin-left: 5px;
+  }
+}

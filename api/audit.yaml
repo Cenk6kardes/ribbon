@@ -1,0 +1,822 @@
+openapi: 3.0.1
+
+
+info:
+  title: Audit Controller  Rest Api Definition
+  version: 1.0.0
+  description: "In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+
+tags:
+  - name: "Audit"
+    description: "Operations related to Audit Controller" 
+
+paths:
+
+  /AuditApi/audit/v1.0/registered-audit-list:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/time-zone:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/last-run-scheduled-audit/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/running-audit:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stringArray'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/preparation-for-audit/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+                
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/action-problem/{auditName}/{problemID}/{correctiveAction}:
+    post:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: problemID
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: correctiveAction
+          in: path
+          required: true
+          schema:
+            type: integer
+            
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: string
+                example: 2023-11-27 20:19:57
+                
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+  /AuditApi/audit/v1.0/problem-report/{auditName}/{rep}:
+    post:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: rep
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ProblemReport'
+     
+      responses:
+        '200':
+          description: OK
+          
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+  /AuditApi/audit/v1.0/audit/{auditName}/{userID}/{host}:
+    put:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: host
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GranularAuditData'
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditResult'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/audit/{userID}:
+    post:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+       
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+
+      responses:
+        '200':
+          description: OK
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /AuditApi/audit/v1.0/audit-configuration/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditConfig'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+    post:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditConfig'
+        
+      responses:
+        '200':
+          description: OK
+          
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'    
+
+
+  /AuditApi/audit/v1.0/audit-state/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditProcessStatus'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/audit-report/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemList'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/last-run-time/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /AuditApi/audit/v1.0/report-list/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /AuditApi/audit/v1.0/report-list-with-port/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /AuditApi/audit/v1.0/audit-description/{auditName}:
+    get:
+      tags:
+        - Audit
+
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: auditName
+          in: path
+          required: true
+          schema:
+            type: string
+        
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: object
+                example: null
+              example: "cs2kmgrAudit \n
+                        This audit checks for data mismatches between the Call Server and the SESM database. The following data is verified\n 1) GatewayControllers versus the Call Server datafill. \n
+                          2) Gateway data internal to the SESM and its relationship to a GatewayController. 
+                          3) Node Number values associated with GatewayControllers and Line Groups. 
+                          4) IP-VPN(NAT) datafill internal to SESM and its AS
+                          equivalent. 
+                          5) GWC & VMG datafill internal to SESM and its AS
+                          equivalent. 
+                          6) LTIDs datafill internal to Core and its AS
+                          equivalent. "
+
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+
+  schemas:
+
+    stringArray:
+      type : array
+      items :
+        type : string
+
+    PossibleAction:
+      type: object
+      properties:
+        correctiveAction:
+          type: integer
+        correctiveTitle:
+          type: string
+        correctiveDescription:
+          type: string
+
+    Problem:
+      type: object
+      properties:
+        problemID:
+          type: integer
+        status:
+          type: object
+          properties:
+            __value:
+              type: integer
+        problemDescription:
+          type: string
+        possibleActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PossibleAction'
+
+    ProblemList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Problem'
+
+    AuditProcessStatus:
+      type: object
+      properties:
+        auditProcess:
+          type: string
+        proportion:
+          type: number
+        completed:
+          type: integer
+
+    AuditResult:
+      type: object
+      properties:
+        returnCode:
+          type: boolean
+        numProblemsRecorded:
+          type: integer
+
+    AuditConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        timeToRun:
+          type: string
+        once:
+          type: boolean
+        daily:
+          type: boolean
+        weekly:
+          type: boolean
+        monthly:
+          type: boolean
+        sunday:
+          type: boolean
+        monday:
+          type: boolean
+        tuesday:
+          type: boolean
+        wednesday:
+          type: boolean
+        thursday:
+          type: boolean
+        friday:
+          type: boolean
+        saturday:
+          type: boolean
+        day:
+          type: string
+        interval:
+          type: integer
+        granularAuditData:
+          $ref : '#/components/schemas/GranularAuditData'
+
+    ReportData:
+      type: object
+      properties:
+        reportName:
+          type: string
+        reportType:
+          type: object
+          properties:
+            __value:
+              type: integer
+        fileURL:
+          type: string
+        fileSize:
+          type: integer
+          
+    GranularAuditData:
+      type: object
+      properties:
+        data:
+          $ref : '#/components/schemas/GranularDataList'
+        type:
+          type: integer
+        count:
+          type: integer
+        options:
+          type: integer
+
+    GranularDataList:
+      type : array
+      items :
+        $ref : '#/components/schemas/GranularData'
+        
+    GranularData:
+      type : object
+      properties :
+        data:
+          type : string
+        type:
+          type : integer
+          
+    ProblemReport:
+      type: object
+      properties:
+        auditableAppName:
+          type: string
+        problemType:
+          type: integer
+        problemDescription:
+          type: string
+        dataKey:
+          type: string
+        severity:
+          type: integer
+        possibleActions:
+          $ref : '#/components/schemas/AuditActionList'
+        problemStatus:
+          $ref : '#/components/schemas/statusOfProblem'
+       
+    AuditActionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AuditAction'
+    
+    statusOfProblem:
+      type: string
+      enum:
+        - PROBLEM_EXISTS
+        - PROBLEM_CORRECTED
+        - CORRECTION_FAILED
+        
+
+    AuditAction:
+      type: object
+      properties:
+        correctiveAction:
+          type: integer
+        correctiveTitle:
+          type: string
+        correctiveDescription:
+          type: string
+    
+  
+          
+    ReportList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReportData'
+
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    
+    

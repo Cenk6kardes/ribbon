@@ -1,0 +1,53 @@
+<div class="container-summary">
+  <h2 class="summary-title">{{'MAI_GATE_WAYS_CARRIER.HEADER.SUMMARY' | translate}}</h2>
+  <div class="body-summary">
+    <div class="p-grid content-summary">
+      <div class="p-col-2">
+        <label>{{summaryData.query.gatewayName.label}}</label>
+        <span>{{summaryData.query.gatewayName.value}}</span>
+      </div>
+      <div class="p-col-2">
+        <label>{{summaryData.query.nodeNumber.label}}</label>
+        <span>{{summaryData.query.nodeNumber.value}}</span>
+      </div>
+      <div class="p-col-2">
+        <label>{{summaryData.query.maintenanceAction.label}}</label>
+        <span>{{summaryData.query.maintenanceAction.value}}</span>
+      </div>
+      <div class="p-col-2">
+        <label>{{summaryData.query.endpointRange.label}}</label>
+        <span>{{summaryData.query.endpointRange.value}}</span>
+      </div>
+      <div class="p-col-2">
+        <label>{{summaryData.query.filterState.label}}</label>
+        <span>{{summaryData.query.filterState.value}}</span>
+      </div>
+      <div class="p-col-2" *ngIf="summaryData.query.carriers.value">
+        <label>{{summaryData.query.carriers.label}}</label>
+        <span class="value-carrier" (click)="op.toggle($event)">
+          {{summaryData.query.carriers.value}}
+          {{summaryData.query.carriers.label}}
+        </span>
+      </div>
+    </div>
+    <div class="p-grid value-state" *ngIf="summaryData.state.totalEndpoint.value">
+      <div class="p-col-2">
+        <label>{{summaryData.state.totalEndpoint.label}}</label>
+        <span>{{summaryData.state.totalEndpoint.value}}</span>
+      </div>
+      <div class="p-col-2" *ngFor="let item of summaryData.state.values">
+        <label>{{item.Value}}</label>
+        <span>{{item.Count}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<p-overlayPanel #op [showCloseIcon]="true">
+  <ng-template pTemplate>
+    <ul class="list-carrier">
+      <li *ngFor="let carrier of summaryData.query.carriers.data">
+        {{carrier}}
+      </li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>

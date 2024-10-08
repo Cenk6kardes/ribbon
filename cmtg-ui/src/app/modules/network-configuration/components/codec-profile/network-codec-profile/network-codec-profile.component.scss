@@ -1,0 +1,153 @@
+@import "ribbontheme/variables";
+
+.button-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:host ::ng-deep {
+  .p-dialog {
+    width: 60%;
+  }
+
+  .p-panel-content {
+    display: flex;
+    justify-content: center;
+    padding: 0 !important;
+  }
+
+  .table-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px !important;
+    padding-bottom: 7px !important;
+  }
+
+  .content-header {
+    color: $ribbon-dark-grey;
+    font-size: 13px;
+    font-weight: 600
+  }
+
+  .content-detail {
+    color: $ribbon-dark-grey;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .italic-placeholder::placeholder {
+    font-style: italic;
+  }
+
+  .label-text {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .boldAndItalic {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .p-picklist {
+    width: 100%;
+
+    .p-picklist-header {
+     display: flex;
+     justify-content: center;
+     font-size: 14px;
+     font-weight: lighter;
+     margin-bottom: 2px;
+     width: 32vh;
+     //min-width: 136px;//265px;
+     //width: 23vw;
+    }
+
+    .p-picklist-list-wrapper {
+      flex: 1 1 auto;
+    }
+  }
+
+  .p-picklist-buttons .p-button {
+    background-color: transparent;
+    color: $ribbon-dark-blue;
+  }
+
+  .filter-container-detail .p-picklist .p-picklist-filter-container .p-picklist-filter-input {
+    margin: 4px;
+    width: 98%;
+    font-style: italic;
+  }
+
+  .search-icon .pi-search:before {
+    display: none;
+  }
+
+  // show/hide error popup
+
+  .error-dialog-cont {
+    .p-dialog {
+      width: auto;
+    }
+  }
+
+  .form-footer {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  .error-dialog-container {
+    display: flex;
+    flex-direction: row;
+
+    .iconStyle {
+      color: $ribbon-dark-red;
+      margin-top: 4px;
+    }
+  }
+
+  .error-dialog-buttons {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 2px;
+      margin-right: 8px;
+    }
+  }
+
+  .message-text-container {
+    font-weight: unset;
+    color: $ribbon-dark-grey;
+    margin-left: 10px;
+  }
+
+  .details-text-area-container {
+    height: 135px;
+    width: calc(500px - 2rem);
+    resize: both;
+    max-width: inherit;
+    overflow: scroll;
+    color: $ribbon-dark-grey;
+    white-space: nowrap;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+    outline: 1px solid $ribbon-light-grey;
+    border-radius: 2px;
+  }
+
+  .showDetailsBtn {
+    margin-left: 5px;
+  }
+}

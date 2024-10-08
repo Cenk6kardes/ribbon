@@ -1,0 +1,15 @@
+<div class="wrapper rbn-container">
+  <rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+  <div class="header">
+    <app-top-header (confirmAgreeLogout)="confirmLogout()"></app-top-header>
+  </div>
+  <div class="container container-wrapper content-container">
+    <rbn-sidebar [menuItems]="menuItemsSidebar" [useFavorites]="sidebarConfig.useFavorites"
+      [useSearch]="sidebarConfig.useSearch" (menuItemClicked)="menuItemClicked($event)"
+      [usePathForActiveItem]="sidebarConfig.usePathForActiveItem">
+    </rbn-sidebar>
+    <div class="layout-content right-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

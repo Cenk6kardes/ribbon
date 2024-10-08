@@ -1,0 +1,24 @@
+<p-panel [showHeader]="false" class="rbn-panel">
+    <form >
+        <h4>{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.PEPSERVER_ALG.TITLE' | translate}}</h4>
+
+        <div class="flex-row">
+            <div class="p-grid p-field p-col-12 p-fluid" style="align-items: center;">
+                <div class="p-col-2">
+                    <p-radioButton (onClick)="pep_alg_emit()" name="pep_alg" value="pepServerName" [(ngModel)]="pep_alg" ></p-radioButton>
+                    <label
+                        class="p-radiobutton-label p-mr-3">{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.PEPSERVER_ALG.FIELDS.PEP_SERVER'
+                        | translate}}</label>
+                </div>
+
+                <div class="p-col-2">
+                    <p-radioButton (onClick)="pep_alg_emit()" name="pep_alg" value="algName" [(ngModel)]="pep_alg"></p-radioButton>
+                    <label
+                        class="p-radiobutton-label p-mr-3">{{'GATEWAY_CONTROLLERS.ASSOCIATE_MEDIA_GW.FIELDS.PEPSERVER_ALG.FIELDS.ALG'
+                        | translate}}</label>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</p-panel>

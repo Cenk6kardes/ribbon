@@ -1,0 +1,289 @@
+<div id="configuration-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab [selected]="true">
+      <ng-template pTemplate="header">
+        <span>Getting the LMM CLLI name</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          If there are no communication problems with the CM, the default CLLI
+          should automatically be set during the LMM GUI startup. If the CLLI is
+          not already set during initialization, refresh the page.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Reconnecting to LMM server</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to reconnect to the LMM server. A lost connection
+          is indicated by a Red LMM status button. If a server fault occurs
+          during GUI startup (a case when the C20 Management Tools server is
+          down), the CM CLLI will not be set automatically. The CLLI field at
+          the header of the GUI will be blank.
+        </p>
+        <h4>Example of lost connection</h4>
+        <p-image
+          src="assets\images\lost_connection.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <p>
+          The C20 Management Tools server must be running and the applications
+          in ready status.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>Ensure the C20 Management Tools server is back up and running
+          with the applications in ready status.
+        </p>
+        <p>
+          <b>2 </b>Refresh the page in order to establish a connection with the
+          LMM server again.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If the server fault occurred during GUI startup, performing this step
+          will automatically connect to the default CLLI. Once connected, the
+          default CLLI will show up on the header of the GUI.
+        </p>
+        <p>
+          <b>3 </b>Check the status of the LMM Server box, which is green when
+          the connection is re-established, as shown below.
+        </p>
+        <p-image
+          src="assets\images\status2.jpg"
+          alt="Image"
+          width="400"
+          [preview]="true"
+        ></p-image>
+        <p><b>4 </b>You have completed this procedure.</p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          If you have any problem, click the link
+          <em><a routerLink="/help/troubleshooting">Troubleshooting</a>.</em>
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Canceling pending CPD requests with LMM</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          Use this procedure to cancel pending CPD requests. This option is
+          effective only when the Auto Termination timer runs out. Auto
+          Termination must be enabled.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong>1</strong> On the <strong>Preferences</strong> menu, enable
+          <strong>Auto Termination</strong> then
+          <strong>Cancel pending CPD requests</strong>.
+        </p>
+        <p-image
+          src="assets\images\lmm_CPD.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>2 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Setting the LMM auto refresh rate</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>Use this procedure to set the auto refresh rate.</p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <b>1 </b>On the <strong>Preferences</strong> menu, enable<strong>
+            Auto Refresh</strong
+          >.
+        </p>
+        <p-image
+          src="assets\images\refresh_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>2</strong>
+          Select the new value and click <strong>Save</strong>.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          The minimum is 5 seconds, and the maximum is 60 seconds.
+        </p>
+        <p-image
+          src="assets\images\refresh_rate.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Disabling the LMM auto refresh</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>Use this procedure to disable the auto refresh.</p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong> 1</strong> On the <strong>Preferences</strong> menu, disable
+          <strong>Auto Refresh</strong> then
+          <strong>Auto-Refresh (value)</strong> to disable automatic refresh of
+          the display.
+        </p>
+        <p-image
+          src="assets\images\disable_refresh.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong>2 </strong>Verify that automatic refresh is disabled by
+          viewing the Status window and the warning messages.
+        </p>
+        <p-image
+          src="assets\images\refresh_warning.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Setting the LMM auto termination value</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          An auto termination timer is started when there is no activity on the
+          LMM GUI. When the timer expires, lines are no longer refreshed and
+          pending CPD requests are cancelled. Use this procedure to set the auto
+          termination value.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong> 1</strong> On the <strong>Preferences</strong> menu, enable
+          <strong>Auto Termination</strong>
+        </p>
+        <p-image
+          src="assets\images\auto_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong> 2</strong>
+          Select a new value for the timeout and click OK.
+        </p>
+        <p>
+          <strong><strong>Note:</strong></strong>
+          The minimum is 1 minutes, and the maximum is 480 minutes.
+        </p>
+        <p-image
+          src="assets\images\autodialog.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p><b>3 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Controlling the number of lines displayed by the LMM GUI</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          The LMM allows you to control the number of lines that appear in the
+          LMM GUI. You can choose the number of lines from the dropdown list.
+          With auto-refresh enabled, only the lines posted and visible at the
+          GUI will be refreshed As the user navigates using the “Next” and
+          “Prev” buttons, the corresponding posted visible set will be
+          refreshed. Use this procedure to modify the number of displayed lines
+          in the LMM GUI.
+        </p>
+        <h4>Action</h4>
+        <p>Perform the following steps to complete this procedure.</p>
+        <p>
+          <b><em>At your workstation</em></b>
+        </p>
+        <p>
+          <strong> 1</strong> On the <strong>Home</strong> page, after posting a DN or gateway, then select the number of lines to display from the Rows below the table.
+        </p>
+        <p>
+          <strong> Selecting the number of lines to display </strong>
+        </p>
+        <p-image
+          src="assets\images\display_menu.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <strong> 2</strong>
+          If the number of displayed lines on GUI is larger than the value you
+          chose in the previous step, the “Next” and “Prev” buttons will be
+          automatically enabled, if they are not already enabled. Use the “Next”
+          and “Prev” buttons to verify that the new display settings become
+          effective.
+        </p>
+        <p>
+          <strong> 3</strong>
+          If the number of displayed lines on GUI is less than the value you
+          chose in the previous step, the “Next” and “Prev” buttons will be
+          enabled when the set value is reached.
+        </p>
+        <p><b>4 </b>You have completed this procedure.</p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+</div>

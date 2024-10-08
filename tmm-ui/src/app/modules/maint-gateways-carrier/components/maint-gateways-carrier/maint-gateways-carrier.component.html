@@ -1,0 +1,79 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="maintenance-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-accordion (onOpen)="onTabOpen($event)">
+    <p-accordionTab [header]="'MAI_GATE_WAYS_CARRIER.HEADER_ACTION' | translate" [selected]="selectAccord">
+      <div [formGroup]="formGroup" class="container-actions">
+        <div class="p-grid">
+          <div class="rbn-group p-field rbn-field p-col-3">
+            <label>{{'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.GATEWAY_NAME' | translate}}
+              <span *ngIf="getFormFieldGatewayName.hasValidator(validators.required)"
+                class="validators-required"></span>
+            </label>
+            <p-dropdown [options]="gatewayNamesOptions" [styleClass]="'full-width'" formControlName="GatewayName"
+              [autoDisplayFirst]="false" [placeholder]="'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.SELECT_GATEWAY' | translate"
+              (onChange)="changeGatewayNames()"></p-dropdown>
+          </div>
+          <div class="rbn-group p-field rbn-field p-col-3">
+            <label>{{'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.MAINTENANCE_ACTION' | translate}}
+              <span *ngIf="getFormFieldMaintenanceAction.hasValidator(validators.required)"
+                class="validators-required"></span>
+            </label>
+            <p-dropdown [options]="maintenanceOptions" [styleClass]="'full-width'" formControlName="MaintenanceAction"
+              [autoDisplayFirst]="false"
+              [placeholder]="'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.SELECT_MAINTENANCE' | translate"
+              (onChange)="changeMaintenanceAction($event.value)"></p-dropdown>
+          </div>
+          <div class="rbn-group p-field rbn-field p-col-3">
+            <label>{{'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.ENDPOINT_RANGE' | translate}}
+              <span *ngIf="getFormFieldEndpointRange.hasValidator(validators.required)"
+                class="validators-required"></span>
+              <span class="rbn-help-info">
+                <i class="fa fa-info-circle endpoint-range" [escape]="false" #maintenance [appendTo]="maintenance" [pTooltip]="'MAI_GATE_WAYS_CARRIER.NOTE_ENDPOINT_RANGE' | translate" tooltipPosition="bottom"></i>
+              </span>
+            </label>
+            <input id="endPoint" formControlName="EndpointRange" type="text" pInputText>
+          </div>
+          <div class="rbn-groupp-field rbn-field p-col-3">
+            <label>{{'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.WHEN_QUERYING_SHOW' | translate}}
+              <span *ngIf="getFormFieldFilterState.hasValidator(validators.required)"
+                class="validators-required"></span>
+            </label>
+            <p-dropdown [options]="queryingShowOptions" [styleClass]="'full-width'" formControlName="FilterState"
+              [autoDisplayFirst]="false"
+              [placeholder]="'MAI_GATE_WAYS_CARRIER.FIELD_LABEL.SELECT_STATE' | translate"></p-dropdown>
+          </div>
+          <div class="p-col-12" class="note-force-release"
+            *ngIf="getFormFieldMaintenanceAction.value ==='FRLSByGatewayName' || getFormFieldMaintenanceAction.value ==='FRLSByCarrier'">
+            {{'MAI_GATE_WAYS_CARRIER.NOTE_FORCE_RELEASE' | translate}}
+          </div>
+          <div *ngIf="typeMaintenance === 'BY_CARRIER'" class="p-field rbn-field p-col-12 container-pick-list">
+            <rbn-pick-list #pickListCarrier [dataTarget]="dataCarrierTarget" [dataSource]="dataCarrierSource"
+              [cols]="colsCarrier" [pickListLabel]="pickListLabel" class="container-pick-list" [isReorderTarget]="true"
+              (evOnChangeData)="changeCarrierNames($event)" [targetConfig]="targetConfigPickList"></rbn-pick-list>
+          </div>
+        </div>
+        <app-form-footer (eventSubmit)="onFormSubmit($event)">
+          <div class="checkShowDetail">
+            <label>{{'COMMON.SHOW_DETAILS' | translate}}</label>
+            <p-checkbox class="rbn-checkbox" formControlName="ShowDetails" checkboxIcon="fa fa-check" [binary]="true">
+            </p-checkbox>
+          </div>
+        </app-form-footer>
+      </div>
+    </p-accordionTab>
+    <ng-container *ngIf="showSummary">
+      <app-summary [summaryData]="summaryData"></app-summary>
+    </ng-container>
+    <p-accordionTab [header]="'MAI_GATE_WAYS_CARRIER.HEADER_DETAILS' | translate" *ngIf="showDetail"
+      [selected]="!selectAccord">
+      <app-details-table [data]="data" [showDetailCols]="showDetailCols" [bulkActionOptions]="maintenanceOptions" 
+        (callActionTable)="callActionTable($event)" (refreshTable)="handleRefreshTable()"></app-details-table>
+    </p-accordionTab>
+    <div class="refresh-time" *ngIf="(showSummary || showDetail) && lastRefreshedTime.value">
+      <span>{{'MAI_GATE_WAYS_CARRIER.LAST_REFRESHED' | translate}}: {{lastRefreshedTime.value}}</span>
+    </div>
+  </p-accordion>
+</div>
+<rbn-confirm-dialog *ngIf="showConfirmActions" [isShowConfirmDialog]="showConfirmActions" [title]="dataConfirm.title"
+  [content]="dataConfirm.content" (emitConfirm)="handleConfirmAction($event)"></rbn-confirm-dialog>

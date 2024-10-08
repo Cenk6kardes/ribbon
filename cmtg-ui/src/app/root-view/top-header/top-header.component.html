@@ -1,0 +1,16 @@
+<rbn-page-top [pageTop]="pageTop" [statusIndicators]="statusIndicators"></rbn-page-top>
+
+<app-preferences [isShowPreferences]="isShowPreferences" (hidePreferences)="onHidePreferences()"></app-preferences>
+
+<rbn-logout [showLogout]="showLogout" (confirmLogout)="confirmLogout($event)"></rbn-logout>
+
+<p-dialog class="rbn-dialog" [draggable]="false" [header]="'PROFILE.SOFTWARE_INFORMATION' | translate" [(visible)]="showSwInfoDialog" [modal]="true" (onHide)="closeSwInfoDialog()"
+id="dialog">
+<div [innerHTML]="swInfoText1"></div>
+<div [innerHTML]="swInfoText2"></div>
+<p-footer>
+  <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+    (onClick)="closeSwInfoDialog()" [disabled]="false"></p-button>
+</p-footer>
+</p-dialog>
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>

@@ -1,0 +1,75 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+
+<p-accordion expandIcon='pi pi-fw pi-chevron-up'>
+  <p-accordionTab [selected]="true" #tabEl class="flex">
+    <ng-template pTemplate="header">
+      <div>
+        <span class="pi pi-fw custom-icon"
+          [ngClass]="{'pi-chevron-up': !tabEl.selected, 'pi-chevron-down': tabEl.selected}"></span>
+        <span class="font-bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.LINE_LIST' | translate}}</span>
+      </div>
+      <div>
+        <span>{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA' | translate}}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <form [formGroup]="retrieveForm">
+        <div class="flex-row">
+          <div class="p-grid p-field p-col-12 p-fluid">
+            <div class="p-col-2"><label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.RETRIEVAL_CRITERIA' | translate}}:</label></div>
+            <div class="p-col-4 ">
+              <p-dropdown [required]="true" [options]="searchLinesHistory" formControlName="retrivalCriteria" appendTo="body" [styleClass]="'full-width'" [editable]="true"></p-dropdown>
+            </div>
+            <div class="p-col-2"><label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.LIMIT_RESULT' | translate}}:</label></div>
+            <div class="p-col-4 ">
+              <p-dropdown [placeholder]="'COMMON.SELECT' | translate" [required]="true" [options]="limitResultOptions" appendTo="body" formControlName="limitResult" [styleClass]="'full-width'" [editable]="true"></p-dropdown>
+            </div>
+          </div>
+          <div class="field-checkbox field w-full p-grid p-col-12">
+            <div class="p-col-2">
+              <p-radioButton name="radioButton" value="replaceList" formControlName="radioButton"></p-radioButton>
+              <label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.REPLACE_LIST' | translate}}</label>
+            </div>
+            <div class="p-col-2">
+              <p-radioButton name="radioButton"  value="appendToList" formControlName="radioButton"></p-radioButton>
+              <label class="bold">{{'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.APPEND_TO_LIST' | translate}}</label>
+            </div>
+          </div>
+        </div>
+        <app-form-footer
+        [secondaryLabel]="'COMMON.RESET' | translate"
+        [primaryLabel]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE' | translate"
+        (eventSubmit)="onRetrieveHandle($event)">
+          <div class="btn">
+            <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="onRetriveAllHandle()" [label]="'GATEWAY_CONTROLLERS.PROVISIONING.TABS.COMMON.BTN.RETRIEVE_ALL' | translate"></p-button>
+          </div>
+        </app-form-footer>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+
+<rbn-table [cols]="linesTableCols" [showFilterRow]="false" [data]="linesTableData" [allowSetDataToStorage]="false" [tableConfig]="linesTableConfig" (refreshData)="refreshLinesTable()">
+</rbn-table>
+
+<!-- Error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog error-dialog-cont" [header]="titleText" [(visible)]="showRetrieveHandleErrorDialog"
+  [modal]="true" (onHide)="closeRetrieveHandleErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeRetrieveHandleErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>

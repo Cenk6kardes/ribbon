@@ -1,0 +1,35 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="audit-report-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <div class="p-grid">
+      <div class="p-field rbn-field field p-col-6">
+        <label class="p-col p-p-0 p-mb-1">{{'AUDIT.FIELD_LABEL.VIEW_REPORT' | translate}}:</label>
+        <div class="rbn-group view-report-control">
+          <p-dropdown [options]="reportOptions" [placeholder]="'AUDIT.FIELD_LABEL.SELECT' | translate" appendTo="body"
+            optionLabel="reportName" [(ngModel)]="selectedReport"></p-dropdown>
+          <div>
+            <p-button type="button" styleClass="rbn-button rbn-button-primary" (onClick)="doViewReport()"
+              [label]="'AUDIT.BUTTON_LABEL.VIEW_REPORT' | translate" [disabled]="!selectedReport"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+  <p-panel [showHeader]="!reportsAuditTakeActions.includes(typeDataIntegrity)" class="rbn-panel content-report"
+    *ngIf="showDataIntegrityReports">
+    <ng-template pTemplate="header">
+      <div class="export-option">
+        <p-dropdown [options]="exportOptions" [placeholder]="'AUDIT.FIELD_LABEL.EXPORT' | translate" appendTo="body"
+          optionLabel="label" [(ngModel)]="selectedTypeExport" (onChange)="handleExport($event.value)"
+          [disabled]="!reportFileContent"></p-dropdown>
+      </div>
+    </ng-template>
+    <app-integrity-take-actions-reports
+      *ngIf="reportsAuditTakeActions.includes(typeDataIntegrity); else textReport"
+      [auditName]="typeDataIntegrity" (eventShowLoading)="handleShowLoading($event)"></app-integrity-take-actions-reports>
+    <ng-template #textReport>
+      <pre>{{reportFileContent}}</pre>
+    </ng-template>
+  </p-panel>
+</div>

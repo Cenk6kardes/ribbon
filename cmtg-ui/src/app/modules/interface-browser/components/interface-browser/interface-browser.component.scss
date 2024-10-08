@@ -1,0 +1,27 @@
+@import "ribbontheme/variables";
+
+#interface-browser-container::ng-deep {
+  label {
+    font-weight: bold;
+  }  
+
+  .p-dialog{
+    max-width: 80%;
+ }
+
+ .delete {
+  margin-top: 5px;
+  margin-bottom: 30px;
+
+  .p-dropdown {
+     width: 100%;
+  }
+}
+ 
+  @media (min-width: 768px) {
+    .p-dropdown {
+      min-width: 200px;
+      height: 35px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="report-scheduling-options-container">
+  <rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+  <rbn-page-header [data]="headerData" (backButtonAction)="onBack()"></rbn-page-header>
+  <div [formGroup]="formGroup">
+    <p-panel [showHeader]="false" class="rbn-panel">
+      <h4 class="p-mb-0">{{'REPORTS_SCREEN.REPORT_SCHEDULING_TITLE' | translate }}</h4>
+      <div class="p-grid">
+        <div class="p-field rbn-field field p-col-6">
+          <rbn-panel-messages [content]="'REPORTS_SCREEN.WARNING_MGS_REPORT_SCHEDULING_STATUS' | translate"
+            [typeOfMessage]="'warn'"></rbn-panel-messages>
+        </div>
+        <div class="rbn-group p-pl-2">
+          <label for="status">{{ 'REPORTS_SCREEN.SCHEDULED_REPORT_STATUS' | translate}}</label>
+          <div class="pInputSwitch">
+            <p-inputSwitch class="rbn-switch p-pr-1" formControlName="enabled"></p-inputSwitch>
+            <label for="enabled">{{( formGroup.get('enabled')?.value ? 'REPORTS_SCREEN.ENABLED' :
+              'REPORTS_SCREEN.DISABLED') | translate}}</label>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [showHeader]="false" class="rbn-panel">
+      <h4>{{'REPORTS_SCREEN.REPORT_SCHEDULE' | translate }}</h4>
+      <div class="p-grid p-pl-2">
+        <div class="rbn-group p-mb-3">
+          <label for="daily">{{'REPORTS_SCREEN.FREQUENCY' | translate }}</label>
+          <p-checkbox class="rbn-checkbox" formControlName="daily" [binary]="true" checkboxIcon="fa fa-check"
+            [label]="'REPORTS_SCREEN.DAILY_REPORT' | translate" (onChange)="selectDaily($event)"></p-checkbox>
+        </div>
+        <div class="rbn-group p-mb-3">
+          <ng-container formGroupName="day">
+            <p-checkbox *ngFor="let item of dayGroup; let i = index" class="rbn-checkbox" formControlName="{{item}}"
+              [inputId]="item" checkboxIcon="fa fa-check" [binary]="true" label="{{item | titlecase }}" (onChange)="onCheckboxChange()"></p-checkbox>
+          </ng-container>
+        </div>
+        <div class="rbn-group">
+          <label for="option">{{ 'REPORTS_SCREEN.AT_THE_TIME' | translate}}</label>
+          <div class="p-field rbn-field">
+            <p-calendar formControlName="timetorun" [timeOnly]="true" hourFormat="12" [showTime]="true"
+              inputId="timeonly"></p-calendar>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <rbn-form-toolbar [secondaryLabel]="'COMMON.CLOSE' | translate" [primaryLabel]="'COMMON.SAVE' | translate"
+      (buttonClickedEmit)="buttonClickedEmit($event)"></rbn-form-toolbar>
+  </div>
+</div>

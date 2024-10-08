@@ -1,0 +1,46 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="ring-container" [formGroup]="formGroup">
+    <div *ngIf="!isAddRing" class="rbn-group p-field p-my-4 p-col-4">
+        <label>{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.IDENTIFIER' | translate}}:
+        </label>
+        <p-dropdown [options]="identifiers" formControlName="identifier" [styleClass]="'full-width'"
+            (onChange)="handleChangeIdentifier($event.value)"></p-dropdown>
+    </div>
+
+    <p-panel [showHeader]="false">
+        <div class="form">
+            <div class="p-grid">
+                <div *ngIf="isAddRing" class="rbn-group p-field p-col-6">
+                    <label>{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.IDENTIFIER' | translate}}:
+                    </label>
+                    <input type="string" id="identifier" formControlName="identifier" pInputText>
+                </div>
+                <div class="rbn-group p-field p-col-6">
+                    <label>{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.STD' | translate}}
+                    </label>
+                    <input id="interfaceID" formControlName="std" type="text" pInputText>
+                </div>
+            </div>
+
+            <div class="p-grid" formArrayName="r">
+                <div *ngFor="let control of r.controls; let i = index" class="rbn-group p-field p-col-3">
+                    <div *ngIf="i<9; else withoutSpace">
+                        <label for="r{{ i + 1 }}">{{ 'R0' + (i + 1) + ":"}}</label>
+                        <input type="text" [formControlName]="i" pInputText>
+                    </div>
+                    <ng-template #withoutSpace>
+                        <div>
+                            <label for="r{{ i + 1 }}">{{ 'R' + (i + 1)+ ":" }}</label>
+                            <input type="text" [formControlName]="i" pInputText>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+    <div class="p-mt-3">
+        <app-form-footer [disablePrimaryBtn]="isButtonDisabled" (eventSubmit)="onFormSubmit($event)"
+            [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="primaryButton | translate"></app-form-footer>
+    </div>
+
+</div>

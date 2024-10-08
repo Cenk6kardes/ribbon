@@ -1,0 +1,48 @@
+<div id="overview-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <p>
+      The Trunk Maintenance Manager (TMM) application is used to display trunks and perform maintenance activities on them. This section provides a brief overview of the TMM. For procedures on how to perform trunk maintenance activities using the TMM, refer to the GWC documentation suite.
+    </p>
+    <p>
+      The user interface for the TMM application is a web-based GUI (graphical user interface), which is accessed through the common launch page. Using the Trunk Maintenance Manager GUI, you can perform any of the following activities:
+    </p>
+    <ul>
+      <li>Maintenance By Gateway Name - Perform the following maintenance actions on a selected gateway:
+        <ul>
+          <li>query endpoint states</li>
+          <li>post endpoints</li>
+          <li>busy endpoints</li>
+          <li>return endpoints to service</li>
+          <li>force release endpoints</li>
+          <li>installation busy endpoints</li>
+        </ul>
+      </li>
+      <li>Maintenance By Carriers - Perform the following maintenance actions on selected carriers:
+        <ul>
+          <li>query carrier states </li>
+          <li>post carrier</li>
+          <li>busy carrier</li>
+          <li>return carrier to service</li>
+          <li>force release carrier</li>
+          <li>installation busy carrier</li>
+        </ul>
+      </li>
+      <li>Maintenance By Trunk CLLI - Perform the following maintenance actions on a selected trunks:
+        <ul>
+          <li>post trunks</li>
+          <li>busy trunks</li>
+          <li>return trunks to service</li>
+          <li>force release trunks</li>
+          <li>installation busy trunks</li>
+        </ul>
+      </li>
+      <li>D-Channel Maintenance - Display statistics on D-channels for a selected PRI trunk.</li>
+      <li>ISUP COT Test - Perform an ISUP (Integrated Services Digital Network User Part) continuity test on a trunk or group of trunks for a selected CLLI.</li>
+      <li>Preferences</li>
+        <ul>
+          <li>Auto-Refresh Rate - Set the Auto refresh rate (enable/disable auto refresh using the Auto-Refresh check box).</li>
+        </ul>
+    </ul>
+  </p-panel>
+</div>

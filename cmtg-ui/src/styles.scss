@@ -1,0 +1,38 @@
+@import "ribbontheme/variables";
+
+body {
+  .validators-required::after {
+    content: "*";
+    color: $ribbon-red;
+    margin-left: 1px;
+  }
+  font-family: $fontFamily;
+
+  pre {
+    font-family: $fontFamily;
+  }
+}
+
+.p-tooltip {
+  max-width: unset !important;
+}
+
+// Overlay dialog of rbn-single-time-picker is appended to the body element. I add CSS to adjust the style for it.
+div[role="dialog"].customDialog {
+  .single-time-picker-hide-panel {
+    p-panel {
+      .p-panel-header {
+        display: none;
+      }
+      .p-panel {
+        .p-panel-content {
+          border: none;
+          padding: 0;
+          .rbn-calendar-title {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

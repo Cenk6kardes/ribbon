@@ -1,0 +1,1209 @@
+{
+  "PROFILE": {
+    "SOFTWARE_INFORMATION": "Software Information",
+    "SECURITY": "Security",
+    "LOGOUT": "Log Out",
+    "REFRESH_GWC_STATUS": "Refresh GWC Status",
+    "HELP_CENTER": "Help Center",
+    "HELP": "Help"
+  },
+  "COMMON": {
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "OK": "OK",
+    "CLOSE": "Close",
+    "BULK_ACTIONS": "Bulk Action",
+    "ACTION": "Action",
+    "RUN": "Run",
+    "POST_COMMAND_LABEL": "Post",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "ERROR": "Error",
+    "ADD": "Add",
+    "YES": "Yes",
+    "NO": "No",
+    "FORM_NOT_VALID": "Form not valid",
+    "SELECT": "Select",
+    "RESET": "Reset",
+    "NOT_CONFIGURED": "Not Configured",
+    "ACTION_FAILED": "Action Failed!",
+    "SHOW_DETAILS": "Show Details",
+    "HIDE_DETAILS": "Hide Details",
+    "ENABLED": "Enabled",
+    "DISABLED": "Disabled",
+    "INPUT": "Input",
+    "SEARCH": "Search"
+  },
+  "PREFERENCES": {
+    "TITLE": "Preferences",
+    "AUTO_REFRESH": "Auto Refresh",
+    "AUTO_TERMINATION": "Auto Termination",
+    "EVERY": "Every",
+    "IN": "In",
+    "AND": "And",
+    "HOUR": "Hour(s)",
+    "MINUTE": "Minute(s)",
+    "SECOND": "Seconds",
+    "CANCEL_PENDING_CPD": "Cancel Pending Call Processing Deload (CPD) Request"
+  },
+  "BULK_DETAIL_CODE": {
+    "CLLI": "CS CLLI",
+    "CL_LEN": "Line Equipment Number",
+    "CM_LCC": "Line Class Code",
+    "GROUND_START": "Ground Start",
+    "CM_NN": "Node Number",
+    "CM_TN": "Terminal Number",
+    "CM_GWC_NAME": "Gateway Controller Name",
+    "CM_GWC_ADDRESS": "Gateway Controller IP",
+    "GW_NAME": "Gateway Name",
+    "GW_ADDRESS": "Gateway IP",
+    "MIDDLE_BOX": "Adj ITRANS Middlebox",
+    "ALG_NAME": "ALG Name",
+    "ENDPOINT_NAME": "Endpoint Name"
+  },
+  "AUDIT": {
+    "TITLE": "Audit",
+    "HEADER": {
+      "SELECT_AUDIT": "Select Audit",
+      "CURRENT_AUDIT": "Current Audit",
+      "VIEW_REPORTS": "View Reports",
+      "SCHEDULED_AUDITS": "Scheduled Audits",
+      "AUDIT_SELECT": "Audit Select",
+      "SUMMARY": "Summary",
+      "WARNING": "Warning",
+      "ABORT_AUDIT": "Abort Audit",
+      "RUN_AUDIT": "Run Audit",
+      "NEW_AUDIT": "New Audit",
+      "SCHEDULED_AUDIT": "Scheduled Audit",
+      "SCHEDULE": "Schedule",
+      "EDIT_SCHEDULE": "Edit Schedule",
+      "COLUMNS": {
+        "AUDIT_TYPE": "Audit Type",
+        "FREQUENCY": "Frequency",
+        "EVERY": "Every",
+        "DAY": "Day",
+        "TIME": "Time",
+        "ACTION": "Action"
+      },
+      "IS_DN_AUDITED": "IsDNAudited",
+      "CONFIRM": "Confirm",
+      "TIMEPICKER_TIMEONLY": "Time",
+      "TIMEPICKER": "Date"
+    },
+    "FIELD_LABEL": {
+      "AUDIT_NAME": "Audit Name",
+      "AUDIT_DESCRIPTION": "Audit Description",
+      "SELECT": "select",
+      "SELECT_AUDIT_COMPONENT": "Select Audit Component",
+      "CONFIGURATION": "Configuration",
+      "VIEW_REPORT": "View report",
+      "START_AT": "Start At",
+      "SELECT_DATE_TIME": "Select Date/Time",
+      "SELECT_TIME": "Select Time",
+      "SELECT_DAY": "Select Day",
+      "SELECT_DAYS": "Select Day(s)",
+      "DAY_OF_MONTH": "Day of Month",
+      "EVERY": "Every",
+      "ONCE_TIME_ONLY": "Once",
+      "DAILY": "Daily",
+      "WEEKLY": "Weekly",
+      "MONTHLY": "Monthly",
+      "REPORTS": "Reports",
+      "LAST_AUDIT_DATE": "Last Audit Date",
+      "POSSIBLE_ACTIONS": "Possible Actions",
+      "LAST_REFRESH": "Last Refresh",
+      "AUDIT_TYPE": "Audit Type",
+      "EXPORT": "Export",
+      "Now": "Now"
+    },
+    "BUTTON_LABEL": {
+      "VIEW_REPORT": "View report",
+      "ABORT": "Abort",
+      "PROCEED": "Proceed",
+      "RUN_AUDIT_NOW": "Run Audit Now",
+      "SCHEDULE_FOR_LATER": "Schedule For Later",
+      "RUN_NOW": "Run Now",
+      "TAKE_ACTION": "Take Action",
+      "REPLACE": "Replace"
+    },
+    "MESSAGE": {
+      "SELECT_GRANULAR_LINE_TREE": "GWC elements and LGRPs cannot be selected together",
+      "SELECT_GRANULAR_LINE_TREE_REPLACE": "GWC elements and LGRPs cannot be selected together. Select Replace to replace the Selected elements with the current selection.",
+      "LINE_DATA_AUDIT_REPORT_WARNING": "The problem Line Data Audit Report would be inaccurate if any provisioning action is executed while the audit is running.",
+      "RUNNING_IN_PROGRESS_INFO": "{{auditName}} is running in progress<br>{{timeStart}}<br>Started by {{userInfo}}, on {{host}}<hr>",
+      "RUNNING_IN_PROGRESS_ADVISED": "Running multiple audits at the same time is not advised.",
+      "PLEASE_TRY_IT_LATER": "Please try it later.",
+      "ERROR_PUT_AUDIT_NAME": "Can not put audit name {{auditName}}",
+      "CONFIRM_ABORT_AUDIT": "Are you sure you want to abort \"{{auditName}}\" audit?",
+      "AUDIT_PROCESS_FAILED": "Audit failed. Please see log files",
+      "FAILED_TO_RUN": "Failed To Run",
+      "AUDIT_ABORTED": "Audit is aborted. {{auditName}}: was aborted by {{userIDData}}",
+      "COMPLETED": "Completed",
+      "IN_PROCESS": "In Process",
+      "NO_PROBLEMS_FOUND": "No Problems Found",
+      "CAN_NOT_ABORT": "The process is completed, so can not abort",
+      "PREPARATION_AUDIT_FAILED": "Preparation for audit is failed",
+      "CONFIRM_RUN_AUDIT_NOW": "Are you sure you want to run audit?",
+      "UPDATE_AUDIT_SCHEDULE_SUCCESSFULLY": "Update the Audit schedule successfully",
+      "DELETE_AUDIT_SCHEDULE_SUCCESSFULLY": "Delete the Audit schedule successfully",
+      "CONFIRM_UPDATE_AUDIT_SCHEDULE": "The Audit schedule info will be updated. Are you sure to continue?",
+      "SCHEDULED_AUDIT_INFO": "Specify/ edit the configuration of the available scheduled audit",
+      "SCHEDULE_NEW_AUDIT_INFO": "Specify the configuration for a new audit. You may then \"Run\" the audit now or schedule to run it at a later time",
+      "SCHEDULE_FOR_LATER_INFO": "Configure/ edit the timing and recurrence of the audit to run at a later time",
+      "THE_TRUNK_AUDIT_INFO": "The Trunk Audit Report would be inaccurate if any trunk-related provisioning action is executed while the audit is running.",
+      "ACTION_SUCCESSFULLY": "{{actionName}} successfully",
+      "NOT_FOUND_AUDIT_CONFIGURATION": "Not found audit configuration for {{auditName}}",
+      "SCHEDULED_AUDITS_INFO": "Edit timing and recurrence of the selected audit",
+      "CONFIRM_DELETE_SCHEDULED_AUDIT": "Do you want to delete the scheduled Audit: {{auditName}}?",
+      "REQUIRE_SELECT_AUDIT_COMPONENT": "Please select Audit Component",
+      "ERROR_PERMISSION_ACCESS_PAGE": "you don't permission to access page {{pageName}}",
+      "INTEGRITY_AUDIT_CONFIRM_CALL_AGENT": "Do you want to audit the DN in the Call Agent? This may take a long time to complete if DN included during Integrity Audit",
+      "INTEGRITY_AUDIT_CONFIRM_EXCEPT_DN": "All GWC Nodes provisioned in the entire Call Server will be audited except DN.<br>Service provisioning during this period is not recommended.<br>Do you want to continue?",
+      "INTEGRITY_AUDIT_CONFIRM_INCLUDING_DN": "All GWC Nodes provisioned in the entire Call Server will be audited, including DN. This can take a long time to complete.<br>Service provisioning during this period is not recommended.<br>Do you want to continue?",
+      "C20_AS_INTEGRITY_AUDIT_CONFIRM": "If a mismatch is discovered, corrections via datafill deletion may be performed by the audit. Please see the audit report file for details after the audit completes. Do you want to continue?",
+      "SESSION_SERVER_CONNECTED_FAIL": "Session server connect fail",
+      "THE_SMALL_LINE_AUDIT_INFO": "The Small Line Audit Report would be inaccurate if any small line-related provisioning action is executed while the audit is running.",
+      "NOT_FOUND_GATEWAY_NAME": "Not found gateway name"
+    }
+  },
+  "GATEWAY_CONTROLLERS": {
+    "TITLE": "Gateway Controllers",
+    "SELECT_GW": "Select a Gateway Controller",
+    "UNIT_0": "Unit 0",
+    "UNIT_1": "Unit 1",
+    "OVERLAY_BUTTONS": {
+      "DISASSOCIATE_GW": "Disassociate Media Gateway",
+      "DELETE_GWC_NODE": "Delete GWC Node"
+    },
+    "MESSAGE":{
+      "MAX_LINE_LIMIT": "The maximum limit of {{LIMIT}} has been exceeded",
+      "GW_SECIP_EMPTY": "GW Secondary IP can not be empty!"
+    },
+    "DISASSOCIATE": {
+      "TITLE": "Disassociate Media Gateway",
+      "GW_NAME": "Gateway Name",
+      "CONFIRM_TITLE": "Confirm Gateway Deletion",
+      "CONFIRM_CONTENT": " This operation will disassociate Gateway '{{gwName}}' from its<br>Gateway Controller which will result in a complete loss of service<br>for the Gateway. This service loss includes the disruption of all active<br>and in progress calls that may be established on the Gateway. <br> Are you sure that you want to delete the gateway '{{gwName}}' ? ",
+      "DISASSOCIATE_MG":"Disassociate MG",
+      "CONFIRM_MSG": {
+        "CODE_0": "Successfully disassociated MG!",
+        "CODE_UNKNOWN": "Failed to disassociate MG."
+      }
+    },
+    "DELETE_GWC_NODE": {
+      "TITLE": "Delete GWC Node",
+      "GW_NAME": "Gateway Controller Name",
+      "CONFIRM_TITLE": "Confirm Gateway Controller Deletion",
+      "CONFIRM_CONTENT": " Are you sure that you want to delete<br>gateway controller '{{gwName}}' ?",
+      "FAILED_MESSAGE": "Failed to Delete GWC"
+    },
+    "MAINTENANCE": {
+      "TITLE": "Maintenance",
+      "ACTIVE_UNIT": "Active Unit",
+      "OVERALL_STATUS": "Overall Status",
+      "READINESS": "Readiness",
+      "HA": "HA",
+      "ADMIN": "Admin",
+      "OPERATIONAL": "Operational",
+      "ALARM": "Alarm",
+      "LOADNAME": "Loadname",
+      "IP_ADDRESSES": "IP Addresses",
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "UNIT0": "Unit 0",
+      "UNIT1": "Unit 1",
+      "ELEMENT_MANAGER": "Element Manager",
+      "IP": "IP Address",
+      "SNMP": "SNMP Port",
+      "TRAP": "Trap Port"
+    },
+    "PROVISIONING": {
+      "TITLE": "Provisioning",
+      "TABS": {
+        "COMMON": {
+          "GATEWAY_LIST": "Gateway List",
+          "LINE_LIST": "Line List",
+          "CARRIER_LIST": "Carrier List",
+          "RETRIEVAL_CRITERIA": "Retrieval Criteria",
+          "LIMIT_RESULT": "Limit Result",
+          "REPLACE_LIST": "Replace List",
+          "APPEND_TO_LIST": "Append to List",
+          "EMPTY_MSG": "No Records Found",
+          "BTN": {
+            "RETRIEVE": "Retrieve",
+            "RETRIEVE_ALL": "Retrieve All"
+          }
+        },
+        "CONTROLLER": {
+          "TITLE": "Controller",
+          "SUB_TITLES": {
+            "GENERAL": {
+              "TITLE": "General",
+              "GWC": "GWC Statics Data",
+              "GWC_DEFAULT": "GWC Default Gateway Domain Name",
+              "CODEC_PROFILE": "Codec Profile",
+              "NODE_NUMBER": "Node Number",
+              "GWC_AUTO": "GWC Autonomous Swact",
+              "PRE_SWACT": "Pre-Swact Timer",
+              "SUCCESS_MSG": "Completed",
+              "POST_CONFIGURE_SUCCESS":"Network codec profile changed succesfully",
+              "MTC_CONTROL_SUCCESS":"Auto swact timer changed successfully",
+              "SAVE": "Save",
+              "RESET": "Reset",
+              "CONFIRM_TITLE": "Confirm Codec Profile Change",
+              "CONFIRM_CONTENT": "Are you sure that you want to change the codec profile for /{{currentGwControllerName}}/?",
+              "PRE_SWACT_TOOLTIP": "Please press Enter after typing the value."
+            },
+            "PROFILE": {
+              "TITLE": "Profile",
+              "SELECT_PROFILE": "Select Profile",
+              "GWC_ADDRESS_NAME": "GWC Address Name",
+              "FLOW_CHECKBOX": "Flow through GWC data to Session Server",
+              "CHANGE_GWC_PROFILE": "Change GWC Profile",
+              "PROFILE_FAIL_RES": "Unexpected response received ({{rcValue}})."
+
+            },
+            "CALL_AGENT": {
+              "TITLE": "Call Agent",
+              "TERM_TYPE": "Term Type",
+              "EXEC_LINE": "Exec Lineup"
+            }
+          },
+          "EDIT_MSG": {
+            "RC_0": "ExecData change successful. Please lock/unlock the inactive unit then perform a warm swact action on this GWC in order for the change to take effect.",
+            "RC_56": "ExecData change failed registration with the XA-Core.",
+            "RC_57": "ExecData change failed registration with the GWCEM.",
+            "RC_58": "ExecData change failed registration with the Service Broker.",
+            "RC_59": "ExecData change failed rollback.",
+            "RC_UNKNOWN": "Unexpected response received ({{rcValue}}). Nothing to change. The new data provided are the same as that of current settings",
+            "FAILED_MESSAGE": "Changing the profile for {{gwName}} failed due to a system error."
+          },
+          "ERROR": {
+            "EMPTY_GWC_ADDRESS": "The value of GWC address name should not be null!"
+          },
+          "CONTROLLER_FORM_HEADER": "Change GWC Configuration Warning"
+        },
+        "GATEWAYS": {
+          "TITLE": "Gateways",
+          "TABLE": {
+            "DETAILS": "Details",
+            "EDIT" : "Edit",
+            "OPERATIONS" : {
+              "SELECT_OPERATION" : "Select Change Operation"
+            },
+            "EDIT_DIALOG" : {
+              "ALG": "Select ALG",
+              "PEP_SERVER":"Select PEP Server",
+              "GATEWAY_CAPACITY": "Specify Capacity",
+              "MULTI_SITE" : "Multi Site Change",
+              "PROFILE": "Select Profile",
+              "LGRP_TYPE":"Select LGRP Type",
+              "LGRP_NODE": "Node Sharing",
+              "GR_834": "Select GR-834 Gateway",
+              "SPECIFY_IP": "Specify IP address",
+              "SPECIFY_PORT": "Specify Port",
+              "SG_IP": "SG IP",
+              "SG_PORT1": "SG Port 1",
+              "SG_PORT2": "SG Port 2",
+              "MGC_SECIP" :"MGC Secondary IP Address",
+              "GW_SECIP":"GW Secondary IP Address",
+              "CAC": "CAC",
+              "LBL": "LBL",
+              "SIGNALING" : "Change Signaling Gateway",
+              "REMOVE_LBL": "Please press save button to remove backup path from Gateway."
+            },
+            "EDIT_RESULT_DIALOG": "Change Gateway Results",
+            "EDIT_RESULT_MSG": {
+              "ALG": "{{gwName}} ALG change failed. Reason: Gateway {{gwName}} is already in requested state.No changes being made.",
+              "ALG_SUCCESS": " ALG change successful",
+              "PEP_SERVER": "{{gwName}} PEP Server change failed. Reason: Gateway {{gwName}} is already in requested state. No changes being made",
+              "PEP_SERVER_SUCCESS": " PEP change successful",
+              "GR_834": " GR-834 change successful",
+              "IP_ADDRESS": " IP and Port change successful",
+              "SIGNALING": " Signaling Gateway IP and Ports change successful",
+              "PICK_LIST_NO_CHANGE": "No changes requested.",
+              "PICK_LIST_BOTH_CHANGE": "Both ADD and REMOVE operations were requested. Perform ADD and REMOVE operations separately.",
+              "PICK_LIST_FINAL_RESULT": "NOTE: This gateway maybe take up to {{timeOut}} seconds to change.<br>"
+            },
+            "DETAIL_INFO": "This process may took long.. Please wait.",
+            "COLS": {
+              "NAME": "Name",
+              "DOMAIN": "Domain",
+              "IP_ADDRESS": "IP Address",
+              "MGC_SECIP": "MGC Secondary IP Address",
+              "GW_SECIP": "GW Secondary IP Address",
+              "PROFILE": "Profile",
+              "MAX_TERMS": "Max Terms",
+              "RES_TERMS": "Res Terms",
+              "PROTOCOL": "Protocol",
+              "PROT_VERS": "Prot Vers",
+              "PROT_PORT": "Prot Port",
+              "PEP_SERVER": "Pep Server",
+              "ADJ": "Adj ITRAN",
+              "ALG": "ALG",
+              "NODE_NAME": "Node Name",
+              "NODE_NUMBER": "Node Number",
+              "F_U_S": "Frame/Unit/Slot",
+              "LGRPLOC": "LGRPLOC",
+              "LBL_CAC": "LBL CAC",
+              "LGRP_TYPE": "LGRP Type",
+              "IS_SHARED": "Is Shared",
+              "EXTSTTERM": "EXTSTTERM",
+              "ACTION": "Action"
+            }
+          },
+          "ERROR": {
+            "TITLE": "Gateway Data Retrieval Failure",
+            "MESSAGE": "Endpoint data retrieval failed.",
+            "NUMERIC": "Limit value must be numeric"
+          },
+          "INFO_POPUP": {
+            "TITLE": "Invalid Input",
+            "MESSAGE": "Invalid value entered for capacity value"
+          },
+          "CHANGE_GW_CAPACITY_WARNING": {
+            "TITLE": "Change Gateway Capacity",
+            "MESSAGE": "WARNING: Changing this setting will affect GWC capacity.<br>Any changes should only be made after appropriate engineering impacts are fully understood.<br>Please refer to GWC provisioning guidelines before proceeding."
+          },
+          "CHANGE_SIGNALING_GW_IP": {
+            "CONFIRM": {
+              "TITLE": "Confirm Signaling Gateway IP and Ports change.",
+              "MESSAGE_ABOUT_VALUE": "This operation will attempt to change the signaling gateway IP address and port values for the selected gateway to the following values:<br><br>",
+              "VALUES": "SG IP &emsp;&emsp;:  {{sgIp}}<br>SG Port 1 :  {{port1}}<br>SG Port 2 :  {{port2}}<br><br>",
+              "CONFIRM_MESSAGE": "This change may cause failures in call processing on the selected gateway and must be performed in accordance with the documented signaling gateway IP and ports change procedures.<br>Do you wish to continue?"
+            },
+            "ERROR": {
+              "TITLE": "Change Gateway Results",
+              "MESSAGE": "Signaling Gateway IP and ports change failed.  Reason - "
+            }
+          },
+          "ACTION_DETAILS": {
+            "NO_RES_MESSAGE": "The selected gateway does not have any associated optional data.<br>There are no root middleboxes associated with the selected gateway.<br>There is no Signaling Gateway Information associated with the selected gateway.<br>There is no <b> '{{gwName}}' </b> Gateway associated with the selected gateway."
+          },
+          "TOOLTIP": {
+            "SPECIFY_IP": "Valid values: <0-255>.<0-255>.<0-255>.<0-255>",
+            "SPECIFY_PORT": "Valid values: <0-65535>",
+            "SG_IP": "Valid values: <0-255>.<0-255>.<0-255>.<0-255>",
+            "SG_PORT1": "Valid values: <1-65535>",
+            "SG_PORT2": "Valid values: <1-65535>",
+            "MGC_SECIP": "Valid values: <0-255>.<0-255>.<0-255>.<0-255>",
+            "GW_SECIP": "Valid values: <0-255>.<0-255>.<0-255>.<0-255>",
+            "CAC": "Valid values: <0-9>"
+          },
+          "AVAILABLE_SITE": "Available Site Names",
+          "PROV_LGRP": "Provisioned LGRP's",
+          "CONFIRM_DIALOG":{
+            "CHANGE_GATEWAY_CAPACITY":"Change Gateway Capacity",
+            "WARNING_CHANGE_GATEWAY_CAPACITY":"WARNING: Changing this setting will affect GWC capacity.<br> Any changes should only be made after appropriate engineering impacts are fully understood.<br>Please refer to GWC provisioning guidelines before proceeding."
+          }
+        },
+        "LINES": {
+          "TITLE": "Lines",
+          "TABLE": {
+            "COLS": {
+              "NAME" : "Name",
+              "GATEWAY" : "Gateway",
+              "GATEWAY_DOMAIN" : "Gateway Domain",
+              "NODE_NUMBER" : "Node Number",
+              "TERMINAL_NUMBER" : "Terminal Number",
+              "ENDPOINT_TYPE" : "Endpoint Type"
+            }
+          },
+          "ERROR": {
+            "TITLE": "Line Data Retrieval Failure",
+            "MESSAGE": "Endpoint data retrieval failed.",
+            "NUMERIC": "Limit value must be numeric"
+          }
+        },
+        "CARRIERS": {
+          "TITLE": "Carriers",
+          "TABLE": {
+            "COLS": {
+              "NAME" : "Name",
+              "GATEWAY" : "Gateway",
+              "GATEWAY_DOMAIN" : "Gateway Domain",
+              "NODE_NUMBER" : "Node Number",
+              "START_TERM" : "Start Term",
+              "NUM_PORTS" : "Num Ports",
+              "V52_IID" : "V5.2 IID",
+              "V52_LINK_ID" : "V5.2 Link ID",
+              "V5_UA_LINK_ID" : "V5 UA Link ID",
+              "NFAS_DPNSS_IID": "NFAS/DPNSS IID",
+              "IUA_IID": "IUA IID"
+            }
+          },
+          "ERROR": {
+            "TITLE": "Carrier Data Retrieval Failure",
+            "MESSAGE": "Endpoint data retrieval failed.",
+            "NUMERIC": "Limit value must be numeric"
+          },
+          "ADD": {
+            "ADD_BTN_LABEL": "New Carrier",
+            "TITLE": "Add New Carrier",
+            "CARRIER_NAME": "Carrier Name",
+            "GATEWAY_NAME": "Gateway Name",
+            "START_TERMINAL_NUM": "Start Terminal Number",
+            "VOIP_VPN": "VOIP VPN",
+            "H_323": "H.323",
+            "PRI_DPNSS": "PRI/DPNSS",
+            "NUMBER_OF_PORTS": "Number of Ports",
+            "NFAS_DPNSS_IID": "NFAS/DPNSS IID",
+            "IUA_IID": "IUA IID",
+            "CHAR_STRING_INFO": "Valid values: Character string",
+            "START_TERMINAL_NUM_INFO": "Optional value used to specify starting position of a contiguous range of TNs. Valid values: (0-4094)",
+            "NUMBER_OF_PORTS_INFO": "Optional value used to specify the number of TNs desired. Defaults to 24 or 32 if not filled. Valid values: (0-4094)",
+            "NFAS_DPNSS_IID_INFO": "Valid values: PVG (0-31), Others (0-63)",
+            "IUA_IID_INFO": "Valid values: 1-2048",
+            "SUCCESS_TITLE": "Add Carrier Successfully",
+            "SUCCESS_MESSAGE": "Add Carrier successfully.",
+            "ERROR_TITLE": "Add Carrier Failed",
+            "ERROR_MESSAGE": "Addition of Carrier ${carrierName} to Gateway ${gatewayName} failed."
+          },
+          "DELETE": {
+            "CONFIRM_TITLE": "Confirm Carrier Deletion",
+            "CONFIRM_MESSAGE": "Are you sure that you want to delete the carrier ",
+            "SUCCESS_TITLE": "Delete Carrier Successfully",
+            "SUCCESS_MESSAGE": "Delete Carrier successfully.",
+            "ERROR_TITLE": "Delete Carrier Failed",
+            "ERROR_MESSAGE_500": "Deletion of Carrier ${carrierName} to Gateway ${gatewayName} failed.",
+            "ERROR_MESSAGE": "Deletion of Carrier '/{{carrierName}}/' on Gateway '/{{gatewayName}}/' failed.<br>Delete Carrier Failed, /{{errorMessage}}/",
+            "DEFAULT_ERROR_MESSAGE": "Invalid return code (' /{{returnCode}}/ ') received in response to carrier operation."
+          }
+        },
+        "QOS_COLLECTORS": {
+          "TITLE": "QoS Collectors",
+          "COLLECTORS": "Collectors",
+          "TABLE": {
+            "COLS": {
+              "QOS_COLL_NAME": "Qos Collector Name",
+              "IP_ADDRESS": "IP Address",
+              "PORT": "Port"
+            }
+          },
+          "STATUS": {
+            "ERROR": {
+              "TITLE": "Action Failed",
+              "FAILED": "Get QoS Collection Status failed"
+            }
+          },
+          "ADD": {
+            "ASSOCIATE": "Associate",
+            "QOS_COLLECTOR": "QoS Collector",
+            "NO_FREE_QOS_COL": "No Free QoS collectors available for this GWC",
+            "ASSOCIATE_TITLE": "Associate QoS Collector",
+            "MAX_ASSOCIATION_ERROR": "Maximum number of 2 QoS Collectors per GWC has been reached.",
+            "APPLY_CONFIRM_QOS_ENABLE_TITLE": "Confirm QoS Collection Enable",
+            "APPLY_CONFIRM_QOS_ENABLE_MESSAGE": "QoS collection for /{{gwcName}}/ is about to be<br>configured. Note that QoS collection is only supported<br>with Gateways within certain solutions. Enabling QoS<br>collection in other solutions may cause unknown behavior.<br>Please be sure that your solution supports QoS<br>functionality.  The currently supported solutions are:<br>PT-IP, Intl PT-IP, IAW, Intl IAW, IAC, Intl IAC",
+            "APPLY_CONFIRM_DISABLE_RTCP_XR_TITLE": "Confirm QoS Collection Disable",
+            "APPLY_CONFIRM_DISABLE_RTCP_XR_MESSAGE": "QoS collection and RTCP-XR negotiation for /{{gwcName}}/ is about to be disabled.",
+            "CONFIRM_POPUP_ALL_TRUE": "QoS collection for /{{gwcName}}/ <br>is about to be disabled.<br>RTCP-XR Negotiation for /{{gwcName}}/ <br>is about to be enabled.",
+            "CONFIRM_POPUP_ALL_FALSE": "QoS collection and RTCP-XR for /{{gwcName}}/ <br>is about to be disabled.",
+            "ERROR": {
+              "CONFIGURE_QOS_COLLECTION_TITLE": "Configure QoS Collection",
+              "CONFIGURE_QOS_COLLECTION_MESSAGE": "QOS reporting will be configured even though no QOS <br>collectors have been associated with this GWC.<br>QOS collection for this GWC will begin as soon <br>as at least one QOS collector has been associated.",
+              "CONFIGURE_QOS_COLLECTION_DETAILS": "To associate a QoS Collector, select the associate <br>button and select a QoS Collector from the list",
+              "POST_ERROR_TITLE": "Configure QoS Collection Failed",
+              "POST_ERROR_MESSAGE": "Configure QoS Collection failed<br>due to an error during server processing.<br>/{{messageFromResponse}}/",
+              "SYSTEM_ERROR": "System Error",
+              "POST_SYSTEM_ERROR_MESSAGE": "Configure QoS Collection Failed.",
+              "ASSOCIATE_FAILED_TITLE":"Associate QoS Collector Failed",
+              "ASSOCIATE_FAILED_MESSAGE":"Association of QoS Collector failed due to an error during server processing.",
+              "ERROR_MESSAGE": "Associate QoS Collector Failed.",
+              "CONFIRM_QOS_ENABLE_TITLE": "Configure QoS Collection",
+              "CONFIRM_QOS_ENABLE_MESSAGE": "QOS reporting will be configured even though no QOS <br>collectors have been associated with this GWC.<br>QOS collection for this GWC will begin as soon <br>as at least one QOS collector has been associated.",
+              "CONFIRM_QOS_ENABLE_DETAILS": "To associate a doS Collector, select the associate <br>button and select a QoS Collector from the list"
+            },
+            "NEW_QOS_COLLECTOR": {
+              "TITLE": "Add New QoS Collectors",
+              "NAME": "QoS Collector Name"
+            }
+          },
+          "CONFIGURATION": {
+            "TITLE": "Configuration",
+            "QOS_COLLECTION": "QoS Collection",
+            "QOS_COLLECTION_PENDING": "QoS Collection pending",
+            "CURRENT_BASE_METRICS": "Current Base Metrics",
+            "RTP_BASE_REMOTE_METRICS": "RTP Base Remote Metrics",
+            "EXTRA_BASE_METRICS": "Extra Base Metrics",
+            "CODEC_METRICS": "Codec Metrics",
+            "RTCP_XR_REPORTING": "RTCP-XR Reporting",
+            "DISABLE_RTCP_XR_NEGOTIATION": "Disable RTCP-XR Negotiation",
+            "V_Q_MONITOR_METRIC": "VoiceQualityMonitorMetric",
+            "V_Q_DEBUG_METRIC": "VoiceQualityDebugMetric",
+            "LOSS_DEBUG_METRIC": "LossDebugMetric",
+            "UNIT_STIM_SPECIFIC_METRIC": "UnitStimSpecificMetric",
+            "JITTER_DEBUG_METRIC": "JitterDebugMetric",
+            "TOOLTIP_TEXT": {
+              "CURRENT_BASE_METRICS": "<b>Statistics reported in Current Base metrics: </b><hr noshade><pre><font size=3>- startTime              - ipAddress</font><br><font size=3>- endTime                - portNumber</font><br><font size=3>- timeZoneOffset         - inboundPacketCount</font><br><font size=3>- callCompletionCode     - inboundByteCount</font><br><font size=3>- proprietoryErrorCode   - outboundPacketCount</font><br><font size=3>- sequenceNumber         - outboundByteCount</font><br><font size=3>- uniqueCallId           - packetDelayVariation</font><br><font size=3>- hostName               - averagePacketLatency</font><br><font size=3>- subscriberID           - packetLossPercentage/Loss Rate</font><br><font size=3>- originalDestinationId  - inboundLostPacketCount (Non H.248 GWs)</font><br></pre>",
+              "RTP_BASE_REMOTE_METRICS": "<b>Statistics reported in RTP Base Remote metrics: </b><hr noshade><pre><font size=3>- inboundPacketCount</font><br><font size=3>- inboundByteCount</font><br><font size=3>- outboundPacketCount</font><br><font size=3>- outboundByteCount</font><br><font size=3>- packetDelayVariation</font><br><font size=3>- packetLossPercentage/Loss Rate</font><br><font size=3>- inboundLostPacketCount</font><br></pre>",
+              "EXTRA_BASE_METRICS": "<b>Statistics reported in Extra Base metrics: </b><hr noshade><pre><font size=3>- local bearer IP</font><br><font size=3>- remote bearer IP</font><br><font size=3>- local bearer port</font><br><font size=3>- remote bearer Port</font><br><font size=3>- local bearer i/f</font><br><font size=3>- VBD Flag</font><br><font size=3>- number of Fax pages received </font><br><font size=3>- number of Fax pages sent </font><br><font size=3>- Average Jitter</font><br></pre>",
+              "CODEC_METRICS": "<b>Statistics reported in Codec metrics: </b><hr noshade><pre><font size=3>- preferred codec</font><br><font size=3>- final negotiated Codec</font><br></pre>",
+              "RTCP_XR_REPORTING": "<b>Warning: </b><hr noshade><pre><font size=3>Check this box if and only if you want to fully disable collection, </font><br><font size=3>reporting and responding functions for RTCP-XR metrics at the Gateway</font><br></pre>",
+              "V_Q_MONITOR_METRIC": "<b>Statistics reported in Voice Quality Monitor block: </b><hr noshade><pre><font size=3>- Conversational R</font><br><font size=3>- Listening R</font><br><font size=3>- MOS-LQ</font><br><font size=3>- MOS-CQ</font><br></pre>",
+              "V_Q_DEBUG_METRIC" : "<b>Statistics reported in Voice Quality Debug block: </b><hr noshade><pre><font size=3>- End System Delay</font><br><font size=3>- Signal Level</font><br><font size=3>- Noise Level</font><br><font size=3>- Residual Echo Return Loss</font><br><font size=3>- PLC Config</font><br></pre>",
+              "LOSS_DEBUG_METRIC": "<b>Statistics reported in Loss Debug block: </b><hr noshade><pre><font size=3>- Discard Rate</font><br><font size=3>- Burst Duration</font><br><font size=3>- Burst Density</font><br><font size=3>- Gap Duration</font><br><font size=3>- Gap Density</font><br><font size=3>- Network Packet Loss Rate</font><br><font size=3>- Gap Threshold setting </font><br>",
+              "UNIT_STIM_SPECIFIC_METRIC": "<b>Statistics reported in Unistim Specific block: </b><hr noshade><pre><font size=3>- PLC Effectiveness                        - Burst Count</font><br><font size=3>- Round Trip Time Average High Water Mark  - Gap R Factor</font><br><font size=3>- Maximum One Way Delay in MS              - Burst R Factor</font><br><font size=3>- Average Network Loss Rate                - Frames per Packet (ptime)</font><br><font size=3>- Inter-arrival Jitter HWM                 - MIU Duplicate Percentage</font><br><font size=3>- Packets Out of Order                     - silenceSuppression</font><br>",
+              "JITTER_DEBUG_METRIC": "<b>Statistics reported in Jitter Debug block: </b><hr noshade><pre><font size=3>- Jitter Buffer Adaptive config</font><br><font size=3>- Jitter Buffer Rate config</font><br><font size=3>- Jitter Buffer Nominal Delay</font><br><font size=3>- Jitter Buffer Maximum Delay</font><br><font size=3>- Jitter Buffer Absolute Maximum Delay</font><br>"
+            }
+          },
+          "DELETE": {
+            "TITLE": "Confirm QoS Collector Delete",
+            "MESSAGE_LAST_QOS_COLLECTOR": "Note: QoS Data Reporting is enabled and you are about to disassociate the last QoS Collector on this GWC which will result in loss of QoS Statistics.</br>Disassociate /{{qosName}}/ from /{{gwcName}}/ ?",
+            "CONFIRM_MESSAGE_DELETE": "Disassociate /{{qosName}}/ from /{{gwcName}}/ ?",
+            "GWC_ERROR_EXP_TITLE": "Disassociate QoS Collector Failed",
+            "GWC_ERROR_EXP_MESSAGE": "Disassociation of QoS Collector failed<br>due to an error during server processing.",
+            "SYSTEM_ERROR": "System Error",
+            "ERROR_MESSAGE": "Disassociate QoS Collector Failed."
+          }
+        }
+      }
+    },
+    "ASSOCIATE_MEDIA_GW": {
+      "LABEL": {
+        "ASSOCIATE_MEDIA_GATEWAY":"Associate Media Gateway",
+        "ASSOCIATE":"Associate",
+        "GWC_BACKUP":"GWC Backup Path for Emergency Calls",
+        "ASSOCIATE_MG":"Associate MG",
+        "AUDIT_DETAIL":"A data audit is in progress, no requests allowed, please wait until it completes",
+        "FAILED_TO_ASSOCIATE":"Failed to associate MG to a GWC",
+        "PLEASE_WAIT":"Please wait while process...",
+        "GWIP_ERROR":"The IP address for this type of GW is mandatory and\n must be non-zero. The IP address is optional only for\n small line and large trunk GWs that support\n Internet Transparency.\n\nPlease check the data format and enter again!\n",
+        "CONFIRM_DIALOG":"Confirm",
+        "CONFIRMATION_DIALOG_CONTENT":"Current {{gwcName}}{{unit}} load version is lower than CVM16, Please make sure G9 related patch has been applied to GWC. Do you wish to continue?Confrim G9 VMG Provisioning",
+        "CAC_CONFIRM_TITLE": "Associate MG with Backup Path",
+        "ASSOCIATE_MG_TO_GWC":"Successfully associated MG to a GWC!",
+        "ERROR":"Failed to Associate",
+        "IP_ADDRESS_ALREADY_IN_USE":"The specified IP address is already in use by another gateway with gateway profile GENBAND_G6_PLG. \nIf any BRI endpoint will be added to that MG, warm swact must be done in GWC.",
+        "VOIP_RESTRICTION":"(Warning: There should be a one-to-one mapping restriction between D-channel and VoIP VPN VMG.)",
+        "SUCCESS_MSG":"{{successMsg}} <br> GWC Name: {{gwcName}} <br> GWC IP: {{gwcIP}} <br> GW Node Name: {{gwcNodeName}}"
+      },
+      "GWC_TOOLTIP":{
+        "CAC_VALID_VALUES":"Valid values: 0-9"
+      },
+      "GWC_ERROR_MSG": {
+        "MGC_SECIP_INVALID": "MGC Secondary IP Address cannot be specified as 0.0.0.0 or 255.255.255.255 Associate MG with Backup Path",
+        "GW_SECIP_EMPTY": "Gateway cannot be added with backup path because GW Secondary IP Address is not specified. Associate MG with Backup Path",
+        "GW_SECIP_INVALID": "Gateway Secondary IP Address cannot be specified as 0.0.0.0 or 255.255.255.255 Associate MG with Backup Path",
+        "CAC_ZERO": "Caution: Zero CAC value will disable Core Backup Path functionality.<br>All calls will be permitted on the backup path.<br>Do you wish to continue?"
+      },
+      "FIELDS": {
+        "GATEWAY_INFO": {
+          "TITLE": "Gateway Information",
+          "NAME": "Name",
+          "IP_ADDRESS": "IP Address",
+          "CONTROLLER_NAME": "Controller Name",
+          "PROFILE_NAME": "Profile Name",
+          "RESERVED_TERMINATIONS": "Reserved Terminations",
+          "SITE_NAME":"Site Name",
+          "LGRP_TYPE":"LGRP Type",
+          "NODE_SHARING":"Node Sharing",
+          "AUTO_SELECT":"<auto-select>",
+          "GATEWAY_PEP_SERVER":"Gateway PEP server",
+          "GATEWAY_ALG":"Gateway ALG",
+          "TOOLTIP":{
+            "GATEWAY_NAME":"Line Gateway names typically have a '.' as part of name",
+            "IP_ADDRESS":"Valid values:<0-255>.<0-255>.<0-255>.<0-255>",
+            "RESERVED_TERMINATION":"Maximum number of Reserved Terminations for this Gateway"
+          }
+        },
+        "SIGNAL_PROTOCOL": {
+          "TITLE": "Signal Protocol",
+          "PROTOCOL_TYPE": "Protocol Type",
+          "PROTOCOL_PORT": "Protocol Port",
+          "PROTOCOL_VERSION": "Protocol Version",
+          "ERROR":{
+            "PROTOCOL_PORT":"Valid Values:0-65535"
+          },
+          "TOOLTIP":{
+            "PROTOCOL_PORT":"Port number used by the chosen protocol <0-65535>"
+          }
+         },
+        "SIGNAILLING_GATEWAY":{
+        "TITLE":"Signalling Gateway",
+        "FIELDS":{
+          "IP":"SG IP",
+          "PORT_1":"SG Port 1",
+          "PORT_2":"SG Port 2"
+        },
+        "TOOLTIP":{
+          "SG_IP":"Valid values: <0-255>.<0-255>.<0-255>.<0-255>",
+          "SG_PORT":"Valid values: <1-65535>"
+        }
+        },
+        "TGRP":{
+        "TITLE":"TGRP Options",
+        "FIELDS":{
+          "TGRP":"TGRP's",
+          "TGRP_NAME":"TGRP Name"
+        }
+        },
+        "GR":{
+          "TITLE":"GR-834",
+          "GATEWAY_NAME":"Gateway Name",
+          "ADD_NEW":"Add New",
+          "ADD_GR":{
+            "TITLE":"Add GR-834 Gateway Info",
+            "FIELDS":{
+              "NAME":"Name",
+              "TYPE":"Type",
+              "IP_ADDRESS":"IP Adress",
+              "PORT":"Port",
+              "USER_NAME":"User Name",
+              "PASSWORD":"Password"
+            }
+          }
+        },
+        "LGRP_LOCATION":{
+          "TITLE":"LGRP Location",
+          "FIELDS":{
+            "FRAME_NUMBER":"Frame Number",
+            "UNIT_NUMBER":"Unit Number",
+            "FRAME_TYPE":"Frame Type",
+            "UNIT_POSITION":"Unit Position",
+            "FLOOR_POSITION":"Floor Position",
+            "ROW_POSITION":"Row Position",
+            "FRAME_POSITION":"Frame Position"
+          },
+          "ERROR":{
+            "FRAME_NUMBER":"Valid values: 0-2047",
+            "UNIT_NUMBER":"Valid values:0-9 "
+          },
+          "TOOLTIP":{
+            "FRAME_NUMBER":"Valid values: 0-2047",
+            "UNIT_NUMBER":"Valid values: 0-9"
+          }
+        },
+        "PEPSERVER_ALG":{
+          "TITLE":"PEP Server / ALG Selection",
+          "FIELDS":{
+            "PEP_SERVER":"PEP Server",
+            "ALG":"ALG"
+          }
+        },
+        "CANCEL": "Cancel",
+        "SAVE": "Save"
+      }
+    },
+    "ADD_GWC_NODE": {
+      "TITLE": "New GWC Node",
+      "HEADERS": {
+        "PROFILE_INFORMATION": "Profile Information",
+        "FLOW_THROUGH_INFORMATION": "Flow Through Information",
+        "GWC_BEARER_NETWORKS_CODEC_PROFILE_INFORMATION": "GWC Bearer Networks & Codec Profile Information",
+        "ADD_GWC_NODE": "Add GWC Node"
+      },
+      "FIELDS": {
+        "DEFAULT_DOMAIN_NAME": "Default Domain Name",
+        "PROFILES": "Profile(s)",
+        "TONE_DATA": "Tone Data",
+        "EXEC_DATA": "Exec Data",
+        "TERM_TYPE": "Term Type",
+        "FLOW_THROUG_TO_SESSION_SERVER": "Flow through to Session Server",
+        "GWC_ADDRESS_NAME": "GWC Adress Name",
+        "BEARER_NETWORKS": "Bearer Networks",
+        "GWC_CODEC_PROFILE": "GWC Codec Profile"
+      },
+      "ERRORS": {
+        "ALL_GWC_PROVISIONED": "All GWC available are already provisioned",
+        "GWC_CODEC_REQUIRED": "GWC Codec Profile required.Please select an available Codec Profile, and try again. ",
+        "PROFILE_REQUIRED": "Profile(s) required.Please select an available Profile(s), and try again. ",
+        "FAILED_TO_ADD": "Failed to add GWC"
+      }
+    }
+  },
+  "NETWORK": {
+    "HEADER": {
+      "TITLE": "Network Devices",
+      "GENERAL_NETWORK_SETTING": "General Network Setting"
+    },
+    "TABS": {
+      "QOS_COLLECTORS": "QoS Collectors",
+      "ALGS": "ALGs",
+      "GR_834_GWS": "GR-834 GWs",
+      "PEP_SERVERS": "PEP Servers"
+    },
+    "GENERAL_NETWORK_SETTINGS": {
+      "TITLE": "General Network Settings",
+      "CALL_AGENT_IP_ADDRESS_ZERO": "Call Agent IP Address 0:",
+      "CALL_AGENT_IP_ADDRESS_ONE": "Call Agent IP Address 1:",
+      "GWC_DOMAIN_NAME": "GWC Domain Name:",
+      "INPUT_NAME": "Input Name:",
+      "NAME": "name",
+      "CONFIRM": "Confirm Domain Name Change",
+      "CONFIRM_MESSAGE_DETAIL": "Warning! <br><br>Before changing the GWC domain name, you must be sure that the <br>domain names for ALL GWC's are correctly provisioned in the DNS <br>Server, matching the domain name you just entered. If any of the <br>GWC domain names are incorrectly provisioned or missing from the <br>DNS Server, this will cause a call-processing outage.<br><br>Changing the domain name will affect all GWCs. Continue?<br>",
+      "FAIL_TITLE": "Domain Name Modification Warning"
+    },
+    "QOS_COLLECTORS": {
+      "NEW_QOS_COLLECTOR": "New QoS Collector",
+      "ADD_QOS_COLLECTOR": "Add QoS Collector",
+      "DELETE_QOS_COLLECTOR": "Delete QoS Collector",
+      "QOS_COLLECTOR_NAME": "QoS Collector Name",
+      "IP_ADDRESS": "IP Address",
+      "PORT": "Port",
+      "DELETE_DIALOG_MESSAGE": "Are you sure that you want to delete the",
+      "ON_PORT": "on port",
+      "IP_ADDRESS_INFO": "Valid Values: <0-255>.<0-255>.<0-255>.<0-255>",
+      "PORT_INFO": "Valid Values: 20000-20004",
+      "ERROR_DIALOG_MESSAGE": "has already provisioned with an IP address ",
+      "ALLOWED_MESSAGE": ". Only one insatance of a QoS Collector per SSPFS server is allowed.",
+      "QOS_ADDED_SUCCESSFULLY": "QoS Collector added successfully",
+      "DELETE": {
+        "ERROR_MESSAGE": "Delete QoS Collector Failed"
+      }
+    },
+    "ACTION": "Action",
+    "QOS_COLLECTORS_DETAIL": {
+      "QOS_COLLECTOR_NAME": "QoS Collector Name",
+      "IP_ADDRESS": "IP Address",
+      "PORT": "Port"
+    },
+    "ALGS": {
+      "TABLE_TITLE": {
+        "NAME": "Name",
+        "IP_ADDRESS": "IP Address",
+        "PROTOCOL": "Protocol",
+        "PORT": "Port"
+      },
+      "COMMON": {
+        "NUMERIC_VALUE": "Numeric value",
+        "OUT_OF_RANGE": "out of range of int (-2147483648 - 2147483647)"
+      },
+      "ADD_ALG": {
+        "ADD_BTN_LABEL": "New ALG",
+        "TITLE": "Add ALG",
+        "NAME": "Name",
+        "IP_ADDRESS": "IP Address",
+        "PORT": "port",
+        "PROTOCOL": "Protocol",
+        "NCS": "NCS",
+        "NAME_INFO": "Valid Values: DNS styled character string",
+        "IP_ADDRESS_INFO": "Valid Values: <0-255>.<0-255>.<0-255>.<0-255>",
+        "ALG_ADDED_SUCCESSFULLY": "ALG added successfully",
+        "FAILED_MESSAGE": "Addition of {{algName}} failed.",
+        "ONLY_NUMBER":"Valid Values: Only numeric characters"
+      },
+      "DELETE_ALG": {
+        "TITLE": "Delete ALG",
+        "DELETE_DIALOG_MESSAGE": "Are you sure that you want to delete the ",
+        "ALG": " ALG",
+        "NO_ALG_DIALOG": "Please select an ALG from the list and resubmit request.",
+        "ALG_DELETED_SUCCESSFULLY": "ALG deleted successfully",
+        "FAILED_MESSAGE": "Deletion of {{algName}} failed."
+      },
+      "EDIT_ALG": {
+        "TITLE": "Edit ALG",
+        "ALG_EDITED_SUCCESSFULLY": "ALG edited successfully",
+        "FAILED_MESSAGE": "Change of {{algName}} failed."
+      }
+    },
+    "GR_GATEWAYS": {
+      "TABLE_TITLE": {
+        "GR_NAME": "GR834 Name",
+        "TYPE": "Type",
+        "IP_ADDRESS": "IP Address",
+        "PORT": "Port",
+        "USER": "User"
+      },
+      "FORM": {
+        "NAME": "Name",
+        "TYPE": "Type",
+        "PORT": "port",
+        "IP_ADDRESS": "IP Address",
+        "USER_NAME": "User Name",
+        "PASSWORD": "Password",
+        "NAME_INFO": "Valid Values: Character string",
+        "IP_ADDRESS_INFO": "Valid Values: <0-255>.<0-255>.<0-255>.<0-255>",
+        "PORT_INFO": "Valid Values: 0-65535"
+      },
+      "ADD_GR": {
+        "ADD_BTN_LABEL": "New GR-834 GWs",
+        "TITLE": "Add GR-834 GWs",
+        "GRGW_ADDED_SUCCESSFULLY": "GR-834 added successfully",
+        "FAILED_MESSAGE": "Addition of {{g6Name}} failed."
+      },
+      "DELETE_GRGW": {
+        "TITLE": "Confirm GR-834 Gateway Delete",
+        "DELETE_DIALOG_MESSAGE": "Do you want to delete the GR-834 Gateway ",
+        "ON_PORT": " on port ",
+        "DELETE_ERROR_SUMMARY": "Delete GR-834 Gateway Failed",
+        "ERROR_MESSAGE": "Deletion of {{g6Name}} failed: This GR-834 Gateway has been associated to VMG(s), please disassociate the GR-834 Gateway from related VMG(s) before deleting it!"
+      },
+      "EDIT_GR": {
+        "TITLE": "Edit GR-834 GWs",
+        "GR_EDITED_SUCCESSFULLY": "GR-834 edited successfully",
+        "FAILED_MESSAGE": "Addition of {{g6Name}} failed."
+      }
+    },
+    "PEP_SERVERS": {
+      "TABLE_TITLE": {
+        "PEP_SERVERS_NAME": "Name",
+        "TYPE": "Type",
+        "IP_ADDRESS": "IP Address",
+        "MAX_CONNECTION": "Max Connection",
+        "PROTOCOL_VERSION": "Protocol Version"
+      },
+      "FORM": {
+        "NAME": "Name",
+        "IP_ADDRESS": "IP Address",
+        "BOXTYPE": "Type",
+        "MAX_CONNECTIONS": "Max Conn",
+        "PROTOCOL": "Protocol",
+        "PROT_VERSION": "Protocol Version",
+        "NAME_INFO": "Valid Values: DNS styled character string",
+        "IP_ADDRESS_INFO": "Valid Values: <0-255>.<0-255>.<0-255>.<0-255>",
+        "MAX_CONNECTIONS_INFO": "Maximum number of connections for this PEP Server. Valid values: (0-65535)",
+        "PROT_VERSION_VALUE": "'DQOS I03','DQOS I04'"
+      },
+      "ADD_PEP_SERVER": {
+        "ADD_BTN_LABEL": "New Pep Server",
+        "TITLE": "Add Pep Server",
+        "PEP_SERVER_ADDED_SUCCESSFULLY": "Pep Server added successfully",
+        "FAILED_MESSAGE": "Addition of {{pepName}} failed."
+      },
+      "DELETE_PEP_SERVER": {
+        "TITLE": "Delete PEP Server",
+        "DELETE_DIALOG_MESSAGE": "Are you sure that you want to delete the ",
+        "PEP_SERVER": " PEP Server?",
+        "DELETE_ERROR_SUMMARY": "Delete PEP Server Failed"
+      },
+      "EDIT_PEP_SERVER": {
+        "TITLE": "Edit PEP Server",
+        "PEP_SERVER_EDITED_SUCCESSFULLY": "PEP Server edited successfully",
+        "FAILED_MESSAGE": "Addition of {{pepName}} failed."
+      }
+    }
+  },
+  "CODEC_PROFILE": {
+    "HEADER": {
+      "TITLE": "Codec Profile",
+      "GENERAL_NETWORK_SETTING": "General Network Setting"
+    },
+    "TABS": {
+      "NETWORK_CODEC_PROFILE": "Network Codec Profile",
+      "DQOS_CONF": "DQoS Configuration"
+    },
+    "NETWORK_CODEC_PROFILE": {
+      "NEW_PROFILE": "New Profile",
+      "PROFILE_NAME": "Profile Name",
+      "FORM": {
+        "NAME": "Name",
+        "CODEC_SELECTION": "Codec Selection",
+        "PACKETIZATION_RATE": "Packetization Rate",
+        "T_38": "T-38",
+        "RFC2833": "RFC2833",
+        "COMFORT_NOISE": "Comfort Noise",
+        "BEARER_TYPE_DEFAULT": "Bearer Type Default",
+        "NETWORK_DEFAULT": "Network Default"
+      },
+      "ADD": {
+        "TITLE": "Add New Network Codec Profile",
+        "NAME": "Profile Name",
+        "PACKETIZATION_RATE": "Packetization Rate",
+        "T_38": "T-38",
+        "RFC2833": "RFC2833",
+        "COMFORT_NOISE": "Comfort Noise",
+        "SET_DEFAULT": "Set as Network Default",
+        "CANCEL_INFO_TITLE": "Profile has not been stored",
+        "CANCEL_INFO_BODY": "You have changed this profile setting. The change will be lost if you close this dialog.<br><br>Do you wish to continue?",
+        "INVALID_CODEC_SELECTION_TITLE": "Invalid Codec Selection",
+        "INVALID_CODEC_SELECTION_BODY": "Codec selection is invalid. Please modify it and try again.<br>Please consult the GWCEM Help panels for further information on the supported combinations.",
+        "ADD_ERROR_MESSAGE": "Can not add network codec profile.",
+        "NAME_EXISTS_ERROR": {
+          "TITLE": "Add Network Codec Profile Error",
+          "MESSAGE": "The network codec profile name /{{codecName}}/ is already in use."
+        }
+      },
+      "DELETE": {
+        "TITLE": "Delete Network Codec Profile",
+        "DELETE_DIALOG_MESSAGE": "This operation will delete the selected network codec profile: ",
+        "CONFIRM_TO_CONTINUE_MESSAGE": "Do you wish to continue?",
+        "DELETE_ERROR_MESSAGE": "Can not delete network codec profile."
+      },
+      "EDIT": {
+        "TITLE": "Edit Network Codec Profile",
+        "NAME": "Profile Name",
+        "PACKETIZATION_RATE": "Packetization Rate",
+        "T_38": "T-38",
+        "RFC2833": "RFC2833",
+        "COMFORT_NOISE": "Comfort Noise",
+        "SET_DEFAULT": "Set as Network Default",
+        "EDIT_ERROR_MESSAGE": "Can not edit network codec profile."
+      }
+    },
+    "DQOS_CONF": {
+      "DSCP": "DSCP (6-bit binary):",
+      "TIMER_T1": "Timer-T1 (Seconds):",
+      "KEEP_ALIVE_TIMER": "Keep Alive Timer (Seconds):",
+      "TIMER_T7": "Timer-T7 (Seconds):",
+      "TIMER_T8": "Timer-T8 (Seconds):",
+      "INFO": "This info box will give a complete explanation of the relations between all of the above attributes.",
+      "ERROR_TITLE": "Invalid Input",
+      "INVALID_T1": "Invalid value for Timer-T1. Valid range: 0 to 65535.<br>",
+      "INVALID_KEEP_ALIVE_T": "Invalid value for Keep Alive Timer. Valid range: 1 to 65535.<br>",
+      "INVALID_T7": "Invalid value for this Timer-T7. Valid range: 0 to 65535.<br>",
+      "INVALID_T8": "Invalid value for this Timer-T8. Valid range: 0 to 65535.",
+      "EDIT": {
+        "TITLE": "Edit DQoS Configuration",
+        "CHECK_EXCEPTION_TEXT": "com.nortel.ptm.gwcem.exceptions.GWCException",
+        "EDIT_ERROR_MESSAGE_CODE_13": "Update DQoS Configuration data successfully<br>with warning message.",
+        "EDIT_ERROR_MESSAGE_CODE_FAIL": "Failed to update DQoS Configuration data<br>for one or more Gateway Controllers.",
+        "EDIT_ERROR_MESSAGE_CODE_500": "An error occurred attempting to update<br>DQoS Configuration data."
+      }
+    }
+  },
+  "INTERFACE_BROWSER": {
+    "TITLE": "V5.2 Interface Browser",
+    "HEADER": {
+      "INTERFACE_LOCATION": "Interface Location",
+      "TEMPLATES": "Templates",
+      "MAX_LINES": "Max Lines",
+      "LINK_MAPPING": "Link Mapping"
+    },
+    "FIELD_LABEL": {
+      "INTERFACE_ID": "Interface ID",
+      "GATEWAY_CONTROLLER_ID": "Gateway Controller ID",
+      "AMCNO": "AMCNO",
+      "V5PROV": "V5PROV",
+      "V5RING": "V5RING",
+      "V5SIG": "V5SIG",
+      "MAXLINES_SELECTOR": "Maxlines Selector",
+      "MAXLINE_VALUE": "Maxline Value",
+      "SELECT_INTERFACE": "Select a V5.2 Interface",
+      "DELETE_INTERFACE": "Delete Interface",
+      "ENTER_ID_TO_DELETE": "Enter the interface ID to delete",
+      "NEW_INTERFACE": "New Interface",
+      "ADD_NEW_INTERFACE": "Add New Interface",
+      "CONFIRM_DELETE": "Confirm Interface Deletion",
+      "ARE_YOU_SURE_TO_DELETE": "Are you sure that you want to delete interface: {{interfaceID}} ? "
+    },
+    "TOOLTIP":{
+     "LINK":"(GW Name).E1/xx/xx or (GW Name).STM/xx/x/x/VC4VC12/x/x/x/x or (GW Name).TDMsxxc1f1/x/x/x"
+    },
+    "PROV":{
+      "TITLE":"V5 Prov View",
+      "HEADER":{
+        "ADD_NEW_PROV":"New V5PROV",
+        "VALUES":"Values",
+        "PROT2_CONFIGURATION":"PROT2 Configuration",
+        "CCHNL":"Cchnl Configuration",
+        "ADD_NEW_PROV_HEADER":"Add New V5PROV"
+      },
+      "FIELD_LABEL": {
+        "TBCC":"TBCC",
+        "LKMJALM":"LKMJALM",
+        "PROT1":"PROT1",
+        "PROT2_LINK":"Prot2 Link",
+        "PROT2_CHANNEL":"Prot2 Channel",
+        "PROT2_LIST":"PROT2 List",
+        "CCHNL_ID":"CCHNL ID",
+        "LINK":"LINK",
+        "CHANNEL":"CHANNEL",
+        "CPATH":"CPATH",
+        "CCHNL_ENTRIES":"CCHNL ENTRIES",
+        "ARE_U_SURE":"Are you sure ? ",
+        "DELETE_PROT2":"Do you really want to remove this PROT2 entry?",
+        "DELETE_CCHNL":"Do you really want to remove this CChnl entry?"
+      },
+      "TOOLTIP":{
+        "DELETE_PROT2":"Delete Prot2",
+        "DELETE_CCHNL":"Delete CCHNL",
+        "ADD_PROT2":"Add Prot2",
+        "ERASE_INPUTS":"Erase Inputs",
+        "ADD_CCHNL":"Add Cchnl"
+      },
+      "ERROR_MESSAGES":{
+        "PROT2CHANNEL_REQUIRED":"No channel information",
+        "PROT2LINK_REQUIRED":"No link information",
+        "CCHNLID_REQUIRED":"No CCHNLID information",
+        "CHANNEL_REQUIRED":"No channel information",
+        "LINK_REQUIRED":"No link information",
+        "CPATH_REQUIRED":"You must select at least one CPATH",
+        "TBCC_REQUIRED":"No TBCC information",
+        "LKMJALM_REQUIRED":"No LKMJALM information",
+        "PRO1_REQUIRED":"No PROT1 information",
+        "CCHNL_ENTRIES_REQUIRED":"CCHNL entries required"
+      }
+    },
+    "V5_RING_VIEW": {
+      "TITLE": "V5 Ring View",
+      "HEADER": {
+        "ADD_NEW_V5RING": "Add New V5Ring",
+        "DELETE_IDENTIFIER": "Delete Identifier"
+      },
+      "FIELD_LABEL": {
+        "NEW_V5_RING": "New V5Ring",
+        "STD": "STD",
+        "Select_DELETE_IDENTIFIER": "Select the identifier to delete",
+        "IDENTIFIER": "Identifier",
+        "SUCCESS": "Template {{action}} successfully."
+      },
+      "ERROR_MESSAGES": {
+        "IDENTIFIER_REQUIRED": "Identifier Required"
+      },
+      "ADD_CONFIRM": {
+        "TITLE": "Adding V5.2 Interface",
+        "CONTENT": "Adding V5.2 Interface: a confirmation dialog will appear once the operation is complete.<br>Click OK to proceed with the operation."
+      }
+    },
+    "V5_SIG": {
+      "TITLE": "V5SIG View",
+      "HEADER":{
+        "ADD_NEW_SIG":"Add New V5SIG"
+      },
+      "FIELD_LABEL": {
+        "NEW_V5_SIG": "New V5SIG",
+        "ATTEN": "ATTEN",
+        "PLF": "PLF",
+        "APA": "APA",
+        "DS1FLASH": "DS1FLASH",
+        "EOC": "EOC",
+        "SUPPIND": "SUPPIND",
+        "PLSDUR": "PLSDUR",
+        "MTRPN": "MTRPN",
+        "LROA": "LROA",
+        "LROSFD": "LROSFD",
+        "RNGTYPE": "RNGTYPE",
+        "SSONHOOK": "SSONHOOK",
+        "IDENTIFIER": "Identifier"
+      }
+    },
+    "MAINTENANCE": {
+      "TITLE": "V5.2 Maintenance",
+      "TABS": {
+        "INTERFACE_TO_CARRIER": "Interface to Carrier Mapping",
+        "CARRIER_TO_INTERFACE": "Carrier to Interface Mapping"
+      },
+      "FIELD_LABELS": {
+        "INTERFACE": "V5.2 Interface",
+        "WILDCARD": "Wildcard",
+        "GATEWAY_NAME": "Gateway Name",
+        "CARRIER_NAME": "Carrier Name",
+        "RETRIEVE": "Retrieve"
+      },
+      "ERROR_MESSAGES": {
+        "GATEWAYNAME_REQUIRED": "Please select an available gateway, and try again.",
+        "CARRIERNAME_REQUIRED": "Please select an available carrier, and try again.",
+        "CARRIERLIST_EMPTY": "The carrier name dont exist! Ensure typing the correct case."
+      }
+    },
+    "ERROR": {
+      "GAP_DETECTED": "There is a gap in the Link Mapping Data. Please ensure there are no gaps before adding this interface",
+      "ADD_RING_NULL": "A field Value is set to null"
+    }
+  },
+  "HELP":{
+    "COMMON":{
+      "NOTE":"Note"
+    },
+    "TITLE":"ONLINE HELP | ",
+    "PRODUCT_TITLE":"GATEWAY CONTROLLER",
+    "OVERVIEW":{
+      "TITLE":"Overview",
+      "FUNCTIONAL_DESCRIPTION_HEADER":"Functional Description",
+      "FUNCTIONAL_DESCRIPTION_BODY":"The GWC acts as a protocol translator to translate proprietary DMS-based messages and transactions to standard third-party messages sent to GWCs within the same Communications Server or to GWC's on another Communications Server. The GWC is responsible for all communication between the Core and media gateways for call control. <br><br>A GWC node consists of two gateway controller units. The first unit, unit 0 is active while the second unit, unit 1 is in hot standby mode, ready to take over should the active unit fail or when a manual action takes place. <br><br>For VC20 solutions, GWCs are provisioned as applications running on VMs. <br><br>The Gateway Controllers (GWCs) are an integral part of C20. The GWCs provide the capability for:<ul><li>inter-C20 Network calls using the Session Initiation Protocol for Telephony (SIP-T) messaging across the packet network to enable inter-C20 functionality.</li><li>intra-C20 Network using IUAP, MGCP, ASPEN, H.323 and MEGACO/H.248 signaling protocols that talk to the gateway.</li></ul>The Gateway Controller provides protocol mediation between the Core and the media gateways. The GWCs can function as an interface between the Core and third-party peripherals. The Core views the Gateway Controller as another peripheral from a call processing, messaging, and control point of view. Additionally, media gateways and the Core view the Gateway Controller as a Media Gateway Controller; therefore, the Gateway Controller connects the two views together.<br><br>Messages from the Gateway Controller to the media gateways trigger the setup of the media path. Using fabric control messages from the Core, ingress and egress Gateway Controllers can exchange connection information that allows them to send control messages to the correct media gateway.",
+      "VC20_HEADER":"VC20",
+      "VC20_BODY":"Gateway Controllers run as applications on VMs. The Data Manager provides management of the VMs."
+    },
+    "NETWORK_CONFIGURATION":{
+      "TITLE":"Network Configuration",
+      "FUNCTIONAL_DESCRIPTION_HEADER":"Functional Description",
+      "FUNCTIONAL_DESCRIPTION_BODY":"The Network Configuration panel shows the current network configuration settings for Gateway Controllers and is displayed when the GatewayController device type is selected. ",
+      "FUNCTIONAL_DESCRIPTION_INFO":"If using an Operations Support System (OSS), selection of the GatewayController device type may not be necessary, as this panel may be displayed automatically when Network Configuration details are requested.  In this case, the various Device Types will not be displayed.",
+      "MENU_HEADER":"The Menu",
+      "GENERAL_NETWORK_SETTINGS_HEADER":"General Network Settings",
+      "GENERAL_NETWORK_SETTINGS_BODY":"Include the default domain name for gateway controllers, the Call Agent identifier for this Call Server and the auto-imaging function. The values can be modified via the <b>\"General Network Setting \" button.</b><br><br>Use this procedure to initially set or change the General Network settings for the network.<br><ol><li>Complete the required fields.<br><b><font color='red'>Note: </font></b>The Call Agent Identifier must be set if middleboxes provisioned for this Call Server are shared with other Call Servers.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request. If one or more Gateway Controllers fail the update, a dialog is presented with detailed results.</li></ol>",
+      "DEVICES":{
+        "HEADER":"Devices",
+        "BODY":"Network Devices shows all the network devices that can be provisioned.",
+        "QOS_COLLECTORS":{
+          "HEADER":"QoS Collectors",
+          "BODY":"Qos Collectors may be added and deleted by the buttons located under the QoS Collectors panel. Refer to the following procedures for information on these functions:",
+          "ADD_QOS_COLLECTOR_HEADER":"Add a Qos Collector",
+          "ADD_QOS_COLLECTOR_BODY":"Use this procedure to add a QoS Collector.<ol><li>Display the Network Configuration panel.</li><li>Select the QoS Collectors tabbed panel, and click the <b>\"New QoS Collector\"</b> button to display the Add QoS Collector dialog.</li><li>Enter the QoS Collector Name, Ip Address, and port.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The QoS Collector will appear in the list following successful addition.</li></ol>",
+          "DELETE_QOS_COLLECTOR_HEADER":"Delete a QoS Collector",
+          "DELETE_QOS_COLLECTOR_BODY":"Use this procedure to delete a QoS Collector.<ol><li>Display the Network Configuration panel.</li><li>Select the QoS Collectors tabbed panel.</li><li>Select a QoS Collector from the list and click the Delete button.</li><li>Click the Yes button to confirm the request, or the No button to abort the request.</li><li>The QoS Collector will be removed from the list following successful deletion.</li></ol>"
+        },
+        "ALGS":{
+          "HEADER":"ALGs",
+          "BODY":"An Application Layer Gateway (ALG) may be added, changed and deleted by the buttons located under the ALGs panel. Refer to the following procedures for information on these functions:",
+          "ADD_ALG_HEADER":"Add an ALG",
+          "ADD_ALG_BODY":"Use this procedure to add an Application Layer Gateway (ALG).<ol><li>Display the Network Configuration panel.</li><li>Click on the ALGs tab, and click the \"New ALG\"button to display the Add ALG dialogue.</li><li>Enter a Name that identifies the FQDN and the associated IP Address. The Port field is provided but may be modified by entering a different value. The Protocol is pre-defined to NCS and not modifiable. Currently only NCS is supported.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The server will appear in the list following successful addition.</li></ol>",
+          "CHANGE_ALG_HEADER":"Change an ALG",
+          "CHANGE_ALG_BODY":"Use this procedure to change Application Layer Gateway (ALG) server attributes.<ol><li>Display the Network Configuration panel.</li><li>Select an ALG from the list and click the Edit icon.</li><li>Enter your changes to the IP address and Port</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The server list is updated following a successful change.</li></ol>",
+          "DELETE_ALG_HEADER":"Delete an ALG",
+          "DELETE_ALG_BODY":"Use this procedure to delete an Application Layer Gateway (ALG).<ol><li>Display the Network Configuration panel.</li><li>Select an ALG from the list and click the Delete icon.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The server will be removed from the list following successful deletion.</li></ol>"
+        },
+        "PEP_SERVERS":{
+          "HEADER":"PEP Servers",
+          "BODY":"Policy Enforcement Point (PEP) servers provide subscriber control mechanisms needed for setting up calls with DQoS or Admission Control quality. PEP servers may be added, modified, and deleted by the buttons located under the PEP Servers panel. Refer to the following procedures for information on these functions:",
+          "ADD_PEP_SERVER_HEADER":"Add a PEP Server",
+          "ADD_PEP_SERVER_BODY":"Use this procedure to add a Policy Enforcement Point (PEP) server.<ol><li>Display the Network Configuration panel.</li><li>Click on the PEP Servers tabbed pane, and click the \"New Pep Server\" button to display the Add PEP Server dialog.</li><li>Enter a Name that identifies the FQDN and the associated IP Address. Type is pre-defined to DQoS Middle Box (dqosmb). Max connections is the maximum number of gateway controllers this server can be associated with. It is defaulted to 10, but can be set as required. Protocol Version corresponds to which version of the DQOS Protocol the Pep has implemented. Currently, the supported versions are DQOS I04 and DQOS I03. For more information, see the corresponding DQOS specifications at <a target='_blank' href='https://www.packetcable.com'>www.packetcable.com</a>.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The server will appear in the list following successful addition.</li></ol>",
+          "CHANGE_PEP_SERVER_HEADER":"Change PEP Server Configuration",
+          "CHANGE_PEP_SERVER_BODY":"Use this procedure to change Policy Enforcement Point (PEP) server attributes.<ol><li>Display the Network Configuration panel.</li><li>Select a PEP server from the list and click the Edit icon.</li><li>Enter your changes to the IP address, Max connections, and/or Protocol version.</li><li>Click the OK button to confirm the request, or the Cancel button to abort the request.</li><li>The server list is updated following a successful change.</li></ol>",
+          "DELETE_PEP_SERVER_HEADER":"Delete a PEP Server",
+          "DELETE_PEP_SERVER_BODY":"Use this procedure to delete a Policy Enforcement Point (PEP) server.<ol><li>Display the Network Configuration panel.</li><li>Select a PEP server from the list and click the Delete icon.</li><li>Click the Yes button to confirm the request, or the No button to abort the request.</li><li>The server will be removed from the list following successful deletion.</li></ol>"
+        }
+      },
+      "CODEC_PROFILE":{
+        "HEADER":"Codec Profile",
+        "NETWORK_CODEC_PROFILE":{
+          "HEADER":"Network Codec Profile",
+          "BODY":"Network Codec Profile is added/changed/deleted via the <b>Network Codec Profile</b>tabbed pane.<br>Refer to the following procedures for information on these functions: Add a Network Codec Profile, Change the Network Codec Profile and Delete a Network Codec Profile.",
+          "ADD_NETWORK_CODEC_PROFILE_HEADER":"Add a Network Codec Profile.",
+          "ADD_NETWORK_CODEC_PROFILE_INFO":"The network codec profile must be configured before the addition of Gateway Controllers.",
+          "ADD_NETWORK_CODEC_PROFILE_BODY":{
+            "DEFINITION":"Use this procedure to add a Network Codec Profile.",
+            "FIRST":"Click on the Network Codec Profile tabbed pane, and click the <b>\"New Profile\"</b> button to display the Add Network Codec Profile dialog.",
+            "SECOND":"The Add Network Codec Profile dialog box is displayed.",
+            "THIRD":"Enter a valid Profile Name. The Max length of the name is 32 characters.",
+            "FOURTH":{
+              "BODY":"Select a Bearer Network Type from the pull-down menu if different from the default or the previously selected choice. The choices are:",
+              "IP":"IP (default)",
+              "AAL1":"AAL1(packet trunking over ATM for international markets)",
+              "AAL2":"AAL2 (packet trunking over ATM for North American markets)"
+            },
+            "FIFTH":"Select the Codec combination for this profile.You can add codec into the selection by selecting the codec and clicking the Add >> button, and delete it by clicking <<Del button. You also can change the order by clicking the Up and Down buttons.<br>You can select up to 3 codecs in every profile. The following table shows all available codec combinations which are supported in this system currently.",
+            "SIXTH":{
+              "BODY":"Select a Packetization Rate from the pull-down menu if different from the default or the previously selected choice. The choices are:",
+              "FIRST":"10 ms (default)",
+              "SECOND":"20 ms",
+              "THIRD":"30 ms",
+              "FOURTH":"40 ms"
+            },
+            "SEVENTH":{
+              "BODY":"Enable/disable Local Control Options T.38, RFC2833 and Confort Noise via the check boxes, which are sent by gateway controllers when sending messages to NCS and MGCP protocol gateways.",
+              "FIRST_NOTE":"Combo box is now used to list the T-38 options for NCS and MGCP protocol gateway. The options are OFF, ON (Strict), and LOOSE. Prior to SN09, the only choice for T.38 was enabled or disabled. The equivalent for enabled is ON(Strict) and for disable(OFF). The third option, \"LOOSE\" is only use for packet cable.",
+              "LOCAL_CONTROL_OPTIONS":"Local Control Options:",
+              "T_38":"T-38",
+              "RFC2833":"RFC2833",
+              "COMFORT_NOISE":"Comfort Noise",
+              "SECOND_NOTE":"The Local Control Options are enabled only if the Bearer Network Type is set to IP."
+            },
+            "EIGHTHT":"Enable the Set as bearer type default setting if you want this one to be the default profile on this bearer network.",
+            "NINTH":"Enable the Set as network default setting if you want this one to be the network default profile.",
+            "TENTH":"Click the OK button to add this profile, or Cancel to abort this operation."
+          },
+          "CHANGE_NETWORK_CODEC_PROFILE_HEADER":"Change Network Codec Profile",
+          "CHANGE_NETWORK_CODEC_PROFILE_INFO":"Profile name and bearer network type can not be changed.",
+          "CHANGE_NETWORK_CODEC_PROFILE_BODY":"Use this procedure to change a Network Codec Profile.<ol><li>Click on the Network Codec Profile tabbed pane, select the profile to be changed, and click the Change icon to display the Change Network Codec Profile dialog.</li><li>The Change Network Codec Profile dialog box is displayed.</li><li>Change the Codec Selection as needed. Please refer to Add Network Codec Profile for valid codec combinations. Also, Packetization Rate and local options (T-38, RFC2833, Comfort Noise) will be enabled if the bearer network type is IP, and these can be changed as needed.</li><li>Click the Save button to apply this change, or Cancel to abort it. The Network Codec Profile tabbed panel will be refreshed automatically.</li><li>If you are changing a profile which is used by some Gateway Controllers, the new setting will be sent to all of the associated devices automatically when you apply the change. In the event that one or more of the associated devices is not communicating, a warning dialog will be displayed indicating which devices are impacted and the steps required to complete the operation.</li></ol>",
+          "DELETE_NETWORK_CODEC_PROFILE_HEADER":"Delete Network Codec Profile",
+          "DELETE_NETWORK_CODEC_PROFILE_INFO":"Only profiles that have not been used by any Gateway Controller can be deleted.",
+          "DELETE_NETWORK_CODEC_PROFILE_BODY":{
+            "DEFINITION":"Use this procedure to delete a Network Codec Profile.",
+            "FIRST":"Display the Network Configuration panel.",
+            "SECOND":"Click on the Network Codec Profile tabbed pane, select the profile to be deleted, and click the <b>\"Delete\"</b> icon.",
+            "THIRD":"The Delete Network Codec Profile Confirmation dialog box is displayed.",
+            "FOURTH":"Click the Yes button to delete this profile, or No to abort this operation. The Network Codec Profile tabbed panel will be refreshed automatically.",
+            "FIFTH":"If the profile is used by any Gateway Controller, the delete operation will fail, and an error message will be displayed."
+          }
+        },
+        "DQOS_CONF":{
+          "DQOS_CONF_HEADER":"DQoS Configuration",
+          "DQOS_CONF_DEF":"The DQoS Configuration defines values used in the DQOS protocol between GWC and PEP Servers. These settings are associated with PacketCable Dynamic Quality of Service (DQoS) which is a capability to control the quality of service in the access portion of a PacketCable Network. The PacketCable Gateway can have a Quality of Service (QoS) up to the level authorized by the gateway controller. These values are applicable to the entire system. The DQoS Configuration is set/modified via the Change... button located under the DQoS Configuration table. Refer to the Change DQoS Configuration procedure for more information.",
+          "CHANGE_DQOS_CONF_HEADER":"Change DQoS Configuration",
+          "CHANGE_DQOS_BODY":"Use this procedure to initially set or change the DQoS Configuration data for the network.<ol><li>Display the Network Configuration panel.</li><li>Select the DQoS Configuration table.</li><li>Complete the required fields.</li><li>Click the Save button to confirm the request, or the Reset button to reload the current values. If one or more Gateway Controllers fail the update, a dialog is presented with detailed results.</li></ol>"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,219 @@
+pipeline {
+  parameters {
+    choice(
+      description: 'Node Label to Build',
+      name: 'BUILD_NODE_LABEL',
+      choices: ['OTT-PC3_R8', 'PLA-PC2_R8']
+    )
+    string(name: 'EMAIL_RECIPIENTS', defaultValue: 'ltnhung@tma.com.vn; selin.ozkan@orioninc.com', description: 'Email recipents')
+  }
+
+  environment {
+    BRANCH_NAME = "${GIT_BRANCH}"
+    PROJECT_LABEL = 'CMTG UI'
+    BUILD_RESULTS_EMAIL_LIST = "${EMAIL_RECIPIENTS}"
+
+    PROJECT_GIT_BITBUCKET = 'bitbucket.rbbn.com/scm/ng/c20.git'
+    PROJECT_DIR = 'c20-cmtg-ui'
+    UI_DIR = 'cmtg-ui'
+    PROJECT_WAR_FILE = 'cmtg-ui.war'
+
+    ARTIFACTORY_USER = 'loadbuild'
+    ARTIFACTORY_URL = 'https://artifactory-tx.rbbn.com/artifactory/'
+    ARTIFACTORY_PROJECT = 'cmtg-generic-prod-plano/cmtg-angular/cmtg-ui/'
+    ARTIFACTORY_ADMIN_TOKEN = credentials('f8673777-0c46-46c1-96ff-fcdffe5084bb')
+    PLANO_ARTI_LOADBUILD_TOKEN = credentials('f8673777-0c46-46c1-96ff-fcdffe5084bb')
+    WGET_OPTS = "--header=Authorization: Bearer $PLANO_ARTI_LOADBUILD_TOKEN"
+
+    aut_FAILURETHRESHOLD = '1000'
+  }
+
+  options {
+    timestamps()
+    timeout(time: 30, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr:'20'))
+  }
+
+  agent {
+    label "${BUILD_NODE_LABEL}"
+  }
+
+  stages {
+    stage('Install Build Dependencies') {
+      steps {
+        // Setup OS VM
+        sh '''
+          yum install -y wget ant
+        '''
+        // NODEJS, NPM, TypeScript etc.
+        sh '''
+          yum remove -y nodejs npm
+          curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
+          yum -y install nodejs
+
+          npm install npm@8.5.5 -g
+          npm install eslint@^8.18.0 typescript -g --unsafe-perm
+
+          yum -y install firefox
+          # wget "${WGET_OPTS}" -O /etc/yum.repos.d/artifactory-epel8.repo "${ARTIFACTORY_URL}ribbon_common-npm-prod-plano/yum-repos-packages/artifactory-epel8.repo"
+          yum install -y chromium
+        '''
+        // Setup test user for running Unit Tests
+        sh '''
+          if id -u "test" >/dev/null 2>&1;
+          then
+            echo "test user exists"
+          else
+            echo "test user does not exist, adding now"
+            useradd test
+          fi
+        '''
+      }
+    }
+
+    stage('Build Application') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'f9678791-baea-418f-a23f-a4d6a55487f6', usernameVariable: 'VSEBLD', passwordVariable: 'VSEBLD_PASS')]) {
+          sh '''
+            git clone http://$VSEBLD:$VSEBLD_PASS@${PROJECT_GIT_BITBUCKET} ${PROJECT_DIR}
+            cd ${PROJECT_DIR}
+            git checkout ${BRANCH_NAME}
+            git pull
+            cd ${UI_DIR}
+            npm ci
+
+            #Install common lib by command on package.json
+            npm run installCommonLib
+
+            #Bump version
+            echo "Bump version"
+            git version
+            git config --global user.name "RES_Jenkins"
+            git config --global user.email "NoReply-RES_Jenkins@rbbn.com"
+            git config --get user.name
+            git config --get user.email
+            npm version patch
+            git checkout -- package-lock.json
+            git add package.json
+            git commit -m "###### Update CMTG UI Version, Jenkins Build: ${BUILD_NUMBER} ######"
+            echo "push version and updated package.json"
+            git push
+
+            npm run buildwar
+            echo "Grant permissions to test user to run ng script"
+            chmod -R 777 /jenkins/
+          '''
+        }
+        echo "Build Application stage status:  ${currentBuild.result}"
+      }
+    }
+
+    stage('Execute Parallel Stages') {
+      parallel {
+
+        stage('Unit Test ChromeHeadless') {
+          steps {
+          sh '''
+              mkdir -p ${WORKSPACE}/aut/junit
+              cd ${PROJECT_DIR}/${UI_DIR}
+              export CHROME_BIN=/usr/bin/chromium-browser
+              su -c "node --max_old_space_size=8000 ${WORKSPACE}/${PROJECT_DIR}/${UI_DIR}/node_modules/@angular/cli/bin/ng test --browsers=ChromeHeadless --code-coverage=true --watch=false || true" test
+              mv junit/*/junit-result.xml ${WORKSPACE}/aut/junit/chrome-junit-result.xml
+              cat ${WORKSPACE}/aut/junit/chrome-junit-result.xml
+            '''
+            echo 'Unit Test Code Coverage Report ChromeHeadlessstage - start'
+            publishCoverage adapters: [jacocoAdapter('${WORKSPACE}/aut/junit/chrome-junit-result.xml')], sourceFileResolver: sourceFiles('STORE_LAST_BUILD')
+            echo 'Unit Test Code Coverage Report ChromeHeadlessstage - done'
+            echo "Unit Test ChromeHeadlessstage stage status:  ${currentBuild.result}"
+          }
+        }
+
+        stage('ESLINT') {
+          steps {
+            sh '''
+              mkdir -p "$WORKSPACE/eslint"
+              rm -rf "$WORKSPACE/eslint/*.xml"
+              cd "${WORKSPACE}/${PROJECT_DIR}/${UI_DIR}"
+              eslint -c .eslintrc.json -f junit src > eslint_out.xml || true
+              cp eslint_out.xml "$WORKSPACE/eslint/"
+            '''
+            echo "Run ESLINT - done"
+          }
+        }
+
+        // stage('Analyze Code (WHITESOURCE)') {
+        //   steps {
+        //     sh '''
+        //       cd ${WORKSPACE}
+        //       KEYTOOL_PATH=$(which keytool)
+
+        //       wget "${WGET_OPTS}" "${ARTIFACTORY_URL}sde_tools-generic-prod-plano/Whitesource/lastestVersion/wss-unified-agent.jar"
+        //       wget "${WGET_OPTS}" -O /usr/lib/jvm/jre/lib/security/rcplu16ws01.genband.com.cer "${ARTIFACTORY_URL}sde_tools-generic-prod-plano/Whitesource/rcplu16ws01.genband.com.cer"
+
+        //       cp /usr/lib/jvm/jre/lib/security/cacerts /usr/lib/jvm/jre/lib/security/cacerts.bak
+        //       keytool -import -noprompt -trustcacerts -alias rcplu16ws01.genband.com -file "/usr/lib/jvm/jre/lib/security/rcplu16ws01.genband.com.cer" -keystore /usr/lib/jvm/jre/lib/security/cacerts -storepass "changeit"
+
+        //       java -Xmx2048M -jar ${WORKSPACE}/wss-unified-agent.jar -c ${WORKSPACE}/${PROJECT_DIR}/jenkins/whitesource-fs-agent.config -d ${WORKSPACE}/${PROJECT_DIR}
+        //     '''
+        //   }
+        // }
+      }
+    }
+
+    stage('Unit Test Trends') {
+      steps {
+				junit allowEmptyResults: true, testResults: '**/eslint/eslint_out.xml'
+				echo "Test Trends final stage status after junit:  ${currentBuild.result}"
+			}
+		}
+
+    stage('Archive') {
+      steps {
+        echo 'Archive to Artifactory!'
+        script {
+          RELEASE_VERSION = sh (returnStdout: true, script: "node -p -e \"let version = require('./${UI_DIR}/package.json').version; version.substring(0, version.lastIndexOf('.'));\"").trim()
+          DES_URL = "${ARTIFACTORY_URL}${ARTIFACTORY_PROJECT}v${RELEASE_VERSION}/${BRANCH_NAME}/Build-${BUILD_NUMBER}/"
+
+          SOURCE_URL = "${WORKSPACE}/${PROJECT_DIR}/${UI_DIR}/dist/${PROJECT_WAR_FILE}"
+          LAST_BUILD_URL = "${ARTIFACTORY_URL}api/copy/${ARTIFACTORY_PROJECT}v${RELEASE_VERSION}/${BRANCH_NAME}/Build-${BUILD_NUMBER}/${PROJECT_WAR_FILE}?to=${ARTIFACTORY_PROJECT}v${RELEASE_VERSION}/${BRANCH_NAME}/lastSuccessfulBuild/${PROJECT_WAR_FILE}&dry=0"
+        }
+        echo 'Put war file to Artifactory'
+        sh "curl -L -X PUT -u${ARTIFACTORY_USER}:\"${ARTIFACTORY_ADMIN_TOKEN}\" -T ${SOURCE_URL} \"${DES_URL}\""
+        sh "curl -L -u${ARTIFACTORY_USER}:\"${ARTIFACTORY_ADMIN_TOKEN}\" -X POST \"${LAST_BUILD_URL}\""
+
+        echo "Archive stage status:  ${currentBuild.result}"
+      }
+    }
+  }
+
+  post {
+    failure {
+      emailext body: "Test Results for build ${BUILD_NUMBER} on branch ${GIT_BRANCH}:\n Click here to view detailed results: ${BUILD_URL}testReport/",
+      recipientProviders: [
+        [$class: 'DevelopersRecipientProvider']
+      ],
+      subject: "[Jenkins] RIBBON ${PROJECT_LABEL} - Build #${BUILD_NUMBER} - BUILD FAILED # ATTENTION REQUIRED",
+      to: "$BUILD_RESULTS_EMAIL_LIST"
+    }
+    unstable {
+      emailext body: "Test Results for build ${BUILD_NUMBER} on branch ${GIT_BRANCH}:\n Click here to view detailed results: ${BUILD_URL}testReport/\n\nBuild artifact can be found on: ${ARTIFACTORY_URL}${ARTIFACTORY_PROJECT}",
+      recipientProviders: [
+        [$class: 'DevelopersRecipientProvider']
+      ],
+      subject: "[Jenkins] RIBBON ${PROJECT_LABEL} - Build #${BUILD_NUMBER} - BUILD Unstable # ATTENTION REQUIRED",
+      to: "$BUILD_RESULTS_EMAIL_LIST"
+    }
+    success {
+      emailext body: "Test Results for build ${BUILD_NUMBER} on branch ${GIT_BRANCH}:\n Click here to view detailed results: ${BUILD_URL}testReport/\n\nBuild artifact can be found on: ${ARTIFACTORY_URL}${ARTIFACTORY_PROJECT}",
+      recipientProviders: [
+        [$class: 'DevelopersRecipientProvider']
+      ],
+      subject: "[Jenkins] RIBBON ${PROJECT_LABEL} - Build #${BUILD_NUMBER} - BUILD SUCCESS",
+      to: "$BUILD_RESULTS_EMAIL_LIST"
+    }
+    always {
+      // Terminate Build VM
+      sh "curl -X POST http://vsebld:5f0805a88be7a448a518ae917cb9087f@gbpljnk02.genband.com:8081/computer/${env.NODE_NAME}/scheduleTermination"
+    }
+  }
+}

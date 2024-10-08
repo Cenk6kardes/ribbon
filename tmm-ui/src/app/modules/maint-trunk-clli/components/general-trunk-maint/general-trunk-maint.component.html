@@ -1,0 +1,34 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div class="general-trunk-maint-container" [formGroup]="formGroup">
+  <div class="p-grid p-pl-2">
+    <div class="rbn-group p-mb-5 p-col-6 p-field rbn-field">
+      <label for="trunkRange">{{ "TRUNK_CLLI.TRUNK_RANGE" | translate }}
+        <span class="rbn-help-info">
+          <i class="fa fa-info-circle endpoint-range" [escape]="false" #trunk [appendTo]="trunk"
+            [pTooltip]="'TRUNK_CLLI.NOTE_ENDPOINT_RANGE' | translate" tooltipPosition="bottom"></i>
+        </span>
+      </label>
+      <input id="tRange" formControlName="trunkRange" type="text" pInputText />
+    </div>
+    <div class="rbn-group p-mb-5 p-col-6 p-field rbn-field">
+      <label for="maintenanceAction">{{
+          "TRUNK_CLLI.MAINTANENCE_ACTION" | translate
+        }}</label>
+      <p-dropdown formControlName="maintenanceAction" (onChange)="changeMaintenanceAction($event.value)" appendTo="body" [options]="dropDownDataMaintenanceActionItems">
+      </p-dropdown>
+    </div>
+    <div class="p-col-12" class="note-force-release"
+      *ngIf="getFormFieldMaintenanceAction?.value ==='FRLSByTrunkCLLI'">
+      {{'MAI_GATE_WAYS_CARRIER.NOTE_FORCE_RELEASE' | translate}}
+    </div>
+  </div>
+  <app-form-footer (eventSubmit)="onFormSubmit($event)">
+    <div class="checkShowDetail">
+      <label>{{'COMMON.SHOW_DETAILS' | translate}}</label>
+      <p-checkbox class="rbn-checkbox" formControlName="showDetails" checkboxIcon="fa fa-check" [binary]="true">
+      </p-checkbox>
+    </div>
+  </app-form-footer>
+</div>
+<rbn-confirm-dialog *ngIf="showConfirmActions" [isShowConfirmDialog]="showConfirmActions" [title]="dataConfirm.title"
+  [content]="dataConfirm.content" (emitConfirm)="handleConfirmAction($event)"></rbn-confirm-dialog>

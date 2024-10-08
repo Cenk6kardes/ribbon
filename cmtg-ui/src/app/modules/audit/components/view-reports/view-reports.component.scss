@@ -1,0 +1,22 @@
+:host ::ng-deep {
+  .view-report-control {
+    display: flex;
+    text-wrap: nowrap;
+    p-button {
+      margin-left: 25px;
+      .p-button-label {
+        text-transform: capitalize;
+      }
+    }
+  }
+  .content-report {
+    .p-panel-content {
+      overflow: auto;
+      height: calc(100vh - 310px);
+    }
+    .p-panel-header {
+      justify-content: flex-end;
+      border-bottom: none;
+    }
+  }
+}

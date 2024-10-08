@@ -1,0 +1,92 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-4">
+        <p>The Carriers panel provides access to configuration data for carriers associated with the selected gateway
+            controller.
+        </p>
+        <rbn-panel-messages
+            [content]="'Carrier operations are used to add, delete, and display H.323 EPG carrier groups in addition to standard trunking operations'"
+            [typeOfMessage]="'info'"></rbn-panel-messages>
+        <rbn-panel-messages
+            [content]="'Carrier members forming part of a V5.2 inteface are displayed by the Carrier panel but must be added from the V5.2 menu items available from the configuration menu for International C20 deployments'"
+            [typeOfMessage]="'info'"></rbn-panel-messages>
+        <p>A common search interface is located at the top, while the lower section contains a table to display the
+            retrieved records and functions specific to Carriers. The table supports single record selection for the
+            <b>Delete</b> and <b>Display</b> functions. Fields that are not applicable for a record are blank.
+        </p>
+        <p>Different versions of the Carriers panel are displayed based upon the C20 being configured for an
+            International or North American deployment.</p>
+    </div>
+    <div class="p-mb-2">
+        <h2>International Carriers Panel</h2>
+        <div>
+            <p-image src="assets/images/help/carriers/carrier_panel_intl.jpg" alt="carrier_panel_intl_img" width="600"
+                [preview]="true"></p-image>
+        </div>
+    </div>
+    <p-accordion [expandIcon]="'pi pi-chevron-up'">
+        <p-accordionTab [header]="'Carrier Related Functions'">
+            <p-tabView class="rbn-tabs">
+                <p-tabPanel [header]="'Add a Carrier'" [cache]="false">
+                    <p>Displays the Add Carrier dialog. Refer to the Add a Carrier procedure for more information.</p>
+                    <p>Use this procedure to add a Carrier to a Gateway Controller.</p>
+                    <ol>
+                        <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                        <li>Select the <b>Carriers</b> panel.</li>
+                        <li>Click the <b>New Carrier</b> button to display the <b>Add Carrier</b> dialog.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/carriers/add_carrier_dialog.jpg"
+                                alt="add_carrier_dialog_img" width="600" [preview]="true"></p-image>
+                        </div>
+                        <li>Enter the carrier name and gateway name.</li>
+                        <rbn-panel-messages
+                            [content]="' Gateway host name or full FQDN name can be entered for TGCP trunk gateway.'"
+                            [typeOfMessage]="'info'"></rbn-panel-messages>
+                        <li>Enter the optional Start terminal number value if desired.</li>
+                        <li>For PRI carriers, select the <b>PRI / DPNSS</b> checkbox and enter the <b>IID</b> value.
+                        </li>
+                        <li>For DPNSS carriers, select the <b>PRI / DPNSS</b> checkbox and enter the DUA Integer
+                            Interface Identifier as the <b>IID</b>. This should correspond to the value provisioned on
+                            the gateway for the carrier. The DUA IID value cannot be 0 and must be unique for a given
+                            gateway.</li>
+                        <li>For H.323 EPG carrier groups, select the <b>H.323</b> checkbox and enter the required number
+                            of ports.</li>
+                        <li>For VoIP VPN EPG carrier groups, select the <b>VoIP VPN</b> checkbox and enter the required
+                            number of ports.</li>
+                        <li>Click the <b>Add</b> button to confirm the request, or the <b>Cancel</b> button to abort the
+                            request.</li>
+                    </ol>
+
+                </p-tabPanel>
+                <p-tabPanel [header]="'Delete a Carrier'" [cache]="false">
+                    <p>Displays a confirmation dialog for deletion of the selected carrier.</p>
+                    <p>Use this procedure to delete a carrier from a Gateway Controller.</p>
+                    <ol>
+                        <li>Display the <a [routerLink]="['/help/provisioning']">Provisioning</a> panel.</li>
+                        <li>Select the <b>Carriers</b> panel.</li>
+                        <li>Display the carrier to be deleted in the <b>Carrier List</b> by either specifying the name,
+                            or other criteria, in the <b>Retrieval criteria</b> field then clicking the <b>Retrieve</b>
+                            button, or by clicking the <b>Retrieve All</b> button.</li>
+                        <li>Select the carrier from the <b>Carrier List</b> and click the <b>Delete</b>
+                            button which
+                            displays the <b>Confirm Carrier Delete</b> dialog.</li>
+                        <div class="p-my-2">
+                            <p-image src="assets/images/help/carriers/delete_carrier2.jpg" alt="delete_carrier2_img"
+                                width="600" [preview]="true"></p-image>
+                        </div>
+                        <li>Click the <b>Yes</b> button to confirm the request or the <b>No</b>
+                            button to abort the request.</li>
+                    </ol>
+                </p-tabPanel>
+                <p-tabPanel [header]="'Display a Carrier'" [cache]="false">
+                    <p>Display the trunks for the selected carrier.</p>
+                    <div class="p-my-2">
+                        <p-image src="assets/images/help/carriers/display_trunks.jpg" alt="display_trunks_img"
+                            width="600" [preview]="true"></p-image>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+        </p-accordionTab>
+    </p-accordion>
+</p-panel>

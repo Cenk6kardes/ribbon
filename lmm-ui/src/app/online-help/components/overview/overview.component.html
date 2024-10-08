@@ -1,0 +1,168 @@
+<div id="overview-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab [selected]="true">
+      <ng-template pTemplate="header">
+        <span>Overview</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          The Line Maintenance Manager (LMM) application is used to post lines
+          and perform maintenance activities on them.
+          <br />
+          This section provides a brief overview of the LMM. For procedures on
+          how to perform line maintenance activities using the LMM, refer to the
+          <a routerLink="/help/configuration">Configuration</a> and
+          <a routerLink="/help/maintenance">Maintenance</a> section.
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>User interface</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>
+          The user interface for the LMM application is a web application, which
+          is accessed through the common launch page or GVMB. To access the LMM
+          GUI, refer to procedure “Launching the C20 Management Tools client
+          applications” in the C20 Management Tools Administration and Security
+          document, NN10172611. When the Line Maintenance Manager is launched, a
+          window, similar to the following is displayed:
+        </p>
+        <h4>Line Maintenance Manager GUI</h4>
+        <p-image
+          src="assets\images\lmm_overview.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image>
+        <p>
+          <br />
+          The main panel displays the following information:<br />
+          <strong>• CM CLLI -</strong> The CLLI for the C20<br />
+          <strong>• Status - </strong>Operation messages<br />
+          <strong>• LMM Server -</strong> Status of the link between the LMM
+          client and LMM server<br />
+          <strong>• OSS Comms -</strong> Status of the OSS Comms Svcs
+          application on the CBMg.<br />
+          <strong>• DMA -</strong> Status of the DMS Maintenance Application on
+          the CBMg<br />
+          <strong>• BMI -</strong> Status of the Base Maintenance Interface
+          application on the CBMg
+        </p>
+        <p>
+          From the main panel, you can perform any of the following activities:
+        </p>
+        <p>
+          <strong>• Post -</strong> Post the lines according the selection in
+          the pull down menu. Selecting Post DN, displays a line by its
+          directory number (DN). Selecting Post by Gateway, displays the lines
+          associated with the specific gateway.<br />
+          <strong>• Clear All -</strong> Remove all posted lines from the
+          display.<br />
+          <strong>• Refresh All -</strong> Manually refresh the posted lines in
+          the display, when auto-refresh is disabled.<br />
+          <strong>• Prev/Next -</strong> Navigate from the current page to the
+          previous or next page, respectively, when multiple screens are needed
+          to show all the posted lines<br />
+          <strong>• Clear Status -</strong> Clear the status information that is
+          reported in the Status area The sections that follow briefly describe
+          the options available under each menu in the Line Maintenance Manager
+          GUI.
+        </p>
+        <p>
+          <strong>• Search DN -</strong> List the DNs that match the search criteria in the table.<br />
+          <strong>• Show/Hide Columns -</strong> Allow selection of visible or hidden columns in the table.
+          <br />
+          <strong>•  Show/Hide Filter Row -</strong> Search for the values entered in the columns and lists the 
+          appropriate rows.
+          <br />
+          <strong>•  Export Table -</strong> Save the visible contents of the table to the computer in the requested
+          format.
+          <br />
+        </p>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Configure</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>The Configure menu contains the options to reach Preferences menu
+          and exit the Line Maintenance Manager GUI.
+        </p>
+        <h4>Configure Menu</h4>
+        <p-image
+        src="assets\images\conf_menu.jpg"
+        alt="Image"
+        width="600"
+        [preview]="true"
+      ></p-image>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Preferences</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>The Preferences menu
+          contains the options to turn Auto refresh on or off and set the Auto refresh
+          value, turn Auto Termination on or off and set the Auto Termination timeout
+          value, disable Auto refresh, cancel pending CPD requests.
+        </p>
+        <h4>Preferences Menu</h4>
+        <p-image
+        src="assets\images\configure_menu.jpg"
+        alt="Image"
+        width="600"
+        [preview]="true"
+      ></p-image>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Reports</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>The Report Actions menu
+          contains the option to query gateways in trouble state.
+        </p>
+        <h4>Diagnostics Menu</h4>
+        <p-image
+        src="assets\images\diagnostic_menu.jpg"
+        alt="Image"
+        width="600"
+        [preview]="true"
+      ></p-image>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+  <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+    <p-accordionTab>
+      <ng-template pTemplate="header">
+        <span>Help</span>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <p>The Help menu contains
+          an option to display this help page about Line Maintenance Manager.
+        </p>
+        <h4>Help Menu</h4>
+        <p-image
+        src="assets\images\help_menu.jpg"
+        alt="Image"
+        width="600"
+        [preview]="true"
+      ></p-image>
+      </ng-template>
+    </p-accordionTab>
+  </p-accordion>
+</div>

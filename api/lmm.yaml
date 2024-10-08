@@ -1,0 +1,1418 @@
+openapi: 3.0.1
+
+
+info:
+  title: Line Maintenance Manager Rest Api Definition
+  version: 1.0.0
+  description: "The Line Maintenance Manager (LMM) application is used to post lines and perform maintenance activities on them. In order to use these APIs for each authenticated user, sessionId must be given in the request header."
+  
+tags:
+ - name: "Lmm"
+   description: "Operations related to Line Maintenance Manager"
+   
+paths:
+
+  /LmmApi/lmm/v1.0/qdn/{dn}: 
+    get:
+      tags:
+        - Lmm
+      description: Query Directory Number     
+      operationId: qdn
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: dn
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 1038831400
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: null
+              example: " DN:     8831400   \n
+                        TYPE: SINGLE PARTY LINE \n
+                        SNPA: 103   SIG: DT    LNATTIDX: N/A\n
+                        LINE EQUIPMENT NUMBER:      HOST   01 0 00 00  \n
+                        END POINT: No Gateway found  No Endpoint found\n
+                        LINE CLASS CODE:  IBN   \n
+                        IBN TYPE: STATION\n
+                        CUSTGRP:          IPIBN     SUBGRP: 0  NCOS: 0\n
+                        CARDCODE:  6X17BA    GND: N  PADGRP: STDLN  BNV: NL MNO: N\n
+                        PM NODE NUMBER     :    50\n
+                        PM TERMINAL NUMBER :    1\n
+                        OPTIONS: \n
+                        DGT \n"
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+           
+                        
+  /LmmApi/lmm/v1.0/line-validation-tid/{tid}/{clli}:  
+    get:
+      tags:
+        - Lmm
+      description: Get Line Information with DN and CLLI
+      operationId:  line-validation
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: tid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 1038831001
+        - name: clli
+          in: path
+          required: true
+          schema:
+            type: string
+            example: CO24
+      
+      responses:
+      
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineValidateResponseInfo'
+              example:
+                cm_dn: 1038831001
+                cm_len: HOST 01 0 00 00
+                cm_lcc: IBN
+                cm_tid: 50.0.1
+                cm_gwc_name: TM2 0
+                cm_gwc_address: 0.0.0.0
+                cm_clli: No
+                gw_name: Not_Available
+                gw_address: Not_Available
+                gw_type: 
+                endpoint_name:
+                cm_rc: 0
+                gw_rc:
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request       
+          
+          
+              
+  /LmmApi/lmm/v1.0/line-validation/{dn}/{clli}:  
+    get:
+      tags:
+        - Lmm
+      description: Get Line Information with DN and CLLI
+      
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: dn
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 1038831001
+        - name: clli
+          in: path
+          required: true
+          schema:
+            type: string
+            example: CO24
+            
+      responses:
+      
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineValidateResponseInfo'
+              example:
+                cm_dn: 1038831001
+                cm_len: HOST 01 0 00 00
+                cm_lcc: IBN
+                cm_tid: 50.0.1
+                cm_gwc_name: TM2 0
+                cm_gwc_address: 0.0.0.0
+                cm_clli: No
+                gw_name: Not_Available
+                gw_address: Not_Available
+                gw_type: 
+                endpoint_name:
+                cm_rc: 0
+                gw_rc:
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+                
+  /LmmApi/lmm/v1.0/line-validation/{dn}: 
+    get:
+      tags:
+        - Lmm
+      description: Get Line Information with DN
+      
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: dn
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 1038831001
+            
+      responses:
+      
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineValidateResponseInfo'
+              example:
+                cm_dn: 1038831001
+                cm_len: HOST 01 0 00 00
+                cm_lcc: IBN
+                cm_tid: 50.0.1
+                cm_gwc_name: TM2 0
+                cm_gwc_address: 0.0.0.0
+                cm_clli: No
+                gw_name: Not_Available
+                gw_address: Not_Available
+                gw_type: 
+                endpoint_name:
+                cm_rc: 0
+                gw_rc:
+
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+                
+ 
+          
+  /LmmApi/lmm/v1.0/general-report/{reportName}:
+    get:
+      tags:
+        - Lmm
+      description: Retrieve General Result of report
+      operationId: general-report
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: reportName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: Report_2
+      responses:
+      
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryGeneralResult'
+              example: 
+                - gwcName: GWC-0
+                  queryResult: Succesful
+                  numberOfGW: 4
+                - gwcName: GWC-1
+                  queryResult: Succesful
+                  numberOfGW: 7
+              
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+              
+     
+  /LmmApi/lmm/v1.0/detailed-report/{reportName}/{GWCName}: 
+    get:
+      tags:
+        - Lmm
+      description: Retrieves detailed query report for Gateway Controller
+      operationId: detailed-report 
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: reportName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: Report-2023-03-21-15-51-21(GMT+0300)
+        - name: GWCName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: GWC-0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryReportList'
+              example: 
+                - gwName: med24softph
+                  errorMessage: GW DISABLED
+                - gwName: ncsco24.netas.com.tr
+                  errorMessage: GW DISABLED
+                - gwName: co24mediatrix1124
+                  errorMessage: GW DISABLED
+                - gwName: mstest
+                  errorMessage: GW DISABLED
+                    
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+ 
+          
+  /LmmApi/lmm/v1.0/sdm-ip: 
+    get:
+      tags:
+        - Lmm
+      
+      description: Retrieve CBMG ip
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: 10.254.146.43
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+ 
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /LmmApi/lmm/v1.0/query-configuration/{queryName}: 
+    put:
+      tags:
+        - Lmm
+      operationId: configure-query
+      description: Configure an query's time to run and when to run
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: queryName
+          in: path
+          required: true
+          schema:
+            type: string  
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/QueryConfig'
+            example: 
+              enabled : true
+              timeToRun: 03:00:00
+              daily: false
+              sunday: false
+              monday: true
+              tuesday: false
+              wednesday: true
+              thursday: false
+              friday: false
+              saturday: false
+ 
+            
+      responses:
+        '200':
+          description: OK
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+              
+  /LmmApi/lmm/v1.0/query-configuration/{query}: 
+    get:
+      tags:
+        - Lmm
+      operationId: query-configuration
+      description: Retrieve query configuration
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: query
+          in: path
+          required: true
+          schema:
+            type: string  
+            example: ALL 
+ 
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryConfig'
+              example: 
+                enabled : true
+                timeToRun: 03:00:00
+                daily: false
+                sunday: false
+                monday: true
+                tuesday: false
+                wednesday: true
+                thursday: false
+                friday: false
+                saturday: false
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+              
+  /LmmApi/lmm/v1.0/qsip/{dn}: 
+    get:
+      tags:
+        - Lmm
+      operationId: getQSIP
+      description: Query SIP line
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: dn
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 1038831400
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: null
+              example: " DN: 20020459 \n
+                        TYPE: SINGLE PARTY LINE \n
+                        SNPA: 25   SIG: DT    LNATTIDX: N/A \n
+                        LINE EQUIPMENT NUMBER:     SL20   01 9 10 22 \n
+                        END POINT: sesm01gwc20  SL20/001/9/1022    \n
+                        LINE CLASS CODE:  IBN    \n
+                        IBN TYPE: STATION \n
+                        CUSTGRP:       CEPTCUST     SUBGRP: 0  NCOS: 0 \n
+                        CARDCODE:  GWLPOT    GND: N  PADGRP: PKNIL  BNV: NL MNO: N \n
+                        PM NODE NUMBER     :    96 \n
+                        PM TERMINAL NUMBER :    1023 \n
+                        OPTIONS: 
+                        CWT CWI CEPT I3WC DGT CND NOAMA CNAMD NOAMA NAME PUBLIC PUB20020459 PRIVATE \n
+                        PVT20020459 MWT MWL N N ICWT Y DPL Y 10 AGNTPCL SIP IETF \n \n
+                        
+                        END POINT DATA: \n
+                        SIP_URI: mailto:20020459@ott52traf1.com \n
+                        SIP_FIRST_NAME: SIPLineUser \n
+                        SIP_LAST_NAME: SIPLineUser \n
+                        SIP_TIMEZONE: Eastern Standard Time \n
+                        SIP_LOCATION: gwc20 \n
+                        SIP_SUBDOMAIN: sesm1.ott52traf1.com \n
+                        SIP_EP_NAME: SL20/001/9/1022 \n
+                        SIP_VMG_NAME: sesm01gwc20 \n
+                        SIP_CLIENT_TYPE: Unidentified \n
+                        SIP_DN: 2520020459"
+                
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+
+  /LmmApi/lmm/v1.0/report-list/{queryName}: 
+    get:
+      tags:
+        - Lmm
+      operationId: report-list
+      description: Retrieve report list
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: queryName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: all
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+              example: 
+                - fileDisplay: Report-2023-03-28-13-41-20(GMT+0300)
+                  fileName: Report_1
+                  fileLMTimeInMillis: 1680000080625
+                - fileDisplay: Report-2023-03-21-15-51-21(GMT+0300)
+                  fileName: Report_2
+                  fileLMTimeInMillis: 1679403081176
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+          
+  /LmmApi/lmm/v1.0/line-information:
+    post:
+      tags:
+        - Lmm
+      operationId: line-information
+      description: Get line Post Information
+      parameters: 
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineRequestInfo'
+            example: 
+               cm_clli: CO24
+               cm_tid: 1038831001
+               gw_name: co24mediatrix1124
+               endpoint_name: aaln/2
+               gw_address: 47.168.139.99
+        required: true
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinePostResponseInfo'
+              example:
+                cm_line_state: "MB"
+                cm_connected_party: ""
+                cm_dn: "1038831001"
+                endpoint_state: ""
+                cm_rc: "0"
+                gw_rc: ""
+                agcf_state: ""
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+          
+  /LmmApi/lmm/v1.0/gw-ip/{gwc_address}/{gwName}:
+    get:
+      tags:
+        - Lmm
+      operationId: gw-ip
+      description: Retrieve Gateway ip
+      parameters: 
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwc_address
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 47.168.139.99
+        - name: gwName
+          in: path
+          required: true
+          schema:
+            type: string
+            example: co24mediatrix1124
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: 47.168.139.91              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+              
+              
+  /LmmApi/lmm/v1.0/endpoint-state/{gwc_address}/{nodeNumber}/{terminalNumber}:
+    get:
+      tags:
+        - Lmm
+      operationId: endpoint-state
+      description: Endpoint state information
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: gwc_address
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 10.254.146.140
+        - name: nodeNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 46
+        - name: terminalNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 2
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayEndpointInfo'
+              example:
+                epState: "OK"
+                epInfo: ""
+                op_rc: "1000"
+                epCallState: "ON-HOOK"
+                epTerminalType: "POTS_TERM"
+                epStateDescription: "Valid Audit response received from endpoint"
+                
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+              
+  /LmmApi/lmm/v1.0/cm-clli/{sdmIP}: 
+    get:
+      tags:
+        - Lmm
+      operationId: cm-clli
+      description: CM CLLI information
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: sdmIP
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 10.254.146.43
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: CO24
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request
+          
+              
+
+          
+          
+  /LmmApi/lmm/v1.0/query-configuration:
+    put:
+      tags:
+        - Lmm
+      description: Configure Query
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryConfig'
+            example: 
+              enabled : true
+              timeToRun: 03:00:00
+              daily: false
+              sunday: false
+              monday: true
+              tuesday: false
+              wednesday: true
+              thursday: false
+              friday: false
+              saturday: false
+        required: true
+        
+      responses:
+        '200':
+          description: OK
+          
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+          
+  /LmmApi/lmm/v1.0/deload-cancellation:
+    post:
+      tags:
+        - Lmm
+      operationId: deload-cancellation
+      description: Cancel deload 
+      parameters: 
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/LineRequestInfo'
+              example:
+                  cm_clli: CO24
+                  cm_tid: 1038831001
+                  gw_name: co24mediatrix1124
+                  endpoint_name: aaln/2
+                  gw_address: 47.168.139.99
+                  
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMtcResponseInfo'
+              example: 
+                mtc_rc:0
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+
+  /LmmApi/lmm/v1.0/maintenance:
+    put:
+      tags:
+        - Lmm
+      operationId: maintenance
+      description: Perform maintenance on line; bsy, rts, frls, inb
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+            
+        - in: query
+          name: action
+          schema:
+            type: string
+            enum: [
+                bsy,rts,inb,frls
+            ]
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LineRequestInfo'
+              example:
+                  cm_clli: CO24
+                  cm_tid: 1038831001
+                  gw_name: co24mediatrix1124
+                  endpoint_name: aaln/2
+                  gw_address: 47.168.139.99
+                
+          required: true
+          
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMtcResponseInfo'
+              example: 
+                mtc_rc:0
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+              
+  /LmmApi/lmm/v1.0/trouble-gw-query:
+    post:
+      tags:
+        - Lmm
+      operationId: trouble-gw-query
+      description: Run trouble query for gateways
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GWCNodeList'
+              example:
+                  - "GWC-1"
+                  - "GWC-2"
+                  - "GWC-3"
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: null
+              example: null
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+          
+  /LmmApi/lmm/v1.0/trouble-gw-query/{Total}:
+    post:
+      tags:
+        - Lmm
+      description:  Run trouble query for all gateway controllers
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: Total
+          in: path
+          required: true
+          schema:
+            type: string
+            example: ALL
+      responses:
+        '200':
+          description: OK
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+          
+  /LmmApi/lmm/v1.0/query-progress/{Step}:
+    get:
+      tags:
+        - Lmm
+      operationId: query-progress
+      description: Query Progress of Trouble Gateway Report
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: Step
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                example: 6400
+              
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+              
+  /LmmApi/lmm/v1.0/trouble-query-cancellation:
+    post:
+      tags:
+        - Lmm
+      operationId: trouble-query-cancellation
+      description: Cancel Trouble Gateway Query
+      parameters:
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string  
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+      responses:
+        '200':
+          description: OK
+        
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+        '400':
+          description: Bad request.
+                    
+        '401':
+          description:  Unauthorized. This may be due to expired or invalid credentials
+          
+        '404':
+          description: Invalid request 
+          
+components:
+  schemas:
+    QueryConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        timeToRun:
+          type: string
+          example: 03:00:00
+        daily:
+          type: boolean
+          example: false
+        sunday:
+          type: boolean
+          example: false
+        monday:
+          type: boolean
+          example: true
+        tuesday:
+          type: boolean
+          example: false
+        wednesday:
+          type: boolean
+          example: true
+        thursday:
+          type: boolean
+          example: false
+        friday:
+          type: boolean
+          example: false
+        saturday:
+          type: boolean
+          example: false
+      example: null
+
+      
+    LineValidateResponseInfo:
+      type: object
+      properties:
+        cm_dn:
+          type: string
+        cm_len:
+          type: string
+        cm_lcc:
+          type: string
+        cm_tid:
+          type: string
+        cm_gwc_name:
+          type: string
+        cm_gwc_address:
+          type: string
+        cm_clli:
+          type: string
+        gw_name:
+          type: string
+        gw_address:
+          type: string
+        gw_type:
+          type: string
+        endpoint_name:
+          type: string
+        cm_rc:
+          type: string
+        gw_rc:
+          type: string
+          
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+   
+        
+    LineMtcResponseInfo:
+      required:
+       - mtc_rc
+      properties:
+       mtc_rc:
+        type: string
+        
+    QueryGeneralResult:
+      type: array
+      items:
+        type: object
+        properties:
+          gwcName:
+             type: string
+          queryResult:
+             type: string
+          numberOfGW:
+            type: string
+             
+    QueryReport:
+      type: object
+      properties:
+        gwName:
+          type: string
+        errorMessage:
+          type: string
+          
+    QueryReportList:
+      type: array
+      items:
+        $ref: '#/components/schemas/QueryReport'
+        
+            
+    Report:
+      type: object
+      properties:
+        fileDisplay:
+          type: string
+        fileName:
+          type: string
+        fileLMTimeInMillis:
+          type: integer
+          format: int64
+      required:
+        - fileDisplay
+        - fileName
+        - fileLMTimeInMillis
+        
+    ReportList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Report'
+        
+    LinePostResponseInfo:
+      type: object
+      required:
+        - cm_line_state
+        - cm_connected_party
+        - cm_dn
+        - endpoint_state
+        - cm_rc
+        - gw_rc
+        - agcf_state
+      properties:
+        cm_line_state:
+          type: string
+        cm_connected_party:
+          type: string
+        cm_dn:
+          type: string
+        endpoint_state:
+          type: string
+        cm_rc:
+          type: string
+        gw_rc:
+          type: string
+        agcf_state:
+          type: string
+          
+ 
+    LineRequestInfo:
+      type: object
+      properties:
+        cm_clli:
+          type: string
+        cm_tid:
+          type: string
+        gw_name:
+          type: string
+        gw_address:
+          type: string
+        endpoint_name:
+          type: string
+          
+          
+    GatewayEndpointInfo:
+      type: object
+      properties:
+        epState:
+          type: string
+        epInfo:
+          type: string
+        op_rc:
+          type: string
+        epCallState:
+          type: string
+        epTerminalType:
+          type: string
+        epStateDescription:
+          type: string
+          
+          
+    GWCNode:
+      type: object
+      properties:
+        gwcid:
+          type: string
+          example: null
+          
+          
+    GWCNodeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GWCNode'
+          
+          

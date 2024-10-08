@@ -1,0 +1,1360 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Trunk Mtc Resource Interface API
+paths:
+  /TmmApi/tmm/v1.0/maintenance/{command}/{sSecurityInfo}:
+    put:
+      description: |
+        Generic command to perform maintenance or querying on either a gateway's endpoints or a trunk's members
+        - `command`: Wide open
+        - `sSecurityInfo`: Who is requesting the command (such as User ID) for logging purposes only.
+      parameters :
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: command
+          in: path
+          description: Command
+          required: true
+          schema:
+            type: string
+        - name: sSecurityInfo
+          in: path
+          description: Security Information
+          required: true
+          schema:
+            type: string
+            example : UserID=cmtg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              example:
+                [
+                  {
+                    "key": "GatewayName",
+                    "value": "testrnk3"
+                  },
+                  {
+                    "key": "EndpointRange",
+                    "value": "0-"
+                  },
+                  {
+                    "key": "ShowDetails",
+                    "value": false
+                  },
+                  {
+                    "key": "FilterState",
+                    "value": "ALL"
+                  }
+                ]
+              items:
+                $ref: '#/components/schemas/NameValuePair'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+
+
+                  - $ref: '#/components/schemas/RTSByTrunkCllIResponse'
+                  - $ref: '#/components/schemas/POSTByCarrierDetailsResponse'
+                  - $ref: '#/components/schemas/GetSDMIPsResponse'
+                  - $ref: '#/components/schemas/GetCMCLLIbySDMIPResponse'
+                  - $ref: '#/components/schemas/ICOTTestResponse'
+                  - $ref: '#/components/schemas/QESByCarrierDetailsResponse'
+                  - $ref: '#/components/schemas/FRLSByCarrierResponse'
+                  - $ref: '#/components/schemas/INBByCarrierResponse'
+                  - $ref: '#/components/schemas/GetTrunkCllisByGatewayNameResponse'
+                  - $ref: '#/components/schemas/BSYByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/FRLSByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/INBByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostGroupDChannelByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/QESByGatewayNameDetailsResponse'
+                  - $ref: '#/components/schemas/RTSByCarrierResponse'
+                  - $ref: '#/components/schemas/BSYByCarrierResponse'
+                  - $ref: '#/components/schemas/PostByCarrierResponse'
+                  - $ref: '#/components/schemas/QESByCarrierResponse'
+                  - $ref: '#/components/schemas/GetCarriersResponse'
+                  - $ref: '#/components/schemas/INBByResponse'
+                  - $ref: '#/components/schemas/FRLSByResponse'
+                  - $ref: '#/components/schemas/RTSByGatewayNameResponse'
+
+                  - $ref: '#/components/schemas/PostDetailsResponse'
+                  - $ref: '#/components/schemas/QESDetailResponse'
+
+                  - $ref: '#/components/schemas/BSYByResponse'
+                  - $ref: '#/components/schemas/PostResponse'
+                  - $ref: '#/components/schemas/QESResponse'
+                  - $ref: '#/components/schemas/GetGatewayNamesResponse'
+        
+        
+        
+        
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                ErrorCode : 500
+                Message : "Unable to connect TMM server."
+                
+                
+  /TmmApi/tmm/v1.0/maintenance/{command}:
+    put:
+      description: |
+        Generic command to perform maintenance or querying on either a gateway's endpoints or a trunk's members
+        - `command`: Wide open
+        - `sSecurityInfo`: Who is requesting the command (such as User ID) for logging purposes only.
+      parameters :
+        - name: session-id
+          in: header
+          required: true
+          schema:
+            type: string
+            example: f7dd3fe7-a792-41b4-b6ee-0d35d3405c6e
+        - name: command
+          in: path
+          description: Command
+          required: true
+          schema:
+            type: string
+        
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              example:
+                [
+                  {
+                    "key": "GatewayName",
+                    "value": "testrnk3"
+                  },
+                  {
+                    "key": "EndpointRange",
+                    "value": "0-"
+                  },
+                  {
+                    "key": "ShowDetails",
+                    "value": false
+                  },
+                  {
+                    "key": "FilterState",
+                    "value": "ALL"
+                  }
+                ]
+              items:
+                $ref: '#/components/schemas/NameValuePair'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+
+
+                  - $ref: '#/components/schemas/RTSByTrunkCllIResponse'
+                  - $ref: '#/components/schemas/POSTByCarrierDetailsResponse'
+                  - $ref: '#/components/schemas/GetSDMIPsResponse'
+                  - $ref: '#/components/schemas/GetCMCLLIbySDMIPResponse'
+                  - $ref: '#/components/schemas/ICOTTestResponse'
+                  - $ref: '#/components/schemas/QESByCarrierDetailsResponse'
+                  - $ref: '#/components/schemas/FRLSByCarrierResponse'
+                  - $ref: '#/components/schemas/INBByCarrierResponse'
+                  - $ref: '#/components/schemas/GetTrunkCllisByGatewayNameResponse'
+                  - $ref: '#/components/schemas/BSYByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/FRLSByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/INBByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/PostGroupDChannelByTrunkCLLIResponse'
+                  - $ref: '#/components/schemas/QESByGatewayNameDetailsResponse'
+                  - $ref: '#/components/schemas/RTSByCarrierResponse'
+                  - $ref: '#/components/schemas/BSYByCarrierResponse'
+                  - $ref: '#/components/schemas/PostByCarrierResponse'
+                  - $ref: '#/components/schemas/QESByCarrierResponse'
+                  - $ref: '#/components/schemas/GetCarriersResponse'
+                  - $ref: '#/components/schemas/INBByResponse'
+                  - $ref: '#/components/schemas/FRLSByResponse'
+                  - $ref: '#/components/schemas/RTSByGatewayNameResponse'
+
+                  - $ref: '#/components/schemas/PostDetailsResponse'
+                  - $ref: '#/components/schemas/QESDetailResponse'
+
+                  - $ref: '#/components/schemas/BSYByResponse'
+                  - $ref: '#/components/schemas/PostResponse'
+                  - $ref: '#/components/schemas/QESResponse'
+                  - $ref: '#/components/schemas/GetGatewayNamesResponse'
+        
+        
+        
+        
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                ErrorCode : 500
+                Message : "Unable to connect TMM server."
+
+
+components:
+
+  schemas:
+
+    SuccessLevel:
+      type : string
+      enum : ['SUCCESS', 'WARNING', 'ERROR']
+
+    ErrorMsg:
+      type: object
+      properties :
+        errorNumber:
+          type : string
+        message:
+          type: string
+        severity:
+          type: string
+        parameters:
+          type: array
+          items:
+            type: string
+        subcomponents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subcomponent'
+
+    Subcomponent:
+      type: object
+      properties:
+        name:
+          type: string
+        errorNumber:
+          type : string
+        message:
+          type : string
+
+
+
+    BaseMember:
+      "type": "object"
+      properties:
+        success:
+          $ref: '#/components/schemas/SuccessLevel'
+        error:
+          $ref: '#/components/schemas/ErrorMsg'
+        terminalNumber:
+          type: integer
+
+
+
+
+    BaseGWHeader:
+      type: object
+      properties:
+        gatewayName:
+          type: string
+        endpointRange:
+          type: string
+        nodeNumber:
+          type: string
+
+    NameValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+
+
+
+    EndpointMaintResponse:
+      "type": "object"
+      properties:
+        success:
+          $ref: '#/components/schemas/SuccessLevel'
+        error:
+          $ref: '#/components/schemas/ErrorMsg'
+        header:
+          $ref: '#/components/schemas/BaseGWHeader'
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseMember'
+
+
+    Error:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+
+
+
+
+    #this data type will return if the scommand = GetGatewayNames
+
+    GetGatewayNamesResponse :
+      type : object
+      properties :
+        GetGatewayNames:
+          $ref : '#/components/schemas/Gateway'
+
+    Gateway:
+      type : object
+      properties:
+        Names:
+          type : string
+
+    #sCommand = QESByGatewayName return type will be QESResponse
+    QESResponse:
+      type: object
+      properties:
+        QESByGatewayName:
+          $ref: '#/components/schemas/QESData'
+    QESData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: object
+                  properties:
+                    Value:
+                      type: string
+                    Count:
+                      type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: integer
+          
+          
+          #sCommand = QESByGatewayName end
+
+    #sCommand = QESByGatewayName showDetails
+    QESDetailResponse:
+      type: object
+      properties:
+        QESByGatewayName:
+          $ref: '#/components/schemas/QESDetailData'
+    QESDetailData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: object
+                  properties:
+                    Value:
+                      type: string
+                    Count:
+                      type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: integer
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                oneOf:
+                  - type: object
+                    properties:
+                      State:
+                        type: string
+                      TerminalNumber:
+                        type: integer
+
+                  - type: object
+                    properties:
+                      Error:
+                        type: object
+                        properties:
+                          Number:
+                            type: integer
+                          Message:
+                            type: string
+                          Severity:
+                            type: string
+                      TerminalNumber:
+                        type: integer
+    
+    #sCommand = PostByGatewayName return type will be PostResponse
+
+
+    PostResponse:
+      type: object
+      properties:
+        PostByGatewayName:
+          $ref: '#/components/schemas/PostData'
+    PostData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: object
+                  properties:
+                    Value:
+                      type: string
+                    Count:
+                      type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: integer
+    
+    
+    
+    
+    #sCommand = PostByGatewayName end
+    
+    #command postbygatewayname show details
+    PostDetailsResponse:
+      type: object
+      properties:
+        PostByGatewayName:
+          $ref: '#/components/schemas/PostDetailData'
+    PostDetailData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: object
+                  properties:
+                    Value:
+                      type: string
+                    Count:
+                      type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: integer
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                oneOf:
+                  - type: object
+                    properties:
+                      State:
+                        type: string
+                      TerminalNumber:
+                        type: integer
+
+                  - type: object
+                    properties:
+                      Error:
+                        type: object
+                        properties:
+                          Number:
+                            type: integer
+                          Message:
+                            type: string
+                          Severity:
+                            type: string
+                      TerminalNumber:
+                        type: integer
+    
+    
+    
+    
+    #this data type will return if the scommand = BSYByGatewayName
+
+    BSYByResponse:
+      type: object
+      properties:
+        BSYByGatewayName:
+          $ref: '#/components/schemas/BSYByData'
+    BSYByData:
+      type: object
+      properties:
+        Header:
+          type : object
+          properties :
+            GatewayName:
+              type : string
+            EndPointRange:
+              type : string
+            NodeNumber :
+              type : string
+        
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+    
+    
+    Member:
+      type : object
+      properties :
+        Error :
+          type: object
+          properties:
+            Number:
+              type: string
+            Message:
+              type: string
+            Severity:
+              type: string
+        TerminalNumber:
+          type : integer
+    
+    
+    
+    
+    
+    
+    
+    #this data type will return if the scommand = RTSByGatewayName
+
+    RTSByGatewayNameResponse :
+      type : object
+      properties :
+        RTSByGatewayName :
+          $ref: '#/components/schemas/RTSByData'
+
+    RTSByData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+    
+    
+    #this data type will return if the scommand = GetCarriers
+
+    GetCarriersResponse:
+      type: object
+      properties:
+        GetCarriers:
+          $ref: '#/components/schemas/GetCarriersData'
+
+    GetCarriersData:
+      type: object
+      properties:
+        Carriers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Carriers'
+    Carriers :
+      type : object
+      properties :
+        CarrierNames:
+          type: string
+        GatewayName:
+          type: string
+        GWCName:
+          type: string
+    
+    
+    
+    #this data type will return if the scommand = FRLSByGatewayName
+    FRLSByResponse:
+      type: object
+      properties :
+        FRLSByGatewayName:
+          $ref : '#/components/schemas/FRLSByData'
+    FRLSByData:
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+
+
+
+    #this data type will return if the scommand = INBByGatewayName
+    INBByResponse:
+      type: object
+      properties:
+        INBByGatewayName:
+          $ref: '#/components/schemas/INBByData'
+    INBByData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+
+    #this data type will return if the scommand = BSYByCarrier
+
+    BSYByCarrierResponse:
+      type: object
+      properties:
+        BSYByCarrier:
+          $ref : '#/components/schemas/BSYByCarrierData'
+
+    BSYByCarrierData:
+      type: object
+      properties:
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+
+    #this data type will return if the scommand = RTSByCarrier
+
+    RTSByCarrierResponse:
+      type: object
+      properties :
+        RTSByCarrier:
+          $ref : '#/components/schemas/RTSByCarrierData'
+
+    RTSByCarrierData:
+      type: object
+      properties :
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties :
+            Member:
+              type : array
+              items:
+                $ref: '#/components/schemas/Member'
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    #this data type will return if the scommand = GetSDMIPs
+
+
+    GetSDMIPsResponse:
+      type: object
+      properties:
+        GetSDMIPs:
+          $ref: '#/components/schemas/GetSDMIPsData'
+
+    GetSDMIPsData:
+      type: object
+      properties :
+        CallServer :
+          type : object
+          properties:
+            Name :
+              type : string
+            SDMIP :
+              type : string
+    
+    
+    
+    #this data type will return if the scommand = GetCMCLLIbySDMIP
+
+
+    GetCMCLLIbySDMIPResponse :
+      type : object
+      properties :
+        GetCMCLLIbySDMIP :
+          $ref : '#/components/schemas/GetCMCLLIbySDMIPData'
+    GetCMCLLIbySDMIPData:
+      type : object
+      properties :
+        CMCLLI :
+          type : object
+          properties :
+            Name :
+              type: string
+          
+          
+          
+          
+          
+          #this data type will return if the scommand = PostByCarrier
+    
+    
+    PostByCarrierResponse:
+      type : object
+      properties :
+        PostByCarrier :
+          $ref: '#/components/schemas/PostByCarrierData'
+    
+    PostByCarrierData:
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Value:
+                        type: string
+                      Count:
+                        type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: string
+    
+    
+    
+    
+    
+    #this data type will return if the scommand = QESByCarrier
+    QESByCarrierResponse:
+      type : object
+      properties :
+        QESByCarrier :
+          $ref : '#/components/schemas/QESByCarrierData'
+    QESByCarrierData :
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Value:
+                        type: string
+                      Count:
+                        type: integer
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: string
+
+    #this data type will return if the scommand = ICOTTest
+
+    ICOTTestResponse:
+      type: object
+      properties :
+        ICOTTest:
+          $ref : '#/components/schemas/ICOTTestData'
+    ICOTTestData:
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            TrunkCLLI:
+              type: string
+            CMCLLI:
+              type: string
+            FirstMember:
+              type: integer
+            TrunkMembers:
+              type: integer
+            GroupSize:
+              type: integer
+        Members :
+          type: object
+          properties:
+            Member:
+              type: object
+              properties:
+                TrunkNumber:
+                  type: integer
+                Error:
+                  type: object
+                  properties:
+                    Number:
+                      type: string
+                    Message:
+                      type: string
+                    Severity:
+                      type: string
+    #this data type will return if the scommand = QESByGatewayName showDetaildetails
+
+    QESByGatewayNameDetailsResponse:
+      type : object
+      properties :
+        QESByGatewayName:
+          $ref : '#/components/schemas/QESByGatewayNameDetailsData'
+    
+    QESByGatewayNameDetailsData:
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            Summary:
+              type: object
+              properties:
+                State:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Value:
+                        type: string
+                      Count:
+                        type: integer
+            
+            GatewayName:
+              type: string
+            FilterState:
+              type: string
+            EndpointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties:
+            Member:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+        
+        
+        #this data type will return if the scommand = PostGroupDChannelByTrunkCLLI
+    
+    
+    PostGroupDChannelByTrunkCLLIResponse:
+      type : object
+      properties :
+        PostGroupDChannelByTrunkCLLIData:
+          $ref : '#/components/schemas/PostGroupDChannelByTrunkCLLIData'
+    PostGroupDChannelByTrunkCLLIData:
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+        Members:
+          type : object
+          properties:
+            
+            Member :
+              type : object
+              properties:
+                
+                TrunkDirection:
+                  type: string
+                TrunkSignaling:
+                  type: string
+                EndpointName:
+                  type: string
+                State:
+                  type: string
+                GatewayName:
+                  type: string
+                PMNumber:
+                  type: integer
+                NodeNumber:
+                  type: integer
+                TerminalNumber:
+                  type: integer
+                PMType:
+                  type : string
+    
+    #this data type will return if the scommand = PostByTrunkCLLI
+    PostByTrunkCLLIResponse:
+      type : object
+      properties:
+        PostByTrunkCLLIData:
+          $ref : '#/components/schemas/PostByTrunkCLLIData'
+    PostByTrunkCLLIData:
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+            FirstMember:
+              type : integer
+            TrunkMembers :
+              type : string
+            GroupSize :
+              type : integer
+        Members:
+          type : object
+          properties:
+            
+            Member :
+              type : object
+              properties:
+                
+                TrunkMember:
+                  type: integer
+                TerminalNumber:
+                  type: integer
+                TrunkDirection:
+                  type: string
+                TrunkSignaling:
+                  type: string
+                EndpointName:
+                  type: string
+                State:
+                  type: string
+                ConnectedTo:
+                  type: integer
+                PMTimeSlot:
+                  type: integer
+                PMCarrier:
+                  type : integer
+                GatewayName:
+                  type : string
+                PMNumber:
+                  type : integer
+                NodeNumber:
+                  type : integer
+                PMType:
+                  type : string
+              #this data type will return if the scommand = INBByTrunkCLLI 
+    
+    INBByTrunkCLLIResponse:
+      type  : object
+      properties :
+        INBByTrunkCLLIData:
+          $ref : '#/components/schemas/INBByTrunkCLLIData'
+    INBByTrunkCLLIData:
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+            FirstMember:
+              type : integer
+            TrunkMembers :
+              type : string
+            GroupSize :
+              type : integer
+        Members:
+          type : object
+            #this data type will return if the scommand = RTSByTrunkCllI 
+    
+    RTSByTrunkCllIResponse:
+      type  : object
+      properties :
+        RTSByTrunkCLLIData:
+          $ref : '#/components/schemas/RTSByTrunkCLLIData'
+    RTSByTrunkCLLIData:
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+            FirstMember:
+              type : integer
+            TrunkMembers :
+              type : string
+            GroupSize :
+              type : integer
+        Members:
+          type : object
+    
+    #this data type will return if the scommand = FRLSByTrunkCLLI   
+    FRLSByTrunkCLLIResponse:
+      type : object
+      properties:
+        FRLSByTrunkCLLIData:
+          $ref : '#/components/schemas/FRLSByTrunkCLLIData'
+    FRLSByTrunkCLLIData:
+      type : object
+      properties:
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+            FirstMember:
+              type : integer
+            TrunkMembers :
+              type : string
+            GroupSize :
+              type : integer
+        Members:
+          
+          type : object
+        #this data type will return if the scommand = BSYByTrunkCLLI    
+
+    BSYByTrunkCLLIResponse:
+      type : object
+      properties :
+        BSYByTrunkCLLIData :
+          $ref : '#/components/schemas/BSYByTrunkCLLIData'
+    BSYByTrunkCLLIData :
+      type : object
+      properties :
+        Header :
+          type : object
+          properties:
+            
+            TrunkCLLI:
+              type : string
+            CMCLLI:
+              type : string
+            FirstMember:
+              type : integer
+            TrunkMembers :
+              type : string
+            GroupSize :
+              type : integer
+        Members:
+          type : object
+    
+    #this data type will return if the scommand = GetTrunkCllisByGatewayName    
+
+    GetTrunkCllisByGatewayNameResponse:
+      type : object
+      properties :
+        GetTrunkCllisByGatewayNameData:
+          $ref : '#/components/schemas/GetTrunkCllisByGatewayNameData'
+    GetTrunkCllisByGatewayNameData :
+      type : object
+      properties :
+        TrunkClli :
+          type : array
+          items:
+            type : string
+    #this data type will return if the scommand = INBByCarrier          
+    INBByCarrierResponse:
+      type : object
+      properties :
+        INBByCarrierData:
+          $ref : '#/components/schemas/INBByCarrierData'
+
+    INBByCarrierData:
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties :
+            Member:
+              type : array
+              items:
+                $ref: '#/components/schemas/Member'
+    #this data type will return if the scommand = FRLSByCarrier          
+
+    FRLSByCarrierResponse :
+      type : object
+      properties :
+        FRLSByCarrierData:
+          $ref : '#/components/schemas/FRLSByCarrierData'
+    FRLSByCarrierData:
+      type : object
+      properties :
+        Header:
+          type: object
+          properties:
+            GatewayName:
+              type: string
+            EndPointRange:
+              type: string
+            NodeNumber:
+              type: string
+        Members:
+          type: object
+          properties :
+            Member:
+              type : array
+              items:
+                $ref: '#/components/schemas/Member'
+          
+          #this data type will return if the scommand = PostByCarrier  showDetails  details    
+
+    POSTByCarrierDetailsResponse:
+      type: object
+      properties:
+        PostByCarrier:
+          type: object
+          properties:
+            Header:
+              type: object
+              properties:
+                Summary:
+                  type: object
+                  properties:
+                    State:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Value:
+                            type: string
+                          Count:
+                            type: integer
+                GatewayName:
+                  type: string
+                FilterState:
+                  type: string
+                EndpointRange:
+                  type: string
+                NodeNumber:
+                  type: integer
+            Members:
+              type: object
+              properties:
+                Member:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: object
+                        properties:
+                          TrunkMember:
+                            type: integer
+                          TerminalNumber:
+                            type: integer
+                          TrunkCLLI:
+                            type: string
+                          TrunkDirection:
+                            type: string
+                          TrunkSignaling:
+                            type: string
+                          EndpointName:
+                            type: string
+                          State:
+                            type: string
+                          ConnectedTo:
+                            type: string
+                          PMTimeSlot:
+                            type: integer
+                          TrunkType:
+                            type: string
+                          PMCarrier:
+                            type: integer
+                          PMNumber:
+                            type: integer
+                          PMType:
+                            type: string
+                      - type: object
+                        properties:
+                          Error:
+                            type: object
+                            properties:
+                              Number:
+                                type: integer
+                              Message:
+                                type: string
+                              Severity:
+                                type: string
+                          TerminalNumber:
+                            type: integer
+    #QESByCarrier with showDetails = true
+    QESByCarrierDetailsResponse:
+      type: object
+      
+      
+      
+      properties:
+        QESByCarrier:
+          type: object
+          properties:
+            Header:
+              type: object
+              properties:
+                Summary:
+                  type: object
+                  properties:
+                    State:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Value:
+                            type: string
+                          Count:
+                            type: integer
+                GatewayName:
+                  type: string
+                FilterState:
+                  type: string
+                EndpointRange:
+                  type: string
+                NodeNumber:
+                  type: integer
+            Members:
+              type: object
+              properties:
+                Member:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: object
+                        properties:
+                          State:
+                            type: string
+                          TerminalNumber:
+                            type: integer
+
+                      - type: object
+                        properties:
+                          Error:
+                            type: object
+                            properties:
+                              Number:
+                                type: integer
+                              Message:
+                                type: string
+                              Severity:
+                                type: string
+                          TerminalNumber:
+                            type: integer    
+

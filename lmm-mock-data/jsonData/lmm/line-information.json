@@ -1,0 +1,15 @@
+{
+    "cm_dn": 1038831001,
+    "cm_len": "HOST 01 0 00 00",
+    "cm_lcc": "IBN",
+    "cm_tid": "50.0.1",
+    "cm_gwc_name": "TM2 0",
+    "cm_gwc_address": "0.0.0.0",
+    "cm_clli": "No",
+    "gw_name": "Not_Available",
+    "gw_address": "Not_Available",
+    "gw_type": null,
+    "endpoint_name": null,
+    "cm_rc": 0,
+    "gw_rc": null
+}

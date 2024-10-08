@@ -1,0 +1,18 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-3">
+        <p>The Provisioning panel displays configuration data associated with the Gateway Controller. The name and unit
+            IP addresses are displayed for the currently selected gateway controller at the top of the main panel. A
+            status bar, located at the bottom of the main panel, displays operation messages. The previous twenty
+            messages may be displayed via the dropdown list.</p>
+    </div>
+    <div class="p-my-2">
+        <p-image src="assets/images/help/provisioning/provisioning_panel.jpg" alt="provisioning_panel" width="600"
+            [preview]="true"></p-image>
+    </div>
+    <p>For a description of the tabbed panels contained in the Provisioning Panel, refer to <a
+            [routerLink]="['/help/controller']">Controller</a>, <a [routerLink]="['/help/gateways']">Gateways</a>, <a
+            [routerLink]="['/help/lines']">Lines</a>, <a [routerLink]="['/help/carriers']">Carriers</a> and <a
+            [routerLink]="['/help/qos-collectors']"> QoS Collectors</a>.</p>
+</p-panel>

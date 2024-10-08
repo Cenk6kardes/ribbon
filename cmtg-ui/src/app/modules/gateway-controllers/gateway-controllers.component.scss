@@ -1,0 +1,94 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .rbn-tabs .p-tabview-panel {
+    max-height: unset;
+  }
+
+  #gateway-controllers-container > div > div:nth-child(2) > i {
+    color: rgb(3, 95, 187);
+    margin: 9px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  .bold {
+    font-weight: 600;
+  }
+
+  #gateway-controllers-container > div > div:nth-child(1) > p-dropdown > div{
+    width: 200px;
+  }
+
+  .field-checkbox {
+    label {
+      width: 150px;
+      margin-left: 8px;
+    }
+
+    .p-dropdown {
+      width: 400px;
+    }
+  }
+
+  .p-grid {
+    align-items: center;
+  }
+
+  #errorDialog .p-dialog-content {
+    overflow-y: unset;
+  }
+
+  .error-dialog-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .iconStyle {
+      color: $ribbon-dark-red;
+      margin-top: 4px;
+    }
+  }
+
+  .error-dialog-buttons {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 2px;
+      margin-right: 8px;
+    }
+  }
+
+  .message-text-container {
+    font-weight: unset;
+    color: $ribbon-dark-grey;
+    margin-left: 10px;
+  }
+
+  .details-text-area-container {
+    height: 135px;
+    width: calc(500px - 2rem);
+    resize: both;
+    max-width: inherit;
+    overflow: scroll;
+    color: $ribbon-dark-grey;
+    white-space: nowrap;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+    outline: 1px solid $ribbon-light-grey;
+    border-radius: 2px;
+  }
+
+  .showDetailsBtn {
+    margin-left: 5px;
+  }
+}

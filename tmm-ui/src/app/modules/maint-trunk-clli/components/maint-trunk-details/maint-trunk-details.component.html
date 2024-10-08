@@ -1,0 +1,27 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<p-accordion *ngIf="(tableDetail | json) !== '[]' && showTableSelected">
+  <p-accordionTab [header]="'TRUNK_CLLI.HEADER_DETAILS' | translate" [selected]="true">
+    <rbn-table [cols]="cols" [data]="data" [showFilterRow]="false" [tableConfig]="tableConfig" (refreshData)="refreshTableData()" (rowSelect)="onCheckboxChange($event)"
+      (rowUnselect)="onCheckboxChange($event)" [selectedRows]="selectedRows" #rbnTableDetails></rbn-table>
+    <ng-template #bulkAction>
+      <div class="bulk-actions">
+        <p-dropdown [options]="bulkActions" [placeholder]="'COMMON.BULK_ACTIONS' | translate"
+          [disabled]="selectedRows.length === 0" (onChange)="checkShowConfirm($event.value)" [autoDisplayFirst]="false"
+          [(ngModel)]="selectedAction" [optionLabel]="'label'">
+          <ng-template let-bulkActionItem pTemplate="item">
+            <div>
+              <div>{{bulkActionItem.label}}
+              </div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+    </ng-template>
+    <div class="refresh-time">
+      <span>{{'MAI_GATE_WAYS_CARRIER.LAST_REFRESHED' | translate}}: {{lastRefreshedTime.value}}</span>
+    </div>
+  </p-accordionTab>
+</p-accordion>
+
+<rbn-confirm-dialog #confirmTrunkCLI [isShowConfirmDialog]="showConfirmActions" [title]="dataConfirm.title"
+  [content]="dataConfirm.content"></rbn-confirm-dialog>

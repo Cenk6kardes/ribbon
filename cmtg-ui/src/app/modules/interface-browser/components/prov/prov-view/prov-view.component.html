@@ -1,0 +1,144 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="prov-view-container">
+
+    <p-panel header="{{'INTERFACE_BROWSER.PROV.HEADER.VALUES' | translate}}">
+        <div class="p-grid" [formGroup]="form">
+            <div *ngIf="isAddProv" class="rbn-group p-field p-col-3">
+                <label>{{'INTERFACE_BROWSER.V5_RING_VIEW.FIELD_LABEL.IDENTIFIER' | translate}}:
+                </label>
+                <input id="identifier" formControlName="identifier" type="text" pInputText>
+            </div>
+            <div class="rbn-group p-field p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.TBCC' | translate}}:
+                </label>
+                <input id="tbcc" formControlName="tbcc" type="text" pInputText>
+            </div>
+            <div class="rbn-group p-field p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.LKMJALM' | translate}}:
+                </label>
+                <input id="lkmjalm" formControlName="lkmjalm" type="text" pInputText>
+            </div>
+            <div class="rbn-group p-field p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.PROT1' | translate}}:
+                </label>
+                <input id="prot1" formControlName="prot1" type="text" pInputText>
+            </div>
+        </div>
+    </p-panel>
+
+    <p-panel header="{{'INTERFACE_BROWSER.PROV.HEADER.PROT2_CONFIGURATION' | translate}}">
+        <div class="p-grid">
+            <div class="p-field rbn-field  p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.PROT2_LINK'
+                    |translate}}:</label>
+                <div class="rbn-group  line">
+                    <input id="prot2Link" [(ngModel)]="protForm.prot2Link" class="p-col-9 grey-border" type="text"
+                        pInputText>
+                </div>
+            </div>
+            <div class="p-field rbn-field  p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.PROT2_CHANNEL'
+                    |translate}}:</label>
+                <div class="rbn-group linefix">
+                    <input id="prot2Channel" [(ngModel)]="protForm.prot2Channel" class="p-col-9 grey-border" type="text"
+                        pInputText>
+                    <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.ADD_PROT2' | translate" tooltipPosition="bottom"
+                        class="fa fa-plus-circle p-mx-2 icons-font" (click)="addToProt2List()"></i>
+                    <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.ERASE_INPUTS' | translate" tooltipPosition="bottom"
+                        class="fa fa-solid fa-eraser icons-font" (click)="clearProt2Inputs()"></i>
+                </div>
+            </div>
+            <div class="p-grid p-field rbn-field p-col-8 p-align-center">
+                <div class="p-col-3">
+                    <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.PROT2_LIST'
+                        |translate}}:</label>
+                </div>
+                <div class="rbn-group p-col-9">
+                    <p-dropdown [options]="prot2ListOptions" [(ngModel)]="prot2List" appendTo="body">
+                        <ng-template let-option pTemplate="item">
+                            <div class="option-container">
+                                <span>{{ option }} </span>
+                                <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.DELETE_PROT2' | translate"
+                                    tooltipPosition="bottom" class="pi pi-trash delete-icon"
+                                    (click)="deleteProt2ListItem(option)"></i>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+
+    <p-panel header="{{'INTERFACE_BROWSER.PROV.HEADER.CCHNL' | translate}} :">
+        <div class="p-grid">
+            <div class="p-field rbn-field p-col-5 ">
+                <div class="p-col-4">
+                    <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.CCHNL_ID'
+                        |translate}}:</label><span class="red">*</span>
+                    <div class="rbn-group  line">
+                        <input id="cchnlID" [(ngModel)]="protForm.cchnlID" class="p-col-9 grey-border" type="text"
+                            pInputText>
+                    </div>
+                </div>
+                <div class="p-col-4">
+                    <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.LINK'
+                        |translate}}:</label><span class="red">*</span>
+                    <div class="rbn-group  line">
+                        <input id="link" [(ngModel)]="protForm.link" class="p-col-9 grey-border" type="text" pInputText>
+                    </div>
+                </div>
+                <div class="p-col-4">
+                    <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.CHANNEL'
+                        |translate}}:</label><span class="red">*</span>
+                    <div class="rbn-group linefix">
+                        <input id="channel" [(ngModel)]="protForm.channel" class="p-col-9 grey-border" type="text"
+                            pInputText>
+                    </div>
+                </div>
+            </div>
+            <div class="p-field rbn-field p-col-7 ">
+                <div class="p-mt-2 ">
+                    <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.CPATH'
+                        |translate}}:</label><span class="red">*</span>
+                    <div class="rbn-group p-py-1 checkboxes">
+                        <p-checkbox [(ngModel)]="protForm.cpath" *ngFor="let option of CpathOptions; let i = index"
+                            class="p-mr-2" name="option" [value]="option.value" checkboxIcon="fa fa-check"
+                            [label]="option.label || ''">
+                        </p-checkbox>
+                    </div>
+                </div>
+                <div class="cchnlProtIcons">
+                    <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.ADD_CCHNL' | translate" tooltipPosition="bottom"
+                        class="fa fa-plus-circle p-mx-2 icons-font" (click)="addToCchnlEntries()"></i>
+                    <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.ERASE_INPUTS' | translate" tooltipPosition="bottom"
+                        class="fa fa-solid fa-eraser icons-font" (click)="clearCchnlInputs()"></i>
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid p-grid p-field p-col-8 rbn-group p-align-center">
+            <div class="p-col-3">
+                <label>{{'INTERFACE_BROWSER.PROV.FIELD_LABEL.CCHNL_ENTRIES'
+                    |translate}}:</label>
+            </div>
+            <div class="p-col-9">
+                <p-dropdown [options]="cchnlEntriesOptions" appendTo="body" [(ngModel)]="cchnlEntries">
+                    <ng-template let-option pTemplate="item">
+                        <div class="option-container">
+                            <span>{{ option }} </span>
+                            <i [pTooltip]="'INTERFACE_BROWSER.PROV.TOOLTIP.DELETE_CCHNL' | translate"
+                                tooltipPosition="bottom" class="pi pi-trash delete-icon"
+                                (click)="deleteCCHNLListItem(option)"></i>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+        </div>
+    </p-panel>
+
+    <app-form-footer [disablePrimaryBtn]="form.pristine || disableSaveButton"
+        [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="primaryButton | translate"
+        (eventSubmit)="onFormSubmit($event)"></app-form-footer>
+</div>
+
+<rbn-confirm-dialog #confirmDelete [isShowConfirmDialog]="showConfirmActions" [title]="dataConfirm.title"
+    [content]="dataConfirm.content"></rbn-confirm-dialog>

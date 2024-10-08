@@ -1,0 +1,114 @@
+<rbn-dialog-loader [loading]="isInprocess"></rbn-dialog-loader>
+<div id="form">
+    <form [formGroup]="form">
+        <p-accordion [expandIcon]="'pi pi-chevron-up'">
+            <p-accordionTab [disabled]="isAddInterface"
+                [header]=" 'INTERFACE_BROWSER.HEADER.INTERFACE_LOCATION' | translate " [selected]="true">
+                <div class="p-grid">
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.INTERFACE_ID' | translate}}:
+                        </label>
+                        <input id="v52InterfaceId" [formControl]="v52InterfaceId" type="text" pInputText>
+                    </div>
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.GATEWAY_CONTROLLER_ID' | translate}}:
+                        </label>
+                        <input id="gwcId" formControlName="gwcId" type="text" pInputText>
+                    </div>
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.AMCNO' | translate}}:
+                        </label>
+                        <input id="siteGwcLoc" formControlName="siteGwcLoc" type="text" pInputText>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+
+        <p-accordion [expandIcon]="'pi pi-chevron-up'">
+            <p-accordionTab [disabled]="isAddInterface" [header]=" 'INTERFACE_BROWSER.HEADER.TEMPLATES' | translate "
+            [selected]="true">
+                <div class="p-grid">
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.V5PROV' | translate}}:
+                        </label>
+                        <p-dropdown [options]="options.provIds"  [formControl]="v5ProvRef"  [styleClass]="'full-width'"
+                            ></p-dropdown>
+                        <i id="fetchProv" class="fas fa-sync-alt p-ml-2" (click)="fetch($event)"></i>
+                    </div>
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.V5RING' | translate}}:
+                        </label>
+                        <p-dropdown [formControl]="v5RingTableRef" [styleClass]="'full-width'"
+                            [options]="options.ringIds"></p-dropdown>
+                        <i id="fetchRing" class="fas fa-sync-alt p-ml-2" (click)="fetch($event)" ></i>
+                    </div>
+                    <div class="rbn-group p-field p-col-4">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.V5SIG' | translate}}:
+                        </label>
+                        <p-dropdown [formControl]="v5SigTableRef"  [styleClass]="'full-width'"
+                            [options]="options.sigIds"></p-dropdown>
+                        <i id="fetchSig" class="fas fa-sync-alt p-ml-2"(click)="fetch($event)"></i>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+
+        <p-accordion [expandIcon]="'pi pi-chevron-up'">
+            <p-accordionTab [disabled]="isAddInterface" [header]=" 'INTERFACE_BROWSER.HEADER.MAX_LINES' | translate "
+            [selected]="true">
+                <div class="p-grid">
+                    <div class="rbn-group p-field p-col-5">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.MAXLINES_SELECTOR' | translate}}:
+                        </label>
+                        <p-dropdown [formControl]="maxlinesSelector"  [styleClass]="'full-width'"
+                            [options]="options.maxlinesSelector"></p-dropdown>
+                    </div>
+                    <div class="rbn-group p-field p-col-5">
+                        <label>{{'INTERFACE_BROWSER.FIELD_LABEL.MAXLINE_VALUE' | translate}}:
+                        </label>
+                        <input id="maxlines" formControlName="maxlines" type="text" pInputText>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+
+        <p-accordion [expandIcon]="'pi pi-chevron-up'">
+            <p-accordionTab [disabled]="isAddInterface" [header]=" 'INTERFACE_BROWSER.HEADER.LINK_MAPPING' | translate "
+                [selected]="true">
+                <div class="p-grid" formArrayName="linkMapTable">
+
+                    <div *ngFor="let control of linkMapTable.controls; let i = index" class="rbn-group p-field p-col-3">
+                        <div *ngIf="i<9; else withoutSpace">
+                            <label for="links{{ i + 1 }}">{{ 'Links ' + (i + 1) + " :" + " "}}</label>
+                            <input type="text" [formControlName]="i" tooltipPosition="bottom" pInputText [pTooltip]="i === 0?('INTERFACE_BROWSER.TOOLTIP.LINK' | translate) :''">
+                        </div>
+                        <ng-template #withoutSpace>
+                            <div>
+                                <label for="links{{ i + 1 }}">{{ 'Links ' + (i + 1) }}:</label>
+                                <input type="text" [formControlName]="i" pInputText>
+                            </div>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </form>
+    <app-form-footer
+      (eventSubmit)="onFormSubmit($event)"
+      [secondaryLabel]="'COMMON.CANCEL' | translate"
+      [primaryLabel]="primaryButton | translate"
+      [disableSecondaryBtn]="options.interfaceBrowserIds.length === 0"
+    ></app-form-footer>
+</div>
+
+<!-- Add Interface Confirm -->
+<rbn-confirm-dialog
+*ngIf="confirmAddInterface.isShowConfirmDialog"
+[title]="confirmAddInterface.title"
+[content]="confirmAddInterface.content"
+[isShowConfirmDialog]="confirmAddInterface.isShowConfirmDialog"
+(emitConfirm)="confirmAddInterface.handleAccept.bind(this)($event)"
+[titleAccept]="confirmAddInterface.titleAccept"
+[titleReject]="confirmAddInterface.titleReject"
+></rbn-confirm-dialog>

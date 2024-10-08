@@ -1,0 +1,255 @@
+<div id="trunk-container">
+  <rbn-page-header [data]="headerData"></rbn-page-header>
+  <p-panel [showHeader]="false" class="rbn-panel">
+    <p>Perform the following steps to complete this procedure.</p>
+    <p>
+      <b>At the TMM client window</b>
+    </p>
+    <ol>
+      <li>
+        Click the link "Maintenance By Trunk CLLI" on TMM home page as
+        following:<br />
+        <p-image
+          src="assets\images\mtc_by_trunkclli01.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image
+        ><br />
+        <br />
+      </li>
+    </ol>
+    <br />
+    <p><b>Get Trunk CLLI by Gateway Name</b></p>
+    <ol>
+      <li>
+        Select gateway from the dropdown menu in "Maintenance By Trunk CLLI"
+        input page as following:<br />
+        <p-image
+          src="assets\images\mtc_by_trunkclli02.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image
+        ><br />
+        <br />
+      </li>
+      <li>
+        After selection, the response will be similar as following:<br />
+        <p-image
+          src="assets\images\mtc_by_trunkclli03.jpg"
+          alt="Image"
+          width="600"
+          [preview]="true"
+        ></p-image
+        ><br />
+        <br />
+      </li>
+    </ol>
+    <br />
+    <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span>General Trunk Maintenance</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <ol>
+            <li>
+              Click General Trunk Maintenance button in "Maintenance By Trunk
+              CLLI" input page as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli04.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              Select gateway and trunk CLLI, input trunk range and select the
+              maintenance action in "Maintenance Action" input page as
+              following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli05.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              Click button "Run", the response will be similar as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli06.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              If the option "Show Details" is set as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli07.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+              The response will be similar as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli08.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+          </ol>
+        </ng-template>
+      </p-accordionTab>
+    </p-accordion>
+    <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span>D-Channel Maintenance</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <ol>
+            <li>
+              Click D-Channel Maintenance button in "Maintenance By Trunk CLLI"
+              input page as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli09.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              Select gateway, trunk CLLI and maintenance action as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli10.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              Click button "Run", the response will be similar as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli11.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+            <li>
+              If the option "Show Details" is set as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli12.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+              The response will be similar as following:<br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli13.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+          </ol>
+          Note<br />
+          <ol>
+            <li>
+              <!--If the PRI trunk has a single D-channel, TMM will display "The trunk member is not data filled" for space reserved for the second D-channel.-->
+              If the PRI trunk has a single D-channel, TMM will only display one
+              D-channel. If the PRI trunk has dual D-channels, status of both
+              D-channels will be displayed.<br />
+            </li>
+            <li>
+              Posting D-Channel for trunk CLLI belonging to H.323 Gateway will
+              display one D-Channel as they are mapped to a single PRI trunk.<br />
+            </li>
+          </ol>
+        </ng-template>
+      </p-accordionTab>
+    </p-accordion>
+    <p-accordion expandIcon="pi pi-fw pi-chevron-up">
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <span>ISUP COT Test</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <p>
+            Use this procedure to perform an ISUP (Integrated Services Digital
+            Network User Part) continuity test (ICOT) on a single trunk member
+            for a specific CLLI.
+          </p>
+          <p>
+            This test can only be performed on outgoing or 2-way ISUP trunks.
+          </p>
+          <p>
+            <b>Prerequisites</b>
+          </p>
+          <p>The trunk must be in a maintenance busy (MB) state.</p>
+          <p>
+            <b>Start</b>
+          </p>
+          <ol>
+            <li>Launch the Trunk Maintenance Manager (TMM) GUI.</li>
+            <li>
+              Click Maintenance by Trunk CLLI and then ISUP COT Test. <br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli14.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image>
+              <br />
+              <br />
+            </li>
+            <li>
+              Select Gateway Name and Trunk CLLI
+            </li>
+            <li>
+              Enter the member number.
+            </li>
+            <li>
+              Select Run Test from the Panel. <br />
+              <p-image
+                src="assets\images\mtc_by_trunkclli15.jpg"
+                alt="Image"
+                width="600"
+                [preview]="true"
+              ></p-image
+              ><br />
+              <br />
+            </li>
+          </ol>
+          <p>
+            If you encounter unexpected errors, such as "test failed," review the details
+            and determine a solution, or contact your next level of support.
+          </p>
+        </ng-template>
+      </p-accordionTab>
+    </p-accordion>
+  </p-panel>
+</div>

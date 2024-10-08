@@ -1,0 +1,24 @@
+<p-dialog [header]="'PREFERENCES.TITLE' | translate" [(visible)]="isShowPreferences" (onHide)="onHide()" [modal]="true" class="rbn-dialog" [style]="{width: '600px'}">
+    <form class="p-grid">
+        <div class="flex-row-gap p-col-12 p-mb-2">
+            <label class="bold">{{'PREFERENCES.AUTO_REFRESH' | translate}}:</label>
+            <p-inputSwitch name="autoRefresh" [(ngModel)]="preferences.refresh.checked"></p-inputSwitch>
+        </div>
+        <div class="flex-row-gap p-col-12 p-mb-3">
+            <label>{{'PREFERENCES.EVERY' | translate}}:</label>
+            <p-dropdown [appendTo]="'body'" [options]="seconds" name="seconds" [(ngModel)]="preferences.refresh.second"></p-dropdown>
+            <label>Seconds</label>
+        </div>
+        <div class="flex-row-gap p-col-12">
+            <label class="bold">{{'PREFERENCES.NEED_CONFIRMATION' | translate}}:</label>
+            <p-inputSwitch name="needConfirmation" [(ngModel)]="preferences.confirmation.checked"></p-inputSwitch>
+        </div>
+        <div class="flex-row-gap p-col-12 p-mb-2">
+            {{'PREFERENCES.DISABLE_CONFIRMATION' | translate}}
+        </div>
+    </form>
+    <p-footer>
+        <p-button styleClass="rbn-button rbn-button-tertiary" label="{{'COMMON.CANCEL'| translate}}" (click)="onHide()"></p-button>
+        <p-button styleClass="rbn-button rbn-button-primary" label="{{'COMMON.SAVE'| translate}}" (click)="onSave()"></p-button>
+    </p-footer>
+</p-dialog>

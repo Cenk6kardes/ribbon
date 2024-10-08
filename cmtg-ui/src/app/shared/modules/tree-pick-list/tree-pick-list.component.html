@@ -1,0 +1,31 @@
+<div class="p-grid tree-container">
+    <div class="p-col-12 p-md-6 p-lg-5">
+        <p-panel header="All">
+            <div class="card">
+                <p-tree #treeSource [value]="dataSource" selectionMode="checkbox" [filter]="true"
+                    [(selection)]="selectedItemsSource" [scrollHeight]="scrollHeight" (onNodeSelect)="nodeSelectSource($event)">
+                    <ng-template pTemplate="empty"></ng-template>
+                </p-tree>
+            </div>
+        </p-panel>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-2 btn-container">
+        <button *ngIf="showBtnAngleRight" type="button" pButton icon="pi pi-angle-right" (click)="pickItemsToRight()"></button>
+        <button *ngIf="showBtnAngleDoubleRight" type="button" pButton icon="pi pi-angle-double-right" (click)="pickAllToRight()"></button>
+        <button *ngIf="showBtnAngleLeft" type="button" pButton icon="pi pi-angle-left" (click)="pickItemsToLeft()"></button>
+        <button *ngIf="showBtnAngleDoubleLeft" type="button" pButton icon="pi pi-angle-double-left" (click)="pickAllToLeft()"></button>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-5">
+        <p-panel header="Selected">
+            <div class="card">
+                <p-tree #treeTarget [value]="dataTarget" selectionMode="checkbox" [filter]="true"
+                    [(selection)]="selectedItemsTarget" [scrollHeight]="scrollHeight">
+                    <ng-template pTemplate="empty"></ng-template>
+                </p-tree>
+            </div>
+        </p-panel>
+    </div>
+    <div *ngIf="blockTree" class="block-overlay"></div>
+</div>

@@ -1,0 +1,123 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+
+    <div class="p-mb-2 p-grid p-fluid">
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/provisioning']">
+                <h3 class="color-blue p-col-12">PROVISIONING</h3>
+            </a>
+        </div>
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/network-configuration']">
+                <h3 class="color-blue p-col-12">NETWORK CODEC PROFILE</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add a Network Codec Profile</li>
+                <li class="p-col-12 padding-x-none">Change Network Codec Profile</li>
+                <li class="p-col-12 padding-x-none">Delete a Network Codec Profile</li>
+                <li class="p-col-12 padding-x-none">Change General Network Settings</li>
+                <li class="p-col-12 padding-x-none">Change DQoS Configuration</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="p-mb-2 p-grid p-fluid">
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/network-configuration']">
+                <h3 class="color-blue p-col-12">PEP SERVER</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add a PEP Server</li>
+                <li class="p-col-12 padding-x-none">Change PEP Server Configuration</li>
+                <li class="p-col-12 padding-x-none">Delete Delete A PEP Server</li>
+            </ul>
+        </div>
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/network-configuration']">
+                <h3 class="color-blue p-col-12">ALG</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add an ALG</li>
+                <li class="p-col-12 padding-x-none">Change an ALG</li>
+                <li class="p-col-12 padding-x-none">Delete an ALG</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="p-mb-2 p-grid p-fluid">
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/qos-collectors']">
+                <h3 class="color-blue p-col-12">QOS COLLECTOR</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add a Qos Collector</li>
+                <li class="p-col-12 padding-x-none">Delete a QoS Collector</li>
+                <li class="p-col-12 padding-x-none">Associate a QoS Collector</li>
+                <li class="p-col-12 padding-x-none">Disassociate a QoS Collector</li>
+                <li class="p-col-12 padding-x-none">Enable or Disable QoS Collection</li>
+            </ul>
+        </div>
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/controller']">
+                <h3 class="color-blue p-col-12">GATEWAY CONTROLLER</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add a Gateway Controller</li>
+                <li class="p-col-12 padding-x-none">Change Gateway Controller Profile</li>
+                <li class="p-col-12 padding-x-none">Change Gateway Controller Network Codec Profile</li>
+                <li class="p-col-12 padding-x-none">Delete a Gateway Controller</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="p-mb-2 p-grid p-fluid">
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/gateways']">
+                <h3 class="color-blue p-col-12">GATEWAY</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Associate a Media Gateway</li>
+                <li class="p-col-12 padding-x-none">Change Gateway Configuration</li>
+                <li class="p-col-12 padding-x-none">Disassociate a Media Gateway</li>
+                <li class="p-col-12 padding-x-none">Gateway Details</li>
+            </ul>
+        </div>
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/carriers']">
+                <h3 class="color-blue p-col-12">CARRIER</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">Add a Carrier</li>
+                <li class="p-col-12 padding-x-none">Delete a Carrier</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="p-mb-2 p-grid p-fluid">
+
+        <div class="p-col-6">
+            <a [routerLink]="['/help/lines']">
+                <h3 class="color-blue p-col-12">LINES PROVISIONING</h3>
+            </a>
+            <ul>
+                <li class="p-col-12 padding-x-none">The addition and deletion of Lines are not supported via the GUI.
+                    <br> Lines provisioning is performed via the OSSGate interface.
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</p-panel>

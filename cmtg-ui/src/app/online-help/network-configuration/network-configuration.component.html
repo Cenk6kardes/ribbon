@@ -1,0 +1,763 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+  <h2>
+    {{ "HELP.NETWORK_CONFIGURATION.FUNCTIONAL_DESCRIPTION_HEADER" | translate }}
+  </h2>
+  <div class="p-mb-3">
+    <p
+      [innerHTML]="
+        'HELP.NETWORK_CONFIGURATION.FUNCTIONAL_DESCRIPTION_BODY' | translate
+      "
+    ></p>
+    <rbn-panel-messages
+      [content]="functionalDescriptionInfoMessage.content"
+      [typeOfMessage]="functionalDescriptionInfoMessage.type"
+    ></rbn-panel-messages>
+  </div>
+  <h2>{{ "HELP.NETWORK_CONFIGURATION.MENU_HEADER" | translate }}</h2>
+  <h3>NA</h3>
+  <div class="p-my-2">
+    <p-image
+      src="assets/images/help/network_configuration/network_sidebar_NA.jpg"
+      alt="network_sidebar_devices_img"
+      width="300"
+      [preview]="true"
+    ></p-image>
+  </div>
+  <h3>INTL</h3>
+  <div class="p-my-2">
+    <p-image
+      src="assets/images/help/network_configuration/network_sidebar_INTL.jpg"
+      alt="network_sidebar_devices_img"
+      width="300"
+      [preview]="true"
+    ></p-image>
+  </div>
+  <h2>
+    {{
+      "HELP.NETWORK_CONFIGURATION.GENERAL_NETWORK_SETTINGS_HEADER" | translate
+    }}
+  </h2>
+  <div class="p-mb-3">
+    <p
+      [innerHTML]="
+        'HELP.NETWORK_CONFIGURATION.GENERAL_NETWORK_SETTINGS_BODY' | translate
+      "
+    ></p>
+    <div class="p-my-2">
+      <p-image
+        src="assets/images/help/network_configuration/change_gen_settings.jpg"
+        alt="change_gen_settings_img"
+        width="600"
+        [preview]="true"
+      ></p-image>
+    </div>
+  </div>
+  <p-accordion [expandIcon]="'pi pi-chevron-up'">
+    <p-accordionTab
+      [header]="'HELP.NETWORK_CONFIGURATION.DEVICES.HEADER' | translate"
+    >
+      <div class="p-mb-3">
+        <p>{{ "HELP.NETWORK_CONFIGURATION.DEVICES.BODY" | translate }}</p>
+        <div class="p-my-2">
+          <p-image
+            src="assets/images/help/network_configuration/network_panel.jpg"
+            alt="network_panel_img"
+            width="600"
+            [preview]="true"
+          ></p-image>
+        </div>
+      </div>
+      <p-tabView class="rbn-tabs">
+        <p-tabPanel
+          [header]="
+            'HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.HEADER'
+              | translate
+          "
+          [cache]="false"
+        >
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.BODY"
+                    | translate
+                }}
+              </p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/qos_collector_table.jpg"
+                  alt="qos_collector_table_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.ADD_QOS_COLLECTOR_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.ADD_QOS_COLLECTOR_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/add_qos_collector_dialog.jpg"
+                  alt="add_qos_collector_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.DELETE_QOS_COLLECTOR_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.QOS_COLLECTORS.DELETE_QOS_COLLECTOR_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/delete_qos_collector.jpg"
+                  alt="delete_qos_collector_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel
+          [header]="
+            'HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.HEADER' | translate
+          "
+          [cache]="false"
+        >
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p>
+                {{ "HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.BODY" | translate }}
+              </p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/alg_table.jpg"
+                  alt="alg_table_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.ADD_ALG_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.ADD_ALG_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/add_alg_dialog.jpg"
+                  alt="add_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.CHANGE_ALG_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.CHANGE_ALG_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/change_alg_dialog.jpg"
+                  alt="change_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.DELETE_ALG_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.ALGS.DELETE_ALG_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/delete_alg_dialog.jpg"
+                  alt="delete_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel [header]="'GR-834 GWs'" [cache]="false">
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p>
+                GR-834 GWs may be added and deleted by the buttons located under
+                the GR-834 panel. Refer to the following procedures for
+                information on these functions:
+              </p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/gr834_tab.jpg"
+                  alt="alg_table_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>Add a GR-834 GW</h3>
+              <p>Use this procedure to add a GR-834 GW.</p>
+              <ol>
+                <li>Display the Network Configuration panel.</li>
+                <li>
+                  Select the GR-834 GWs tabbed panel, and click the
+                  <b>"New GR-834 GWs"</b> button to display the Add GR-834 GWs
+                  dialog.
+                </li>
+                <li>
+                  Enter the G-834 Name, Type, port, IP Address, User Name and
+                  Password.
+                </li>
+                <li>
+                  Click the SAVE button to confirm the request, or the Cancel
+                  button to abort the request.
+                </li>
+                <li>
+                  The GR-834 GW will appear in the list following successful
+                  addition.
+                </li>
+              </ol>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/newGr834_dialog.jpg"
+                  alt="add_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>Change an GR-834 GWs</h3>
+              <p>
+                Use this procedure to change Application Layer Gateway (ALG)
+                server attributes.
+              </p>
+              <ol>
+                <li>Display the Network Configuration panel.</li>
+                <li>Select an GR-834 from the list and click the Edit icon.</li>
+                <li>
+                  Enter your changes to the IP address, Port, username,
+                  password.
+                </li>
+                <li>
+                  Click the SAVE button to confirm the request, or the Cancel
+                  button to abort the request.
+                </li>
+                <li>GR-834 list is updated following a successful change.</li>
+              </ol>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/gr834_edit.jpg"
+                  alt="add_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>Delete a GR-834 GW</h3>
+              <p>Use this procedure to delete a GR-834 GW.</p>
+              <ol>
+                <li>Display the Network Configuration panel.</li>
+                <li>Select the GR-834 GWs tabbed panel.</li>
+                <li>
+                  Select a GR-834 GW from the list and click the Delete button.
+                </li>
+                <li>
+                  Click the Yes button to confirm the request, or the No button
+                  to abort the request.
+                </li>
+                <li>
+                  The GR-834 GW will be removed from the list following
+                  successful deletion.
+                </li>
+              </ol>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/gr834_delete.jpg"
+                  alt="add_alg_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel
+          [header]="
+            'HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.HEADER' | translate
+          "
+          [cache]="false"
+        >
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.BODY"
+                    | translate
+                }}
+              </p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/pep_server_table.jpg"
+                  alt="pep_server_table_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.ADD_PEP_SERVER_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.ADD_PEP_SERVER_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/add_pep_server_dialog.jpg"
+                  alt="add_pep_server_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.CHANGE_PEP_SERVER_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.CHANGE_PEP_SERVER_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/change_pep_server_dialog.jpg"
+                  alt="change_pep_server_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.DELETE_PEP_SERVER_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.DEVICES.PEP_SERVERS.DELETE_PEP_SERVER_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/delete_pep_server_dialog.jpg"
+                  alt="delete_pep_server_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+      </p-tabView>
+    </p-accordionTab>
+  </p-accordion>
+  <br />
+  <p-accordion [expandIcon]="'pi pi-chevron-up'">
+    <p-accordionTab
+      [header]="'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.HEADER' | translate"
+    >
+      <div class="p-my-2">
+        <p-image
+          src="assets/images/help/network_configuration/codec_profile_panel.jpg"
+          alt="codec_profile_panel_img"
+          width="600"
+          [preview]="true"
+        ></p-image>
+      </div>
+      <p-tabView class="rbn-tabs">
+        <p-tabPanel
+          [header]="
+            'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.HEADER'
+              | translate
+          "
+          [cache]="false"
+        >
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.BODY'
+                    | translate
+                "
+              ></p>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_HEADER"
+                    | translate
+                }}
+              </h3>
+              <rbn-panel-messages
+                [content]="addNetworkCodecInfoMessage.content"
+                [typeOfMessage]="addNetworkCodecInfoMessage.type"
+              ></rbn-panel-messages>
+              <p>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.DEFINITION"
+                    | translate
+                }}
+              </p>
+              <ol>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.FIRST'
+                      | translate
+                  "
+                ></li>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SECOND"
+                      | translate
+                  }}
+                </li>
+                <div class="p-my-2">
+                  <p-image
+                    src="assets/images/help/network_configuration/add_network_codec_profile_dialog.jpg"
+                    alt="add_network_codec_profile_dialog_img"
+                    width="600"
+                    [preview]="true"
+                  ></p-image>
+                </div>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.THIRD"
+                      | translate
+                  }}
+                </li>
+                <li>IP Bearer Nework Type selected as default in the system</li>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.FIFTH"
+                      | translate
+                  }}
+                </li>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SIXTH.BODY"
+                      | translate
+                  }}
+                </li>
+                <ul>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SIXTH.FIRST"
+                        | translate
+                    }}
+                  </li>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SIXTH.SECOND"
+                        | translate
+                    }}
+                  </li>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SIXTH.THIRD"
+                        | translate
+                    }}
+                  </li>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SIXTH.FOURTH"
+                        | translate
+                    }}
+                  </li>
+                </ul>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.BODY"
+                      | translate
+                  }}
+                </li>
+                <p>
+                  <span class="color-red bold"
+                    >{{ "HELP.COMMON.NOTE" | translate }}: </span
+                  >{{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.FIRST_NOTE"
+                      | translate
+                  }}
+                </p>
+                <p class="bold">
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.LOCAL_CONTROL_OPTIONS"
+                      | translate
+                  }}
+                </p>
+                <ul class="bold">
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.T_38"
+                        | translate
+                    }}
+                  </li>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.RFC2833"
+                        | translate
+                    }}
+                  </li>
+                  <li>
+                    {{
+                      "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.SEVENTH.COMFORT_NOISE"
+                        | translate
+                    }}
+                  </li>
+                </ul>
+             
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.NINTH"
+                      | translate
+                  }}
+                </li>
+                <li>
+                  {{
+                    "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.ADD_NETWORK_CODEC_PROFILE_BODY.TENTH"
+                      | translate
+                  }}
+                </li>
+              </ol>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.CHANGE_NETWORK_CODEC_PROFILE_HEADER"
+                    | translate
+                }}
+              </h3>
+            </div>
+            <div class="p-mb-3">
+              <rbn-panel-messages
+                [content]="changeNetworkCodecInfoMessage.content"
+                [typeOfMessage]="changeNetworkCodecInfoMessage.type"
+              ></rbn-panel-messages>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.CHANGE_NETWORK_CODEC_PROFILE_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/change_network_codec_profile_dialog.jpg"
+                  alt="change_network_codec_profile_dialog_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_HEADER"
+                    | translate
+                }}
+              </h3>
+            </div>
+            <div class="p-mb-3">
+              <rbn-panel-messages
+                [content]="deleteNetworkCodecInfoMessage.content"
+                [typeOfMessage]="deleteNetworkCodecInfoMessage.type"
+              ></rbn-panel-messages>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.DEFINITION'
+                    | translate
+                "
+              ></p>
+              <ol>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.FIRST'
+                      | translate
+                  "
+                ></li>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.SECOND'
+                      | translate
+                  "
+                ></li>
+                <div class="p-my-2">
+                  <p-image
+                    src="assets/images/help/network_configuration/network_codec_profile_table_delete.jpg"
+                    alt="network_codec_profile_table_delete_img"
+                    width="600"
+                    [preview]="true"
+                  ></p-image>
+                </div>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.THIRD'
+                      | translate
+                  "
+                ></li>
+                <div class="p-my-2">
+                  <p-image
+                    src="assets/images/help/network_configuration/delete_network_codec_profile_dialog.jpg"
+                    alt="delete_network_codec_profile_dialog_img"
+                    width="600"
+                    [preview]="true"
+                  ></p-image>
+                </div>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.FOURTH'
+                      | translate
+                  "
+                ></li>
+                <div class="p-my-2">
+                  <p-image
+                    src="assets/images/help/network_configuration/network_codec_profile_table_delete2.jpg"
+                    alt="network_codec_profile_table_delete2_img"
+                    width="600"
+                    [preview]="true"
+                  ></p-image>
+                </div>
+                <li
+                  [innerHTML]="
+                    'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.NETWORK_CODEC_PROFILE.DELETE_NETWORK_CODEC_PROFILE_BODY.FIFTH'
+                      | translate
+                  "
+                ></li>
+                <div class="p-my-2">
+                  <p-image
+                    src="assets/images/help/network_configuration/delete_network_codec_profile_failed.jpg"
+                    alt="delete_network_codec_profile_failed_img"
+                    width="600"
+                    [preview]="true"
+                  ></p-image>
+                </div>
+              </ol>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel
+          [header]="
+            'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.DQOS_CONF.DQOS_CONF_HEADER'
+              | translate
+          "
+          [cache]="false"
+        >
+          <ng-template pTemplate="content">
+            <div class="p-mb-3">
+              <p>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.DQOS_CONF.DQOS_CONF_DEF"
+                    | translate
+                }}
+              </p>
+            </div>
+            <div class="p-mb-3">
+              <h3>
+                {{
+                  "HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.DQOS_CONF.CHANGE_DQOS_CONF_HEADER"
+                    | translate
+                }}
+              </h3>
+              <p
+                [innerHTML]="
+                  'HELP.NETWORK_CONFIGURATION.CODEC_PROFILE.DQOS_CONF.CHANGE_DQOS_BODY'
+                    | translate
+                "
+              ></p>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/change_dqos_config.jpg"
+                  alt="change_dqos_config_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+              <div class="p-my-2">
+                <p-image
+                  src="assets/images/help/network_configuration/dqos_table.jpg"
+                  alt="dqos_table_img"
+                  width="600"
+                  [preview]="true"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+        </p-tabPanel>
+      </p-tabView>
+    </p-accordionTab>
+  </p-accordion>
+</p-panel>

@@ -1,0 +1,148 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<p-accordion expandIcon='pi pi-fw pi-chevron-up'>
+  <p-accordionTab #tabEl class="flex">
+    <ng-template pTemplate="header">
+      <div>
+          <span class="pi pi-fw custom-icon"
+          [ngClass]="{'pi-chevron-up': !tabEl.selected, 'pi-chevron-down': tabEl.selected}"></span>
+        <span class="font-bold">{{'GATEWAY_CONTROLLERS.MAINTENANCE.TITLE' | translate}}</span>
+      </div>
+      <div>
+        <span class="font-bold">{{'GATEWAY_CONTROLLERS.MAINTENANCE.ACTIVE_UNIT' | translate}}:</span>
+        <span> {{ activeUnit }} </span>
+      </div>
+      <div>
+        <span>{{'GATEWAY_CONTROLLERS.MAINTENANCE.OVERALL_STATUS' | translate}}:</span>
+        <span [ngClass]="{
+          'status-color-green': overallStatus === EOverallStatus.InService,
+          'status-color-red': overallStatus === EOverallStatus.OutOfService,
+          'status-color-orange': overallStatus === EOverallStatus.Degraded,
+          'status-color-black': overallStatus === EOverallStatus.Unknown
+        }"> {{ overallStatus }}</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+
+      <div class="flex-row">
+        <div class="p-grid p-field p-col-12 p-fluid panel-content" >
+          <div class="p-col-6">
+            <p-panel [showHeader]="false" class="rbn-panel p-col-6">
+              <div class="title-container">
+                <h3 class="blue">{{ gwControllerName }}-UNIT-0:</h3>
+                <h3 class="light-grey">{{unit0IPAddr}}</h3>
+              </div>
+              <p-divider></p-divider>
+              <div class="p-grid">
+                <div class="p-field rbn-field field p-col-12 panel-content" *ngIf="statusDataResponse && statusDataResponse.length > 0">
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.READINESS' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[0].readyState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.HA' | translate}}:</label></div>
+                    <div><label [ngClass]="statusDataResponse[0].haState === 'inactive(2)' ? 'red' : 'light-grey'">{{statusDataResponse[0].haState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ADMIN' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[0].adminState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.OPERATIONAL' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[0].operState}}</label></div>
+                  </div>
+                  <div class="item alarm">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ALARM' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[0].alarmState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.LOADNAME' | translate}}:</label></div>
+                    <div><label class="light-grey">{{loadNameUnit0}}</label></div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+          <div class="p-col-6">
+            <p-panel [showHeader]="false" class="rbn-panel p-col-6">
+              <div class="title-container">
+                <h3 class="blue">{{ gwControllerName }}-UNIT-1:</h3>
+                <h3 class="light-grey">{{ unit1IPAddr }}</h3>
+              </div>
+              <p-divider></p-divider>
+              <div class="p-grid">
+                <div class="p-field rbn-field field p-col-12 panel-content" *ngIf="statusDataResponse && statusDataResponse.length > 0">
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.READINESS' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[1].readyState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.HA' | translate}}:</label></div>
+                    <div><label [ngClass]="statusDataResponse[1].haState === 'inactive(2)' ? 'red' : 'light-grey'">{{statusDataResponse[1].haState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ADMIN' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[1].adminState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.OPERATIONAL' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[1].operState}}</label></div>
+                  </div>
+                  <div class="item alarm">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ALARM' | translate}}:</label></div>
+                    <div><label class="light-grey">{{statusDataResponse[1].alarmState}}</label></div>
+                  </div>
+                  <div class="item">
+                    <div><label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.LOADNAME' | translate}}:</label></div>
+                    <div><label class="light-grey">{{loadNameUnit1}}</label></div>
+                  </div>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+          <div class="p-col-12">
+            <p-panel [showHeader]="false" class="rbn-panel">
+              <h3>{{'GATEWAY_CONTROLLERS.MAINTENANCE.IP_ADDRESSES' | translate}}</h3>
+              <div class="p-grid single-row-grid">
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ACTIVE' | translate}}:</label>
+                  <label class="light-grey">{{active}}</label>
+                </div>
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.INACTIVE' | translate}}:</label>
+                  <label class="light-grey">{{inactive}}</label>
+                </div>
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.UNIT0' | translate}}:</label>
+                  <label class="light-grey">{{ipPanelUnit0}}</label>
+                </div>
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.UNIT1' | translate}}:</label>
+                  <label class="light-grey">{{ipPanelUnit1}}</label>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+          <div class="p-col-12">
+            <p-panel [showHeader]="false" class="rbn-panel">
+              <h3>{{'GATEWAY_CONTROLLERS.MAINTENANCE.ELEMENT_MANAGER' | translate}}</h3>
+              <div class="p-grid single-row-grid">
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.IP' | translate}}:</label>
+                  <label class="light-grey">{{elementManagerIp}}</label>
+                </div>
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.SNMP' | translate}}:</label>
+                  <label class="light-grey">161</label>
+                </div>
+                <div class="p-field p-col-3 rbn-field">
+                  <label>{{'GATEWAY_CONTROLLERS.MAINTENANCE.TRAP' | translate}}:</label>
+                  <label class="light-grey">{{trap}}</label>
+                </div>
+              </div>
+            </p-panel>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>

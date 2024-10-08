@@ -1,0 +1,13 @@
+<div class="container-summary" *ngIf="(summaryDetail | json) !== '{}'">
+  <div class="p-grid">
+    <div class="p-col-12">
+      <label class="labelSummary">{{'TRUNK_CLLI.HEADER.SUMMARY' | translate}}</label>
+    </div>
+  </div>
+  <div class="p-grid p-pb-0 p-p-4 ">
+    <div class="p-col-3 summary-col" *ngFor="let item of summaryDetail | keyvalue">
+      <h4>{{'TRUNK_CLLI.SUMMARY_LABEL.' + item.key | translate}}</h4>
+      <span>{{item.value}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<div class="dqos-conf-container" [formGroup]="formGroup">
+  <div class="p-grid">
+    <div class="rbn-group p-mb-2 p-col-4 p-field rbn-field">
+      <label for="dsField">{{'CODEC_PROFILE.DQOS_CONF.DSCP' | translate }}</label>
+      <p-dropdown class="customdd" styleClass="test" id="dsField" formControlName="dsField" appendTo="body" [options]="dsFieldDataItems" 
+        class="italic-placeholder" [placeholder]="undefinedDsField ? undefinedDsField : 'COMMON.SELECT' | translate"></p-dropdown>
+    </div>
+    <div class="rbn-group p-mb-2 p-col-4 p-field rbn-field">
+      <label for="t1Value">{{ "CODEC_PROFILE.DQOS_CONF.TIMER_T1" | translate }}</label>
+      <input class="italic-placeholder" formControlName="t1Value" type="text"  id="t1Value"
+        [placeholder]="'COMMON.INPUT' | translate" pInputText />
+    </div>
+    <div class="rbn-group p-mb-2 p-col-4 p-field rbn-field">
+      <label for="keepAliveTimer">{{ "CODEC_PROFILE.DQOS_CONF.KEEP_ALIVE_TIMER" | translate }}</label>
+      <input class="italic-placeholder" formControlName="keepAliveTimer" type="text"  id="keepAliveTimer"
+        [placeholder]="'COMMON.INPUT' | translate" pInputText />
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="rbn-group p-mb-2 p-col-4 p-field rbn-field">
+      <label for="t7Value">{{ "CODEC_PROFILE.DQOS_CONF.TIMER_T7" | translate }}</label>
+      <input class="italic-placeholder" formControlName="t7Value" type="text" id="t7Value"
+        [placeholder]="'COMMON.INPUT' | translate" pInputText />
+    </div>
+    <div class="rbn-group p-mb-2 p-col-4 p-field rbn-field">
+      <label for="t8Value">{{ "CODEC_PROFILE.DQOS_CONF.TIMER_T8" | translate }}</label>
+      <input class="italic-placeholder" formControlName="t8Value" type="text" id="t8Value"
+        [placeholder]="'COMMON.INPUT' | translate" pInputText />
+    </div>
+  </div>
+  <rbn-panel-messages [title]="title" [content]="content" [typeOfMessage]="'info'"></rbn-panel-messages>
+  <app-form-footer [primaryLabel]="'COMMON.SAVE' | translate" [secondaryLabel]="'COMMON.RESET' | translate"
+    (eventSubmit)="onFormSubmit($event)">
+  </app-form-footer>
+</div>
+
+
+<p-dialog class="rbn-dialog" [header]="'CODEC_PROFILE.DQOS_CONF.ERROR_TITLE' | translate"
+  [(visible)]="showValidationInfoDialog" [modal]="true" (onHide)="closeValidationInfoDialog()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label *ngIf="formGroup.controls['t1Value'].invalid" [innerHTML]="'CODEC_PROFILE.DQOS_CONF.INVALID_T1' | translate | safe: 'html'">
+    </label>
+    <label *ngIf="formGroup.controls['keepAliveTimer'].invalid" [innerHTML]="'CODEC_PROFILE.DQOS_CONF.INVALID_KEEP_ALIVE_T' | translate | safe: 'html'">
+    </label>
+    <label *ngIf="formGroup.controls['t7Value'].invalid" [innerHTML]="'CODEC_PROFILE.DQOS_CONF.INVALID_T7' | translate | safe: 'html'">
+    </label>
+    <label *ngIf="formGroup.controls['t8Value'].invalid" [innerHTML]="'CODEC_PROFILE.DQOS_CONF.INVALID_T8' | translate | safe: 'html'">
+    </label>
+  </div>
+  <p-footer>
+    <p-button [label]="'COMMON.OK' | translate" styleClass="rbn-button rbn-button-primary"
+  (onClick)="closeValidationInfoDialog()"></p-button>
+  </p-footer>
+</p-dialog>
+
+<!-- Edit error popup with Show/Hide button -->
+<p-dialog class="rbn-dialog" [header]="'CODEC_PROFILE.DQOS_CONF.EDIT.TITLE' | translate" [(visible)]="showEditErrorDialog"
+  [modal]="true" (onHide)="closeEditErrorDialog()" id="editErrorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container" [innerHTML]="messageText | safe: 'html'" ></div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeEditErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>

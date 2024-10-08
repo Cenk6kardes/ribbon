@@ -1,0 +1,148 @@
+<rbn-dialog-loader [loading]="isLoading"></rbn-dialog-loader>
+<div class="button-top">
+  <p-button [label]="'NETWORK.GR_GATEWAYS.ADD_GR.ADD_BTN_LABEL' | translate"
+    styleClass="rbn-button rbn-button-secondary" icon="fas fa-plus" (onClick)="addNewGRBtn()"></p-button>
+</div>
+<rbn-table #rbnTable [cols]="cols" [showFilterRow]="false" [data]="data" [tableConfig]="tableConfig" [allowSetDataToStorage]="false" (refreshData)="refreshTable()">
+</rbn-table>
+
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GR_GATEWAYS.ADD_GR.TITLE' | translate" [(visible)]="showAddDialog"
+  [modal]="true" id="dialog" (onHide)="closeAddDialogAndDeleteFormValue()">
+  <div class="grGW-container" [formGroup]="grGWFormGroup">
+    <div class="p-grid p-pl-2">
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="g6Name">{{ "NETWORK.GR_GATEWAYS.FORM.NAME" | translate }}:</label>
+        <input id="g6Name" formControlName="g6Name" type="text"
+          [pTooltip]="'NETWORK.GR_GATEWAYS.FORM.NAME_INFO' | translate" tooltipPosition="bottom" pInputText
+          required />
+      </div>
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="type">{{ "NETWORK.GR_GATEWAYS.FORM.TYPE" | translate }}:</label>
+        <p-dropdown id="type" formControlName="type" appendTo="body" [options]="dropDownDataItems"></p-dropdown>
+      </div>
+    </div>
+    <div class="p-grid p-pl-2">
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="port">{{ "NETWORK.GR_GATEWAYS.FORM.PORT" | translate }}:</label>
+        <input [class.invalid-input]="getPort?.invalid && getPort?.touched" id="port" formControlName="port" type="text" [pTooltip]="'NETWORK.GR_GATEWAYS.FORM.PORT_INFO' | translate" tooltipPosition="bottom" pInputText required />
+      </div>
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="ipAddress">{{
+              "NETWORK.GR_GATEWAYS.FORM.IP_ADDRESS" | translate
+            }}:</label>
+        <input [class.invalid-input]="getIpAddress?.invalid && getIpAddress?.touched" formControlName="ipAddress" type="text" [pTooltip]="'NETWORK.GR_GATEWAYS.FORM.IP_ADDRESS_INFO' | translate" tooltipPosition="bottom" pInputText required />
+      </div>
+    </div>
+    <div class="p-grid p-pl-2">
+        <div class="rbn-group p-col-6 p-field rbn-field">
+          <label for="userName">{{ "NETWORK.GR_GATEWAYS.FORM.USER_NAME" | translate }}:</label>
+          <input id="userName" formControlName="userName" type="text" pInputText required />
+        </div>
+        <div class="rbn-group p-col-6 p-field rbn-field">
+          <label for="passWd">{{"NETWORK.GR_GATEWAYS.FORM.PASSWORD" | translate}}:</label>
+          <input formControlName="passWd" type="password" pInputText required />
+        </div>
+      </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.SAVE' | translate" [disablePrimaryBtn]="!grGWFormGroup.valid"
+      (eventSubmit)="addGRGWFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>
+<p-dialog class="rbn-dialog" [header]="'COMMON.ACTION_FAILED' | translate" [(visible)]="showErrorDialog"
+  [modal]="true" (onHide)="closeErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container">{{messageText}}</div>
+  </div>
+  <div class="message-text-container message-text-detail" [innerHTML]="messageTextDetail | safe: 'html'" ></div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GR_GATEWAYS.DELETE_GRGW.TITLE' | translate" [(visible)]="showDeleteDialog"
+  [modal]="true" (onHide)="closeDeleteDialogAndDeleteSelectedData()" id="deleteDialog">
+  <div class="p-col-12 p-mb-3">
+    <label>
+      {{ 'NETWORK.GR_GATEWAYS.DELETE_GRGW.DELETE_DIALOG_MESSAGE' | translate }}
+      <span class="boldAndItalic">"{{ deleteSelectedData.g6Name }}"</span>
+      {{ 'NETWORK.GR_GATEWAYS.DELETE_GRGW.ON_PORT' | translate }}
+      <span class="boldAndItalic">"{{ deleteSelectedData.port }}"</span>
+      {{"?"}}
+    </label>
+  </div>
+  <app-form-footer [secondaryLabel]="'COMMON.NO' | translate" [primaryLabel]="'COMMON.YES' | translate"
+    (eventSubmit)="deleteDialogFooterHandler($event)">
+  </app-form-footer>
+</p-dialog>
+<p-dialog class="rbn-dialog" [header]="'COMMON.ACTION_FAILED' | translate" [(visible)]="showDeleteErrorDialog"
+  [modal]="true" (onHide)="closeDeleteErrorDialog()" id="errorDialog" [draggable]="false" [resizable]="false">
+  <div class="error-dialog-container p-grid p-field p-col-12">
+    <i class="pi pi-times-circle iconStyle"></i>
+    <div class="message-text-container">{{messageText}}</div>
+  </div>
+  <div class="error-dialog-buttons p-grid p-col-12">
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-tertiary" (onClick)="closeDeleteErrorDialog()"
+        [label]="'COMMON.OK' | translate"></p-button>
+    </div>
+    <div class="btn">
+      <p-button type="button" styleClass="rbn-button rbn-button-secondary" (onClick)="showOrHideButtonClick()"
+        [label]= "'COMMON.' + (showDetailsBtn ? 'SHOW_DETAILS' : 'HIDE_DETAILS') | translate"></p-button>
+    </div>
+  </div>
+  <div *ngIf="!showDetailsBtn">
+    <div [innerHTML]="detailsText | safe: 'html'" class="details-text-area-container "></div>
+  </div>
+</p-dialog>
+
+<p-dialog class="rbn-dialog" [header]="'NETWORK.GR_GATEWAYS.EDIT_GR.TITLE' | translate" [(visible)]="showEditDialog"
+  [modal]="true" id="dialog" (onHide)="closeEditDialogAndDeleteFormValue()">
+  <div class="grGW-container" [formGroup]="grGWFormGroup">
+    <div class="p-grid p-pl-2">
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="g6Name">{{ "NETWORK.GR_GATEWAYS.FORM.NAME" | translate }}:</label>
+        <input id="g6Name" formControlName="g6Name" type="text" [readOnly]="true" pInputText required />
+      </div>
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="type">{{ "NETWORK.GR_GATEWAYS.FORM.TYPE" | translate }}:</label>
+        <p-dropdown id="type" formControlName="type" appendTo="body" [options]="dropDownDataItems" [readonly]="true"></p-dropdown>
+      </div>
+    </div>
+    <div class="p-grid p-pl-2">
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="port">{{ "NETWORK.GR_GATEWAYS.FORM.PORT" | translate }}:</label>
+        <input id="port" formControlName="port" type="text" [pTooltip]="'NETWORK.GR_GATEWAYS.FORM.PORT_INFO' | translate" tooltipPosition="bottom" pInputText required />
+      </div>
+      <div class="rbn-group p-col-6 p-field rbn-field">
+        <label for="ipAddress">{{
+              "NETWORK.GR_GATEWAYS.FORM.IP_ADDRESS" | translate
+            }}:</label>
+        <input formControlName="ipAddress" type="text" [pTooltip]="'NETWORK.GR_GATEWAYS.FORM.IP_ADDRESS_INFO' | translate" tooltipPosition="bottom" pInputText required />
+      </div>
+    </div>
+    <div class="p-grid p-pl-2">
+        <div class="rbn-group p-col-6 p-field rbn-field">
+          <label for="userName">{{ "NETWORK.GR_GATEWAYS.FORM.USER_NAME" | translate }}:</label>
+          <input id="userName" formControlName="userName" type="text" pInputText required />
+        </div>
+        <div class="rbn-group p-col-6 p-field rbn-field">
+          <label for="passWd">{{"NETWORK.GR_GATEWAYS.FORM.PASSWORD" | translate}}:</label>
+          <input formControlName="passWd" type="password" pInputText required />
+        </div>
+      </div>
+    <app-form-footer [secondaryLabel]="'COMMON.CANCEL' | translate" [primaryLabel]="'COMMON.SAVE' | translate" [disablePrimaryBtn]="!(grGWFormGroup.valid && isDataChanged)"
+      (eventSubmit)="editGRGWFormFooterHandler($event)">
+    </app-form-footer> 
+  </div>
+</p-dialog>

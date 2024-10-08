@@ -1,0 +1,12 @@
+@import "ribbontheme/variables";
+
+button {
+    background-color: $ribbon-dark-blue ;
+    display: block;
+    width: 100%;
+
+    &:hover {
+        background-color: $ribbon-dark-blue !important;
+        opacity: 0.8;
+    }
+}

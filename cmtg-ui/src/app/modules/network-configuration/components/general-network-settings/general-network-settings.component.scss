@@ -1,0 +1,108 @@
+@import "ribbontheme/variables";
+
+:host ::ng-deep {
+  .p-panel-content {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 !important;
+  }
+
+  .content-header {
+    color: $ribbon-dark-grey;
+    font-size: 13px;
+    font-weight: 600
+  }
+
+  .content-detail {
+    color: $ribbon-dark-grey;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .input-style {
+    width: 62%;
+    padding: 3px 3px 4px 6px;
+    border: 1.5px solid $ribbon-light-grey;
+  }
+
+  .italic-placeholder::placeholder {
+    font-style: italic;
+  }
+
+  .input-name-disabled {
+    color: $ribbon-grey;
+    font-size: 13px;
+    font-weight: 600
+  }
+
+  .disabled-style {
+    color: $ribbon-white;
+    border: 1.5px solid $ribbon-light-grey;
+  }
+
+  .form-footer {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  .error-dialog-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 35px;
+
+    .iconStyle {
+      color: $ribbon-dark-red;
+      margin-top: 4px;
+    }
+  }
+
+  .message-text-container {
+    font-weight: unset;
+    color: $ribbon-dark-grey;
+    padding-left: 10px;
+  }
+
+  .error-dialog-buttons {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 2px;
+      margin-right: 8px;
+    }
+  }
+
+  .details-text-area-container {
+    height: 135px;
+    width: calc(500px - 2rem);
+    resize: both;
+    max-width: inherit;
+    overflow: scroll;
+    color: $ribbon-dark-grey;
+    white-space: nowrap;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+    outline: 1px solid $ribbon-light-grey;
+    border-radius: 2px;
+  }
+
+  .p-dialog {
+    max-width: 80%;
+  }
+
+  .warning-dialog-container {
+    margin: 20px;
+    padding-bottom: 5px;
+  }
+}

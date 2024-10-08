@@ -1,0 +1,36 @@
+:host ::ng-deep {
+  .container-description {
+    .statusLog {
+      .container-accordion {
+        max-height: 160px;
+        overflow: auto;
+      }
+      .p-accordion-header .p-accordion-header-link {
+        border-radius: 0px;
+        background: inherit;
+        border: none;
+        &:hover {
+          background: inherit;
+        }
+
+        .p-accordion-header-text {
+          font-weight: bold;
+        }
+      }
+    }
+    .p-accordion-content {
+      border: none;
+      padding-left: 44px;
+    }
+  }
+  .form-footer {
+    padding: 0.5rem;
+    justify-content: end;
+    align-items: center;
+    
+    .btn .rbn-button.p-button {
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+}

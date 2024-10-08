@@ -1,0 +1,40 @@
+<rbn-page-header [data]="headerData" (backButtonAction)="onBack()"></rbn-page-header>
+<div class="p-grid flex-row-gap">
+  <ng-container *ngFor="let itemObject of bulkItems; let i = index">
+    <div class="card p-col-3" *ngIf="!closedCards.includes(i)">
+      <div class="card-header p-grid p-col-12 p-p-0">
+        <div class="p-col-6">
+          <h3 class="p-m-0">{{itemObject.cm_dn}}</h3>
+        </div>
+        <div class="p-col-6 p-text-right">
+          <p-button styleClass="rbn-button rbn-button-secondary" class="button-small" (onClick)="closeCardsOrRoute(i)"
+            label="{{'COMMON.CLOSE'| translate}}">
+          </p-button>
+        </div>
+      </div>
+      <div class="card-body p-grid p-col-12 p-p-0" *ngFor="let item of itemObject | keyvalue:returnZero">
+        <div *ngIf="item.key !== 'cm_dn'" class="div-width">
+          <div *ngIf="type === 4; else QdnQsip">
+            <div class="p-col-12 p-pt-2 p-pb-0">
+              <h3 class="p-m-0">{{'BULK_DETAIL_CODE.' + item.key.toUpperCase() | translate}}</h3>
+            </div>
+            <div class="p-col-12 p-pt-0">
+              <p class="p-m-0 break-word">{{item.value}}</p>
+            </div>
+          </div>
+          <ng-template #QdnQsip>
+            <div class="p-col-12">
+              <p class="p-m-0" [innerHTML]="item.value" class="inner-text"></p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div class="p-grid ">
+  <div class="p-col-12 p-text-right p-mt-1 p-mb-1">
+    <p-button styleClass="rbn-button rbn-button-tertiary" label="{{'COMMON.CLOSE'| translate}}" (onClick)="onBack()">
+    </p-button>
+  </div>
+</div>

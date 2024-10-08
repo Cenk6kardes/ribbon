@@ -1,0 +1,98 @@
+<rbn-page-header [data]="headerData"></rbn-page-header>
+<p-panel [showHeader]="false" class="rbn-panel">
+    <h2>Functional Description</h2>
+    <div class="p-mb-3">
+        <p>The Maintenance panel provides unit status information for the currently selected Gateway
+            Controller.<br>Refer to the following for information on this panel : Maintenance Panel for GWC on GENIUS.
+        </p>
+    </div>
+    <h2>The Menu</h2>
+    <div class="p-my-2">
+        <p-image src="assets/images/help/maintenance/maintenance_menu.jpg" alt="maintenance_menu_img" width="300"
+            [preview]="true"></p-image>
+    </div>
+    <h2>Maintenance Panel for GWC on GENIUS</h2>
+    <div class="p-mb-3">
+        <p>The Maintenance panel for the C20a Platform provides unit status information and maintenance functions for
+            the currently selected Gateway Controller. The name and unit IP addresses are displayed for the currently
+            selected gateway controller at the top of the main panel. A status bar, located at the bottom of the main
+            panel, displays operation messages. The previous twenty messages may be displayed via the dropdown list.</p>
+        <div class="p-my-2">
+            <p-image src="assets/images/help/maintenance/c20a_maintenance_panel.jpg" alt="c20a_maintenance_panel_img"
+                width="600" [preview]="true"></p-image>
+        </div>
+        <div class="p-mb-3">
+          <p-image src="assets/images/help/controller/controller_description_table_1.jpg"
+              alt="controller_description_table_1_img" width="600" [preview]="true"></p-image>
+      </div>
+    </div>
+    <h2>Status Fields</h2>
+    <div class="p-mb-3">
+        <p>The status fields are updated on a regular basis by the system, or may be updated via selection of the
+            Refresh menu item located under the Windows menu.</p>
+    </div>
+    <p class="bold">Overall Readliness State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-6">
+            <li class="p-col-3 bold padding-x-none">In Service:</li>
+            <span class="p-col-9 padding-x-none">Both GWC units are In Service.</span>
+            <li class="p-col-3 bold padding-x-none">Degraded:</li>
+            <span class="p-col-9 padding-x-none">One GWC unit is In Service, the other Out of Service.</span>
+            <li class="p-col-3 bold padding-x-none">Out of Service:</li>
+            <div class="p-col-9 padding-x-none">Both GWC units are In Service.</div>
+            <li class="p-col-3 bold padding-x-none">Unknown:</li>
+            <div class="p-col-9 padding-x-none">Both GWC units are In Service.</div>
+        </div>
+    </div>
+    <p class="bold">Readiness State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-6">
+            <li class="p-col-3 bold padding-x-none">In Service:</li>
+            <span class="p-col-9 padding-x-none">The GWC unit is In Service.</span>
+            <li class="p-col-3 bold padding-x-none">Out of Service:</li>
+            <span class="p-col-9 padding-x-none">The GWC unit is Out of Service.</span>
+        </div>
+    </div>
+    <p class="bold">High Availability State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-9">
+            <li class="p-col-2 bold padding-x-none">Active:</li>
+            <span class="p-col-10 padding-x-none">The GWC unit is in charge of the call processing and maintenance
+                operations for the pair. The mate unit should be "standby".</span>
+            <li class="p-col-2 bold padding-x-none">Inactive:</li>
+            <span class="p-col-10 padding-x-none">The GWC unit is acting as backup to the operation of the mate unit,
+                which should be "active". Also referred to as "inactive".</span>
+        </div>
+    </div>
+    <p class="bold">Administrative State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-9">
+            <li class="p-col-2 bold padding-x-none">Unlocked:</li>
+            <span class="p-col-10 padding-x-none">The GWC unit is administratively permitted to perform services for its
+                users. This is independent of its inherent operability.</span>
+            <li class="p-col-2 bold padding-x-none">Locked:</li>
+            <span class="p-col-10 padding-x-none">The GWC unit is administratively prohibited from performing services
+                for its users.</span>
+        </div>
+    </div>
+    <p class="bold">Operational State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-6">
+            <li class="p-col-3 bold padding-x-none">Enabled:</li>
+            <span class="p-col-9 padding-x-none">The GWC unit is partially or fully providing service.</span>
+            <li class="p-col-3 bold padding-x-none">Disabled:</li>
+            <span class="p-col-9 padding-x-none">The GWC unit is not providing service.</span>
+        </div>
+    </div>
+    <p class="bold">Alarm State</p>
+    <div class="p-mb-3 flex-row">
+        <div class="p-grid p-fluid p-col-10">
+            <li class="p-col-5 bold padding-x-none">critical(1), major(2), minor(3), alarmOutstanding(4)</li>
+            <span class="p-col-7 padding-x-none">The severity of currently raised alarms.</span>
+        </div>
+    </div>
+    <h2>Maintenance Actions</h2>
+    <div class="p-mb-3">
+        <p>For the C20a Platform all maintenance actions are performed on the NDM.</p>
+    </div>
+</p-panel>

@@ -1,0 +1,144 @@
+{
+  "PROFILE": {
+    "PREFERENCES": "Preferences",
+    "LOGOUT": "Log Out",
+    "HELP_CENTER": "Help Center",
+    "HELP": "Help"
+  },
+  "COMMON": {
+    "DELETE": "Delete",
+    "OK": "OK",
+    "CLOSE": "Close",
+    "BULK_ACTIONS": "Bulk Actions",
+    "ACTION": "Action",
+    "RUN": "Run",
+    "CLEAR": "Clear",
+    "CANCEL": "Cancel",
+    "ERROR": "Error",
+    "SHOW_DETAILS": "Show Details",
+    "SELECT": "Select",
+    "RUN_TEST": "Run Test"
+  },
+  "MAI_GATE_WAYS_CARRIER": {
+    "TITLE_GATEWAYS": "Maintenance by Gateways",
+    "TITLE_CARRIER": "Maintenance by Carrier",
+    "HEADER_ACTION": "Actions + Queries",
+    "HEADER_DETAILS": "Details",
+    "FIELD_LABEL": {
+      "GATEWAY_NAME": "Gateway Name",
+      "MAINTENANCE_ACTION": "Maintenance Action",
+      "ENDPOINT_RANGE": "Endpoint Range",
+      "WHEN_QUERYING_SHOW": "When Querying Show",
+      "SELECT_GATEWAY": "Select Gateway",
+      "SELECT_MAINTENANCE": "Select Maintenance",
+      "SELECT_STATE": "Select State",
+      "AVAILABLE_CARRIER_NAMES": "Available Carrier Names",
+      "SELECTED_CARRIER_NAMES": "Selected Carrier Names",
+      "CARRIERS": "Carriers",
+      "TOTAL_ENDPOINT": "Total Endpoint",
+      "ALL_CARRIERS": "All Carriers",
+      "NODE_NUMBER": "Node Number"
+    },
+    "ERROR_MESSAGES": {
+      "GATEWAYNAME_REQUIRED": "Please select an available gateway, and try again.",
+      "MAINTENANCEACTION_REQUIRED": "Please select a maintenance action, and try again.",
+      "ENDPOINTRANGE_REQUIRED": "Endpoint range is invalid, please modify it and try again.",
+      "FILTERSTATE_REQUIRED": "Please select a state, and try again.",
+      "SHOWDETAILS_REQUIRED": "Show Details is invalid",
+      "INPUT_INVALID": "Input invalid"
+    },
+    "HEADER": {
+      "CARRIER_NAMES": "Carrier Names",
+      "SUMMARY": "Summary",
+      "COLUMNS": {
+        "ENDPOINT_NUMBER": "Endpoint Number",
+        "STATE": "State",
+        "ACTIONS": "Actions",
+        "CONNECTED_TO": "Connected To",
+        "DIRECTION": "Direction",
+        "SIGNALING": "Signaling",
+        "PM_TYPE": "PM Type",
+        "PM_NUMBER": "PM Number",
+        "ENDPOIN_NAME": "Endpoint Name",
+        "TRUNK_CLLI": "Trunk CLLI",
+        "TRUNK_MEMBER": "Trunk Member",
+        "PM_CARRIER": "PM Carrier",
+        "PM_TIME_SLOT": "PM Time Slot",
+        "TRUNK_TYPE": "Trunk Type"
+      }
+    },
+    "CONFIRMATION_ACTIONS": {
+      "TITLE": "Confirmation",
+      "CONTENT_ALL_TRUNK": "Are you sure you want to do this action?<br><br>[Action] {{action}}<br>[Range] All trunk members will be queried<br>It might take some time to complete.<br><br>Do you want to continue?",
+      "CONTENT": "Are you sure you want to do this action?<br><br>[Action] {{action}}<br>[Range] {{range}}"
+    },
+    "DETAILS_MESSAGE": "Any actions taken in the table below can also change the information in the above <b>Summary</b> section above. Original data entered in the <b>Actions + Queries</b> section will not be changed.",
+    "NOTE_FORCE_RELEASE":"FRLS operations has service affecting impact. Enter a endpoint range value (endpoints must be separated by commas; for instance 1,3,5,10)",
+    "LAST_REFRESHED": "Last Refreshed",
+    "NOTE_ENDPOINT_RANGE":"To display all: 0- <br /> For a specific range: 2030-2050 <br> For specific endpoints: 2049, 2050 <br> For specific endpoint= 2049 <br> For a combination of range and specific endpoint: 2049-2052,2054"
+  },
+  "PREFERENCES": {
+    "TITLE": "Preferences",
+    "AUTO_REFRESH": "Auto Refresh",
+    "EVERY": "Every",
+    "SECOND": "Seconds",
+    "NEED_CONFIRMATION": "Need confirmation",
+    "DISABLE_CONFIRMATION": "When toggled on, Confirmation dialog will be displayed for every operation."
+  },
+  "TRUNK_CLLI": {
+    "TITLE": "Maintenance by Trunk CLLI",
+    "GATEWAY_NAME": "Gateway Name",
+    "TRUNK_CLLI": "Trunk CLLI",
+    "GENERAL_TRUNK_MAINTANENCE": "General Trunk Maintenance",
+    "D_CHANNEL_MAINTANENCE": "D-Channel Maintenance",
+    "ISUP_COT_TEST": "ISUP COT Test",
+    "ISUP_COT_NOTE": "Note: Precondition for ICOT Test - Ensure the trunk is in MB state.",
+    "TRUNK_RANGE": "Trunk Range",
+    "MAINTANENCE_ACTION": "Maintenance Action",
+    "TRUNK_MEMBER": "Trunk Member",
+    "ANOTHER_SELECT_ITEM_IF_NEED": "Another Select Item If Need",
+    "POST_GROUP_D_CHANNEL":"Post Group D-Channel",
+    "HEADER_DETAILS": "Details",    
+    "SUCCESSFULLY_UPDATED":"Successfully Updated",
+    "SUMMARY_LABEL":{
+      "CMCLLI": "CM CLLI",
+      "TrunkCLLI": "Trunk CLLI",
+      "FirstMember": "First Member",
+      "GroupSize": "Group Size",
+      "TrunkMembers": "Trunk Member"
+    },
+    "ERROR_MESSAGES": {
+      "TRUNKRANGE_REQUIRED": "Please enter a trunk range, and try again.",
+      "TRUNKRANGE_INVALID":"Trunk range is invalid, please modify it and try again."
+    },
+    "HEADER": {
+      "CARRIER_NAMES": "Carrier Names",
+      "SUMMARY": "Summary",
+      "COLUMNS": {
+        "State": "State",
+        "TrunkDirection": "Direction",
+        "TrunkSignaling": "Signaling",
+        "EndpointName": "Endpoint",
+        "GatewayName": "Gateway",
+        "PMNumber": "PM #",
+        "NodeNumber": "Node #",
+        "TerminalNumber": "Terminal #",
+        "PMType": "PM Type",
+        "TrunkMember": "Trunk Member",
+        "AdditionalInfo": "Additional Info",
+        "CallID": "Call Id",
+        "ContinuityCondition": "Continuity Condition",
+        "TestResult": "Test Result",
+        "ConnectedTo": "Connected to",
+        "PMCarrier": "Pm Carrier",
+        "PMTimeSlot": "Time Slot",
+        "Error": "Error"
+      }
+    },
+    "CONFIRMATION_ACTIONS": {
+      "TITLE": "Confirmation",
+      "CONTENT_ALL_TRUNK": "Are you sure you want to do this action?<br><br>[Action] {{action}}<br>[Range] All trunk members will be queried<br>It might take some time to complete.<br><br>Do you want to continue?"
+    },
+    "NOTE_ENDPOINT_RANGE":"To display all: 0- <br /> For a specific range: 2030-2050 <br> For specific trunks: 2049, 2050 <br> For specific trunk= 2049 <br> For a combination of range and specific trunk: 2049-2052,2054"
+  }
+}
